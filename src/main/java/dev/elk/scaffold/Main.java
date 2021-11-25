@@ -20,11 +20,8 @@ public class Main {
         //using the basic lambda syntax (input)->doSomethingWith(input)
         PluginRepository.notifyAllOf(eventListener -> eventListener.onLoadTexture(event));
 
-
         //Calls the function #onShutdown() for each EventListener in the repository using
         //the prettier lambda syntax, because there are no parameters to #onShutdown()
         PluginRepository.notifyAllOf(EventListener::onShutdown);
-
     }
-
 }

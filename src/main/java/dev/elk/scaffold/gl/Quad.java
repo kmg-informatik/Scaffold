@@ -19,11 +19,11 @@ public class Quad implements Geometry{
 
     }
 
-    public Quad(Sprite sprite, Vector2f bottomLeft, float width, float height){
-        vertices[0] = new Vertex(new Vector2f(bottomLeft), sprite.getUvCoords()[0]);
-        vertices[1] = new Vertex(bottomLeft.add(width, 0), sprite.getUvCoords()[1]);
-        vertices[2] = new Vertex(bottomLeft.add(0, height), sprite.getUvCoords()[2]);
-        vertices[3] = new Vertex(bottomLeft.add(width, height), sprite.getUvCoords()[3]);
+    public Quad(Sprite sprite, Vector2f posLB, float width, float height){
+        vertices[0] = new Vertex(new Vector2f(posLB), sprite.getUvCoords()[0]);
+        vertices[1] = new Vertex(posLB.add(width, 0), sprite.getUvCoords()[1]);
+        vertices[2] = new Vertex(posLB.add(0, height), sprite.getUvCoords()[2]);
+        vertices[3] = new Vertex(posLB.add(width, height), sprite.getUvCoords()[3]);
     }
 
     public Quad(Sprite sprite, Vector2f posLB, Vector2f posTR){
@@ -47,7 +47,6 @@ public class Quad implements Geometry{
             System.arraycopy(vertices[i].intoFloats(), 0, allVertexData, Vertex.STRIDE * i, Vertex.STRIDE);
 
         return allVertexData;
-
     }
 
     /**
@@ -59,32 +58,8 @@ public class Quad implements Geometry{
         return new int[]{0,1,2,2,3,0};
     }
 
-
     @Override
-    public float getHeight() {
-        return vertices[0].position.y - vertices[2].position.y;
-    }
-
-    @Override
-    public float getWidth() {
-        return vertices[0].position.x - vertices[2].position.x;
-    }
-
-    @Override
-    public Vector2f getPosition() {
+    public Vector2f getOrigin() {
         return vertices[0].position;
-    }
-
-    @Override
-    public void moveTo(Vector2f bottomLeft) {
-        vertices[0].position = bottomLeft;
-        vertices[1].position = bottomLeft.add(0, getWidth());
-        vertices[2].position = bottomLeft.add(getHeight(), 0);
-        vertices[3].position = bottomLeft.sub(0, getWidth());
-    }
-
-    @Override
-    public void moveBy(Vector2f mov) {
-        IntStream.range(0, vertices.length).forEach(i -> vertices[i].position.add(mov));
     }
 }

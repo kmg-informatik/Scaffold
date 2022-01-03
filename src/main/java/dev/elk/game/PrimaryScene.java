@@ -12,6 +12,7 @@ import org.joml.Vector2i;
 import java.awt.*;
 import java.io.IOException;
 
+import static dev.elk.scaffold.util.Utils.*;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.*;
@@ -19,29 +20,25 @@ import static org.lwjgl.opengl.GL30.*;
 /**
  * Test scene for stuff. Mainly first tests of OpenGL and textures and stuff.
  *
- *
- * @apiNote  Textures not 100% working yet, will fix later.
  * @author Louis Schell
  * @author Felix Kunze
+ * @apiNote Textures not 100% working yet, will fix later.
  */
 public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
     private Texture texture;
-    
+
     private int vaoID;
     private int vboID;
     private int eboID;
-    
+
     private final int[] elementArray = new int[20000];
     private final float[] vertices = new float[20000];
     public Quad quad;
 
-
-
-    public PrimaryScene(ShaderProgram program){
+    public PrimaryScene(ShaderProgram program) {
         this.program = program;
-
     }
 
     @Override
@@ -54,13 +51,13 @@ public class PrimaryScene extends Scene {
 
         Sprite sprite = new Sprite(texture, new Vector2i(), new Vector2i(), "ericBlob");
         sprite.setUvCoords(new Vector2f[]{
-                new Vector2f(0,0),
-                new Vector2f(1,0),
-                new Vector2f(1,1),
-                new Vector2f(0,1)
+                new Vector2f(0, 0),
+                new Vector2f(1, 0),
+                new Vector2f(1, 1),
+                new Vector2f(0, 1)
         });
 
-        quad = new Square(sprite, new Vector2f(0f,0f), 0.5f);
+        quad = new Square(sprite, new Vector2f(0f, 0f), 0.5f);
 
         program.compile();
         program.use();
@@ -87,12 +84,37 @@ public class PrimaryScene extends Scene {
         program.uploadTexture("TEX_SAMPLER", 0);
         glActiveTexture(GL_TEXTURE0);
         texture.bind();
+
+        quad.translateTo(new Vector2f(-1, -1));
     }
 
     @Override
     public void onUpdate(float dt) {
 
-        //quad.rotate(Math.toRadians(90f) * dt);
+        float movSpeed = 2f;
+
+        if (KeyListener.isKeyPressed(KEY_W)) {
+            quad.translate(new Vector2f(0, movSpeed).mul(dt));
+        }
+        if (KeyListener.isKeyPressed(KEY_A)) {
+            quad.translate(new Vector2f(-movSpeed, 0.0f).mul(dt));
+        }
+        if (KeyListener.isKeyPressed(KEY_D)) {
+            quad.translate(new Vector2f(movSpeed, 0).mul(dt));
+        }
+        if (KeyListener.isKeyPressed(KEY_S)) {
+            quad.translate(new Vector2f(0, -movSpeed).mul(dt));
+        }
+        if (KeyListener.isKeyPressed(KEY_R)) {
+            quad.rotate_origin(2f*dt);
+        }
+        if (KeyListener.isKeyPressed(KEY_SPACE)) {
+            quad.translateTo(new Vector2f());
+        }
+        System.out.println(quad);
+
+
+
         System.arraycopy(quad.intoFloats(), 0, vertices, 0, quad.intoFloats().length);
         System.arraycopy(quad.getIndices(), 0, elementArray, 0, quad.getIndices().length);
 

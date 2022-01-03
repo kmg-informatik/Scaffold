@@ -52,7 +52,7 @@ public class PrimaryScene extends Scene {
             e.printStackTrace();
         }
 
-        Sprite sprite = new Sprite(texture, new Vector2i(0,0), new Vector2i(0,0), "ericBlob");
+        Sprite sprite = new Sprite(texture, new Vector2i(), new Vector2i(), "ericBlob");
         sprite.setUvCoords(new Vector2f[]{
                 new Vector2f(0,0),
                 new Vector2f(1,0),
@@ -60,12 +60,10 @@ public class PrimaryScene extends Scene {
                 new Vector2f(0,1)
         });
 
-        quad =  new Square(sprite, new Vector2f(0.1f,0.1f), 3.0f);
+        quad = new Square(sprite, new Vector2f(0f,0f), 0.5f);
 
         program.compile();
         program.use();
-
-
 
         vaoID = glGenVertexArrays();
         glBindVertexArray(vaoID);
@@ -80,11 +78,15 @@ public class PrimaryScene extends Scene {
 
         int colAttrib = glGetAttribLocation(program.getId(), "texCoords");
         glEnableVertexAttribArray(colAttrib);
-        glVertexAttribPointer(colAttrib, Vertex.UV_COORD_SIZE, GL_FLOAT, false, 5*Float.BYTES, Vertex.POSITION_SIZE_BYTES);
+        glVertexAttribPointer(colAttrib, Vertex.UV_COORD_SIZE, GL_FLOAT, false, Vertex.STRIDE_BYTES, Vertex.POSITION_SIZE_BYTES);
 
         eboID = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, elementArray, GL_DYNAMIC_DRAW);
+
+        program.uploadTexture("TEX_SAMPLER", 0);
+        glActiveTexture(GL_TEXTURE0);
+        texture.bind();
     }
 
     @Override
@@ -96,10 +98,6 @@ public class PrimaryScene extends Scene {
 
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, elementArray);
         glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
-
-        program.uploadTexture("TEX_SAMPLER", 0);
-        glActiveTexture(GL_TEXTURE0);
-        texture.bind();
 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 

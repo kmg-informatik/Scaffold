@@ -6,6 +6,7 @@ import org.joml.Vector2f;
 /**
  * Methods concerning geometry.
  * @author Louis Schell
+ * @author Felix Kunze
  */
 public interface Geometry extends Renderable{
 
@@ -24,4 +25,14 @@ public interface Geometry extends Renderable{
             Utils.rotate(vertex.position, pivot, radians);
         }
     }
+
+    float getHeight();
+    float getWidth();
+    Vector2f getPosition();
+
+    void moveTo(Vector2f pos);
+
+    void moveBy(Vector2f mov);
+
+
 }

@@ -25,15 +25,38 @@ public interface Geometry extends Renderable {
     }
 
     /**
-     * Rotates the geometry by the given amount of radians
+     * Rotates the geometry around the origin by the given amount of radians
+     * @apiNote {@link org.joml.Math} provides a method to convert from
+     * degrees to radians
+     * @see #rotate(float, Vector2f)
+     * @param radians number of radians
+     */
+    default void rotate_origin(float radians) {
+        rotate(radians, getOrigin());
+    }
+
+    /**
+     * Rotates the geometry around its center by the given amount of radians
+     * @apiNote {@link org.joml.Math} provides a method to convert from
+     * degrees to radians
+     * @see #rotate(float, Vector2f)
+     * @param radians number of radians
+     */
+    default void rotate_center(float radians){
+        rotate(radians, centerOfMass());
+    }
+
+    /**
+     * Rotates the geometry around the given pivot point by the given
+     * amount of radians
      * @apiNote {@link org.joml.Math} provides a method to convert from
      * degrees to radians
      * @param radians number of radians
+     * @param pivot pivot point to rotate around
      */
-    default void rotate(float radians) {
-        Vector2f pivot = centerOfMass();
+    default void rotate(float radians, Vector2f pivot) {
         for (Vertex vertex : getVertices()) {
-            Utils.rotate(vertex.position, pivot, radians);
+            Utils.rotateVector(vertex.position, pivot, radians);
         }
     }
 

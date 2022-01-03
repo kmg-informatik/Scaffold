@@ -17,7 +17,7 @@ public interface Geometry extends Renderable{
         }
         pos.div(getVertices().length);
         return pos;
-    };
+    }
 
     default void rotate(float radians){
         Vector2f pivot = centerOfMass();
@@ -26,8 +26,27 @@ public interface Geometry extends Renderable{
         }
     }
 
-    float getHeight();
-    float getWidth();
+    default float getHeight(){
+        Vertex[] vertices = getVertices();
+        float[] yPos = new float[vertices.length];
+
+        for (int i = 0; i < vertices.length; i++)  yPos[i] = vertices[i].position.y;
+
+        float[] minMax = Utils.findMinMaxElem(yPos);
+        return minMax[1]- minMax[0];
+    }
+
+    default float getWidth(){
+        Vertex[] vertices = getVertices();
+        float[] xPos = new float[vertices.length];
+
+        for (int i = 0; i < vertices.length; i++) xPos[i] = vertices[i].position.x;
+
+        float[] minMax = Utils.findMinMaxElem(xPos);
+        return minMax[1]- minMax[0];
+    }
+
+
     Vector2f getPosition();
 
     void moveTo(Vector2f pos);

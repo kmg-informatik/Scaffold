@@ -7,7 +7,7 @@ package dev.elk.scaffold.gl;
  * {@link Renderable} interface.
  * @author Louis Schell
  */
-public interface Floatrepresentation {
+public interface FloatRepresentation {
 
     float[] intoFloats();
 

@@ -23,6 +23,7 @@ public class Main {
         ShaderProgram program = new ShaderProgram();
         program.attachShaders(fragment, vertex);
 
+
         Window window = new Window("Hello!", 500, 500, Color.black);
         window.setScene(new PrimaryScene(program));
 

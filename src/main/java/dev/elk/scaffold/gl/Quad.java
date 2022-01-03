@@ -1,9 +1,8 @@
 package dev.elk.scaffold.gl;
 
+import dev.elk.scaffold.renderer.Sprite;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 
-import java.awt.*;
 import java.util.stream.IntStream;
 
 /**
@@ -16,15 +15,23 @@ public class Quad implements Geometry{
 
     private final Vertex[] vertices = new Vertex[4];
 
-    public Quad(Vector2f posLB, Vector2f posTR, Color color){
+    public Quad(Sprite sprite, Vertex[] vertices){
 
-        Vector3f col = new Vector3f(color.getRGBColorComponents(null));
+    }
 
-        vertices[0] = new Vertex(new Vector2f(posLB), col);
-        vertices[1] = new Vertex(new Vector2f(posTR.x, posLB.y), col);
-        vertices[2] = new Vertex(new Vector2f(posTR), col);
-        vertices[3] = new Vertex(new Vector2f(posLB.x, posTR.y), col);
+    public Quad(Sprite sprite, Vector2f bottomLeft, float width, float height){
+        vertices[0] = new Vertex(new Vector2f(bottomLeft), sprite.getUvCoords()[0]);
+        vertices[1] = new Vertex(bottomLeft.add(width, 0), sprite.getUvCoords()[1]);
+        vertices[2] = new Vertex(bottomLeft.add(0, height), sprite.getUvCoords()[2]);
+        vertices[3] = new Vertex(bottomLeft.add(width, height), sprite.getUvCoords()[3]);
+    }
 
+    public Quad(Sprite sprite, Vector2f posLB, Vector2f posTR){
+
+        vertices[0] = new Vertex(new Vector2f(posLB), sprite.getUvCoords()[0]);
+        vertices[1] = new Vertex(new Vector2f(posTR.x, posLB.y), sprite.getUvCoords()[1]);
+        vertices[2] = new Vertex(new Vector2f(posTR), sprite.getUvCoords()[2]);
+        vertices[3] = new Vertex(new Vector2f(posLB.x, posTR.y), sprite.getUvCoords()[3]);
     }
 
     @Override
@@ -34,12 +41,10 @@ public class Quad implements Geometry{
 
     public float[] intoFloats(){
         //I know this is bodged, but I don't want to break colored vertices at the expense of textured ones
-        int stride = vertices[0].getStride();
-
-        float[] allVertexData = new float[vertices.length * stride];
+        float[] allVertexData = new float[vertices.length * Vertex.STRIDE];
 
         for (int i = 0; i < vertices.length; i++)
-            System.arraycopy(vertices[i].intoFloats(), 0, allVertexData, stride * i, stride);
+            System.arraycopy(vertices[i].intoFloats(), 0, allVertexData, Vertex.STRIDE * i, Vertex.STRIDE);
 
         return allVertexData;
 

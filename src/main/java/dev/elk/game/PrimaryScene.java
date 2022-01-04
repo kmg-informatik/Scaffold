@@ -5,12 +5,12 @@ import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Square;
 import dev.elk.scaffold.gl.Vertex;
 import dev.elk.scaffold.renderer.*;
-import org.joml.Math;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 
-import java.awt.*;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static dev.elk.scaffold.util.Utils.*;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
@@ -22,11 +22,11 @@ import static org.lwjgl.opengl.GL30.*;
  *
  * @author Louis Schell
  * @author Felix Kunze
- * @apiNote Textures not 100% working yet, will fix later.
  */
 public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
+    private Spritesheet spritesheet;
     private Texture texture;
 
     private int vaoID;
@@ -43,21 +43,16 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void init() {
+
         try {
-            texture = new Texture("Assets/PixelArt/Magu-final-1 - frame0001.png");
+            texture = new Texture("Assets/PixelArt/pixelfiles/2x2NoBorderTiles.png");
+            spritesheet = Spritesheet.from(Paths.get("Assets/SpriteJson/animationTest.json"), texture);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println(spritesheet.getSprites().get(0).toString());
 
-        Sprite sprite = new Sprite(texture, new Vector2i(), new Vector2i(), "ericBlob");
-        sprite.setUvCoords(new Vector2f[]{
-                new Vector2f(0, 0),
-                new Vector2f(1, 0),
-                new Vector2f(1, 1),
-                new Vector2f(0, 1)
-        });
-
-        quad = new Square(sprite, new Vector2f(0f, 0f), 0.5f);
+        quad = new Square(spritesheet.getSprites().get(0), new Vector2f(0f, 0f), 0.5f);
 
         program.compile();
         program.use();
@@ -71,11 +66,11 @@ public class PrimaryScene extends Scene {
 
         int posAttrib = glGetAttribLocation(program.getId(), "position");
         glEnableVertexAttribArray(posAttrib);
-        glVertexAttribPointer(posAttrib, Vertex.POSITION_SIZE, GL_FLOAT, false, Vertex.STRIDE_BYTES, 0);
+        glVertexAttribPointer(posAttrib, Vertex.POSITION_SIZE, GL_FLOAT, false, Vertex.BYTES, 0);
 
         int colAttrib = glGetAttribLocation(program.getId(), "texCoords");
         glEnableVertexAttribArray(colAttrib);
-        glVertexAttribPointer(colAttrib, Vertex.UV_COORD_SIZE, GL_FLOAT, false, Vertex.STRIDE_BYTES, Vertex.POSITION_SIZE_BYTES);
+        glVertexAttribPointer(colAttrib, Vertex.UV_COORD_SIZE, GL_FLOAT, false, Vertex.BYTES, Vertex.POSITION_SIZE_BYTES);
 
         eboID = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
@@ -86,6 +81,14 @@ public class PrimaryScene extends Scene {
         texture.bind();
 
         quad.translateTo(new Vector2f(-1, -1));
+
+        /*
+        try {
+            GsonGenerator.generateGson();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         */
     }
 
     @Override
@@ -109,9 +112,9 @@ public class PrimaryScene extends Scene {
             quad.rotate_origin(2f*dt);
         }
         if (KeyListener.isKeyPressed(KEY_SPACE)) {
-            quad.translateTo(new Vector2f());
+            //quad.translateTo(new Vector2f());
+            ((AnimatedSprite) spritesheet.getSprites().get(0)).nextFrame();
         }
-        System.out.println(quad);
 
 
 

@@ -14,8 +14,8 @@ public class AnimatedSprite extends Sprite {
     final int frameCount;
     private int currentFrame;
 
-    public AnimatedSprite(Texture texture, Vector2i minPos, Vector2i maxPos, String spriteName, int frameCount) {
-        super(texture, minPos, maxPos, spriteName);
+    public AnimatedSprite(Vector2i minPos, Vector2i maxPos, String spriteName, int frameCount) {
+        super(minPos, maxPos, spriteName);
         this.frameCount = frameCount;
         this.currentFrame = 0;
     }

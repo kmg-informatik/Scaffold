@@ -21,10 +21,14 @@ public class Spritesheet {
 
     private final ArrayList<Sprite> sprites = new ArrayList<>();
 
-    public static Spritesheet from(Path path) throws IOException {
+    public static Spritesheet from(Path path, Texture texture) throws IOException {
         Gson gson = new Gson();
-        String json = new String(Files.readAllBytes(path));
-        return gson.fromJson(json, Spritesheet.class);
+        return gson
+                .fromJson(
+                        new String(Files.readAllBytes(path)),
+                        Spritesheet.class
+                )
+                .init(texture);
     }
 
     public void calculateUVCoords() {
@@ -48,12 +52,11 @@ public class Spritesheet {
         }
     }
 
-    public Spritesheet(Texture texture, int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
+    public Spritesheet(int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
         this.sheetWidth = sheetWidth;
         this.sheetHeight = sheetHeight;
         this.tileWidth = tileWidth;
         this.tileHeight = tileHeight;
-        this.texture = texture;
     }
 
     public void addSprite(Sprite... sprites) {
@@ -63,5 +66,12 @@ public class Spritesheet {
 
     public ArrayList<Sprite> getSprites() {
         return sprites;
+    }
+
+    public Spritesheet init(Texture texture) {
+        this.texture = texture;
+        sprites.forEach(sprite -> sprite.setTexture(texture));
+        calculateUVCoords();
+        return this;
     }
 }

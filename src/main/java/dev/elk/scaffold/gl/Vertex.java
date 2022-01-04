@@ -18,7 +18,7 @@ public class Vertex implements FloatRepresentation {
     public Vector2f uvCoord;
 
     public static final int STRIDE = 4;
-    public static final int STRIDE_BYTES = STRIDE * Float.BYTES;
+    public static final int BYTES = STRIDE * Float.BYTES;
 
     public static final int POSITION_SIZE = 2;
     public static final int POSITION_SIZE_BYTES = POSITION_SIZE * Float.BYTES;

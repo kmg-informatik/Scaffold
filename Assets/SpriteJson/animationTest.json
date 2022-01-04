@@ -1,0 +1,21 @@
+{
+  "sheetWidth": 48,
+  "sheetHeight": 48,
+  "tileWidth": 24,
+  "tileHeight": 24,
+  "sprites": [
+    {
+      "frameCount": 2,
+      "currentFrame": 0,
+      "minPos": {
+        "x": 0,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 1
+      },
+      "spriteName": "ventilator"
+    }
+  ]
+}

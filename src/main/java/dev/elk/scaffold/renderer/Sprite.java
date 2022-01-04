@@ -24,6 +24,12 @@ public class Sprite {
         this.texture = texture;
     }
 
+    public Sprite(Vector2i minPos, Vector2i maxPos, String spriteName) {
+        this.minPos = minPos;
+        this.maxPos = maxPos;
+        this.spriteName = spriteName;
+    }
+
     public Vector2f[] getUvCoords() {
         return uvCoords;
     }
@@ -34,5 +40,9 @@ public class Sprite {
 
     public Texture getTexture() {
         return texture;
+    }
+
+    public void setTexture(Texture texture) {
+        this.texture = texture;
     }
 }

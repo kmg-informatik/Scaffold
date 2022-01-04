@@ -115,4 +115,29 @@ public interface Geometry extends Renderable {
         }
     }
 
+    /**
+     * Flip on the x-Axis
+     */
+    default void flipX(){
+        Vertex[] vertices = getVertices();
+        var center = centerOfMass();
+        translate(new Vector2f(0, -center.y));
+        for (Vertex vertex : vertices) {
+            vertex.position.y = -vertex.position.y;
+        }
+        translate(new Vector2f(0, center.y));
+    }
+
+    default void flipY(){
+        Vertex[] vertices = getVertices();
+        var center = centerOfMass();
+        translate(new Vector2f(-center.x, 0));
+
+        for (Vertex vertex : vertices) {
+            vertex.position.x = -vertex.position.x;
+        }
+
+        translate(new Vector2f(center.x, 0));
+    }
+
 }

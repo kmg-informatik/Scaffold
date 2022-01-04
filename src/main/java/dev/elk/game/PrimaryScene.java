@@ -11,6 +11,7 @@ import org.joml.Vector2i;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import static dev.elk.scaffold.util.Utils.*;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
@@ -27,6 +28,7 @@ public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
     private Spritesheet spritesheet;
+    private AnimatedSpritesheet animatedSpritesheet;
     private Texture texture;
 
     private int vaoID;
@@ -45,14 +47,14 @@ public class PrimaryScene extends Scene {
     public void init() {
 
         try {
-            texture = new Texture("Assets/PixelArt/pixelfiles/2x2NoBorderTiles.png");
-            spritesheet = Spritesheet.from(Paths.get("Assets/SpriteJson/animationTest.json"), texture);
+            texture = new Texture("Assets/PixelArt/Characters/wizardSideways.png");
+            animatedSpritesheet= AnimatedSpritesheet.from(Paths.get("Assets/SpriteJson/animationTest.json"), texture);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(spritesheet.getSprites().get(0).toString());
+        System.out.println(animatedSpritesheet.getSprites().get(0).toString());
 
-        quad = new Square(spritesheet.getSprites().get(0), new Vector2f(0f, 0f), 0.5f);
+        quad = new Quad(animatedSpritesheet.getSprites().get(0), new Vector2f(0f, 0f),  new Vector2f(0.51f,1.0f));
 
         program.compile();
         program.use();
@@ -81,14 +83,6 @@ public class PrimaryScene extends Scene {
         texture.bind();
 
         quad.translateTo(new Vector2f(-1, -1));
-
-        /*
-        try {
-            GsonGenerator.generateGson();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-         */
     }
 
     @Override
@@ -112,10 +106,10 @@ public class PrimaryScene extends Scene {
             quad.rotate_origin(2f*dt);
         }
         if (KeyListener.isKeyPressed(KEY_SPACE)) {
-            //quad.translateTo(new Vector2f());
-            ((AnimatedSprite) spritesheet.getSprites().get(0)).nextFrame();
+            quad.translateTo(new Vector2f());
         }
-
+        animatedSpritesheet.getSprites().get(0).nextFrame();
+        quad.setTexCoords();
 
 
         System.arraycopy(quad.intoFloats(), 0, vertices, 0, quad.intoFloats().length);
@@ -125,6 +119,12 @@ public class PrimaryScene extends Scene {
         glBufferSubData(GL_ARRAY_BUFFER, 0, vertices);
 
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
     }
 }

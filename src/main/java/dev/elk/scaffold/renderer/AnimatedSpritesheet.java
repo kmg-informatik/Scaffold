@@ -10,31 +10,41 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * This splices a big texture into many smaller spritesheets according to a specifcation derived from a json file.
+ * This is the Spritesheet for Animated sprites.
+ * This should in theory expand the spritesheet but whatever.
  * @author Felix Kunze
- * @author Louis Schell
  */
-public class Spritesheet {
+public class AnimatedSpritesheet {
 
     final int sheetWidth, sheetHeight, tileWidth, tileHeight;
     transient Texture texture;
 
-    private final ArrayList<Sprite> sprites = new ArrayList<>();
+    private final  ArrayList<AnimatedSprite> sprites = new ArrayList<>();
 
-    public static Spritesheet from(Path path, Texture texture) throws IOException {
+    public static AnimatedSpritesheet from(Path path, Texture texture) throws IOException {
         Gson gson = new Gson();
         return gson
                 .fromJson(
                         new String(Files.readAllBytes(path)),
-                        Spritesheet.class
+                        AnimatedSpritesheet.class
                 )
                 .init(texture);
+    }
+    public AnimatedSpritesheet(int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
+        this.sheetWidth = sheetWidth;
+        this.sheetHeight = sheetHeight;
+        this.tileWidth = tileWidth;
+        this.tileHeight = tileHeight;
+    }
+
+    public void addAnimatedSprite(AnimatedSprite... sprites) {
+        this.sprites.addAll(Arrays.asList(sprites));
     }
 
     public void calculateUVCoords() {
         float yFactor = (float) tileHeight / (float) sheetHeight;
         float xFactor = (float) tileWidth / (float) sheetWidth;
-        for (Sprite sprite : sprites) {
+        for (AnimatedSprite sprite: sprites) {
 
             float minY = (float) sprite.minPos.y * yFactor;
             float minX = (float) sprite.minPos.x * xFactor;
@@ -52,25 +62,14 @@ public class Spritesheet {
         }
     }
 
-    public Spritesheet(int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
-        this.sheetWidth = sheetWidth;
-        this.sheetHeight = sheetHeight;
-        this.tileWidth = tileWidth;
-        this.tileHeight = tileHeight;
-    }
-
-    public void addSprite(Sprite... sprites) {
-        this.sprites.addAll(Arrays.asList(sprites));
-    }
-
-    public ArrayList<Sprite> getSprites() {
-        return sprites;
-    }
-
-    public Spritesheet init(Texture texture) {
+    public AnimatedSpritesheet init(Texture texture) {
         this.texture = texture;
         sprites.forEach(sprite -> sprite.setTexture(texture));
         calculateUVCoords();
         return this;
+    }
+
+    public ArrayList<AnimatedSprite> getSprites() {
+        return sprites;
     }
 }

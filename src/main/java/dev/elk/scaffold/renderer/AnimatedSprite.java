@@ -3,6 +3,8 @@ package dev.elk.scaffold.renderer;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 
+import java.util.Arrays;
+
 /**
  * This different sprite type allows for the usage animation frames
  * by constraining each animation to a row.
@@ -23,9 +25,11 @@ public class AnimatedSprite extends Sprite {
     public void nextFrame() {
         currentFrame %= frameCount;
 
+        float width = uvCoords[1].x - uvCoords[0].x;
+
         for (int i = 0; i < 4; i++) {
             this.uvCoords[i] = new Vector2f(
-                    this.uvCoords[i].x + (maxPos.x - minPos.x),
+                    this.uvCoords[i].x + width,
                     this.uvCoords[i].y);
         }
         this.currentFrame++;
@@ -33,5 +37,18 @@ public class AnimatedSprite extends Sprite {
 
     public int getCurrentFrame() {
         return currentFrame;
+    }
+
+    @Override
+    public String toString() {
+        return "AnimatedSprite{" +
+                "frameCount=" + frameCount +
+                ", currentFrame=" + currentFrame +
+                ", minPos=" + minPos +
+                ", maxPos=" + maxPos +
+                ", spriteName='" + spriteName + '\'' +
+                ", uvCoords=" + Arrays.toString(uvCoords) +
+                ", texture=" + texture +
+                '}';
     }
 }

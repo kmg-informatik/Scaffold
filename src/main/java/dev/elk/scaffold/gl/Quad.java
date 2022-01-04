@@ -14,12 +14,11 @@ import java.util.stream.IntStream;
 public class Quad implements Geometry{
 
     private final Vertex[] vertices = new Vertex[4];
+    private final Sprite sprite;
 
-    public Quad(Sprite sprite, Vertex[] vertices){
-
-    }
 
     public Quad(Sprite sprite, Vector2f posLB, float width, float height){
+        this.sprite = sprite;
         vertices[0] = new Vertex(new Vector2f(posLB), sprite.getUvCoords()[0]);
         vertices[1] = new Vertex(posLB.add(width, 0), sprite.getUvCoords()[1]);
         vertices[2] = new Vertex(posLB.add(0, height), sprite.getUvCoords()[2]);
@@ -27,11 +26,23 @@ public class Quad implements Geometry{
     }
 
     public Quad(Sprite sprite, Vector2f posLB, Vector2f posTR){
-
+        this.sprite = sprite;
         vertices[0] = new Vertex(new Vector2f(posLB), sprite.getUvCoords()[0]);
         vertices[1] = new Vertex(new Vector2f(posTR.x, posLB.y), sprite.getUvCoords()[1]);
         vertices[2] = new Vertex(new Vector2f(posTR), sprite.getUvCoords()[2]);
         vertices[3] = new Vertex(new Vector2f(posLB.x, posTR.y), sprite.getUvCoords()[3]);
+    }
+
+    public void setTexCoords(Sprite sprite){
+        for (int i = 0; i < vertices.length; i++) {
+            vertices[i].uvCoord = sprite.getUvCoords()[i];
+        }
+    }
+
+    public void setTexCoords(){
+        for (int i = 0; i < vertices.length; i++) {
+            vertices[i].uvCoord = this.sprite.getUvCoords()[i];
+        }
     }
 
     @Override
@@ -62,4 +73,5 @@ public class Quad implements Geometry{
     public Vector2f getOrigin() {
         return vertices[0].position;
     }
+
 }

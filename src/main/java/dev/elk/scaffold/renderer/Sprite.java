@@ -3,6 +3,8 @@ package dev.elk.scaffold.renderer;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 
+import java.util.Arrays;
+
 /**
  * Instatiates an individual Sprite.
  * This is essentially a certain part of a bigger Texture, the Spritesheet
@@ -44,5 +46,16 @@ public class Sprite {
 
     public void setTexture(Texture texture) {
         this.texture = texture;
+    }
+
+    @Override
+    public String toString() {
+        return "Sprite{" +
+                "minPos=" + minPos +
+                ", maxPos=" + maxPos +
+                ", spriteName='" + spriteName + '\'' +
+                ", uvCoords=" + Arrays.toString(uvCoords) +
+                ", texture=" + texture +
+                '}';
     }
 }

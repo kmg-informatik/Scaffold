@@ -1,17 +1,18 @@
-package dev.elk.game;
+package dev.elk.game.Generators;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import dev.elk.scaffold.renderer.AnimatedSprite;
-import dev.elk.scaffold.renderer.Sprite;
-import dev.elk.scaffold.renderer.Spritesheet;
-import dev.elk.scaffold.renderer.Texture;
+import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2i;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class GsonGenerator {
+
+    public static void main(String[] args) throws IOException {
+        generateAnimatedJson();
+    }
 
     public static void generateGson() throws IOException {
 
@@ -43,10 +44,8 @@ public class GsonGenerator {
                         new Vector2i(1,2),
                         "coin")
         );
+
         spritesheet.calculateUVCoords();
-
-        System.out.println(gson.toJson(spritesheet));
-
 
         FileWriter writer = new FileWriter("Assets/SpriteJson/2x2.json");
         gson.toJson(spritesheet, writer);
@@ -55,20 +54,18 @@ public class GsonGenerator {
 
     }
 
-    public static void generateAnimatedGson() throws IOException {
 
+    public static void generateAnimatedJson() throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-
-        Spritesheet spritesheet = new Spritesheet(
-                48,
-                48,
-                24,
-                24
+        AnimatedSpritesheet spritesheet = new AnimatedSpritesheet(
+                79,
+                38,
+                26,
+                19
         );
 
-        spritesheet.addSprite(new AnimatedSprite(new Vector2i(0,0), new Vector2i(1,1), "ventilator", 2));
-        System.out.println(gson.toJson(spritesheet));
+        spritesheet.addAnimatedSprite(new AnimatedSprite(new Vector2i(0,0), new Vector2i(1,2), "magu", 2));
         FileWriter writer = new FileWriter("Assets/SpriteJson/animationTest.json");
         gson.toJson(spritesheet, writer);
         writer.close();

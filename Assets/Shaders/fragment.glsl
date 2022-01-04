@@ -7,4 +7,6 @@ out vec4 outColor;
 
 void main() {
     outColor = texture(TEX_SAMPLER, fTexCoords);
+    if(outColor.a == 0)
+        discard;
 }

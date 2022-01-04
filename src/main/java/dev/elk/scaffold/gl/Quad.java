@@ -33,13 +33,13 @@ public class Quad implements Geometry{
         vertices[3] = new Vertex(new Vector2f(posLB.x, posTR.y), sprite.getUvCoords()[3]);
     }
 
-    public void setTexCoords(Sprite sprite){
+    public void updateTexCoords(Sprite sprite){
         for (int i = 0; i < vertices.length; i++) {
             vertices[i].uvCoord = sprite.getUvCoords()[i];
         }
     }
 
-    public void setTexCoords(){
+    public void updateTexCoords(){
         for (int i = 0; i < vertices.length; i++) {
             vertices[i].uvCoord = this.sprite.getUvCoords()[i];
         }

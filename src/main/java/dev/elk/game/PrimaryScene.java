@@ -69,9 +69,13 @@ public class PrimaryScene extends Scene {
         glEnableVertexAttribArray(posAttrib);
         glVertexAttribPointer(posAttrib, Vertex.POSITION_SIZE, GL_FLOAT, false, Vertex.BYTES, 0);
 
-        int colAttrib = glGetAttribLocation(program.getId(), "texCoords");
+        int colAttrib = glGetAttribLocation(program.getId(), "color");
         glEnableVertexAttribArray(colAttrib);
-        glVertexAttribPointer(colAttrib, Vertex.UV_COORD_SIZE, GL_FLOAT, false, Vertex.BYTES, Vertex.POSITION_SIZE_BYTES);
+        glVertexAttribPointer(colAttrib, Vertex.COLOR_SIZE, GL_FLOAT, false, Vertex.BYTES, Vertex.POSITION_SIZE_BYTES);
+
+        int texAttrib = glGetAttribLocation(program.getId(), "texCoords");
+        glEnableVertexAttribArray(texAttrib);
+        glVertexAttribPointer(texAttrib, Vertex.UV_COORD_SIZE, GL_FLOAT, false, Vertex.BYTES, Vertex.POSITION_SIZE_BYTES + Vertex.COLOR_SIZE_BYTES);
 
         eboID = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
@@ -80,6 +84,7 @@ public class PrimaryScene extends Scene {
         program.uploadTexture("TEX_SAMPLER", 0);
         glActiveTexture(GL_TEXTURE0);
         texture.bind();
+
     }
 
     int counter = 0;

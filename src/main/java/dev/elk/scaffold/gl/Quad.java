@@ -2,7 +2,9 @@ package dev.elk.scaffold.gl;
 
 import dev.elk.scaffold.renderer.Sprite;
 import org.joml.Vector2f;
+import org.joml.Vector3f;
 
+import java.awt.*;
 import java.util.stream.IntStream;
 
 /**
@@ -19,18 +21,29 @@ public class Quad implements Geometry{
 
     public Quad(Sprite sprite, Vector2f posLB, float width, float height){
         this.sprite = sprite;
-        vertices[0] = new Vertex(new Vector2f(posLB), sprite.getUvCoords()[0]);
-        vertices[1] = new Vertex(posLB.add(width, 0), sprite.getUvCoords()[1]);
-        vertices[2] = new Vertex(posLB.add(0, height), sprite.getUvCoords()[2]);
-        vertices[3] = new Vertex(posLB.add(width, height), sprite.getUvCoords()[3]);
+        vertices[0] = new Vertex(new Vector2f(posLB), new Vector3f(), sprite.getUvCoords()[0]);
+        vertices[1] = new Vertex(posLB.add(width, 0), new Vector3f(), sprite.getUvCoords()[1]);
+        vertices[2] = new Vertex(posLB.add(0, height),new Vector3f(),  sprite.getUvCoords()[2]);
+        vertices[3] = new Vertex(posLB.add(width, height),new Vector3f(),  sprite.getUvCoords()[3]);
     }
 
     public Quad(Sprite sprite, Vector2f posLB, Vector2f posTR){
+        Color color = Color.WHITE;
+        Vector3f colorVec = new Vector3f(color.getRGBColorComponents(null));
         this.sprite = sprite;
-        vertices[0] = new Vertex(new Vector2f(posLB), sprite.getUvCoords()[0]);
-        vertices[1] = new Vertex(new Vector2f(posTR.x, posLB.y), sprite.getUvCoords()[1]);
-        vertices[2] = new Vertex(new Vector2f(posTR), sprite.getUvCoords()[2]);
-        vertices[3] = new Vertex(new Vector2f(posLB.x, posTR.y), sprite.getUvCoords()[3]);
+        vertices[0] = new Vertex(new Vector2f(posLB),colorVec,  sprite.getUvCoords()[0]);
+        vertices[1] = new Vertex(new Vector2f(posTR.x, posLB.y), colorVec, sprite.getUvCoords()[1]);
+        vertices[2] = new Vertex(new Vector2f(posTR), colorVec, sprite.getUvCoords()[2]);
+        vertices[3] = new Vertex(new Vector2f(posLB.x, posTR.y),colorVec,  sprite.getUvCoords()[3]);
+    }
+
+    public Quad(Sprite sprite, Vector2f posLB, Vector2f posTR, Color color) {
+        Vector3f colorVec = new Vector3f(color.getRGBColorComponents(null));
+        this.sprite = sprite;
+        vertices[0] = new Vertex(new Vector2f(posLB),colorVec,  sprite.getUvCoords()[0]);
+        vertices[1] = new Vertex(new Vector2f(posTR.x, posLB.y), colorVec, sprite.getUvCoords()[1]);
+        vertices[2] = new Vertex(new Vector2f(posTR), colorVec, sprite.getUvCoords()[2]);
+        vertices[3] = new Vertex(new Vector2f(posLB.x, posTR.y),colorVec,  sprite.getUvCoords()[3]);
     }
 
     public void updateTexCoords(Sprite sprite){

@@ -8,6 +8,10 @@ import org.joml.Vector2i;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Generates the Json necessary to read sprites.
+ * @author Felix Kunze
+ */
 public class GsonGenerator {
 
     public static void main(String[] args) throws IOException {
@@ -165,7 +169,7 @@ public class GsonGenerator {
 
         Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>(
                 288,
-                48,
+                121,
                 24,
                 24
         );

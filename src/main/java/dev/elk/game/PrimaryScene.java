@@ -49,13 +49,13 @@ public class PrimaryScene extends Scene {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         try {
-            texture = new Texture("Assets/PixelArt/Characters/einrad.png");
-            spritesheet = Spritesheet.fromAnimated(Paths.get("Assets/SpriteJson/animationTest.json"), texture);
+            texture = new Texture("Assets/Spritesheets/animations.png");
+            spritesheet = Spritesheet.fromAnimated(Paths.get("Assets/SpriteJson/animations.json"), texture);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        quad = new Quad(spritesheet.getSprite("einrad"), new Vector2f(0f, 0f),  new Vector2f(0.255f,0.5f));
+        quad = new Quad(spritesheet.getSprite("hydra"), new Vector2f(0f, 0f),  new Vector2f(0.255f,0.5f));
 
         MeshRepository.put(quad);
 

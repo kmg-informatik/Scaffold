@@ -16,6 +16,8 @@ public class AnimatedSprite extends Sprite {
     final int frameCount;
     private int currentFrame;
 
+    private Vector2f[] originalUVCoords;
+
     public AnimatedSprite(Vector2i minPos, Vector2i maxPos, String spriteName, int frameCount) {
         super(minPos, maxPos, spriteName);
         this.frameCount = frameCount;
@@ -23,20 +25,32 @@ public class AnimatedSprite extends Sprite {
     }
 
     public void nextFrame() {
-        currentFrame %= frameCount;
-
         float width = uvCoords[1].x - uvCoords[0].x;
 
-        for (int i = 0; i < 4; i++) {
-            this.uvCoords[i] = new Vector2f(
-                    this.uvCoords[i].x + width,
-                    this.uvCoords[i].y);
+
+        if (currentFrame == frameCount) {
+            currentFrame = 0;
+            uvCoords = originalUVCoords.clone();
         }
+
+        for (int i = 0; i < 4; i++)
+            uvCoords[i].x += width;
+
+        System.out.println(Arrays.toString(originalUVCoords));
+        System.out.println(Arrays.toString(uvCoords));
+        System.out.println();
+
         this.currentFrame++;
     }
 
     public int getCurrentFrame() {
         return currentFrame;
+    }
+
+    @Override
+    public void setUvCoords(Vector2f[] uvCoords) {
+        this.uvCoords = uvCoords;
+        this.originalUVCoords = uvCoords;
     }
 
     @Override

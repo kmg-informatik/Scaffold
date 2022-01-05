@@ -1,0 +1,756 @@
+{
+  "sheetWidth": 432,
+  "sheetHeight": 120,
+  "tileWidth": 24,
+  "tileHeight": 24,
+  "sprites": {
+    "cloudRightTriangle": {
+      "minPos": {
+        "x": 4,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 4
+      },
+      "spriteName": "cloudRightTriangle"
+    },
+    "dirt3left": {
+      "minPos": {
+        "x": 3,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 3
+      },
+      "spriteName": "dirt3left"
+    },
+    "ironBolt": {
+      "minPos": {
+        "x": 9,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 5
+      },
+      "spriteName": "ironBolt"
+    },
+    "grassCornerLeftBottom": {
+      "minPos": {
+        "x": 17,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 18,
+        "y": 2
+      },
+      "spriteName": "grassCornerLeftBottom"
+    },
+    "dirt2LeftBottom": {
+      "minPos": {
+        "x": 7,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 3
+      },
+      "spriteName": "dirt2LeftBottom"
+    },
+    "grass4": {
+      "minPos": {
+        "x": 1,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 2
+      },
+      "spriteName": "grass4"
+    },
+    "dirtCornerRightTop": {
+      "minPos": {
+        "x": 15,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 3
+      },
+      "spriteName": "dirtCornerRightTop"
+    },
+    "grassCornerRightTop": {
+      "minPos": {
+        "x": 15,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 2
+      },
+      "spriteName": "grassCornerRightTop"
+    },
+    "dirt2RightTop": {
+      "minPos": {
+        "x": 9,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 3
+      },
+      "spriteName": "dirt2RightTop"
+    },
+    "dirt1Top": {
+      "minPos": {
+        "x": 10,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 3
+      },
+      "spriteName": "dirt1Top"
+    },
+    "grass3side": {
+      "minPos": {
+        "x": 5,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 2
+      },
+      "spriteName": "grass3side"
+    },
+    "dirtCornerLeftTop": {
+      "minPos": {
+        "x": 14,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 3
+      },
+      "spriteName": "dirtCornerLeftTop"
+    },
+    "wood": {
+      "minPos": {
+        "x": 12,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 5
+      },
+      "spriteName": "wood"
+    },
+    "grassLeft": {
+      "minPos": {
+        "x": 13,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 2
+      },
+      "spriteName": "grassLeft"
+    },
+    "stoneBrick": {
+      "minPos": {
+        "x": 1,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 5
+      },
+      "spriteName": "stoneBrick"
+    },
+    "dirt1Right": {
+      "minPos": {
+        "x": 11,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 3
+      },
+      "spriteName": "dirt1Right"
+    },
+    "dirtLight": {
+      "minPos": {
+        "x": 0,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 2
+      },
+      "spriteName": "dirtLight"
+    },
+    "grass3down": {
+      "minPos": {
+        "x": 2,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 2
+      },
+      "spriteName": "grass3down"
+    },
+    "sky": {
+      "minPos": {
+        "x": 0,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 4
+      },
+      "spriteName": "sky"
+    },
+    "dirt3down": {
+      "minPos": {
+        "x": 2,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 3
+      },
+      "spriteName": "dirt3down"
+    },
+    "dirtDown": {
+      "minPos": {
+        "x": 12,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 3
+      },
+      "spriteName": "dirtDown"
+    },
+    "dirt2LeftTop": {
+      "minPos": {
+        "x": 8,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 3
+      },
+      "spriteName": "dirt2LeftTop"
+    },
+    "dirt2RightBottom": {
+      "minPos": {
+        "x": 6,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 3
+      },
+      "spriteName": "dirt2RightBottom"
+    },
+    "grass1Right": {
+      "minPos": {
+        "x": 11,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 2
+      },
+      "spriteName": "grass1Right"
+    },
+    "grass1Top": {
+      "minPos": {
+        "x": 10,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 2
+      },
+      "spriteName": "grass1Top"
+    },
+    "trash": {
+      "minPos": {
+        "x": 4,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 1
+      },
+      "spriteName": "trash"
+    },
+    "dirt3up": {
+      "minPos": {
+        "x": 4,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 3
+      },
+      "spriteName": "dirt3up"
+    },
+    "marble": {
+      "minPos": {
+        "x": 4,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 5
+      },
+      "spriteName": "marble"
+    },
+    "spikes": {
+      "minPos": {
+        "x": 7,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 1
+      },
+      "spriteName": "spikes"
+    },
+    "grass3up": {
+      "minPos": {
+        "x": 4,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 2
+      },
+      "spriteName": "grass3up"
+    },
+    "barrelFire": {
+      "minPos": {
+        "x": 3,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 1
+      },
+      "spriteName": "barrelFire"
+    },
+    "gear": {
+      "minPos": {
+        "x": 6,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 1
+      },
+      "spriteName": "gear"
+    },
+    "dirt4": {
+      "minPos": {
+        "x": 1,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 3
+      },
+      "spriteName": "dirt4"
+    },
+    "grassCornerRightBottom": {
+      "minPos": {
+        "x": 16,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 17,
+        "y": 2
+      },
+      "spriteName": "grassCornerRightBottom"
+    },
+    "steel": {
+      "minPos": {
+        "x": 6,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 5
+      },
+      "spriteName": "steel"
+    },
+    "grass2RightBottom": {
+      "minPos": {
+        "x": 6,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 2
+      },
+      "spriteName": "grass2RightBottom"
+    },
+    "cloudLeftTriangle": {
+      "minPos": {
+        "x": 3,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 4
+      },
+      "spriteName": "cloudLeftTriangle"
+    },
+    "cloudLeftB": {
+      "minPos": {
+        "x": 5,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 4
+      },
+      "spriteName": "cloudLeftB"
+    },
+    "grass2LeftTop": {
+      "minPos": {
+        "x": 8,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 2
+      },
+      "spriteName": "grass2LeftTop"
+    },
+    "grassDown": {
+      "minPos": {
+        "x": 12,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 2
+      },
+      "spriteName": "grassDown"
+    },
+    "grass3left": {
+      "minPos": {
+        "x": 3,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 2
+      },
+      "spriteName": "grass3left"
+    },
+    "grass2RightTop": {
+      "minPos": {
+        "x": 9,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 2
+      },
+      "spriteName": "grass2RightTop"
+    },
+    "pattern": {
+      "minPos": {
+        "x": 13,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 5
+      },
+      "spriteName": "pattern"
+    },
+    "dirtCornerRightBottom": {
+      "minPos": {
+        "x": 16,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 17,
+        "y": 3
+      },
+      "spriteName": "dirtCornerRightBottom"
+    },
+    "dirtCornerLeftBottom": {
+      "minPos": {
+        "x": 17,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 18,
+        "y": 3
+      },
+      "spriteName": "dirtCornerLeftBottom"
+    },
+    "cloudLeftRoundSmall": {
+      "minPos": {
+        "x": 1,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 4
+      },
+      "spriteName": "cloudLeftRoundSmall"
+    },
+    "ironBars": {
+      "minPos": {
+        "x": 10,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 5
+      },
+      "spriteName": "ironBars"
+    },
+    "cobblestone": {
+      "minPos": {
+        "x": 2,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 5
+      },
+      "spriteName": "cobblestone"
+    },
+    "ironPlate": {
+      "minPos": {
+        "x": 8,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 5
+      },
+      "spriteName": "ironPlate"
+    },
+    "copper": {
+      "minPos": {
+        "x": 7,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 5
+      },
+      "spriteName": "copper"
+    },
+    "brick": {
+      "minPos": {
+        "x": 0,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 5
+      },
+      "spriteName": "brick"
+    },
+    "tank": {
+      "minPos": {
+        "x": 5,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 1
+      },
+      "spriteName": "tank"
+    },
+    "dirtLeft": {
+      "minPos": {
+        "x": 13,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 3
+      },
+      "spriteName": "dirtLeft"
+    },
+    "cloudRightRoundBig": {
+      "minPos": {
+        "x": 8,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 4
+      },
+      "spriteName": "cloudRightRoundBig"
+    },
+    "pavement": {
+      "minPos": {
+        "x": 3,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 5
+      },
+      "spriteName": "pavement"
+    },
+    "grass2LeftBottom": {
+      "minPos": {
+        "x": 7,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 2
+      },
+      "spriteName": "grass2LeftBottom"
+    },
+    "cloudCenter": {
+      "minPos": {
+        "x": 9,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 4
+      },
+      "spriteName": "cloudCenter"
+    },
+    "barrel2": {
+      "minPos": {
+        "x": 1,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 1
+      },
+      "spriteName": "barrel2"
+    },
+    "barrel3": {
+      "minPos": {
+        "x": 0,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 1
+      },
+      "spriteName": "barrel3"
+    },
+    "cloudRightRoundSmall": {
+      "minPos": {
+        "x": 2,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 4
+      },
+      "spriteName": "cloudRightRoundSmall"
+    },
+    "cloudRightB": {
+      "minPos": {
+        "x": 6,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 4
+      },
+      "spriteName": "cloudRightB"
+    },
+    "barrel1": {
+      "minPos": {
+        "x": 2,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 1
+      },
+      "spriteName": "barrel1"
+    },
+    "dirt3side": {
+      "minPos": {
+        "x": 5,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 3
+      },
+      "spriteName": "dirt3side"
+    },
+    "grassCornerLeftTop": {
+      "minPos": {
+        "x": 14,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 2
+      },
+      "spriteName": "grassCornerLeftTop"
+    },
+    "dirtDark": {
+      "minPos": {
+        "x": 0,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 3
+      },
+      "spriteName": "dirtDark"
+    },
+    "cloudLeftRoundBig": {
+      "minPos": {
+        "x": 7,
+        "y": 3
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 4
+      },
+      "spriteName": "cloudLeftRoundBig"
+    },
+    "iron": {
+      "minPos": {
+        "x": 5,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 5
+      },
+      "spriteName": "iron"
+    },
+    "window": {
+      "minPos": {
+        "x": 11,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 5
+      },
+      "spriteName": "window"
+    }
+  }
+}

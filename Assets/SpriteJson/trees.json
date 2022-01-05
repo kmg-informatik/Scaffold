@@ -1,0 +1,140 @@
+{
+  "sheetWidth": 288,
+  "sheetHeight": 48,
+  "tileWidth": 24,
+  "tileHeight": 24,
+  "sprites": {
+    "treeBranch": {
+      "minPos": {
+        "x": 2,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 2
+      },
+      "spriteName": "treeBranch"
+    },
+    "treeLong": {
+      "minPos": {
+        "x": 10,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 2
+      },
+      "spriteName": "treeLong"
+    },
+    "treeBlock": {
+      "minPos": {
+        "x": 4,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 2
+      },
+      "spriteName": "treeBlock"
+    },
+    "treeStack": {
+      "minPos": {
+        "x": 8,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 2
+      },
+      "spriteName": "treeStack"
+    },
+    "treeStep": {
+      "minPos": {
+        "x": 12,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 2
+      },
+      "spriteName": "treeStep"
+    },
+    "treeMango": {
+      "minPos": {
+        "x": 3,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 2
+      },
+      "spriteName": "treeMango"
+    },
+    "treeCone": {
+      "minPos": {
+        "x": 1,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 2
+      },
+      "spriteName": "treeCone"
+    },
+    "tree": {
+      "minPos": {
+        "x": 11,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 2
+      },
+      "spriteName": "tree"
+    },
+    "treeBubbles": {
+      "minPos": {
+        "x": 9,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 2
+      },
+      "spriteName": "treeBubbles"
+    },
+    "treeComplicated": {
+      "minPos": {
+        "x": 6,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 2
+      },
+      "spriteName": "treeComplicated"
+    },
+    "treeCurvy": {
+      "minPos": {
+        "x": 7,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 2
+      },
+      "spriteName": "treeCurvy"
+    },
+    "treeFlower": {
+      "minPos": {
+        "x": 5,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 2
+      },
+      "spriteName": "treeFlower"
+    }
+  }
+}

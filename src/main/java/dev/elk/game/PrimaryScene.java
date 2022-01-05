@@ -52,8 +52,6 @@ public class PrimaryScene extends Scene {
             texture = new Texture("Assets/PixelArt/Characters/einrad.png");
             spritesheet = Spritesheet.fromAnimated(Paths.get("Assets/SpriteJson/animationTest.json"), texture);
 
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

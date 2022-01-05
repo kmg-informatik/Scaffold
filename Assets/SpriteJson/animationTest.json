@@ -1,11 +1,11 @@
 {
-  "sheetWidth": 78,
-  "sheetHeight": 38,
-  "tileWidth": 26,
-  "tileHeight": 19,
-  "sprites": [
-    {
-      "frameCount": 2,
+  "sheetWidth": 288,
+  "sheetHeight": 48,
+  "tileWidth": 24,
+  "tileHeight": 24,
+  "sprites": {
+    "einrad": {
+      "frameCount": 12,
       "currentFrame": 0,
       "minPos": {
         "x": 0,
@@ -15,7 +15,7 @@
         "x": 1,
         "y": 2
       },
-      "spriteName": "magu"
+      "spriteName": "einrad"
     }
-  ]
+  }
 }

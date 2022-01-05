@@ -1,40 +1,49 @@
 package dev.elk.scaffold.renderer;
 
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.joml.Vector2f;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * This splices a big texture into many smaller spritesheets according to a specifcation derived from a json file.
  * @author Felix Kunze
  * @author Louis Schell
  */
-public class Spritesheet {
+public class Spritesheet<T extends Sprite>{
 
     final int sheetWidth, sheetHeight, tileWidth, tileHeight;
     transient Texture texture;
 
-    private final ArrayList<Sprite> sprites = new ArrayList<>();
+    private final HashMap<String, T> sprites = new HashMap<>();
 
-    public static Spritesheet from(Path path, Texture texture) throws IOException {
-        Gson gson = new Gson();
-        return gson
-                .fromJson(
-                        new String(Files.readAllBytes(path)),
-                        Spritesheet.class
-                )
-                .init(texture);
+    public static Spritesheet<AnimatedSprite> fromAnimated(Path path, Texture texture) throws IOException {
+        GsonBuilder gson = new GsonBuilder();
+        Spritesheet<AnimatedSprite> spritesheet = gson.create().fromJson(new String(Files.readAllBytes(path)),new TypeToken<Spritesheet<AnimatedSprite>>(){}.getType());
+        return spritesheet.init(texture);
+    }
+
+    public static Spritesheet<Sprite> from(Path path, Texture texture) throws IOException {
+        GsonBuilder gson = new GsonBuilder();
+
+        Spritesheet<Sprite> spritesheet = gson.create().fromJson(new String(Files.readAllBytes(path)),new TypeToken<Spritesheet<Sprite>>(){}.getType());
+
+        spritesheet.init(texture);
+        return spritesheet;
+    }
+
+    public Spritesheet(){
+        tileWidth = tileHeight = sheetWidth = sheetHeight = 0;
     }
 
     public void calculateUVCoords() {
         float yFactor = (float) tileHeight / (float) sheetHeight;
         float xFactor = (float) tileWidth / (float) sheetWidth;
-        for (Sprite sprite : sprites) {
+        for (T sprite : sprites.values()) {
 
             float minY = (float) sprite.minPos.y * yFactor;
             float minX = (float) sprite.minPos.x * xFactor;
@@ -59,17 +68,25 @@ public class Spritesheet {
         this.tileHeight = tileHeight;
     }
 
-    public void addSprite(Sprite... sprites) {
-        this.sprites.addAll(Arrays.asList(sprites));
+    @SafeVarargs
+    public final void addSprite(T... sprites) {
+        for (T sprite : sprites) {
+            this.sprites.put(sprite.spriteName, sprite);
+        }
     }
 
-    public ArrayList<Sprite> getSprites() {
-        return sprites;
+    public T getSprite(String spriteName) {
+        return sprites.get(spriteName);
     }
 
-    public Spritesheet init(Texture texture) {
+    public Spritesheet<T> init(Texture texture) {
         this.texture = texture;
-        sprites.forEach(sprite -> sprite.setTexture(texture));
+        System.out.println(sprites.values());
+
+        for (T sprite : sprites.values()) {
+            sprite.setTexture(texture);
+        }
+
         calculateUVCoords();
         return this;
     }

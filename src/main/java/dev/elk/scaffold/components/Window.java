@@ -31,7 +31,7 @@ public class Window {
         this.currentScene = newScene;
     }
 
-    public Window(String title, int height, int width, Color color) {
+    public Window(String title, int width, int height, Color color) {
         this.title = title;
         this.height = height;
         this.width = width;

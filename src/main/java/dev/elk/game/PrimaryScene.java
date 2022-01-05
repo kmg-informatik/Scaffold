@@ -1,9 +1,14 @@
 package dev.elk.game;
 
-import dev.elk.scaffold.components.*;
+import dev.elk.scaffold.components.KeyListener;
+import dev.elk.scaffold.components.MeshRepository;
+import dev.elk.scaffold.components.Scene;
 import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Vertex;
-import dev.elk.scaffold.renderer.*;
+import dev.elk.scaffold.renderer.AnimatedSprite;
+import dev.elk.scaffold.renderer.ShaderProgram;
+import dev.elk.scaffold.renderer.Spritesheet;
+import dev.elk.scaffold.renderer.Texture;
 import org.joml.Vector2f;
 
 import java.io.IOException;
@@ -12,7 +17,8 @@ import java.nio.file.Paths;
 import static dev.elk.scaffold.util.Utils.*;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL30.*;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
  * Test scene for stuff. Mainly first tests of OpenGL and textures and stuff.
@@ -23,8 +29,7 @@ import static org.lwjgl.opengl.GL30.*;
 public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
-    private Spritesheet spritesheet;
-    private AnimatedSpritesheet animatedSpritesheet;
+    private Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>();
     private Texture texture;
 
     private int vaoID;
@@ -44,14 +49,15 @@ public class PrimaryScene extends Scene {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         try {
-            texture = new Texture("Assets/PixelArt/pixelfiles/magu-linksbundig-26pxwidth.png");
-            animatedSpritesheet= AnimatedSpritesheet.from(Paths.get("Assets/SpriteJson/animationTest.json"), texture);
+            texture = new Texture("Assets/PixelArt/Characters/einrad.png");
+            spritesheet = Spritesheet.fromAnimated(Paths.get("Assets/SpriteJson/animationTest.json"), texture);
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(animatedSpritesheet.getSprites().get(0).toString());
-
-        quad = new Quad(animatedSpritesheet.getSprites().get(0), new Vector2f(0f, 0f),  new Vector2f(0.255f,0.5f));
+        quad = new Quad(spritesheet.getSprite("einrad"), new Vector2f(0f, 0f),  new Vector2f(0.255f,0.5f));
 
         MeshRepository.put(quad);
 
@@ -107,7 +113,7 @@ public class PrimaryScene extends Scene {
         if (KeyListener.isKeyPressed(KEY_A) | KeyListener.isKeyPressed(KEY_D)) {
             counter %= 5;
             if (counter == 0){
-                animatedSpritesheet.getSprites().get(0).nextFrame();
+                ((AnimatedSprite)quad.getSprite()).nextFrame();
                 quad.updateTexCoords();
             }
             counter++;

@@ -87,4 +87,7 @@ public class Quad implements Geometry{
         return vertices[0].position;
     }
 
+    public Sprite getSprite() {
+        return sprite;
+    }
 }

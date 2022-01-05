@@ -19,7 +19,7 @@ public class GsonGenerator {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
-        Spritesheet spritesheet = new Spritesheet(
+        Spritesheet<Sprite> spritesheet = new Spritesheet<>(
                 48,
                 48,
                 24,
@@ -58,14 +58,14 @@ public class GsonGenerator {
     public static void generateAnimatedJson() throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        AnimatedSpritesheet spritesheet = new AnimatedSpritesheet(
-                79,
-                38,
-                26,
-                19
+        Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>(
+                288,
+                48,
+                24,
+                24
         );
 
-        spritesheet.addAnimatedSprite(new AnimatedSprite(new Vector2i(0,0), new Vector2i(1,2), "magu", 2));
+        spritesheet.addSprite(new AnimatedSprite(new Vector2i(0,0), new Vector2i(1,2), "einrad", 12));
         FileWriter writer = new FileWriter("Assets/SpriteJson/animationTest.json");
         gson.toJson(spritesheet, writer);
         writer.close();

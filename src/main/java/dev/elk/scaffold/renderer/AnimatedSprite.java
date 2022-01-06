@@ -28,17 +28,18 @@ public class AnimatedSprite extends Sprite {
         float width = uvCoords[1].x - uvCoords[0].x;
 
 
-        if (currentFrame == frameCount) {
+        if (currentFrame == frameCount -1) {
             currentFrame = 0;
-            uvCoords = originalUVCoords.clone();
+            uvCoords =  new Vector2f[]{
+                    new Vector2f(originalUVCoords[0]),
+                    new Vector2f(originalUVCoords[1]),
+                    new Vector2f(originalUVCoords[2]),
+                    new Vector2f(originalUVCoords[3])
+            };
         }
 
         for (int i = 0; i < 4; i++)
             uvCoords[i].x += width;
-
-        System.out.println(Arrays.toString(originalUVCoords));
-        System.out.println(Arrays.toString(uvCoords));
-        System.out.println();
 
         this.currentFrame++;
     }
@@ -50,7 +51,12 @@ public class AnimatedSprite extends Sprite {
     @Override
     public void setUvCoords(Vector2f[] uvCoords) {
         this.uvCoords = uvCoords;
-        this.originalUVCoords = uvCoords;
+        this.originalUVCoords = new Vector2f[]{
+                new Vector2f(uvCoords[0]),
+                new Vector2f(uvCoords[1]),
+                new Vector2f(uvCoords[2]),
+                new Vector2f(uvCoords[3])
+        };
     }
 
     @Override

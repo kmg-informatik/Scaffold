@@ -55,7 +55,7 @@ public class PrimaryScene extends Scene {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        quad = new Quad(spritesheet.getSprite("hydra"), new Vector2f(0f, 0f),  new Vector2f(0.255f,0.5f));
+        quad = new Quad(spritesheet.getSprite("einrad"), new Vector2f(0f, 0f),  new Vector2f(0.5f,0.5f));
 
         MeshRepository.put(quad);
 
@@ -91,9 +91,9 @@ public class PrimaryScene extends Scene {
 
     }
 
-    int counter = 0;
-    long frame = 0;
-    boolean facingRight = true;
+    private int counter = 0;
+    private long frame = 0;
+    private boolean facingRight = true;
 
     @Override
     public void onUpdate(float dt) {

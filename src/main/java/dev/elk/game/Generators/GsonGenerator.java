@@ -157,7 +157,7 @@ public class GsonGenerator {
                 new Sprite(new Vector2i(a++,0), new Vector2i(b++,2), "treeBubbles"),
                 new Sprite(new Vector2i(a++,0), new Vector2i(b++,2), "treeLong"),
                 new Sprite(new Vector2i(a++,0), new Vector2i(b++,2), "tree"),
-                new Sprite(new Vector2i(a++,0), new Vector2i(b++,2), "treeStep")
+                new Sprite(new Vector2i(a,0), new Vector2i(b,2), "treeStep")
         );
 
         FileWriter writer = new FileWriter("Assets/SpriteJson/trees.json");

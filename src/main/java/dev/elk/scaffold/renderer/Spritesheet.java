@@ -32,8 +32,7 @@ public class Spritesheet<T extends Sprite>{
 
         Spritesheet<Sprite> spritesheet = gson.create().fromJson(new String(Files.readAllBytes(path)),new TypeToken<Spritesheet<Sprite>>(){}.getType());
 
-        spritesheet.init(texture);
-        return spritesheet;
+        return spritesheet.init(texture);
     }
 
     public Spritesheet(){

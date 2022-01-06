@@ -1,12 +1,14 @@
 package dev.elk.game;
 
+import dev.elk.scaffold.Physics.BoxCollider;
+import dev.elk.scaffold.Physics.Ground;
+import dev.elk.scaffold.Physics.SquareCollider;
 import dev.elk.scaffold.components.KeyListener;
 import dev.elk.scaffold.components.MeshRepository;
 import dev.elk.scaffold.components.Scene;
-import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Vertex;
-import dev.elk.scaffold.renderer.AnimatedSprite;
 import dev.elk.scaffold.renderer.ShaderProgram;
+import dev.elk.scaffold.renderer.Sprite;
 import dev.elk.scaffold.renderer.Spritesheet;
 import dev.elk.scaffold.renderer.Texture;
 import org.joml.Vector2f;
@@ -29,14 +31,15 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
-    private Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>();
+    private Spritesheet<Sprite> spritesheet = new Spritesheet<>();
     private Texture texture;
 
     private int vaoID;
     private int vboID;
     private int eboID;
 
-    public Quad quad;
+    public Ground ground;
+    public BoxCollider obj1;
 
     public PrimaryScene(ShaderProgram program) {
         this.program = program;
@@ -49,15 +52,18 @@ public class PrimaryScene extends Scene {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         try {
-            texture = new Texture("Assets/Spritesheets/animations.png");
-            spritesheet = Spritesheet.fromAnimated(Paths.get("Assets/SpriteJson/animations.json"), texture);
+            texture = new Texture("Assets/Spritesheets/tiles.png");
+            spritesheet = Spritesheet.from(Paths.get("Assets/SpriteJson/tiles.json"), texture);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-        quad = new Quad(spritesheet.getSprite("einrad"), new Vector2f(0f, 0f),  new Vector2f(0.5f,0.5f));
+        obj1 = new SquareCollider(spritesheet.getSprite("marble"), new Vector2f(0f, 0.2f),  0.3f);
 
-        MeshRepository.put(quad);
+        ground = new Ground(0.1f, spritesheet.getSprite("dirtDark"), spritesheet.getSprite("dirtTop"),spritesheet.getSprite("grassTop"));
+        MeshRepository.putAll(ground.getColliders());
+        MeshRepository.put(obj1);
+
 
         program.compile();
         program.use();
@@ -94,56 +100,65 @@ public class PrimaryScene extends Scene {
     private int counter = 0;
     private long frame = 0;
     private boolean facingRight = true;
+    private float movSpeed = 1f;
+    private float gravity = -10f;
 
     @Override
     public void onUpdate(float dt) {
         frame++;
+        if (obj1.collidesWith(ground.getColliders())) {
+            counter = 1;
+            gravity = 0;
+        }
 
-        float movSpeed = 1f;
-
+        else if(gravity > -10)  gravity--;
         if (KeyListener.isKeyPressed(KEY_W) | KeyListener.isKeyPressed(KEY_S)) {
-            if (KeyListener.isKeyPressed(KEY_W)){
-                quad.translate(new Vector2f(0, movSpeed).mul(dt));
-            }else{
-                quad.translate(new Vector2f(0, -movSpeed).mul(dt));
+            if (KeyListener.isKeyPressed(KEY_W) && obj1.collidesWith(ground.getColliders())) {
+                gravity = 10f;
+            } else {
+                obj1.translate(new Vector2f(0, -movSpeed).mul(dt));
             }
         }
         if (KeyListener.isKeyPressed(KEY_A) | KeyListener.isKeyPressed(KEY_D)) {
-            counter %= 5;
-            if (counter == 0){
-                ((AnimatedSprite)quad.getSprite()).nextFrame();
-                quad.updateTexCoords();
-            }
-            counter++;
-
-            if (KeyListener.isKeyPressed(KEY_A)){
-                quad.translate(new Vector2f(-movSpeed, 0.0f).mul(dt));
+            if (KeyListener.isKeyPressed(KEY_A)) {
+                obj1.translate(new Vector2f(-movSpeed, 0.0f).mul(dt));
                 if (facingRight) {
-                    quad.flipY();
+                    obj1.flipY();
                     facingRight = false;
                 }
-            }else{
-                quad.translate(new Vector2f(movSpeed, 0.0f).mul(dt));
-                if (!facingRight){
-                    quad.flipY();
+            } else {
+                obj1.translate(new Vector2f(movSpeed, 0.0f).mul(dt));
+                if (!facingRight) {
+                    obj1.flipY();
                     facingRight = true;
                 }
             }
-
         }
+
         if (KeyListener.isKeyPressed(KEY_R)) {
-            quad.rotate_origin(2f*dt);
+            obj1.rotate_origin(2f*dt);
         }
         if (KeyListener.isKeyPressed(KEY_SPACE)) {
-            quad.translateTo(new Vector2f());
+            obj1.translateTo(new Vector2f(0,0));
         }
+
+
+
+        obj1.translate(new Vector2f(0, gravity ).mul(dt));
+
+        if (counter %50 == 0) {
+            System.out.println(gravity);
+        }
+        counter++;
+
 
         MeshRepository.update();
 
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, MeshRepository.getElementArray());
         glBufferSubData(GL_ARRAY_BUFFER, 0, MeshRepository.getVertexArray());
 
-        glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, MeshRepository.getElementArray().length, GL_UNSIGNED_INT, 0);
+
 
     }
 }

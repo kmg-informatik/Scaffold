@@ -5,11 +5,15 @@ import org.joml.Vector2f;
 
 import java.awt.*;
 
+/**
+ * Constructs a square in positive x and y Direction from a bottomLeft point
+ * @author Felix Kunze
+ */
 public class Square extends Quad{
 
     public Square(Sprite sprite, Vector2f position, float size) {
-        super(sprite, new Vector2f(position.sub(size, size)),
-                new Vector2f(position.add(2*size, 2*size)));
+        super(sprite, new Vector2f(position),
+                new Vector2f(position.add(size, size)));
     }
 
 }

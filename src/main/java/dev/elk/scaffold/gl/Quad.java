@@ -54,23 +54,13 @@ public class Quad implements Geometry{
 
     public void updateTexCoords(){
         for (int i = 0; i < vertices.length; i++) {
-            vertices[i].uvCoord = this.sprite.getUvCoords()[i];
+            vertices[i].uvCoord = sprite.getUvCoords()[i];
         }
     }
 
     @Override
     public Vertex[] getVertices() {
         return vertices;
-    }
-
-    public float[] intoFloats(){
-        //I know this is bodged, but I don't want to break colored vertices at the expense of textured ones
-        float[] allVertexData = new float[vertices.length * Vertex.STRIDE];
-
-        for (int i = 0; i < vertices.length; i++)
-            System.arraycopy(vertices[i].intoFloats(), 0, allVertexData, Vertex.STRIDE * i, Vertex.STRIDE);
-
-        return allVertexData;
     }
 
     /**
@@ -89,5 +79,16 @@ public class Quad implements Geometry{
 
     public Sprite getSprite() {
         return sprite;
+    }
+
+    @Override
+    public float getHeight() {
+        return vertices[2].position.y - vertices[0].position.y;
+    }
+
+    @Override
+    public float getWidth() {
+        return vertices[2].position.x - vertices[0].position.x;
+
     }
 }

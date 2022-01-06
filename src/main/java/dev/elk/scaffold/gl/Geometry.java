@@ -102,7 +102,6 @@ public interface Geometry extends Renderable {
      */
     default void translateTo(Vector2f pos) {
         Vector2f translationVector = new Vector2f(pos).sub(getOrigin());
-        translate(translationVector);
     }
 
     /**
@@ -140,4 +139,14 @@ public interface Geometry extends Renderable {
         translate(new Vector2f(center.x, 0));
     }
 
+    @Override
+    default float[] intoFloats() {
+        Vertex[] vertices = getVertices();
+        float[] allVertexData = new float[vertices.length * Vertex.STRIDE];
+
+        for (int i = 0; i < vertices.length; i++)
+            System.arraycopy(vertices[i].intoFloats(), 0, allVertexData, Vertex.STRIDE * i, Vertex.STRIDE);
+
+        return allVertexData;
+    }
 }

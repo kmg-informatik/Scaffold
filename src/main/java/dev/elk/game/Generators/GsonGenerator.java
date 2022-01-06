@@ -16,6 +16,8 @@ public class GsonGenerator {
 
     public static void main(String[] args) throws IOException {
         generateAnimatedJson();
+        generateTiles();
+        generateTrees();
     }
 
     public static void generateTiles() throws IOException {
@@ -53,8 +55,8 @@ public class GsonGenerator {
                 new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grass2LeftBottom"),
                 new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grass2LeftTop"),
                 new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grass2RightTop"),
-                new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grass1Top"),
-                new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grass1Right"),
+                new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grassTop"),
+                new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grassRight"),
                 new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grassDown"),
                 new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grassLeft"),
                 new Sprite(new Vector2i(a++,1), new Vector2i(b++,2), "grassCornerLeftTop"),
@@ -76,8 +78,8 @@ public class GsonGenerator {
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirt2LeftBottom"),
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirt2LeftTop"),
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirt2RightTop"),
-                new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirt1Top"),
-                new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirt1Right"),
+                new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtTop"),
+                new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtRight"),
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtDown"),
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtLeft"),
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtCornerLeftTop"),
@@ -164,12 +166,13 @@ public class GsonGenerator {
         gson.toJson(spritesheet, writer);
         writer.close();
     }
+
     public static void generateAnimatedJson() throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>(
                 288,
-                121,
+                120,
                 24,
                 24
         );

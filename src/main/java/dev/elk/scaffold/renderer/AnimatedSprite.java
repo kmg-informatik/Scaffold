@@ -27,8 +27,10 @@ public class AnimatedSprite extends Sprite {
     public void nextFrame() {
         float width = uvCoords[1].x - uvCoords[0].x;
 
+        for (int i = 0; i < 4; i++)
+            uvCoords[i].x += width;
 
-        if (currentFrame == frameCount -1) {
+        if (currentFrame == frameCount -1 ) {
             currentFrame = 0;
             uvCoords =  new Vector2f[]{
                     new Vector2f(originalUVCoords[0]),
@@ -37,11 +39,7 @@ public class AnimatedSprite extends Sprite {
                     new Vector2f(originalUVCoords[3])
             };
         }
-
-        for (int i = 0; i < 4; i++)
-            uvCoords[i].x += width;
-
-        this.currentFrame++;
+        else this.currentFrame++;
     }
 
     public int getCurrentFrame() {

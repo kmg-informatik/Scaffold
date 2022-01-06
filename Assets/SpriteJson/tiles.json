@@ -103,16 +103,27 @@
       },
       "spriteName": "dirt2RightTop"
     },
-    "dirt1Top": {
+    "grassTop": {
       "minPos": {
         "x": 10,
-        "y": 2
+        "y": 1
       },
       "maxPos": {
         "x": 11,
+        "y": 2
+      },
+      "spriteName": "grassTop"
+    },
+    "dirtRight": {
+      "minPos": {
+        "x": 11,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 12,
         "y": 3
       },
-      "spriteName": "dirt1Top"
+      "spriteName": "dirtRight"
     },
     "grass3side": {
       "minPos": {
@@ -168,17 +179,6 @@
         "y": 5
       },
       "spriteName": "stoneBrick"
-    },
-    "dirt1Right": {
-      "minPos": {
-        "x": 11,
-        "y": 2
-      },
-      "maxPos": {
-        "x": 12,
-        "y": 3
-      },
-      "spriteName": "dirt1Right"
     },
     "dirtLight": {
       "minPos": {
@@ -257,28 +257,6 @@
       },
       "spriteName": "dirt2RightBottom"
     },
-    "grass1Right": {
-      "minPos": {
-        "x": 11,
-        "y": 1
-      },
-      "maxPos": {
-        "x": 12,
-        "y": 2
-      },
-      "spriteName": "grass1Right"
-    },
-    "grass1Top": {
-      "minPos": {
-        "x": 10,
-        "y": 1
-      },
-      "maxPos": {
-        "x": 11,
-        "y": 2
-      },
-      "spriteName": "grass1Top"
-    },
     "trash": {
       "minPos": {
         "x": 4,
@@ -289,6 +267,17 @@
         "y": 1
       },
       "spriteName": "trash"
+    },
+    "grassRight": {
+      "minPos": {
+        "x": 11,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 2
+      },
+      "spriteName": "grassRight"
     },
     "dirt3up": {
       "minPos": {
@@ -542,6 +531,17 @@
         "y": 5
       },
       "spriteName": "ironPlate"
+    },
+    "dirtTop": {
+      "minPos": {
+        "x": 10,
+        "y": 2
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 3
+      },
+      "spriteName": "dirtTop"
     },
     "copper": {
       "minPos": {

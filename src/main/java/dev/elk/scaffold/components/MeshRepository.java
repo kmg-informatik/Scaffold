@@ -3,13 +3,18 @@ package dev.elk.scaffold.components;
 import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.Vertex;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
+/**
+ * A repository for meshes allowing for batch rendering to function
+ * @author Louis Schell
+ */
 public class MeshRepository {
 
     private static final LinkedList<Geometry> geometries = new LinkedList<>();
-    private static final float[] vertexArray = new float[2000];
-    private static final int[] elementArray = new int[750];
+    private static final float[] vertexArray = new float[20000];
+    private static final int[] elementArray = new int[7500];
     private static int vertexCount = -1;
 
     public static void update(){
@@ -51,6 +56,9 @@ public class MeshRepository {
 
     public static void put(Geometry geometry){
         geometries.add(geometry);
+    }
+    public static void putAll(Geometry... geometries) {
+        MeshRepository.geometries.addAll(Arrays.stream(geometries).toList());
     }
 
     public static float[] getVertexArray() {

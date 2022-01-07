@@ -1,10 +1,7 @@
 package dev.elk.scaffold.util;
 
-import dev.elk.scaffold.Physics.Collidable;
 import org.joml.Math;
 import org.joml.Vector2f;
-
-import java.awt.*;
 
 /**
  * Helper class for varried methods, mostly in relation to Math
@@ -45,32 +42,14 @@ public final class Utils {
     }
 
     public static float[] findMinMaxElem(float[] arr){
-        float max = Float.MIN_VALUE;
-        float min = Float.MAX_VALUE;
+        float max = Float.NEGATIVE_INFINITY;
+        float min = Float.POSITIVE_INFINITY;
 
         for (float elem : arr) {
             max = java.lang.Math.max(elem, max);
             min = java.lang.Math.min(min, elem);
         }
         return new float[]{min,max};
-    }
-
-    public static boolean collides(Shape s1, Shape s2) {
-        return s1.getBounds2D().intersects(s2.getBounds2D());
-    }
-
-    public static Point pos2Point(Vector2f glPoint) {
-        return new Point(
-                (int)(glPoint.x * Collidable.getIntAccuracy()),
-                (int)(glPoint.y * Collidable.getIntAccuracy())
-        );
-    }
-
-    public static Vector2f point2Pos(Point pos) {
-        return new Vector2f(
-                (float) pos.x / Collidable.getIntAccuracy(),
-                (float) pos.y / Collidable.getIntAccuracy()
-        );
     }
 
 }

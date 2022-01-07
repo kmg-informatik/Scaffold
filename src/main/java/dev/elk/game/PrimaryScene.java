@@ -1,10 +1,9 @@
 package dev.elk.game;
 
-import dev.elk.scaffold.Physics.BoxCollider;
 import dev.elk.scaffold.Physics.Ground;
-import dev.elk.scaffold.Physics.SquareCollider;
 import dev.elk.scaffold.components.*;
-import dev.elk.scaffold.gl.Geometry;
+import dev.elk.scaffold.gl.Quad;
+import dev.elk.scaffold.gl.Square;
 import dev.elk.scaffold.gl.Vertex;
 import dev.elk.scaffold.renderer.ShaderProgram;
 import dev.elk.scaffold.renderer.Sprite;
@@ -14,10 +13,8 @@ import org.joml.Vector2f;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import static dev.elk.scaffold.util.Utils.*;
-import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
@@ -40,7 +37,7 @@ public class PrimaryScene extends Scene {
     private int eboID;
 
     public Ground ground;
-    public BoxCollider obj1;
+    public Quad obj1;
 
     public PrimaryScene(Window window, ShaderProgram program) {
         super(window);
@@ -61,7 +58,7 @@ public class PrimaryScene extends Scene {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        obj1 = new SquareCollider(spritesheet.getSprite("marble"), new Vector2f(0f, 0.2f),  0.3f);
+        obj1 = new Square(spritesheet.getSprite("marble"), new Vector2f(0f, 0.2f),  0.3f);
 
         ground = new Ground(0.1f, spritesheet.getSprite("dirtDark"), spritesheet.getSprite("dirtTop"),spritesheet.getSprite("grassTop"));
         MeshRepository.putAll(ground.getColliders());
@@ -113,39 +110,23 @@ public class PrimaryScene extends Scene {
 
         obj1.translate(new Vector2f(0, gravity).mul(dt));
 
-        if (obj1.collidesWith(ground.getColliders())) {
+        if (obj1.intersects(ground.getColliders())) {
             counter = 1;
             gravity = 0;
 
-            Vector2f yMin = obj1.getLowestPoint();
-            Vector2f max = new Vector2f(0,-1);
-            for (BoxCollider collider : ground.getColliders()) {
-                if (max.y < collider.getHighestPoint().y){
-                    max = collider.getHighestPoint();
-                }
-            }
-
-            Vector2f yMax = max;
-            Vector2f move = new Vector2f(0,yMax.y-yMin.y);
+            Vector2f move = new Vector2f(0,ground.getFloorHeight()-obj1.getMinY());
 
             float threshold = 0f;
             if (move.length() >= threshold){
                 obj1.translate(move);
             }
         }
-        else
-            if(gravity > -10)
+        else if(gravity > -10)
                 gravity--;
 
         if (KeyListener.isKeyPressed(KEY_W) | KeyListener.isKeyPressed(KEY_S)) {
 
-            boolean touchesGround = false;
-            for (BoxCollider collider : ground.getColliders()) {
-                if (collider.getHighestPoint().y >= obj1.getLowestPoint().y) {
-                    touchesGround = true;
-                    break;
-                }
-            }
+            boolean touchesGround = ground.getFloorHeight() >= obj1.getMinY();
 
             if (KeyListener.isKeyPressed(KEY_W) && touchesGround) {
                 gravity = 10f;

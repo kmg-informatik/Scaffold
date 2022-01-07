@@ -3,6 +3,9 @@ package dev.elk.scaffold.gl;
 import dev.elk.scaffold.util.Utils;
 import org.joml.Vector2f;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 /**
  * Methods concerning geometry.
  *
@@ -142,26 +145,38 @@ public interface Geometry extends Renderable {
         translate(new Vector2f(center.x, 0));
     }
 
-    default Vector2f getHighestPoint(){
-        Vertex[] vertices = getVertices();
-        Vector2f max = vertices[0].position;
-        for (int i = 1; i < vertices.length; i++) {
-            if (vertices[i].position.y > max.y){
-                max = vertices[i].position;
+    default float getMaxY() {
+        float maxY = Float.NEGATIVE_INFINITY;
+        for (Vertex vertex : getVertices()) {
+            if (maxY < vertex.position.y) {
+                maxY = vertex.position.y;
             }
         }
-        return max;
+        return maxY;
     }
 
-    default Vector2f getLowestPoint(){
-        Vertex[] vertices = getVertices();
-        Vector2f min = vertices[0].position;
-        for (int i = 1; i < vertices.length; i++) {
-            if (vertices[i].position.y < min.y){
-                min = vertices[i].position;
-            }
-        }
-        return min;
+    default float getMinY() {
+        float minY = Float.POSITIVE_INFINITY;
+        for (Vertex vertex : getVertices())
+            if (minY > vertex.position.y)
+                minY = vertex.position.y;
+        return minY;
+    }
+
+    default float getMaxX() {
+        float maxX = Float.NEGATIVE_INFINITY;
+        for (Vertex vertex : getVertices())
+            if (maxX < vertex.position.x)
+                maxX = vertex.position.x;
+        return maxX;
+    }
+
+    default float getMinX() {
+        float minX = Float.POSITIVE_INFINITY;
+        for (Vertex vertex : getVertices())
+            if (minX > vertex.position.x)
+                minX = vertex.position.x;
+        return minX;
     }
 
     /**
@@ -189,4 +204,16 @@ public interface Geometry extends Renderable {
 
         return allVertexData;
     }
+
+    default boolean intersects(Geometry... geometries) {
+        return Arrays.stream(geometries).anyMatch(geometry ->
+                this.getMinX() < geometry.getMaxX() &&
+                this.getMaxX() > geometry.getMinX() &&
+                this.getMaxY() > geometry.getMinY() &&
+                this.getMinY() < geometry.getMaxY()
+        );
+    }
+
+
+
 }

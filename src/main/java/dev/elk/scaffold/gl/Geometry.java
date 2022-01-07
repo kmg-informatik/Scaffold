@@ -115,7 +115,7 @@ public interface Geometry extends Renderable {
     }
 
     /**
-     * Flip on the x-Axis
+     * Flips the geometry on the x-axis through the center of the geometry.
      */
     default void flipX(){
         Vertex[] vertices = getVertices();
@@ -127,6 +127,9 @@ public interface Geometry extends Renderable {
         translate(new Vector2f(0, center.y));
     }
 
+    /**
+     * Flips the geometry on the y-axis through the center of the geometry.
+     */
     default void flipY(){
         Vertex[] vertices = getVertices();
         var center = centerOfMass();

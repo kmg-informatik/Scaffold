@@ -9,6 +9,9 @@ package dev.elk.scaffold.gl;
  */
 public interface FloatRepresentation {
 
+    /**
+     * Returns a representation as floats.
+     */
     float[] intoFloats();
 
 }

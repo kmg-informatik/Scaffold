@@ -13,44 +13,44 @@ import java.util.LinkedList;
 public class MeshRepository {
 
     private static final LinkedList<Geometry> geometries = new LinkedList<>();
-    private static final float[] vertexArray = new float[20000];
-    private static final int[] elementArray = new int[7500];
+    private static float[] vertexArray = new float[20000];
+    private static int[] elementArray = new int[7500];
     private static int vertexCount = -1;
 
     public static void update(float screenStretch){
+
+        Arrays.fill(vertexArray, 0);
+        Arrays.fill(elementArray, 0);
 
         int vCount = 0;
         int eCount = 0;
 
         for (Geometry geometry : geometries) {
 
-            if (!geometry.isOnScreen(screenStretch)){
-                System.out.println("Not in scope");
-                continue;
+            if (geometry.isOnScreen(screenStretch)){
+                var indices = geometry.getIndices();
+                for (int i = 0; i < indices.length; i++) {
+                    indices[i] += vCount/Vertex.STRIDE;
+                }
+
+                System.arraycopy(
+                        geometry.intoFloats(),
+                        0,
+                        vertexArray,
+                        vCount,
+                        geometry.intoFloats().length
+                );
+
+                System.arraycopy(
+                        indices,
+                        0,
+                        elementArray,
+                        eCount,
+                        geometry.getIndices().length);
+
+                vCount += geometry.intoFloats().length;
+                eCount += geometry.getIndices().length;
             }
-
-            var indices = geometry.getIndices();
-            for (int i = 0; i < indices.length; i++) {
-                indices[i] += vCount/Vertex.STRIDE;
-            }
-
-            System.arraycopy(
-                    geometry.intoFloats(),
-                    0,
-                    vertexArray,
-                    vCount,
-                    geometry.intoFloats().length
-            );
-
-            System.arraycopy(
-                    indices,
-                    0,
-                    elementArray,
-                    eCount,
-                    geometry.getIndices().length);
-
-            vCount += geometry.intoFloats().length;
-            eCount += geometry.getIndices().length;
         }
 
         vertexCount = vCount;

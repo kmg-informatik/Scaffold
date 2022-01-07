@@ -17,12 +17,18 @@ public class MeshRepository {
     private static final int[] elementArray = new int[7500];
     private static int vertexCount = -1;
 
-    public static void update(){
+    public static void update(float screenStretch){
 
         int vCount = 0;
         int eCount = 0;
 
         for (Geometry geometry : geometries) {
+
+            if (!geometry.isOnScreen(screenStretch)){
+                System.out.println("Not in scope");
+                continue;
+            }
+
             var indices = geometry.getIndices();
             for (int i = 0; i < indices.length; i++) {
                 indices[i] += vCount/Vertex.STRIDE;

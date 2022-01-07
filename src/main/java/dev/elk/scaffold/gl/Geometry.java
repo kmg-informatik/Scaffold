@@ -142,6 +142,16 @@ public interface Geometry extends Renderable {
         translate(new Vector2f(center.x, 0));
     }
 
+    default boolean isOnScreen(float yxRatio){
+        Vertex[] vertices = getVertices();
+        for (Vertex vertex : vertices) {
+            if (Math.abs(vertex.position.x) * yxRatio < 1f  && Math.abs(vertex.position.y) < 1f){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     default float[] intoFloats() {
         Vertex[] vertices = getVertices();

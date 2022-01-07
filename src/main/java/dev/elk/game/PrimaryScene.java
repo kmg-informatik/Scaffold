@@ -108,7 +108,6 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void onUpdate(float dt) {
-
         float windowStretch = (float) window.getHeight() / (float) window.getWidth();
         program.uploadFloat("windowStretch", windowStretch);
 
@@ -158,8 +157,7 @@ public class PrimaryScene extends Scene {
         }
         counter++;
 
-
-        MeshRepository.update();
+        MeshRepository.update(windowStretch);
 
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, MeshRepository.getElementArray());
         glBufferSubData(GL_ARRAY_BUFFER, 0, MeshRepository.getVertexArray());

@@ -111,11 +111,13 @@ public class PrimaryScene extends Scene {
         program.uploadFloat("windowStretch", windowStretch);
         frame++;
 
+        obj1.translate(new Vector2f(0, gravity).mul(dt));
+
         if (obj1.collidesWith(ground.getColliders())) {
             counter = 1;
             gravity = 0;
-            Vector2f yMin = obj1.getLowestPoint();
 
+            Vector2f yMin = obj1.getLowestPoint();
             Vector2f max = new Vector2f(0,-1);
             for (BoxCollider collider : ground.getColliders()) {
                 if (max.y < collider.getHighestPoint().y){
@@ -124,17 +126,12 @@ public class PrimaryScene extends Scene {
             }
 
             Vector2f yMax = max;
-
             Vector2f move = new Vector2f(0,yMax.y-yMin.y);
 
-            //System.out.println(yMax + "  " + yMin);
-            //Vector2f move = new Vector2f(yMax).sub(yMin);
-
-            float threshold = 0.05f;
+            float threshold = 0.02f;
             if (move.length() >= threshold){
                 obj1.translate(move);
             }
-
         }
         else
             if(gravity > -10)
@@ -170,8 +167,6 @@ public class PrimaryScene extends Scene {
         if (KeyListener.isKeyPressed(KEY_SPACE)) {
             obj1.translateTo(new Vector2f(0,0));
         }
-
-        obj1.translate(new Vector2f(0, gravity).mul(dt));
 
         if (counter %50 == 0) {
             System.out.println(gravity);

@@ -142,6 +142,33 @@ public interface Geometry extends Renderable {
         translate(new Vector2f(center.x, 0));
     }
 
+    default Vector2f getHighestPoint(){
+        Vertex[] vertices = getVertices();
+        Vector2f max = vertices[0].position;
+        for (int i = 1; i < vertices.length; i++) {
+            if (vertices[i].position.y > max.y){
+                max = vertices[i].position;
+            }
+        }
+        return max;
+    }
+
+    default Vector2f getLowestPoint(){
+        Vertex[] vertices = getVertices();
+        Vector2f min = vertices[0].position;
+        for (int i = 1; i < vertices.length; i++) {
+            if (vertices[i].position.y < min.y){
+                min = vertices[i].position;
+            }
+        }
+        return min;
+    }
+
+    /**
+     * Checks, if the geometry is at least partly in the bounds of the window
+     * @param yxRatio the ration of width to height
+     * @return true, if geometry is in bounds of window
+     */
     default boolean isOnScreen(float yxRatio){
         Vertex[] vertices = getVertices();
         for (Vertex vertex : vertices) {

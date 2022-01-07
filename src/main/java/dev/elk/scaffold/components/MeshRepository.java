@@ -13,8 +13,8 @@ import java.util.LinkedList;
 public class MeshRepository {
 
     private static final LinkedList<Geometry> geometries = new LinkedList<>();
-    private static float[] vertexArray = new float[20000];
-    private static int[] elementArray = new int[7500];
+    private static final float[] vertexArray = new float[200_000];
+    private static final int[] elementArray = new int[75_000];
     private static int vertexCount = -1;
 
     public static void update(float screenStretch){
@@ -26,7 +26,6 @@ public class MeshRepository {
         int eCount = 0;
 
         for (Geometry geometry : geometries) {
-
             if (geometry.isOnScreen(screenStretch)){
                 var indices = geometry.getIndices();
                 for (int i = 0; i < indices.length; i++) {
@@ -63,6 +62,7 @@ public class MeshRepository {
     public static void put(Geometry geometry){
         geometries.add(geometry);
     }
+
     public static void putAll(Geometry... geometries) {
         MeshRepository.geometries.addAll(Arrays.stream(geometries).toList());
     }

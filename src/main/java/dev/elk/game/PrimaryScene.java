@@ -3,10 +3,8 @@ package dev.elk.game;
 import dev.elk.scaffold.Physics.BoxCollider;
 import dev.elk.scaffold.Physics.Ground;
 import dev.elk.scaffold.Physics.SquareCollider;
-import dev.elk.scaffold.components.KeyListener;
-import dev.elk.scaffold.components.MeshRepository;
-import dev.elk.scaffold.components.Scene;
-import dev.elk.scaffold.components.Window;
+import dev.elk.scaffold.components.*;
+import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.Vertex;
 import dev.elk.scaffold.renderer.ShaderProgram;
 import dev.elk.scaffold.renderer.Sprite;
@@ -16,6 +14,7 @@ import org.joml.Vector2f;
 
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import static dev.elk.scaffold.util.Utils.*;
 import static org.lwjgl.glfw.GLFW.*;
@@ -50,6 +49,7 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void init() {
+        camera = new Camera(new Vector2f());
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -66,7 +66,6 @@ public class PrimaryScene extends Scene {
         ground = new Ground(0.1f, spritesheet.getSprite("dirtDark"), spritesheet.getSprite("dirtTop"),spritesheet.getSprite("grassTop"));
         MeshRepository.putAll(ground.getColliders());
         MeshRepository.put(obj1);
-
 
         program.compile();
         program.use();
@@ -110,14 +109,37 @@ public class PrimaryScene extends Scene {
     public void onUpdate(float dt) {
         float windowStretch = (float) window.getHeight() / (float) window.getWidth();
         program.uploadFloat("windowStretch", windowStretch);
-
         frame++;
+
         if (obj1.collidesWith(ground.getColliders())) {
             counter = 1;
             gravity = 0;
-        }
+            Vector2f yMin = obj1.getLowestPoint();
 
-        else if(gravity > -10)  gravity--;
+            Vector2f max = new Vector2f(0,-1);
+            for (BoxCollider collider : ground.getColliders()) {
+                if (max.y < collider.getHighestPoint().y){
+                    max = collider.getHighestPoint();
+                }
+            }
+
+            Vector2f yMax = max;
+
+            Vector2f move = new Vector2f(0,yMax.y-yMin.y);
+
+            //System.out.println(yMax + "  " + yMin);
+            //Vector2f move = new Vector2f(yMax).sub(yMin);
+
+            float threshold = 0.05f;
+            if (move.length() >= threshold){
+                obj1.translate(move);
+            }
+
+        }
+        else
+            if(gravity > -10)
+                gravity--;
+
         if (KeyListener.isKeyPressed(KEY_W) | KeyListener.isKeyPressed(KEY_S)) {
             if (KeyListener.isKeyPressed(KEY_W) && obj1.collidesWith(ground.getColliders())) {
                 gravity = 10f;
@@ -125,6 +147,7 @@ public class PrimaryScene extends Scene {
                 obj1.translate(new Vector2f(0, -movSpeed).mul(dt));
             }
         }
+
         if (KeyListener.isKeyPressed(KEY_A) | KeyListener.isKeyPressed(KEY_D)) {
             if (KeyListener.isKeyPressed(KEY_A)) {
                 obj1.translate(new Vector2f(-movSpeed, 0.0f).mul(dt));
@@ -148,9 +171,7 @@ public class PrimaryScene extends Scene {
             obj1.translateTo(new Vector2f(0,0));
         }
 
-
-
-        obj1.translate(new Vector2f(0, gravity ).mul(dt));
+        obj1.translate(new Vector2f(0, gravity).mul(dt));
 
         if (counter %50 == 0) {
             System.out.println(gravity);
@@ -159,10 +180,14 @@ public class PrimaryScene extends Scene {
 
         MeshRepository.update(windowStretch);
 
+        //camera.position = obj1.centerOfMass();
+        //program.uploadMat4f("uProjection", camera.getProjectionMatrix());
+        //program.uploadMat4f("uView", camera.getViewMatrix());
+
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, MeshRepository.getElementArray());
         glBufferSubData(GL_ARRAY_BUFFER, 0, MeshRepository.getVertexArray());
 
-        glDrawElements(GL_TRIANGLES, MeshRepository.getElementArray().length, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, MeshRepository.vertexCount(), GL_UNSIGNED_INT, 0);
 
 
     }

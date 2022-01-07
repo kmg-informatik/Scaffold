@@ -1,10 +1,10 @@
 package dev.elk.scaffold.Physics;
 
-import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.Quad;
+import dev.elk.scaffold.gl.Vertex;
 import dev.elk.scaffold.renderer.Sprite;
+import dev.elk.scaffold.util.Utils;
 import org.joml.Vector2f;
-import org.joml.Vector2i;
 
 import java.awt.*;
 
@@ -14,28 +14,38 @@ import java.awt.*;
  */
 public class BoxCollider extends Quad implements Collidable{
 
+
     public BoxCollider(Sprite sprite, Vector2f posLB, float width, float height) {
         super(sprite, posLB, width, height);
+        COLLIDABLES.add(this);
     }
 
     public BoxCollider(Sprite sprite, Vector2f posLB, Vector2f posRB){
         super(sprite,posLB, posRB);
+        COLLIDABLES.add(this);
     }
 
 
     @Override
     public Rectangle toShape() {
-        Rectangle r = new Rectangle(origin2Point());
-        r.add(pos2Point(getVertices()[2].position));
+        Rectangle r = new Rectangle(Utils.pos2Point(getOrigin()));
+        r.add(Utils.pos2Point(getVertices()[2].position));
         return r;
     }
 
     @Override
-    public Point pos2Point(Vector2f glPoint){
-        return new Point((int)(glPoint.x * getIntAccuracy()), (int)(glPoint.y * getIntAccuracy()));
-    }
+    public void translate(Vector2f vector) {
+        Rectangle r = toShape();
+        Point scalar = Utils.pos2Point(vector);
+        r.translate(scalar.x, scalar.y);
+        COLLIDABLES.remove(this);
+        for (Collidable collidable : COLLIDABLES)
+            if (Utils.collides(r, collidable.toShape() )) {
+                Rectangle rectangle = r.createIntersection(collidable.toShape().getBounds()).getBounds();
+                vector = Utils.point2Pos(new Point(0,rectangle.height ));
+            }
 
-    public Point origin2Point() {
-        return new Point((int)(getOrigin().x * getIntAccuracy()), (int)(getOrigin().y * getIntAccuracy()));
+        COLLIDABLES.add(this);
+        super.translate(vector);
     }
 }

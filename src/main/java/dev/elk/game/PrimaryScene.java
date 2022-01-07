@@ -100,20 +100,20 @@ public class PrimaryScene extends Scene {
     private int counter = 0;
     private long frame = 0;
     private boolean facingRight = true;
-    private float movSpeed = 1f;
+    private float movSpeed = 5f;
     private float gravity = -10f;
 
     @Override
     public void onUpdate(float dt) {
         frame++;
-        if (obj1.collidesWith(ground.getColliders())) {
+        if (obj1.hasCollision(ground.getColliders())) {
             counter = 1;
             gravity = 0;
         }
 
         else if(gravity > -10)  gravity--;
         if (KeyListener.isKeyPressed(KEY_W) | KeyListener.isKeyPressed(KEY_S)) {
-            if (KeyListener.isKeyPressed(KEY_W) && obj1.collidesWith(ground.getColliders())) {
+            if (KeyListener.isKeyPressed(KEY_W) && obj1.hasCollision(ground.getColliders())) {
                 gravity = 10f;
             } else {
                 obj1.translate(new Vector2f(0, -movSpeed).mul(dt));
@@ -144,7 +144,7 @@ public class PrimaryScene extends Scene {
 
 
 
-        obj1.translate(new Vector2f(0, gravity ).mul(dt));
+        //obj1.translate(new Vector2f(0, gravity ).mul(dt));
 
         if (counter %50 == 0) {
             System.out.println(gravity);
@@ -158,7 +158,5 @@ public class PrimaryScene extends Scene {
         glBufferSubData(GL_ARRAY_BUFFER, 0, MeshRepository.getVertexArray());
 
         glDrawElements(GL_TRIANGLES, MeshRepository.getElementArray().length, GL_UNSIGNED_INT, 0);
-
-
     }
 }

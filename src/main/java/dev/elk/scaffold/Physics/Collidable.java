@@ -1,9 +1,12 @@
 package dev.elk.scaffold.Physics;
 
+import dev.elk.scaffold.util.Utils;
 import org.joml.Vector2f;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Collectors;
 
 /**
  * An interface giving physics attribute to certain things
@@ -11,18 +14,24 @@ import java.util.Arrays;
  */
 public interface Collidable {
 
-    default int getIntAccuracy(){
-        return 1000;
+    ArrayList<Collidable> COLLIDABLES = new ArrayList<>();
+
+    static int getIntAccuracy(){
+        return 100000;
     }
 
     Shape toShape();
 
-    default boolean collidesWith(Collidable... tester){
-        return Arrays.stream(tester).anyMatch(collidable -> toShape().getBounds2D().intersects(collidable.toShape().getBounds2D()));
+    default boolean hasCollision(Collidable... tester){
+        return Arrays.stream(tester).anyMatch(collidable -> Utils.collides(toShape(), collidable.toShape()));
     }
 
-    Point pos2Point(Vector2f glPoint);
+    default boolean hasCollision(){
+        return COLLIDABLES.stream().anyMatch(collidable -> Utils.collides(toShape(), collidable.toShape()));
+    }
 
-
+    default ArrayList<Collidable> collidesWith() {
+        return COLLIDABLES.stream().filter(this::hasCollision).collect(Collectors.toCollection(ArrayList::new));
+    }
 
 }

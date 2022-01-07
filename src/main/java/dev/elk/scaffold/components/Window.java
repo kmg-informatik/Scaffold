@@ -18,8 +18,8 @@ import static org.lwjgl.system.MemoryUtil.NULL;
  */
 public class Window {
 
-    private final int width;
-    private final int height;
+    private int width;
+    private int height;
     private final String title;
     private long glfwWindow;
 
@@ -62,7 +62,7 @@ public class Window {
 
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
         glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -85,6 +85,18 @@ public class Window {
         GL.createCapabilities();
     }
 
+    private void updateDimensions(){
+        int[] windowWidth = new int[1];
+        int[] windowHeight = new int[1];
+        glfwGetWindowSize(glfwWindow, windowWidth, windowHeight);
+        width = windowWidth[0];
+        height = windowHeight[0];
+    }
+
+    public long getID() {
+        return glfwWindow;
+    }
+
     private void loop() {
 
         long start = System.nanoTime();
@@ -92,6 +104,7 @@ public class Window {
         long end;
 
         while (!glfwWindowShouldClose(glfwWindow)) {
+            updateDimensions();
             glfwPollEvents();
             glClearColor(r, g, b, a);
             glClear(GL_COLOR_BUFFER_BIT);
@@ -104,5 +117,13 @@ public class Window {
             dt = (float) ((end - start) * 1E-9);
             start = end;
         }
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

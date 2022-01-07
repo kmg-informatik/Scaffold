@@ -6,6 +6,7 @@ import dev.elk.scaffold.Physics.SquareCollider;
 import dev.elk.scaffold.components.KeyListener;
 import dev.elk.scaffold.components.MeshRepository;
 import dev.elk.scaffold.components.Scene;
+import dev.elk.scaffold.components.Window;
 import dev.elk.scaffold.gl.Vertex;
 import dev.elk.scaffold.renderer.ShaderProgram;
 import dev.elk.scaffold.renderer.Sprite;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import static dev.elk.scaffold.util.Utils.*;
+import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
@@ -41,7 +43,8 @@ public class PrimaryScene extends Scene {
     public Ground ground;
     public BoxCollider obj1;
 
-    public PrimaryScene(ShaderProgram program) {
+    public PrimaryScene(Window window, ShaderProgram program) {
+        super(window);
         this.program = program;
     }
 
@@ -105,6 +108,10 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void onUpdate(float dt) {
+
+        float windowStretch = (float) window.getHeight() / (float) window.getWidth();
+        program.uploadFloat("windowStretch", windowStretch);
+
         frame++;
         if (obj1.collidesWith(ground.getColliders())) {
             counter = 1;

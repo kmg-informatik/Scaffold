@@ -25,7 +25,7 @@ public class Main {
 
 
         Window window = new Window("Hello!", 500, 500, Color.white);
-        window.setScene(new PrimaryScene(program));
+        window.setScene(new PrimaryScene(window, program));
 
         window.run();
 

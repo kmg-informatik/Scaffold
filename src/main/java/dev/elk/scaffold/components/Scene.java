@@ -9,8 +9,11 @@ public abstract class Scene {
 
     protected Camera camera;
     private boolean isRunning;
+    protected Window window;
 
-    public Scene() {}
+    public Scene(Window window) {
+        this.window = window;
+    }
 
     public void init() {}
 

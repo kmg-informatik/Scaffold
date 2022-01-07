@@ -102,6 +102,7 @@ public interface Geometry extends Renderable {
      */
     default void translateTo(Vector2f pos) {
         Vector2f translationVector = new Vector2f(pos).sub(getOrigin());
+        translate(translationVector);
     }
 
     /**

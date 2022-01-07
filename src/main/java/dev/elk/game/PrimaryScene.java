@@ -1,12 +1,9 @@
 package dev.elk.game;
 
-import dev.elk.scaffold.Physics.BoxCollider;
 import dev.elk.scaffold.Physics.Ground;
-import dev.elk.scaffold.Physics.SquareCollider;
-import dev.elk.scaffold.components.KeyListener;
-import dev.elk.scaffold.components.MeshRepository;
-import dev.elk.scaffold.components.Scene;
-import dev.elk.scaffold.components.Window;
+import dev.elk.scaffold.components.*;
+import dev.elk.scaffold.gl.Quad;
+import dev.elk.scaffold.gl.Square;
 import dev.elk.scaffold.gl.Vertex;
 import dev.elk.scaffold.renderer.ShaderProgram;
 import dev.elk.scaffold.renderer.Sprite;
@@ -18,7 +15,6 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import static dev.elk.scaffold.util.Utils.*;
-import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
@@ -41,7 +37,7 @@ public class PrimaryScene extends Scene {
     private int eboID;
 
     public Ground ground;
-    public BoxCollider obj1;
+    public Quad obj1;
 
     public PrimaryScene(Window window, ShaderProgram program) {
         super(window);
@@ -50,6 +46,7 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void init() {
+        camera = new Camera(new Vector2f());
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -61,12 +58,11 @@ public class PrimaryScene extends Scene {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        obj1 = new SquareCollider(spritesheet.getSprite("marble"), new Vector2f(0f, 0.2f),  0.3f);
+        obj1 = new Square(spritesheet.getSprite("marble"), new Vector2f(0f, 0.2f),  0.3f);
 
         ground = new Ground(0.1f, spritesheet.getSprite("dirtDark"), spritesheet.getSprite("dirtTop"),spritesheet.getSprite("grassTop"));
         MeshRepository.putAll(ground.getColliders());
         MeshRepository.put(obj1);
-
 
         program.compile();
         program.use();
@@ -110,21 +106,35 @@ public class PrimaryScene extends Scene {
     public void onUpdate(float dt) {
         float windowStretch = (float) window.getHeight() / (float) window.getWidth();
         program.uploadFloat("windowStretch", windowStretch);
-
         frame++;
-        if (obj1.collidesWith(ground.getColliders())) {
+
+        obj1.translate(new Vector2f(0, gravity).mul(dt));
+
+        if (obj1.intersects(ground.getColliders())) {
             counter = 1;
             gravity = 0;
-        }
 
-        else if(gravity > -10)  gravity--;
+            Vector2f move = new Vector2f(0,ground.getFloorHeight()-obj1.getMinY());
+
+            float threshold = 0f;
+            if (move.length() >= threshold){
+                obj1.translate(move);
+            }
+        }
+        else if(gravity > -10)
+                gravity--;
+
         if (KeyListener.isKeyPressed(KEY_W) | KeyListener.isKeyPressed(KEY_S)) {
-            if (KeyListener.isKeyPressed(KEY_W) && obj1.collidesWith(ground.getColliders())) {
+
+            boolean touchesGround = ground.getFloorHeight() >= obj1.getMinY();
+
+            if (KeyListener.isKeyPressed(KEY_W) && touchesGround) {
                 gravity = 10f;
             } else {
                 obj1.translate(new Vector2f(0, -movSpeed).mul(dt));
             }
         }
+
         if (KeyListener.isKeyPressed(KEY_A) | KeyListener.isKeyPressed(KEY_D)) {
             if (KeyListener.isKeyPressed(KEY_A)) {
                 obj1.translate(new Vector2f(-movSpeed, 0.0f).mul(dt));
@@ -148,10 +158,6 @@ public class PrimaryScene extends Scene {
             obj1.translateTo(new Vector2f(0,0));
         }
 
-
-
-        obj1.translate(new Vector2f(0, gravity ).mul(dt));
-
         if (counter %50 == 0) {
             System.out.println(gravity);
         }
@@ -159,10 +165,14 @@ public class PrimaryScene extends Scene {
 
         MeshRepository.update(windowStretch);
 
+        //camera.position = obj1.centerOfMass();
+        //program.uploadMat4f("uProjection", camera.getProjectionMatrix());
+        //program.uploadMat4f("uView", camera.getViewMatrix());
+
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, MeshRepository.getElementArray());
         glBufferSubData(GL_ARRAY_BUFFER, 0, MeshRepository.getVertexArray());
 
-        glDrawElements(GL_TRIANGLES, MeshRepository.getElementArray().length, GL_UNSIGNED_INT, 0);
+        glDrawElements(GL_TRIANGLES, MeshRepository.vertexCount(), GL_UNSIGNED_INT, 0);
 
 
     }

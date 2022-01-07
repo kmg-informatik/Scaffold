@@ -3,6 +3,9 @@ package dev.elk.scaffold.gl;
 import dev.elk.scaffold.util.Utils;
 import org.joml.Vector2f;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 /**
  * Methods concerning geometry.
  *
@@ -143,6 +146,45 @@ public interface Geometry extends Renderable {
         translate(new Vector2f(center.x, 0));
     }
 
+    default float getMaxY() {
+        float maxY = Float.NEGATIVE_INFINITY;
+        for (Vertex vertex : getVertices()) {
+            if (maxY < vertex.position.y) {
+                maxY = vertex.position.y;
+            }
+        }
+        return maxY;
+    }
+
+    default float getMinY() {
+        float minY = Float.POSITIVE_INFINITY;
+        for (Vertex vertex : getVertices())
+            if (minY > vertex.position.y)
+                minY = vertex.position.y;
+        return minY;
+    }
+
+    default float getMaxX() {
+        float maxX = Float.NEGATIVE_INFINITY;
+        for (Vertex vertex : getVertices())
+            if (maxX < vertex.position.x)
+                maxX = vertex.position.x;
+        return maxX;
+    }
+
+    default float getMinX() {
+        float minX = Float.POSITIVE_INFINITY;
+        for (Vertex vertex : getVertices())
+            if (minX > vertex.position.x)
+                minX = vertex.position.x;
+        return minX;
+    }
+
+    /**
+     * Checks, if the geometry is at least partly in the bounds of the window
+     * @param yxRatio the ration of width to height
+     * @return true, if geometry is in bounds of window
+     */
     default boolean isOnScreen(float yxRatio){
         Vertex[] vertices = getVertices();
         for (Vertex vertex : vertices) {
@@ -163,4 +205,16 @@ public interface Geometry extends Renderable {
 
         return allVertexData;
     }
+
+    default boolean intersects(Geometry... geometries) {
+        return Arrays.stream(geometries).anyMatch(geometry ->
+                this.getMinX() < geometry.getMaxX() &&
+                this.getMaxX() > geometry.getMinX() &&
+                this.getMaxY() > geometry.getMinY() &&
+                this.getMinY() < geometry.getMaxY()
+        );
+    }
+
+
+
 }

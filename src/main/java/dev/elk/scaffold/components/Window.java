@@ -67,7 +67,7 @@ public class Window {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-        glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);  //Returns the mem adress of the window. (kinda like a pointer)
+                glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);  //Returns the mem adress of the window. (kinda like a pointer)
         if (glfwWindow == NULL) {
             throw new IllegalStateException("failed to create window");
         }

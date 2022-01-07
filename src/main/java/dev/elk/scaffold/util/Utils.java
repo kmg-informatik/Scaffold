@@ -42,8 +42,8 @@ public final class Utils {
     }
 
     public static float[] findMinMaxElem(float[] arr){
-        float max = Float.MIN_VALUE;
-        float min = Float.MAX_VALUE;
+        float max = Float.NEGATIVE_INFINITY;
+        float min = Float.POSITIVE_INFINITY;
 
         for (float elem : arr) {
             max = java.lang.Math.max(elem, max);

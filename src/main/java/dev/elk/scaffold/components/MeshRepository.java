@@ -74,4 +74,8 @@ public class MeshRepository {
     public static int[] getElementArray() {
         return elementArray;
     }
+
+    public static LinkedList<Geometry> getGeometries() {
+        return geometries;
+    }
 }

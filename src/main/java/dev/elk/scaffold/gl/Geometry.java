@@ -95,7 +95,9 @@ public interface Geometry extends Renderable {
      * Returns the origin point of the object.
      * @apiNote Not the center of mass, but a defined origin
      */
-    Vector2f getOrigin();
+    default Vector2f getOrigin(){
+        return getVertices()[0].position;
+    }
 
     /**
      * Moves the geometry to the given coordinates.
@@ -113,6 +115,7 @@ public interface Geometry extends Renderable {
      * @param vector the vector to move with
      */
     default void translate(Vector2f vector) {
+        if (vector.x != 0.0f || vector.y != 0.0f)System.out.println(vector);
         for (Vertex vertex : getVertices()) {
             vertex.position.add(vector);
         }
@@ -206,6 +209,11 @@ public interface Geometry extends Renderable {
         return allVertexData;
     }
 
+    /**
+     * Checks if a Geometry intersects with another Geometry
+     * @param geometries
+     * @return
+     */
     default boolean intersects(Geometry... geometries) {
         return Arrays.stream(geometries).anyMatch(geometry ->
                 this.getMinX() < geometry.getMaxX() &&

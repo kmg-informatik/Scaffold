@@ -1,11 +1,11 @@
 package dev.elk.scaffold.gl;
 
+import dev.elk.scaffold.Physics.Physics;
 import dev.elk.scaffold.renderer.Sprite;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 import java.awt.*;
-import java.util.stream.IntStream;
 
 /**
  * Gennerates a basic quad constructable either from Vertices or from Key points.
@@ -70,11 +70,6 @@ public class Quad implements Geometry{
     @Override
     public int[] getIndices() {
         return new int[]{0,1,2,2,3,0};
-    }
-
-    @Override
-    public Vector2f getOrigin() {
-        return vertices[0].position;
     }
 
     public Sprite getSprite() {

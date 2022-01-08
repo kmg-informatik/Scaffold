@@ -7,24 +7,24 @@ import org.joml.Vector2f;
 
 public class Ground {
 
-    private final Quad[] colliders;
-    private final float floorHeight;
+    private static Quad[] quads;
+    private static float floorHeight;
 
-    public Ground(float tileSide, Sprite... sprites ) {
-        colliders = new Quad[(int)(2/tileSide) * sprites.length];
+    public static void buildGround(float tileSide, Sprite... sprites ) {
+        quads = new Quad[(int)(2/tileSide) * sprites.length];
         for (int i = 0; i < sprites.length; i++) {
-            for (int j = 0; j < colliders.length / sprites.length; j++) {
-                colliders[j + i * colliders.length/ sprites.length] = new Square(sprites[i],new Vector2f(tileSide * (float)j -1f,-1 + tileSide * i),tileSide);
+            for (int j = 0; j < quads.length / sprites.length; j++) {
+                quads[j + i * quads.length/ sprites.length] = new Square(sprites[i],new Vector2f(tileSide * (float)j -1f,-1 + tileSide * i),tileSide);
             }
         }
         floorHeight = -1f + tileSide * sprites.length;
     }
 
-    public Quad[] getColliders() {
-        return colliders;
+    public static Quad[] getQuads() {
+        return quads;
     }
 
-    public float getFloorHeight() {
+    public static float getFloorHeight() {
         return floorHeight;
     }
 }

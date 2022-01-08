@@ -7,6 +7,7 @@ in vec2 fTexCoords;
 out vec4 outColor;
 
 void main() {
-    outColor = texture(TEX_SAMPLER, fTexCoords);
-    //outColor = vec4(fColor, 1);
+    vec4 texColor = texture(TEX_SAMPLER, fTexCoords);
+    if(texColor.a <= 0) discard;
+    outColor = texColor;
 }

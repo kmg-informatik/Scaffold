@@ -126,9 +126,11 @@ public interface Geometry extends Renderable {
     default void flipX(Vector2f flipAt){
         Vertex[] vertices = getVertices();
         translate(new Vector2f(0, -flipAt.y));
+
         for (Vertex vertex : vertices) {
             vertex.position.y = -vertex.position.y;
         }
+
         translate(new Vector2f(0, flipAt.y));
     }
 
@@ -250,11 +252,6 @@ public interface Geometry extends Renderable {
         return allVertexData;
     }
 
-    /**
-     * Checks if a Geometry intersects with another Geometry
-     * @param geometries
-     * @return
-     */
     /**
      * Checks whether the geometry intersects other given geometries.
      * @param geometries geometries to check for intersection with this one

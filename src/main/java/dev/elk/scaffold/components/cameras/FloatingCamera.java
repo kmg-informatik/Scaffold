@@ -29,7 +29,7 @@ public class FloatingCamera extends Camera {
     }
 
     @Override
-    public Vector2f getNextPosition(Vector2f parentPos, float dt) {
+    public Vector2f getNextPosition(Vector2f parentPos) {
         lastPositions.remove(0);
         lastPositions.add(parentPos);
 

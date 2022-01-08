@@ -115,7 +115,6 @@ public interface Geometry extends Renderable {
      * @param vector the vector to move with
      */
     default void translate(Vector2f vector) {
-        if (vector.x != 0.0f || vector.y != 0.0f)System.out.println(vector);
         for (Vertex vertex : getVertices()) {
             vertex.position.add(vector);
         }

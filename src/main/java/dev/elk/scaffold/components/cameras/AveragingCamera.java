@@ -21,7 +21,7 @@ public class AveragingCamera extends Camera {
     }
 
     @Override
-    public Vector2f getNextPosition(Vector2f newPos, float dt) {
+    public Vector2f getNextPosition(Vector2f newPos) {
         if (lastPositions.size() >= capacity){
             lastPositions.remove(0);
         }

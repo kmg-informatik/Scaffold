@@ -5,8 +5,6 @@ import dev.elk.scaffold.Physics.PhysicsQuad;
 import dev.elk.scaffold.Physics.PhysicsSquare;
 import dev.elk.scaffold.components.*;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
-import dev.elk.scaffold.gl.Quad;
-import dev.elk.scaffold.gl.Square;
 import dev.elk.scaffold.gl.Vertex;
 import dev.elk.scaffold.renderer.ShaderProgram;
 import dev.elk.scaffold.renderer.Sprite;
@@ -106,8 +104,6 @@ public class PrimaryScene extends Scene {
     }
 
     private boolean facingRight = true;
-    private final float movSpeed = 1f;
-    private float gravity = -0f;
 
     @Override
     public void onUpdate() {
@@ -117,6 +113,7 @@ public class PrimaryScene extends Scene {
 
         obj1.fall();
 
+        Vector2f movementVector = new Vector2f();
         if (KeyListener.isKeyPressed(KEY_W) | KeyListener.isKeyPressed(KEY_S)) {
             if (KeyListener.isKeyPressed(KEY_W) && obj1.hasGroundContact()) {
                 obj1.setCurrentGravity(10);
@@ -128,13 +125,13 @@ public class PrimaryScene extends Scene {
         if (KeyListener.isKeyPressed(KEY_A) | KeyListener.isKeyPressed(KEY_D)) {
             if (KeyListener.isKeyPressed(KEY_A)) {
                 obj1.translate(new Vector2f(-movSpeed, 0.0f).mul(Window.dt));
-                movementVector.add(new Vector2f(-movSpeed, 0.0f).mul(dt));
+                movementVector.add(new Vector2f(-movSpeed, 0.0f).mul(Window.dt));
                 if (facingRight) {
                     obj1.flipY(obj1.centerOfMass());
                     facingRight = false;
                 }
             } else {
-                movementVector.add(new Vector2f(movSpeed, 0.0f).mul(dt));
+                movementVector.add(new Vector2f(movSpeed, 0.0f).mul(Window.dt));
                 if (!facingRight) {
                     obj1.flipY(obj1.centerOfMass());
                     facingRight = true;
@@ -144,31 +141,9 @@ public class PrimaryScene extends Scene {
         if (KeyListener.isKeyPressed(KEY_SPACE)) {
             movementVector = new Vector2f(obj1.getOrigin()).negate();
         }
-        if (KeyListener.isKeyPressed(KEY_R)){
-            obj1.flipY(obj1.getLowestPoint());
-        }
+        obj1.translate(movementVector);
 
-        //Physics step
-        Vector2f adjustmentVector = new Vector2f();
-        Vector2f physicsVector = new Vector2f();
-        if (obj1.getLowestPoint().y <= -0.7f){
-            gravity = 0;
-
-        }
-        if (KeyListener.isKeyPressed(KEY_W)) {
-            gravity = 0.1f;
-        }
-        physicsVector = new Vector2f(0, gravity);
-        gravity-=0.4f*dt;
-
-        Vector2f res = new Vector2f(movementVector.add(physicsVector));
-        float resY = new Vector2f(obj1.getLowestPoint()).add(res).y;
-        if (resY < -0.7f){
-            adjustmentVector = new Vector2f(0, -0.7f-resY);
-        }
-        obj1.translate(res.add(adjustmentVector));
-
-        camera.position = camera.getNextPosition(obj1.centerOfMass().mul(windowStretch), dt);
+        camera.position = camera.getNextPosition(obj1.centerOfMass().mul(windowStretch));
         program.uploadFloat("windowStretch", windowStretch);
         program.uploadMat4f("cameraProjection",camera.getProjectionMatrix());
         program.uploadMat4f("cameraView",camera.getViewMatrix());

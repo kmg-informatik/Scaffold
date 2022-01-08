@@ -12,7 +12,6 @@ public interface Physics extends Geometry {
     void setCurrentGravity(float g);
 
     default void fall() {
-        System.out.println();
         Geometry.super.translate(new Vector2f(0,getCurrentGravity()).mul(Window.dt));
 
         if (intersects(Ground.getQuads())) {
@@ -25,9 +24,10 @@ public interface Physics extends Geometry {
                 Geometry.super.translate(move);
             }
         }
-
         else if(getCurrentGravity() > NORMAL_GRAVITY)
-            setCurrentGravity(getCurrentGravity() - 1);
+            setCurrentGravity(getCurrentGravity() - 40f * Window.dt);
+
+        System.out.println(getCurrentGravity());
     }
 
     default boolean hasGroundContact(){

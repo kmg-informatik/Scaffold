@@ -59,7 +59,7 @@ public class Camera {
         return viewMatrix;
     }
 
-    public Vector2f getNextPosition(Vector2f newPos, float dt){
+    public Vector2f getNextPosition(Vector2f newPos){
         return newPos;
     }
 

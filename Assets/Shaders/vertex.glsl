@@ -4,8 +4,8 @@ in vec3 color;
 in vec2 texCoords;
 
 uniform float windowStretch;
-uniform mat4 uProjection;
-uniform mat4 uView;
+uniform mat4 cameraProjection;
+uniform mat4 cameraView;
 
 out vec2 fTexCoords;
 out vec3 fColor;
@@ -16,6 +16,5 @@ void main()
  fTexCoords = texCoords;
 
  vec2 newPos = vec2(position.x*windowStretch, position.y);
- gl_Position = vec4(newPos, 0.0, 1.0);
- //gl_Position = uProjection * uView * vec4(newPos, 1.0, 1.0);
+ gl_Position = cameraProjection * cameraView * vec4(newPos, 0.0, 1.0);
 }

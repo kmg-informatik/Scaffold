@@ -1,5 +1,7 @@
 package dev.elk.scaffold.components;
 
+import dev.elk.scaffold.components.cameras.Camera;
+
 /**
  * Copied directly from GamesWithGabe.
  * Probably should rewrite, for better control of

@@ -2,6 +2,7 @@ package dev.elk.game;
 
 import dev.elk.scaffold.Physics.Ground;
 import dev.elk.scaffold.components.*;
+import dev.elk.scaffold.components.cameras.FloatingCamera;
 import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Square;
 import dev.elk.scaffold.gl.Vertex;
@@ -46,7 +47,7 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void init() {
-        camera = new Camera(new Vector2f());
+        this.camera = new FloatingCamera(new Vector2f(), 2f,50);
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -96,11 +97,9 @@ public class PrimaryScene extends Scene {
 
     }
 
-    private int counter = 0;
-    private long frame = 0;
     private boolean facingRight = true;
-    private float movSpeed = 1f;
-    private float gravity = -10f;
+    private final float movSpeed = 1f;
+    private float gravity = -0f;
 
     @Override
     public void onUpdate(float dt) {
@@ -128,52 +127,59 @@ public class PrimaryScene extends Scene {
 
             boolean touchesGround = ground.getFloorHeight() >= obj1.getMinY();
 
-            if (KeyListener.isKeyPressed(KEY_W) && touchesGround) {
-                gravity = 10f;
-            } else {
-                obj1.translate(new Vector2f(0, -movSpeed).mul(dt));
-            }
-        }
-
+        //Movement step
+        Vector2f movementVector = new Vector2f();
         if (KeyListener.isKeyPressed(KEY_A) | KeyListener.isKeyPressed(KEY_D)) {
             if (KeyListener.isKeyPressed(KEY_A)) {
-                obj1.translate(new Vector2f(-movSpeed, 0.0f).mul(dt));
+                movementVector.add(new Vector2f(-movSpeed, 0.0f).mul(dt));
                 if (facingRight) {
-                    obj1.flipY();
+                    obj1.flipY(obj1.centerOfMass());
                     facingRight = false;
                 }
             } else {
-                obj1.translate(new Vector2f(movSpeed, 0.0f).mul(dt));
+                movementVector.add(new Vector2f(movSpeed, 0.0f).mul(dt));
                 if (!facingRight) {
-                    obj1.flipY();
+                    obj1.flipY(obj1.centerOfMass());
                     facingRight = true;
                 }
             }
         }
-
-        if (KeyListener.isKeyPressed(KEY_R)) {
-            obj1.rotate_origin(2f*dt);
-        }
         if (KeyListener.isKeyPressed(KEY_SPACE)) {
-            obj1.translateTo(new Vector2f(0,0));
+            movementVector = new Vector2f(obj1.getOrigin()).negate();
+        }
+        if (KeyListener.isKeyPressed(KEY_R)){
+            obj1.flipY(obj1.getLowestPoint());
         }
 
-        if (counter %50 == 0) {
-            System.out.println(gravity);
+        //Physics step
+        Vector2f adjustmentVector = new Vector2f();
+        Vector2f physicsVector = new Vector2f();
+        if (obj1.getLowestPoint().y <= -0.7f){
+            gravity = 0;
+
         }
-        counter++;
+        if (KeyListener.isKeyPressed(KEY_W)) {
+            gravity = 0.1f;
+        }
+        physicsVector = new Vector2f(0, gravity);
+        gravity-=0.4f*dt;
+
+        Vector2f res = new Vector2f(movementVector.add(physicsVector));
+        float resY = new Vector2f(obj1.getLowestPoint()).add(res).y;
+        if (resY < -0.7f){
+            adjustmentVector = new Vector2f(0, -0.7f-resY);
+        }
+        obj1.translate(res.add(adjustmentVector));
+
+        camera.position = camera.getNextPosition(obj1.centerOfMass().mul(windowStretch), dt);
+        program.uploadFloat("windowStretch", windowStretch);
+        program.uploadMat4f("cameraProjection",camera.getProjectionMatrix());
+        program.uploadMat4f("cameraView",camera.getViewMatrix());
 
         MeshRepository.update(windowStretch);
-
-        //camera.position = obj1.centerOfMass();
-        //program.uploadMat4f("uProjection", camera.getProjectionMatrix());
-        //program.uploadMat4f("uView", camera.getViewMatrix());
-
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, MeshRepository.getElementArray());
         glBufferSubData(GL_ARRAY_BUFFER, 0, MeshRepository.getVertexArray());
-
         glDrawElements(GL_TRIANGLES, MeshRepository.vertexCount(), GL_UNSIGNED_INT, 0);
-
 
     }
 }

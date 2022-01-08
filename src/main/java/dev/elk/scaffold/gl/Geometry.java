@@ -34,7 +34,7 @@ public interface Geometry extends Renderable {
      * @see #rotate(float, Vector2f)
      * @param radians number of radians
      */
-    default void rotate_origin(float radians) {
+    default void rotateOrigin(float radians) {
         rotate(radians, getOrigin());
     }
 
@@ -45,7 +45,7 @@ public interface Geometry extends Renderable {
      * @see #rotate(float, Vector2f)
      * @param radians number of radians
      */
-    default void rotate_center(float radians){
+    default void rotateCenter(float radians){
         rotate(radians, centerOfMass());
     }
 
@@ -121,29 +121,27 @@ public interface Geometry extends Renderable {
     /**
      * Flips the geometry on the x-axis through the center of the geometry.
      */
-    default void flipX(){
+    default void flipX(Vector2f flipAt){
         Vertex[] vertices = getVertices();
-        var center = centerOfMass();
-        translate(new Vector2f(0, -center.y));
+        translate(new Vector2f(0, -flipAt.y));
         for (Vertex vertex : vertices) {
             vertex.position.y = -vertex.position.y;
         }
-        translate(new Vector2f(0, center.y));
+        translate(new Vector2f(0, flipAt.y));
     }
 
     /**
      * Flips the geometry on the y-axis through the center of the geometry.
      */
-    default void flipY(){
+    default void flipY(Vector2f flipAt){
         Vertex[] vertices = getVertices();
-        var center = centerOfMass();
-        translate(new Vector2f(-center.x, 0));
+        translate(new Vector2f(-flipAt.x, 0));
 
         for (Vertex vertex : vertices) {
             vertex.position.x = -vertex.position.x;
         }
 
-        translate(new Vector2f(center.x, 0));
+        translate(new Vector2f(flipAt.x, 0));
     }
 
     default float getMaxY() {
@@ -178,6 +176,23 @@ public interface Geometry extends Renderable {
             if (minX > vertex.position.x)
                 minX = vertex.position.x;
         return minX;
+    }
+
+    default void scaleOrigin(float scalar){
+        scale(scalar, getOrigin());
+    }
+
+    default void scaleCenter(float scalar){
+        scale(scalar, centerOfMass());
+    }
+
+    default void scale(float scalar, Vector2f origin){
+        Vertex[] vertices = getVertices();
+        for (Vertex vertex : vertices) {
+            vertex.position.sub(origin);
+            vertex.position.mul(scalar);
+            vertex.position.add(origin);
+        }
     }
 
     /**

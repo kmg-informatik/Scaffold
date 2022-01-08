@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.function.Consumer;
 
 /**
- * A utility class for storing instances of {@link EventListener} and
+ * A utility class for storing instances of {@link EventListening} and
  * notifying listeners of an event.<p>
  * Event listeners must be registered to the plugin repository, in order
  * for them to be notified of events. Listeners added more than once will
@@ -13,7 +13,7 @@ import java.util.function.Consumer;
  * Note that the listeners are called in the order in which they were
  * registered to the plugin repository.
  * @apiNote Use a hashmap rather than an arraylist?
- * @see EventListener
+ * @see EventListening
  * @see dev.elk.scaffold.events.Event
  * @author Louis Schell
  */
@@ -21,31 +21,31 @@ public class PluginRepository {
 
     private PluginRepository(){}
 
-    private static final ArrayList<EventListener> listeners = new ArrayList<>();
+    private static final ArrayList<EventListening> listeners = new ArrayList<>();
 
-    public static ArrayList<EventListener> getListeners() {
+    public static ArrayList<EventListening> getListeners() {
         return listeners;
     }
 
-    public static boolean addListener(EventListener listener){
+    public static boolean addListener(EventListening listener){
         return listeners.add(listener);
     }
 
-    public static boolean addListener(Class<? extends EventListener> listenerClass)
+    public static boolean addListener(Class<? extends EventListening> listenerClass)
             throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        EventListener instance = listenerClass.getDeclaredConstructor().newInstance();
+        EventListening instance = listenerClass.getDeclaredConstructor().newInstance();
         return listeners.add(instance);
     }
 
-    public static boolean deleteListener(EventListener listener){
+    public static boolean deleteListener(EventListening listener){
         return listeners.remove(listener);
     }
 
-    public static void notifyAllOf(Consumer<EventListener> consumer){
+    public static void notifyAllOf(Consumer<EventListening> consumer){
         listeners.forEach(consumer);
     }
 
-    public static void notifyAllOfAsync(Consumer<EventListener> consumer){
+    public static void notifyAllOfAsync(Consumer<EventListening> consumer){
         assert false : "Not implemented yet";
         Thread thread = new Thread(()->{
             try{

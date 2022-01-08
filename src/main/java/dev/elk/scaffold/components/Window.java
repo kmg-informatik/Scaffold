@@ -22,6 +22,7 @@ public class Window {
     private int height;
     private final String title;
     private long glfwWindow;
+    public static float dt;
 
     private Scene currentScene;
 
@@ -100,7 +101,7 @@ public class Window {
     private void loop() {
 
         long start = System.nanoTime();
-        float dt = -1.0f;
+        dt = -1.0f;
         long end;
 
         while (!glfwWindowShouldClose(glfwWindow)) {
@@ -110,7 +111,7 @@ public class Window {
             glClear(GL_COLOR_BUFFER_BIT);
 
             if(dt >= 0)
-                currentScene.onUpdate(dt);
+                currentScene.onUpdate();
 
             glfwSwapBuffers(glfwWindow);
             end = System.nanoTime();

@@ -19,7 +19,7 @@ public abstract class Scene {
 
     public void init() {}
 
-    public abstract void onUpdate(float dt);
+    public abstract void onUpdate();
 
 
 }

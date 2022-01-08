@@ -1,6 +1,8 @@
 package dev.elk.game;
 
 import dev.elk.scaffold.Physics.Ground;
+import dev.elk.scaffold.Physics.PhysicsQuad;
+import dev.elk.scaffold.Physics.PhysicsSquare;
 import dev.elk.scaffold.components.*;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
 import dev.elk.scaffold.gl.Quad;
@@ -38,7 +40,7 @@ public class PrimaryScene extends Scene {
     private int eboID;
 
     public Ground ground;
-    public Quad obj1;
+    public PhysicsQuad obj1;
 
     public PrimaryScene(Window window, ShaderProgram program) {
         super(window);
@@ -59,10 +61,16 @@ public class PrimaryScene extends Scene {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        obj1 = new Square(spritesheet.getSprite("marble"), new Vector2f(0f, 0.2f),  0.3f);
+        obj1 = new PhysicsSquare(spritesheet.getSprite("marble"), new Vector2f(0f, 0.2f),  0.3f);
 
-        ground = new Ground(0.1f, spritesheet.getSprite("dirtDark"), spritesheet.getSprite("dirtTop"),spritesheet.getSprite("grassTop"));
-        MeshRepository.putAll(ground.getColliders());
+        Sprite[] groundLevels = {
+                spritesheet.getSprite("dirtDark"),
+                spritesheet.getSprite("dirtTop"),
+                spritesheet.getSprite("grassTop")
+        };
+
+        Ground.buildGround(0.1f, groundLevels);
+        MeshRepository.putAll(Ground.getQuads());
         MeshRepository.put(obj1);
 
         program.compile();
@@ -102,35 +110,24 @@ public class PrimaryScene extends Scene {
     private float gravity = -0f;
 
     @Override
-    public void onUpdate(float dt) {
+    public void onUpdate() {
+        float movSpeed = 1f;
         float windowStretch = (float) window.getHeight() / (float) window.getWidth();
         program.uploadFloat("windowStretch", windowStretch);
-        frame++;
 
-        obj1.translate(new Vector2f(0, gravity).mul(dt));
-
-        if (obj1.intersects(ground.getColliders())) {
-            counter = 1;
-            gravity = 0;
-
-            Vector2f move = new Vector2f(0,ground.getFloorHeight()-obj1.getMinY());
-
-            float threshold = 0f;
-            if (move.length() >= threshold){
-                obj1.translate(move);
-            }
-        }
-        else if(gravity > -10)
-                gravity--;
+        obj1.fall();
 
         if (KeyListener.isKeyPressed(KEY_W) | KeyListener.isKeyPressed(KEY_S)) {
+            if (KeyListener.isKeyPressed(KEY_W) && obj1.hasGroundContact()) {
+                obj1.setCurrentGravity(10);
+            } else {
+                obj1.translate(new Vector2f(0, -movSpeed).mul(Window.dt));
+            }
+        }
 
-            boolean touchesGround = ground.getFloorHeight() >= obj1.getMinY();
-
-        //Movement step
-        Vector2f movementVector = new Vector2f();
         if (KeyListener.isKeyPressed(KEY_A) | KeyListener.isKeyPressed(KEY_D)) {
             if (KeyListener.isKeyPressed(KEY_A)) {
+                obj1.translate(new Vector2f(-movSpeed, 0.0f).mul(Window.dt));
                 movementVector.add(new Vector2f(-movSpeed, 0.0f).mul(dt));
                 if (facingRight) {
                     obj1.flipY(obj1.centerOfMass());

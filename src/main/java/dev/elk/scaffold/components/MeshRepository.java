@@ -26,7 +26,10 @@ public class MeshRepository {
         int eCount = 0;
 
         for (Geometry geometry : geometries) {
-            if (geometry.isOnScreen(screenStretch)){
+
+            //geometry.scaleCenter(1.1f);
+
+            //if (geometry.isOnScreen(screenStretch)){
                 var indices = geometry.getIndices();
                 for (int i = 0; i < indices.length; i++) {
                     indices[i] += vCount/Vertex.STRIDE;
@@ -49,7 +52,7 @@ public class MeshRepository {
 
                 vCount += geometry.intoFloats().length;
                 eCount += geometry.getIndices().length;
-            }
+           // }
         }
 
         vertexCount = vCount;

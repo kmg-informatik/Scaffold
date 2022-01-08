@@ -126,9 +126,6 @@ public interface Geometry extends Renderable {
     default void flipX(Vector2f flipAt){
         Vertex[] vertices = getVertices();
         translate(new Vector2f(0, -flipAt.y));
-        var center = centerOfMass();
-
-        translate(new Vector2f(0, -center.y));
         for (Vertex vertex : vertices) {
             vertex.position.y = -vertex.position.y;
         }
@@ -140,14 +137,11 @@ public interface Geometry extends Renderable {
      */
     default void flipY(Vector2f flipAt){
         Vertex[] vertices = getVertices();
-        var center = centerOfMass();
-        translate(new Vector2f(-center.x, 0));
         translate(new Vector2f(-flipAt.x, 0));
 
         for (Vertex vertex : vertices) {
             vertex.position.x = -vertex.position.x;
         }
-        translate(new Vector2f(center.x, 0));
 
         translate(new Vector2f(flipAt.x, 0));
     }

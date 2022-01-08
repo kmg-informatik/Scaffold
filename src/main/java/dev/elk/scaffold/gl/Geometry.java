@@ -223,21 +223,6 @@ public interface Geometry extends Renderable {
     }
 
     /**
-     * Checks, if the geometry is at least partly in the bounds of the window
-     * @param yxRatio the ration of width to height
-     * @return true, if geometry is in bounds of window
-     */
-    default boolean isOnScreen(float yxRatio){
-        Vertex[] vertices = getVertices();
-        for (Vertex vertex : vertices) {
-            if (Math.abs(vertex.position.x) * yxRatio < 1f  && Math.abs(vertex.position.y) < 1f){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Turns the vertices of the mesh into an array of floats.
      * @return vertices of mesh as an array of floats
      */

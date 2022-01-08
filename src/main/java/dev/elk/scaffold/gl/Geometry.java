@@ -34,7 +34,7 @@ public interface Geometry extends Renderable {
      * @see #rotate(float, Vector2f)
      * @param radians number of radians
      */
-    default void rotateOrigin(float radians) {
+    default void rotate_origin(float radians) {
         rotate(radians, getOrigin());
     }
 
@@ -45,7 +45,7 @@ public interface Geometry extends Renderable {
      * @see #rotate(float, Vector2f)
      * @param radians number of radians
      */
-    default void rotateCenter(float radians){
+    default void rotate_center(float radians){
         rotate(radians, centerOfMass());
     }
 
@@ -126,6 +126,9 @@ public interface Geometry extends Renderable {
     default void flipX(Vector2f flipAt){
         Vertex[] vertices = getVertices();
         translate(new Vector2f(0, -flipAt.y));
+        var center = centerOfMass();
+
+        translate(new Vector2f(0, -center.y));
         for (Vertex vertex : vertices) {
             vertex.position.y = -vertex.position.y;
         }
@@ -137,18 +140,26 @@ public interface Geometry extends Renderable {
      */
     default void flipY(Vector2f flipAt){
         Vertex[] vertices = getVertices();
+        var center = centerOfMass();
+        translate(new Vector2f(-center.x, 0));
         translate(new Vector2f(-flipAt.x, 0));
 
         for (Vertex vertex : vertices) {
             vertex.position.x = -vertex.position.x;
         }
+        translate(new Vector2f(center.x, 0));
 
         translate(new Vector2f(flipAt.x, 0));
     }
 
+    /**
+     * @return the highest y-component of the geometry.
+     */
     default float getMaxY() {
-        float maxY = Float.NEGATIVE_INFINITY;
-        for (Vertex vertex : getVertices()) {
+        Vertex[] vertices = getVertices();
+        float maxY = vertices[0].position.y;
+        for (int i = 1, verticesLength = vertices.length; i < verticesLength; i++) {
+            Vertex vertex = vertices[i];
             if (maxY < vertex.position.y) {
                 maxY = vertex.position.y;
             }
@@ -156,27 +167,45 @@ public interface Geometry extends Renderable {
         return maxY;
     }
 
+    /**
+     * @return the lowest y-component of the geometry.
+     */
     default float getMinY() {
-        float minY = Float.POSITIVE_INFINITY;
-        for (Vertex vertex : getVertices())
+        Vertex[] vertices = getVertices();
+        float minY = vertices[0].position.y;
+        for (int i = 1, verticesLength = vertices.length; i < verticesLength; i++) {
+            Vertex vertex = vertices[i];
             if (minY > vertex.position.y)
                 minY = vertex.position.y;
+        }
         return minY;
     }
 
+    /**
+     * @return the highest x-component of the geometry.
+     */
     default float getMaxX() {
-        float maxX = Float.NEGATIVE_INFINITY;
-        for (Vertex vertex : getVertices())
+        Vertex[] vertices = getVertices();
+        float maxX = vertices[0].position.x;
+        for (int i = 1, verticesLength = vertices.length; i < verticesLength; i++) {
+            Vertex vertex = vertices[i];
             if (maxX < vertex.position.x)
                 maxX = vertex.position.x;
+        }
         return maxX;
     }
 
+    /**
+     * @return the lowest x-component of the geometry.
+     */
     default float getMinX() {
-        float minX = Float.POSITIVE_INFINITY;
-        for (Vertex vertex : getVertices())
+        Vertex[] vertices = getVertices();
+        float minX = vertices[0].position.x;
+        for (int i = 1, verticesLength = vertices.length; i < verticesLength; i++) {
+            Vertex vertex = vertices[i];
             if (minX > vertex.position.x)
                 minX = vertex.position.x;
+        }
         return minX;
     }
 
@@ -212,6 +241,10 @@ public interface Geometry extends Renderable {
         return false;
     }
 
+    /**
+     * Turns the vertices of the mesh into an array of floats.
+     * @return vertices of mesh as an array of floats
+     */
     @Override
     default float[] intoFloats() {
         Vertex[] vertices = getVertices();
@@ -227,6 +260,13 @@ public interface Geometry extends Renderable {
      * Checks if a Geometry intersects with another Geometry
      * @param geometries
      * @return
+     */
+    /**
+     * Checks whether the geometry intersects other given geometries.
+     * @param geometries geometries to check for intersection with this one
+     * @return true, if this geometry intersects with any of the other geometries
+     * @apiNote Compiler should cache the values of {@link #getMaxX()}, {@link #getMinX()},
+     * {@link #getMaxY()} and {@link #getMinY()}
      */
     default boolean intersects(Geometry... geometries) {
         return Arrays.stream(geometries).anyMatch(geometry ->

@@ -40,10 +40,6 @@ public class Window {
 
     public Window(String title, Color color) {
         this.title = title;
-
-        //var screenSize = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode();
-        //this.height = screenSize.getHeight();
-        //this.width =screenSize.getWidth();
         this.r = color.getRed();
         this.b = color.getBlue();
         this.g = color.getGreen();

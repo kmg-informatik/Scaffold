@@ -36,10 +36,11 @@ public class Window {
         this.currentScene = newScene;
     }
 
-    public Window(String title, int width, int height, Color color) {
+    public Window(String title, Color color) {
         this.title = title;
-        this.height = height;
-        this.width = width;
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.height = screenSize.height;
+        this.width = screenSize.width;
         this.r = color.getRed();
         this.b = color.getBlue();
         this.g = color.getGreen();
@@ -67,8 +68,8 @@ public class Window {
 
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-        glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 

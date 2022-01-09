@@ -1,6 +1,5 @@
 package dev.elk.scaffold.gl;
 
-import dev.elk.scaffold.Physics.Physics;
 import dev.elk.scaffold.renderer.Sprite;
 import org.joml.Vector2f;
 import org.joml.Vector3f;

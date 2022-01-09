@@ -252,7 +252,4 @@ public interface Geometry extends Renderable {
                 this.getMinY() < geometry.getMaxY()
         );
     }
-
-
-
 }

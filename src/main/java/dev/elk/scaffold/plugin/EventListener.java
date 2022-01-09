@@ -1,5 +1,7 @@
 package dev.elk.scaffold.plugin;
 
+import dev.elk.scaffold.renderer.ShaderProgram;
+
 /**
  * An abstract event listener, that enables a class to wait for a
  * certain {@link dev.elk.scaffold.events.Event} to happen in the
@@ -13,5 +15,11 @@ package dev.elk.scaffold.plugin;
  * @author Louis Schell
  */
 public abstract class EventListener{
+
+    public void onDefineBuffers(ShaderProgram program){}
+
+    public void onCreateGLCapabilities(){}
+
+    public void onShowWindow(){}
 
 }

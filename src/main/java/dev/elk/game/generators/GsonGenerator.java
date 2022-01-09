@@ -1,4 +1,4 @@
-package dev.elk.game.Generators;
+package dev.elk.game.generators;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

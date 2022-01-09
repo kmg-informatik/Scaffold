@@ -13,15 +13,14 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InstantiationException {
 
         Shader fragment = new Shader("Assets/Shaders/fragment.glsl", ShaderType.FRAGMENT);
         Shader vertex = new Shader("Assets/Shaders/vertex.glsl", ShaderType.VERTEX);
         ShaderProgram program = new ShaderProgram();
         program.attachShaders(fragment, vertex);
 
-
-        Window window = new Window("Hello!", 1000, 1000, Color.black);
+        Window window = new Window("Hello!", Color.white);
         window.setScene(new PrimaryScene(window, program));
 
         window.run();

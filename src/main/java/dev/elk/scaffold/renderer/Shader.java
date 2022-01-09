@@ -28,7 +28,7 @@ public class Shader {
         this.shaderSource = loadShaderSource(filepath);
     }
 
-    public void compile(){
+    public void compile() throws InstantiationException {
         shaderId = glCreateShader(shaderType.GL_TYPE);
 
         glShaderSource(shaderId, shaderSource);
@@ -37,8 +37,13 @@ public class Shader {
         int success = glGetShaderi(shaderId, GL_COMPILE_STATUS);
         if (success == GL_FALSE) {
             int len = glGetShaderi(shaderId, GL_INFO_LOG_LENGTH);
-            System.err.printf("Failed to compile %s-Shader %s\n", shaderType, filepath);
-            System.err.printf("GL_Error: %s\n", glGetShaderInfoLog(shaderId, len));
+            throw new InstantiationException(
+                    String.format("Failed to compile %s-Shader %s\n%s",
+                            shaderType,
+                            filepath,
+                            glGetShaderInfoLog(shaderId, len)
+                    )
+            );
         }
     }
 

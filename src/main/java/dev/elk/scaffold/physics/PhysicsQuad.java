@@ -1,11 +1,8 @@
-package dev.elk.scaffold.Physics;
+package dev.elk.scaffold.physics;
 
 import dev.elk.scaffold.gl.Quad;
-import dev.elk.scaffold.gl.Square;
-import dev.elk.scaffold.gl.Vertex;
 import dev.elk.scaffold.renderer.Sprite;
 import org.joml.Vector2f;
-import org.joml.Vector3f;
 
 import java.awt.*;
 

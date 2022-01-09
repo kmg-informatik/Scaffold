@@ -1,5 +1,9 @@
 package dev.elk.scaffold.components;
 
+import dev.elk.scaffold.components.userinput.KeyListener;
+import dev.elk.scaffold.components.userinput.MouseListener;
+import dev.elk.scaffold.plugin.EventListener;
+import dev.elk.scaffold.plugin.PluginRepository;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -32,17 +36,18 @@ public class Window {
         this.currentScene = newScene;
     }
 
-    public Window(String title, int width, int height, Color color) {
+    public Window(String title, Color color) {
         this.title = title;
-        this.height = height;
-        this.width = width;
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.height = screenSize.height;
+        this.width = screenSize.width;
         this.r = color.getRed();
         this.b = color.getBlue();
         this.g = color.getGreen();
         this.a = color.getAlpha();
     }
 
-    public void run() {
+    public void run() throws InstantiationException {
         this.init();
         currentScene.init();
         this.loop();
@@ -63,12 +68,12 @@ public class Window {
 
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-        glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
-        glfwWindowHint(GLFW_MAXIMIZED, GLFW_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_MAXIMIZED, GLFW_TRUE);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-                glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);  //Returns the mem adress of the window. (kinda like a pointer)
+        glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);  //Returns the mem adress of the window. (kinda like a pointer)
         if (glfwWindow == NULL) {
             throw new IllegalStateException("failed to create window");
         }
@@ -81,9 +86,11 @@ public class Window {
         glfwMakeContextCurrent(glfwWindow);
         glfwSwapInterval(1);
         glfwShowWindow(glfwWindow);
+        PluginRepository.notifyAllOf(EventListener::onShowWindow);
 
         //This enables LWJGL to work with opengl
         GL.createCapabilities();
+        PluginRepository.notifyAllOf(EventListener::onCreateGLCapabilities);
     }
 
     private void updateDimensions(){

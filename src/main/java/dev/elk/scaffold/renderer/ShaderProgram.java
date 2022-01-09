@@ -1,5 +1,7 @@
 package dev.elk.scaffold.renderer;
 
+import dev.elk.scaffold.plugin.EventListener;
+import dev.elk.scaffold.plugin.PluginRepository;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
@@ -8,6 +10,7 @@ import org.lwjgl.BufferUtils;
 import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.ExecutionException;
 
 import static org.lwjgl.opengl.GL11.GL_FALSE;
 import static org.lwjgl.opengl.GL20.*;
@@ -25,7 +28,7 @@ public class ShaderProgram {
     private final ArrayList<Shader> shaders = new ArrayList<>();
     private int shaderProgramId;
 
-    public void compile(){
+    public void compile() throws InstantiationException {
         shaderProgramId = glCreateProgram();
 
         for (Shader shader : shaders) {
@@ -39,8 +42,10 @@ public class ShaderProgram {
 
         if (success == GL_FALSE) {
             int len = glGetProgrami(shaderProgramId, GL_INFO_LOG_LENGTH);
-            System.err.println("ERROR:\tLinking of shaders failed.");
-            System.err.println(glGetProgramInfoLog(shaderProgramId, len));
+            throw new InstantiationException(
+                    String.format("Failed to Link shaders.\n%s",
+                    glGetProgramInfoLog(shaderProgramId, len))
+            );
         }
     }
 

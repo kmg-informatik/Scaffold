@@ -17,7 +17,7 @@ public abstract class Scene {
         this.window = window;
     }
 
-    public void init() {}
+    public void init() throws InstantiationException {}
 
     public abstract void onUpdate();
 

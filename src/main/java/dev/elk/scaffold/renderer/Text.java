@@ -27,7 +27,7 @@ public class Text {
         spritesheet = Spritesheet.from(fontInformation.getJsonPath(),new Texture(fontInformation.getPngPath()));
         text = "";
         for (int i = 0; i < maxTextLength; i++) {
-            text += "a";
+            text += " ";
         }
         initText();
     }

@@ -6,8 +6,10 @@ import dev.elk.scaffold.plugin.EventListener;
 import dev.elk.scaffold.plugin.PluginRepository;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
+import org.lwjgl.system.windows.DISPLAY_DEVICE;
 
 import java.awt.*;
+import java.util.Arrays;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -38,9 +40,10 @@ public class Window {
 
     public Window(String title, Color color) {
         this.title = title;
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        this.height = screenSize.height;
-        this.width = screenSize.width;
+
+        //var screenSize = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().getDisplayMode();
+        //this.height = screenSize.getHeight();
+        //this.width =screenSize.getWidth();
         this.r = color.getRed();
         this.b = color.getBlue();
         this.g = color.getGreen();
@@ -66,6 +69,9 @@ public class Window {
             throw new IllegalStateException("Unable to initialize glfw");
         }
 
+        long primary = glfwGetPrimaryMonitor();
+        var videoMode = glfwGetVideoMode(primary);
+
         glfwDefaultWindowHints();
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
@@ -73,7 +79,7 @@ public class Window {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-        glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);  //Returns the mem adress of the window. (kinda like a pointer)
+        glfwWindow = glfwCreateWindow(videoMode.width(), videoMode.width(), this.title, NULL, NULL);  //Returns the mem adress of the window. (kinda like a pointer)
         if (glfwWindow == NULL) {
             throw new IllegalStateException("failed to create window");
         }

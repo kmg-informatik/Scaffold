@@ -5,6 +5,14 @@ import dev.elk.scaffold.renderer.ShaderProgram;
 
 import static org.lwjgl.opengl.GL20.*;
 
+/**
+ * OpenGL vertex attributes are descriptions of the structure of a single vertex.
+ * They define what information goes where in the vertex, such as position,
+ * color, or texture coordinates.
+ *
+ * @author Louis Schell
+ * @see <a href="https://www.khronos.org/opengl/wiki/Vertex_Specification">https://www.khronos.org/opengl/wiki/Vertex_Specification</a>
+ */
 public class VertexAttribute {
 
     /**
@@ -48,10 +56,10 @@ public class VertexAttribute {
     /**
      * Creates vertex attribute in the shader program.
      */
-    public void enable(){
+    public void enable() {
         attribLocation = glGetAttribLocation(program.getId(), attribName);
         glEnableVertexAttribArray(attribLocation);
-        glVertexAttribPointer(attribLocation, attribSize, dataType,false, Vertex.BYTES, vertexPointer);
+        glVertexAttribPointer(attribLocation, attribSize, dataType, false, Vertex.BYTES, vertexPointer);
     }
 
     /**

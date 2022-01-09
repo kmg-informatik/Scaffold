@@ -105,9 +105,14 @@ public class PrimaryScene extends Scene {
 
     private boolean facingRight = true;
 
+    int counter= 0;
     @Override
     public void onUpdate() {
-        text.setText(Integer.toString((int)(1f/Window.dt)));
+        String str = Integer.toString((int)(1f/Window.dt));
+        if (str.length() == 2 && counter %5 ==0)
+            text.setText("fps=" + str);
+        counter++;
+
         float movSpeed = 1f;
         float windowStretch = (float) window.getHeight() / (float) window.getWidth();
         program.uploadFloat("windowStretch", windowStretch);

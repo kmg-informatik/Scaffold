@@ -234,7 +234,7 @@ public class GsonGenerator {
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(9,b++), "'"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "'"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "a"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "b"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "c"),
@@ -276,7 +276,7 @@ public class GsonGenerator {
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(9,b++), "@"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "@"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "A"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "B"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "C"),
@@ -297,7 +297,7 @@ public class GsonGenerator {
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(9,b++), "0"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "0"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "1"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "2"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "3"),
@@ -318,7 +318,7 @@ public class GsonGenerator {
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(9,b++), " "),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), " "),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "!"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "doubleQuote"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "#"),

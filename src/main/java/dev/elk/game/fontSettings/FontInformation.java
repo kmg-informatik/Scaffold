@@ -10,6 +10,7 @@ public class FontInformation {
     private final Path  jsonPath;
     private final Path  pngPath;
     private final float fontSize;
+    private final float fontWhitspace;
 
     public FontInformation(FontType fontType, float fontSize){
         String id = switch (fontType){
@@ -25,6 +26,7 @@ public class FontInformation {
             case JETBRAINS_MONO -> 20f/16f;
             case TIMES_NEW_ROMAN -> 20f/16f;
         };
+        this.fontWhitspace = 0.06f;
 
         this.fontSize = fontSize / 100;
     }
@@ -43,5 +45,9 @@ public class FontInformation {
 
     public float getFontSize() {
         return fontSize;
+    }
+
+    public float getFontWhitspace() {
+        return fontWhitspace;
     }
 }

@@ -13,7 +13,7 @@ public class Square extends Quad{
 
     public Square(Sprite sprite, Vector2f position, float size) {
         super(sprite, new Vector2f(position),
-                new Vector2f(position.add(size, size)));
+                new Vector2f(new Vector2f(position).add(size, size)));
     }
 
 }

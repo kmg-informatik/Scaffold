@@ -34,7 +34,7 @@ public interface Geometry extends Renderable {
      * @see #rotate(float, Vector2f)
      * @param radians number of radians
      */
-    default void rotate_origin(float radians) {
+    default void rotateOrigin(float radians) {
         rotate(radians, getOrigin());
     }
 
@@ -45,7 +45,7 @@ public interface Geometry extends Renderable {
      * @see #rotate(float, Vector2f)
      * @param radians number of radians
      */
-    default void rotate_center(float radians){
+    default void rotateCenter(float radians){
         rotate(radians, centerOfMass());
     }
 
@@ -205,14 +205,26 @@ public interface Geometry extends Renderable {
         return minX;
     }
 
+    /**
+     * Scales the geometry from its origin point by a given scalar
+     * @param scalar the scalar to scale with
+     */
     default void scaleOrigin(float scalar){
         scale(scalar, getOrigin());
     }
 
+    /**
+     * Scales the geometry from its center point by a given scalar
+     * @param scalar the scalar to scale with
+     */
     default void scaleCenter(float scalar){
         scale(scalar, centerOfMass());
     }
 
+    /**
+     * Scales the geometry from a given point by a given scalar
+     * @param scalar the scalar to scale with
+     */
     default void scale(float scalar, Vector2f origin){
         Vertex[] vertices = getVertices();
         for (Vertex vertex : vertices) {

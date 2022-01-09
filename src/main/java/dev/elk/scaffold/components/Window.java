@@ -2,6 +2,8 @@ package dev.elk.scaffold.components;
 
 import dev.elk.scaffold.components.userinput.KeyListener;
 import dev.elk.scaffold.components.userinput.MouseListener;
+import dev.elk.scaffold.plugin.EventListener;
+import dev.elk.scaffold.plugin.PluginRepository;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -44,7 +46,7 @@ public class Window {
         this.a = color.getAlpha();
     }
 
-    public void run() {
+    public void run() throws InstantiationException {
         this.init();
         currentScene.init();
         this.loop();
@@ -83,9 +85,11 @@ public class Window {
         glfwMakeContextCurrent(glfwWindow);
         glfwSwapInterval(1);
         glfwShowWindow(glfwWindow);
+        PluginRepository.notifyAllOf(EventListener::onShowWindow);
 
         //This enables LWJGL to work with opengl
         GL.createCapabilities();
+        PluginRepository.notifyAllOf(EventListener::onCreateGLCapabilities);
     }
 
     private void updateDimensions(){

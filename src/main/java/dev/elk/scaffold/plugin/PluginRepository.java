@@ -57,4 +57,8 @@ public class PluginRepository {
         thread.start();
     }
 
+    static{
+        PluginRepository.addListener(new GlListener());
+    }
+
 }

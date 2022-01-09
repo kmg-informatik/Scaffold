@@ -94,4 +94,8 @@ public class Batch {
         return geometries;
     }
 
+    public static Batch dummyBatch(){
+        return new Batch(0,0,0);
+    }
+
 }

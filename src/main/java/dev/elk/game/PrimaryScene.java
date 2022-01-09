@@ -6,7 +6,7 @@ import dev.elk.scaffold.physics.PhysicsQuad;
 import dev.elk.scaffold.physics.PhysicsSquare;
 import dev.elk.scaffold.components.*;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
-import dev.elk.scaffold.gl.Vertex;
+import dev.elk.scaffold.plugin.PluginRepository;
 import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2f;
 
@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 import static dev.elk.scaffold.util.Utils.*;
-import static org.lwjgl.opengl.GL11.GL_FLOAT;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
@@ -47,7 +46,25 @@ public class PrimaryScene extends Scene {
     }
 
     @Override
-    public void init() {
+    public void init() throws InstantiationException {
+        {
+            program.compile();
+            program.use();
+
+            vaoID = glGenVertexArrays();
+            glBindVertexArray(vaoID);
+
+            vboID = glGenBuffers();
+            glBindBuffer(GL_ARRAY_BUFFER, vboID);
+            glBufferData(GL_ARRAY_BUFFER, dynamicBatch.getVertexArray(), GL_DYNAMIC_DRAW);
+
+            eboID = glGenBuffers();
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
+            glBufferData(GL_ELEMENT_ARRAY_BUFFER, dynamicBatch.getElementArray(), GL_DYNAMIC_DRAW);
+
+            PluginRepository.notifyAllOf(e->e.onDefineBuffers(program));
+        }
+
         this.camera = new FloatingCamera(new Vector2f(), 1f,50);
 
         glEnable(GL_BLEND);
@@ -71,32 +88,6 @@ public class PrimaryScene extends Scene {
         Ground.buildGround(0.1f, groundLevels);
         staticBatch.putAll(Ground.getQuads());
         dynamicBatch.put(obj1);
-
-        program.compile();
-        program.use();
-
-        vaoID = glGenVertexArrays();
-        glBindVertexArray(vaoID);
-
-        vboID = glGenBuffers();
-        glBindBuffer(GL_ARRAY_BUFFER, vboID);
-        glBufferData(GL_ARRAY_BUFFER, dynamicBatch.getVertexArray(), GL_DYNAMIC_DRAW);
-
-        int posAttrib = glGetAttribLocation(program.getId(), "position");
-        glEnableVertexAttribArray(posAttrib);
-        glVertexAttribPointer(posAttrib, Vertex.POSITION_SIZE, GL_FLOAT, false, Vertex.BYTES, 0);
-
-        int colAttrib = glGetAttribLocation(program.getId(), "color");
-        glEnableVertexAttribArray(colAttrib);
-        glVertexAttribPointer(colAttrib, Vertex.COLOR_SIZE, GL_FLOAT, false, Vertex.BYTES, Vertex.POSITION_SIZE_BYTES);
-
-        int texAttrib = glGetAttribLocation(program.getId(), "texCoords");
-        glEnableVertexAttribArray(texAttrib);
-        glVertexAttribPointer(texAttrib, Vertex.UV_COORD_SIZE, GL_FLOAT, false, Vertex.BYTES, Vertex.POSITION_SIZE_BYTES + Vertex.COLOR_SIZE_BYTES);
-
-        eboID = glGenBuffers();
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, dynamicBatch.getElementArray(), GL_DYNAMIC_DRAW);
 
         program.uploadTexture("TEX_SAMPLER", 0);
         glActiveTexture(GL_TEXTURE0);

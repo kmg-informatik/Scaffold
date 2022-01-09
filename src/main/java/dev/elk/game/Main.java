@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class Main {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InstantiationException {
 
         Shader fragment = new Shader("Assets/Shaders/fragment.glsl", ShaderType.FRAGMENT);
         Shader vertex = new Shader("Assets/Shaders/vertex.glsl", ShaderType.VERTEX);

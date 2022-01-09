@@ -67,5 +67,4 @@ public class Vertex implements FloatRepresentation {
         return  vertices;
     }
 
-
 }

@@ -32,6 +32,9 @@ public class FloatingCamera extends Camera {
     final float yMultiplierOriginal = 0.2f;
     float yMultiplier = yMultiplierOriginal;
 
+    final double exponent = 1f;
+    double currentExponent = exponent;
+
     @Override
     public Vector2f getNextPosition(Vector2f parentPos) {
         lastPositions.remove(0);
@@ -42,27 +45,28 @@ public class FloatingCamera extends Camera {
         for (int i = originalCapacity-currentCapacity; i < currentCapacity; i++) {
             Vector2f lastPosition = new Vector2f(lastPositions.get(i));
 
-            float scalar = (float) ((double)(1)/(currentCapacity-i));
+            float scalar = (float) ((double)(1)/Math.pow((currentCapacity-i), currentExponent));
             scalarTotal += scalar;
             avg.add(lastPosition.mul(scalar));
         }
         avg.div(scalarTotal);
         avg.y *= yMultiplier;
+        //avg.y = 0.4f* avg.y + 0.4f*(averageMovement().y + lastPositions.get(lastPositions.size()-1).y) + 0.2f*parentPos.y;
 
         yMultiplier = (float) (Math.round(yMultiplier * 1000.0) / 1000.0); // => 1.23
+        //System.out.println("exponent" + currentExponent);
 
-        if (Math.abs(this.position.y - parentPos.y) > 2.0){
+        if (Math.abs(avg.y - parentPos.y) > 1.0){
             yMultiplier+= 0.01;
+            zoom = Math.max(zoom-0.01f, 0.2f);
         }else{
             if (yMultiplier > yMultiplierOriginal)
                 yMultiplier-= 0.01;
+            zoom=Math.min(zoom+0.01f, 1f);
         }
+
         adjustProjection();
         return avg;
-    }
-
-    public void setCurrentCapacity(int currentCapacity) {
-        this.currentCapacity = currentCapacity;
     }
 
     private Vector2f averageMovement(){

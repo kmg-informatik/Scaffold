@@ -3,6 +3,7 @@ package dev.elk.scaffold.renderer;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.file.Path;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.stb.STBImage.*;
@@ -19,7 +20,7 @@ public class Texture {
     private int texID;
     private int width, height;
 
-    public Texture(String filepath) throws IOException {
+    public Texture(Path filepath) throws IOException {
 
         //Handles the binding of the texture
         texID = glGenTextures();
@@ -44,7 +45,7 @@ public class Texture {
 
 
         // Loads an image using stbi
-        ByteBuffer image = stbi_load(filepath,width, height, channels, 0);
+        ByteBuffer image = stbi_load(filepath.toString(),width, height, channels, 0);
 
         if (image == null) throw new IOException();
 

@@ -28,7 +28,6 @@ public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
     private Spritesheet<Sprite> spritesheet = new Spritesheet<>();
-    private Texture texture;
 
     private int vaoID;
     private int vboID;
@@ -71,8 +70,7 @@ public class PrimaryScene extends Scene {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         try {
-            texture = new Texture("Assets/Spritesheets/tiles.png");
-            spritesheet = Spritesheet.from(Paths.get("Assets/SpriteJson/tiles.json"), texture);
+            spritesheet = Spritesheet.from(Paths.get("Assets/SpriteJson/tiles.json"), new Texture(Paths.get("Assets/Spritesheets/tiles.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,7 +89,7 @@ public class PrimaryScene extends Scene {
 
         program.uploadTexture("TEX_SAMPLER", 0);
         glActiveTexture(GL_TEXTURE0);
-        texture.bind();
+        spritesheet.getTexture().bind();
 
     }
 

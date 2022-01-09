@@ -27,7 +27,6 @@ public interface Physics extends Geometry {
         else if(getCurrentGravity() > NORMAL_GRAVITY)
             setCurrentGravity(getCurrentGravity() - 40f * Window.dt);
 
-        System.out.println(getCurrentGravity());
     }
 
     default boolean hasGroundContact(){

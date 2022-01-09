@@ -37,7 +37,6 @@ public class PrimaryScene extends Scene {
     private int vboID;
     private int eboID;
 
-    public Ground ground;
     public PhysicsQuad obj1;
 
     public PrimaryScene(Window window, ShaderProgram program) {

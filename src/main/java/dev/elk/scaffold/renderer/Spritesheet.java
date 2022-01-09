@@ -80,7 +80,6 @@ public class Spritesheet<T extends Sprite>{
 
     public Spritesheet<T> init(Texture texture) {
         this.texture = texture;
-        System.out.println(sprites.values());
 
         for (T sprite : sprites.values()) {
             sprite.setTexture(texture);

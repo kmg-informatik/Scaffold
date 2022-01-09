@@ -15,9 +15,19 @@ import java.io.IOException;
 public class GsonGenerator {
 
     public static void main(String[] args) throws IOException {
+        generateFonts();
+    }
+
+    public static void generateSpritesheets() throws IOException {
         generateAnimatedJson();
         generateTiles();
         generateTrees();
+    }
+
+    public static void generateFonts() throws IOException {
+        generateCozetteFont();
+        generateJetbrainsMonoFont();
+        generateTimesNewRomanFont();
     }
 
     public static void generateTiles() throws IOException {
@@ -85,7 +95,7 @@ public class GsonGenerator {
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtCornerLeftTop"),
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtCornerRightTop"),
                 new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtCornerRightBottom"),
-                new Sprite(new Vector2i(a++,2), new Vector2i(b++,3), "dirtCornerLeftBottom")
+                new Sprite(new Vector2i(a,2), new Vector2i(b,3), "dirtCornerLeftBottom")
         );
 
         a = 0;
@@ -189,4 +199,187 @@ public class GsonGenerator {
         writer.close();
     }
 
+    public static Spritesheet<Sprite> generateFont(int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
+
+        Spritesheet<Sprite> spritesheet = new Spritesheet<>(
+                sheetWidth,
+                sheetHeight,
+                tileWidth,
+               tileHeight
+        );
+
+
+        int k = 8;
+        int j = 9;
+        int a = 0;
+        int b = 1;
+        spritesheet.addSprite(
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "p"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "q"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "r"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "s"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j ), "t"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "u"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "v"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "w"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "x"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "y"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "z"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "{"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "|"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "}"),
+                new Sprite(new Vector2i(a,k++), new Vector2i(b,j++), "~")
+        );
+
+        a = 0;
+        b = 1;
+        spritesheet.addSprite(
+                new Sprite(new Vector2i(a++,k), new Vector2i(9,b++), "'"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "a"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "b"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "c"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "d"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "e"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "f"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "g"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "h"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "i"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "j"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "k"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "l"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "m"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "n"),
+                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), "o")
+        );
+
+        a = 0;
+        b = 1;
+        spritesheet.addSprite(
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "P"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "Q"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "R"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "S"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "T"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "U"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "V"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "W"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "X"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "Y"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "Z"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "["),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "backSlash"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "]"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "^"),
+                new Sprite(new Vector2i(a,k++), new Vector2i(b,j++), "_")
+        );
+
+        a = 0;
+        b = 1;
+        spritesheet.addSprite(
+                new Sprite(new Vector2i(a++,k), new Vector2i(9,b++), "@"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "A"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "B"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "C"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "D"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "E"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "F"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "G"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "H"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "I"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "J"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "K"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "L"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "M"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "N"),
+                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), "O")
+        );
+
+        a = 0;
+        b = 1;
+        spritesheet.addSprite(
+                new Sprite(new Vector2i(a++,k), new Vector2i(9,b++), "0"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "1"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "2"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "3"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "4"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "5"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "6"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "7"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "8"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "9"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ":"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ";"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "<"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "="),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ">"),
+                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), "?")
+        );
+
+        a = 0;
+        b = 1;
+        spritesheet.addSprite(
+                new Sprite(new Vector2i(a++,k), new Vector2i(9,b++), " "),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "!"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "doubleQuote"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "#"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "$"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "%"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "&"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "'"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "("),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ")"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "*"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "+"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ","),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "-"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "."),
+                new Sprite(new Vector2i(a, k), new Vector2i(b, j), "/")
+        );
+        return spritesheet;
+    }
+
+    public static void generateCozetteFont() throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Spritesheet<Sprite> spritesheet = generateFont(
+                256,
+                288,
+                16,
+                18
+        );
+
+        FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/cozette.json");
+        gson.toJson(spritesheet, writer);
+        writer.close();
+    }
+
+    public static void generateTimesNewRomanFont() throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Spritesheet<Sprite> spritesheet = generateFont(
+                256,
+                320,
+                16,
+                20
+        );
+
+        FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/timesNewRoman.json");
+        gson.toJson(spritesheet, writer);
+        writer.close();
+    }
+
+    public static void generateJetbrainsMonoFont() throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>(
+                256,
+                320,
+                16,
+                20
+        );
+
+        FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/jetbrainsMono.json");
+        gson.toJson(spritesheet, writer);
+        writer.close();
+    }
 }

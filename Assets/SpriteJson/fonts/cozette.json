@@ -1,0 +1,1042 @@
+{
+  "sheetWidth": 256,
+  "sheetHeight": 288,
+  "tileWidth": 16,
+  "tileHeight": 18,
+  "sprites": {
+    " ": {
+      "minPos": {
+        "x": 0,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 1
+      },
+      "spriteName": " "
+    },
+    "!": {
+      "minPos": {
+        "x": 1,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 14
+      },
+      "spriteName": "!"
+    },
+    "#": {
+      "minPos": {
+        "x": 3,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 14
+      },
+      "spriteName": "#"
+    },
+    "$": {
+      "minPos": {
+        "x": 4,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 14
+      },
+      "spriteName": "$"
+    },
+    "%": {
+      "minPos": {
+        "x": 5,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 14
+      },
+      "spriteName": "%"
+    },
+    "\u0026": {
+      "minPos": {
+        "x": 6,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 14
+      },
+      "spriteName": "\u0026"
+    },
+    "\u0027": {
+      "minPos": {
+        "x": 7,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 14
+      },
+      "spriteName": "\u0027"
+    },
+    "(": {
+      "minPos": {
+        "x": 8,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 14
+      },
+      "spriteName": "("
+    },
+    ")": {
+      "minPos": {
+        "x": 9,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 14
+      },
+      "spriteName": ")"
+    },
+    "*": {
+      "minPos": {
+        "x": 10,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 14
+      },
+      "spriteName": "*"
+    },
+    "+": {
+      "minPos": {
+        "x": 11,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 14
+      },
+      "spriteName": "+"
+    },
+    ",": {
+      "minPos": {
+        "x": 12,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 14
+      },
+      "spriteName": ","
+    },
+    "-": {
+      "minPos": {
+        "x": 13,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 14
+      },
+      "spriteName": "-"
+    },
+    ".": {
+      "minPos": {
+        "x": 14,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 14
+      },
+      "spriteName": "."
+    },
+    "/": {
+      "minPos": {
+        "x": 15,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 14
+      },
+      "spriteName": "/"
+    },
+    "0": {
+      "minPos": {
+        "x": 0,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 1
+      },
+      "spriteName": "0"
+    },
+    "1": {
+      "minPos": {
+        "x": 1,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 13
+      },
+      "spriteName": "1"
+    },
+    "2": {
+      "minPos": {
+        "x": 2,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 13
+      },
+      "spriteName": "2"
+    },
+    "3": {
+      "minPos": {
+        "x": 3,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 13
+      },
+      "spriteName": "3"
+    },
+    "4": {
+      "minPos": {
+        "x": 4,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 13
+      },
+      "spriteName": "4"
+    },
+    "5": {
+      "minPos": {
+        "x": 5,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 13
+      },
+      "spriteName": "5"
+    },
+    "6": {
+      "minPos": {
+        "x": 6,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 13
+      },
+      "spriteName": "6"
+    },
+    "7": {
+      "minPos": {
+        "x": 7,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 13
+      },
+      "spriteName": "7"
+    },
+    "8": {
+      "minPos": {
+        "x": 8,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 13
+      },
+      "spriteName": "8"
+    },
+    "9": {
+      "minPos": {
+        "x": 9,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 13
+      },
+      "spriteName": "9"
+    },
+    ":": {
+      "minPos": {
+        "x": 10,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 13
+      },
+      "spriteName": ":"
+    },
+    ";": {
+      "minPos": {
+        "x": 11,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 13
+      },
+      "spriteName": ";"
+    },
+    "\u003c": {
+      "minPos": {
+        "x": 12,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 13
+      },
+      "spriteName": "\u003c"
+    },
+    "\u003d": {
+      "minPos": {
+        "x": 13,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 13
+      },
+      "spriteName": "\u003d"
+    },
+    "backSlash": {
+      "minPos": {
+        "x": 12,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 11
+      },
+      "spriteName": "backSlash"
+    },
+    "\u003e": {
+      "minPos": {
+        "x": 14,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 13
+      },
+      "spriteName": "\u003e"
+    },
+    "?": {
+      "minPos": {
+        "x": 15,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 13
+      },
+      "spriteName": "?"
+    },
+    "@": {
+      "minPos": {
+        "x": 0,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 1
+      },
+      "spriteName": "@"
+    },
+    "A": {
+      "minPos": {
+        "x": 1,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 12
+      },
+      "spriteName": "A"
+    },
+    "B": {
+      "minPos": {
+        "x": 2,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 12
+      },
+      "spriteName": "B"
+    },
+    "C": {
+      "minPos": {
+        "x": 3,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 12
+      },
+      "spriteName": "C"
+    },
+    "D": {
+      "minPos": {
+        "x": 4,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 12
+      },
+      "spriteName": "D"
+    },
+    "E": {
+      "minPos": {
+        "x": 5,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 12
+      },
+      "spriteName": "E"
+    },
+    "F": {
+      "minPos": {
+        "x": 6,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 12
+      },
+      "spriteName": "F"
+    },
+    "G": {
+      "minPos": {
+        "x": 7,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 12
+      },
+      "spriteName": "G"
+    },
+    "H": {
+      "minPos": {
+        "x": 8,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 12
+      },
+      "spriteName": "H"
+    },
+    "I": {
+      "minPos": {
+        "x": 9,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 12
+      },
+      "spriteName": "I"
+    },
+    "J": {
+      "minPos": {
+        "x": 10,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 12
+      },
+      "spriteName": "J"
+    },
+    "K": {
+      "minPos": {
+        "x": 11,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 12
+      },
+      "spriteName": "K"
+    },
+    "L": {
+      "minPos": {
+        "x": 12,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 12
+      },
+      "spriteName": "L"
+    },
+    "M": {
+      "minPos": {
+        "x": 13,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 12
+      },
+      "spriteName": "M"
+    },
+    "N": {
+      "minPos": {
+        "x": 14,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 12
+      },
+      "spriteName": "N"
+    },
+    "O": {
+      "minPos": {
+        "x": 15,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 12
+      },
+      "spriteName": "O"
+    },
+    "P": {
+      "minPos": {
+        "x": 0,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 11
+      },
+      "spriteName": "P"
+    },
+    "Q": {
+      "minPos": {
+        "x": 1,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 11
+      },
+      "spriteName": "Q"
+    },
+    "R": {
+      "minPos": {
+        "x": 2,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 11
+      },
+      "spriteName": "R"
+    },
+    "S": {
+      "minPos": {
+        "x": 3,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 11
+      },
+      "spriteName": "S"
+    },
+    "T": {
+      "minPos": {
+        "x": 4,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 11
+      },
+      "spriteName": "T"
+    },
+    "U": {
+      "minPos": {
+        "x": 5,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 11
+      },
+      "spriteName": "U"
+    },
+    "V": {
+      "minPos": {
+        "x": 6,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 11
+      },
+      "spriteName": "V"
+    },
+    "W": {
+      "minPos": {
+        "x": 7,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 11
+      },
+      "spriteName": "W"
+    },
+    "X": {
+      "minPos": {
+        "x": 8,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 11
+      },
+      "spriteName": "X"
+    },
+    "Y": {
+      "minPos": {
+        "x": 9,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 11
+      },
+      "spriteName": "Y"
+    },
+    "Z": {
+      "minPos": {
+        "x": 10,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 11
+      },
+      "spriteName": "Z"
+    },
+    "[": {
+      "minPos": {
+        "x": 11,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 11
+      },
+      "spriteName": "["
+    },
+    "]": {
+      "minPos": {
+        "x": 13,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 11
+      },
+      "spriteName": "]"
+    },
+    "^": {
+      "minPos": {
+        "x": 14,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 11
+      },
+      "spriteName": "^"
+    },
+    "_": {
+      "minPos": {
+        "x": 15,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 11
+      },
+      "spriteName": "_"
+    },
+    "a": {
+      "minPos": {
+        "x": 1,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 10
+      },
+      "spriteName": "a"
+    },
+    "b": {
+      "minPos": {
+        "x": 2,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 10
+      },
+      "spriteName": "b"
+    },
+    "c": {
+      "minPos": {
+        "x": 3,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 10
+      },
+      "spriteName": "c"
+    },
+    "d": {
+      "minPos": {
+        "x": 4,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 10
+      },
+      "spriteName": "d"
+    },
+    "e": {
+      "minPos": {
+        "x": 5,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 10
+      },
+      "spriteName": "e"
+    },
+    "doubleQuote": {
+      "minPos": {
+        "x": 2,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 14
+      },
+      "spriteName": "doubleQuote"
+    },
+    "f": {
+      "minPos": {
+        "x": 6,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 10
+      },
+      "spriteName": "f"
+    },
+    "g": {
+      "minPos": {
+        "x": 7,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 10
+      },
+      "spriteName": "g"
+    },
+    "h": {
+      "minPos": {
+        "x": 8,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 10
+      },
+      "spriteName": "h"
+    },
+    "i": {
+      "minPos": {
+        "x": 9,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 10
+      },
+      "spriteName": "i"
+    },
+    "j": {
+      "minPos": {
+        "x": 10,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 10
+      },
+      "spriteName": "j"
+    },
+    "k": {
+      "minPos": {
+        "x": 11,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 10
+      },
+      "spriteName": "k"
+    },
+    "l": {
+      "minPos": {
+        "x": 12,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 10
+      },
+      "spriteName": "l"
+    },
+    "m": {
+      "minPos": {
+        "x": 13,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 10
+      },
+      "spriteName": "m"
+    },
+    "n": {
+      "minPos": {
+        "x": 14,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 10
+      },
+      "spriteName": "n"
+    },
+    "o": {
+      "minPos": {
+        "x": 15,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 10
+      },
+      "spriteName": "o"
+    },
+    "p": {
+      "minPos": {
+        "x": 0,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 9
+      },
+      "spriteName": "p"
+    },
+    "q": {
+      "minPos": {
+        "x": 1,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 9
+      },
+      "spriteName": "q"
+    },
+    "r": {
+      "minPos": {
+        "x": 2,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 9
+      },
+      "spriteName": "r"
+    },
+    "s": {
+      "minPos": {
+        "x": 3,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 9
+      },
+      "spriteName": "s"
+    },
+    "t": {
+      "minPos": {
+        "x": 4,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 9
+      },
+      "spriteName": "t"
+    },
+    "u": {
+      "minPos": {
+        "x": 5,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 9
+      },
+      "spriteName": "u"
+    },
+    "v": {
+      "minPos": {
+        "x": 6,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 9
+      },
+      "spriteName": "v"
+    },
+    "w": {
+      "minPos": {
+        "x": 7,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 9
+      },
+      "spriteName": "w"
+    },
+    "x": {
+      "minPos": {
+        "x": 8,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 9
+      },
+      "spriteName": "x"
+    },
+    "y": {
+      "minPos": {
+        "x": 9,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 9
+      },
+      "spriteName": "y"
+    },
+    "z": {
+      "minPos": {
+        "x": 10,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 9
+      },
+      "spriteName": "z"
+    },
+    "{": {
+      "minPos": {
+        "x": 11,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 9
+      },
+      "spriteName": "{"
+    },
+    "|": {
+      "minPos": {
+        "x": 12,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 9
+      },
+      "spriteName": "|"
+    },
+    "}": {
+      "minPos": {
+        "x": 13,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 9
+      },
+      "spriteName": "}"
+    },
+    "~": {
+      "minPos": {
+        "x": 14,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 9
+      },
+      "spriteName": "~"
+    }
+  }
+}

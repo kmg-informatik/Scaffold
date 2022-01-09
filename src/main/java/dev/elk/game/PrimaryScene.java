@@ -1,15 +1,13 @@
 package dev.elk.game;
 
-import dev.elk.scaffold.Physics.Ground;
-import dev.elk.scaffold.Physics.PhysicsQuad;
-import dev.elk.scaffold.Physics.PhysicsSquare;
+import dev.elk.scaffold.components.userinput.KeyListener;
+import dev.elk.scaffold.physics.Ground;
+import dev.elk.scaffold.physics.PhysicsQuad;
+import dev.elk.scaffold.physics.PhysicsSquare;
 import dev.elk.scaffold.components.*;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
 import dev.elk.scaffold.gl.Vertex;
-import dev.elk.scaffold.renderer.ShaderProgram;
-import dev.elk.scaffold.renderer.Sprite;
-import dev.elk.scaffold.renderer.Spritesheet;
-import dev.elk.scaffold.renderer.Texture;
+import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2f;
 
 import java.io.IOException;
@@ -37,6 +35,9 @@ public class PrimaryScene extends Scene {
     private int vboID;
     private int eboID;
 
+    private final Batch staticBatch = new Batch(2000, 200000, 75000);
+    private final Batch dynamicBatch = new Batch(2000, 200000, 75000);
+
     public Ground ground;
     public PhysicsQuad obj1;
 
@@ -47,7 +48,7 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void init() {
-        this.camera = new FloatingCamera(new Vector2f(), 2f,50);
+        this.camera = new FloatingCamera(new Vector2f(), 1f,50);
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -68,8 +69,8 @@ public class PrimaryScene extends Scene {
         };
 
         Ground.buildGround(0.1f, groundLevels);
-        MeshRepository.putAll(Ground.getQuads());
-        MeshRepository.put(obj1);
+        staticBatch.putAll(Ground.getQuads());
+        dynamicBatch.put(obj1);
 
         program.compile();
         program.use();
@@ -79,7 +80,7 @@ public class PrimaryScene extends Scene {
 
         vboID = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, vboID);
-        glBufferData(GL_ARRAY_BUFFER, MeshRepository.getVertexArray(), GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, dynamicBatch.getVertexArray(), GL_DYNAMIC_DRAW);
 
         int posAttrib = glGetAttribLocation(program.getId(), "position");
         glEnableVertexAttribArray(posAttrib);
@@ -95,7 +96,7 @@ public class PrimaryScene extends Scene {
 
         eboID = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, MeshRepository.getElementArray(), GL_DYNAMIC_DRAW);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, dynamicBatch.getElementArray(), GL_DYNAMIC_DRAW);
 
         program.uploadTexture("TEX_SAMPLER", 0);
         glActiveTexture(GL_TEXTURE0);
@@ -121,10 +122,8 @@ public class PrimaryScene extends Scene {
                 obj1.translate(new Vector2f(0, -movSpeed).mul(Window.dt));
             }
         }
-
         if (KeyListener.isKeyPressed(KEY_A) | KeyListener.isKeyPressed(KEY_D)) {
             if (KeyListener.isKeyPressed(KEY_A)) {
-                obj1.translate(new Vector2f(-movSpeed, 0.0f).mul(Window.dt));
                 movementVector.add(new Vector2f(-movSpeed, 0.0f).mul(Window.dt));
                 if (facingRight) {
                     obj1.flipY(obj1.centerOfMass());
@@ -148,10 +147,7 @@ public class PrimaryScene extends Scene {
         program.uploadMat4f("cameraProjection",camera.getProjectionMatrix());
         program.uploadMat4f("cameraView",camera.getViewMatrix());
 
-        MeshRepository.update(windowStretch);
-        glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, MeshRepository.getElementArray());
-        glBufferSubData(GL_ARRAY_BUFFER, 0, MeshRepository.getVertexArray());
-        glDrawElements(GL_TRIANGLES, MeshRepository.vertexCount(), GL_UNSIGNED_INT, 0);
-
+        staticBatch.render();
+        dynamicBatch.render();
     }
 }

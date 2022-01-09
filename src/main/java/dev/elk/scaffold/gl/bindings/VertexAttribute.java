@@ -35,7 +35,7 @@ public class VertexAttribute {
     /**
      * Gl Location of the attribute
      */
-    private Integer attribLocation;
+    private int attribLocation;
 
     public VertexAttribute(ShaderProgram program, String attribName, int dataType, int vertexPointer, int attribSize) {
         this.program = program;
@@ -46,7 +46,7 @@ public class VertexAttribute {
     }
 
     /**
-     * Creates attribute in Gl
+     * Creates vertex attribute in the shader program.
      */
     public void enable(){
         attribLocation = glGetAttribLocation(program.getId(), attribName);
@@ -54,27 +54,45 @@ public class VertexAttribute {
         glVertexAttribPointer(attribLocation, attribSize, dataType,false, Vertex.BYTES, vertexPointer);
     }
 
+    /**
+     * @return shader program of the vertex attribute
+     */
     public ShaderProgram getProgram() {
         return program;
     }
 
+    /**
+     * @return name of the attribute
+     */
     public String getAttribName() {
         return attribName;
     }
 
+    /**
+     * @return OpenGL datatype code
+     */
     public int getDataType() {
         return dataType;
     }
 
+    /**
+     * @return index of the beginning of the attribute
+     */
     public int getVertexPointer() {
         return vertexPointer;
     }
 
+    /**
+     * @return size of the attribute in count of the specified datatype
+     */
     public int getAttribSize() {
         return attribSize;
     }
 
-    public Integer getAttribLocation() {
+    /**
+     * @return location of the attribute in OpenGL
+     */
+    public int getAttribLocation() {
         return attribLocation;
     }
 }

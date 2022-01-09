@@ -2,6 +2,8 @@ package dev.elk.scaffold.components;
 
 import dev.elk.scaffold.components.cameras.Camera;
 
+import java.io.IOException;
+
 /**
  * Copied directly from GamesWithGabe.
  * Probably should rewrite, for better control of
@@ -17,7 +19,7 @@ public abstract class Scene {
         this.window = window;
     }
 
-    public void init() throws InstantiationException {}
+    public void init() throws InstantiationException, IOException {}
 
     public abstract void onUpdate();
 

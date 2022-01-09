@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL;
 import org.lwjgl.system.windows.DISPLAY_DEVICE;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.Arrays;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -50,7 +51,7 @@ public class Window {
         this.a = color.getAlpha();
     }
 
-    public void run() throws InstantiationException {
+    public void run() throws InstantiationException, IOException {
         this.init();
         currentScene.init();
         this.loop();

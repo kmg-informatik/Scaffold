@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class Spritesheet<T extends Sprite>{
 
     final int sheetWidth, sheetHeight, tileWidth, tileHeight;
-    transient Texture texture;
+    private transient Texture texture;
 
     private final HashMap<String, T> sprites = new HashMap<>();
 
@@ -87,5 +87,9 @@ public class Spritesheet<T extends Sprite>{
 
         calculateUVCoords();
         return this;
+    }
+
+    public Texture getTexture() {
+        return texture;
     }
 }

@@ -1,19 +1,18 @@
 package dev.elk.game;
 
-import dev.elk.scaffold.components.userinput.KeyListener;
-import dev.elk.scaffold.physics.Ground;
-import dev.elk.scaffold.physics.PhysicsQuad;
-import dev.elk.scaffold.physics.PhysicsSquare;
-import dev.elk.scaffold.components.*;
+import dev.elk.game.fontSettings.FontInformation;
+import dev.elk.game.fontSettings.FontType;
+import dev.elk.scaffold.components.Scene;
+import dev.elk.scaffold.components.Window;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
+import dev.elk.scaffold.physics.PhysicsQuad;
 import dev.elk.scaffold.plugin.PluginRepository;
 import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2f;
 
+import java.awt.*;
 import java.io.IOException;
-import java.nio.file.Paths;
 
-import static dev.elk.scaffold.util.Utils.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
@@ -27,7 +26,7 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
-    private Spritesheet<Sprite> spritesheet = new Spritesheet<>();
+    private final Spritesheet<Sprite> spritesheet = new Spritesheet<>();
 
     private int vaoID;
     private int vboID;
@@ -36,8 +35,8 @@ public class PrimaryScene extends Scene {
     private final Batch staticBatch = new Batch(2000, 200000, 75000);
     private final Batch dynamicBatch = new Batch(2000, 200000, 75000);
 
-    public Ground ground;
     public PhysicsQuad obj1;
+    public Text text;
 
     public PrimaryScene(Window window, ShaderProgram program) {
         super(window);
@@ -45,7 +44,7 @@ public class PrimaryScene extends Scene {
     }
 
     @Override
-    public void init() throws InstantiationException {
+    public void init() throws InstantiationException, IOException {
         {
             program.compile();
             program.use();
@@ -69,6 +68,7 @@ public class PrimaryScene extends Scene {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+        /*
         try {
             spritesheet = Spritesheet.from(Paths.get("Assets/SpriteJson/tiles.json"), new Texture(Paths.get("Assets/Spritesheets/tiles.png")));
 
@@ -84,12 +84,22 @@ public class PrimaryScene extends Scene {
         };
 
         Ground.buildGround(0.1f, groundLevels);
+
         staticBatch.putAll(Ground.getQuads());
         dynamicBatch.put(obj1);
 
+         */
+        text = new Text(
+                    new FontInformation(FontType.COZETTE,16),
+                    Color.WHITE,
+                    new Vector2f(0,0),
+                6
+            );
+        dynamicBatch.putAll(text.getQuads());
+
         program.uploadTexture("TEX_SAMPLER", 0);
         glActiveTexture(GL_TEXTURE0);
-        spritesheet.getTexture().bind();
+        text.getSpritesheet().getTexture().bind();
 
     }
 
@@ -97,10 +107,12 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void onUpdate() {
+        text.setText(Integer.toString((int)(1f/Window.dt)));
         float movSpeed = 1f;
         float windowStretch = (float) window.getHeight() / (float) window.getWidth();
         program.uploadFloat("windowStretch", windowStretch);
 
+        /*
         obj1.fall();
 
         Vector2f movementVector = new Vector2f();
@@ -131,7 +143,9 @@ public class PrimaryScene extends Scene {
         }
         obj1.translate(movementVector);
 
-        camera.position = camera.getNextPosition(obj1.centerOfMass().mul(windowStretch));
+         */
+
+        //camera.position = camera.getNextPosition(obj1.centerOfMass().mul(windowStretch));
         program.uploadFloat("windowStretch", windowStretch);
         program.uploadMat4f("cameraProjection",camera.getProjectionMatrix());
         program.uploadMat4f("cameraView",camera.getViewMatrix());

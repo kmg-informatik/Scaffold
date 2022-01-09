@@ -90,7 +90,7 @@ public class PrimaryScene extends Scene {
 
          */
         text = new Text(
-                    new FontInformation(FontType.COZETTE,16),
+                    new FontInformation(FontType.JETBRAINS_MONO,16),
                     Color.WHITE,
                     new Vector2f(0,0),
                 6

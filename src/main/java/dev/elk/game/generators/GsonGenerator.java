@@ -371,7 +371,7 @@ public class GsonGenerator {
     public static void generateJetbrainsMonoFont() throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>(
+        Spritesheet<Sprite> spritesheet = generateFont(
                 256,
                 320,
                 16,

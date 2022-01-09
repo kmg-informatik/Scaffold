@@ -1,4 +1,4 @@
-package dev.elk.scaffold.Physics;
+package dev.elk.scaffold.physics;
 
 import dev.elk.scaffold.components.Window;
 import dev.elk.scaffold.gl.Geometry;
@@ -26,8 +26,6 @@ public interface Physics extends Geometry {
         }
         else if(getCurrentGravity() > NORMAL_GRAVITY)
             setCurrentGravity(getCurrentGravity() - 40f * Window.dt);
-
-        System.out.println(getCurrentGravity());
     }
 
     default boolean hasGroundContact(){

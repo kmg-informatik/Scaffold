@@ -1,7 +1,5 @@
 package dev.elk.scaffold.gl;
 
-import org.joml.Vector2f;
-
 /**
  * All things that are to be rendered must include the
  * renderable interface. It forces subclasses to provide

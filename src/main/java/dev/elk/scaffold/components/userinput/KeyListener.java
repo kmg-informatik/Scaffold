@@ -1,4 +1,4 @@
-package dev.elk.scaffold.components;
+package dev.elk.scaffold.components.userinput;
 
 import java.util.HashSet;
 

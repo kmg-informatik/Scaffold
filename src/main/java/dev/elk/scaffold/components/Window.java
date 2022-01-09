@@ -1,5 +1,7 @@
 package dev.elk.scaffold.components;
 
+import dev.elk.scaffold.components.userinput.KeyListener;
+import dev.elk.scaffold.components.userinput.MouseListener;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -68,7 +70,7 @@ public class Window {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 
-                glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);  //Returns the mem adress of the window. (kinda like a pointer)
+        glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);  //Returns the mem adress of the window. (kinda like a pointer)
         if (glfwWindow == NULL) {
             throw new IllegalStateException("failed to create window");
         }

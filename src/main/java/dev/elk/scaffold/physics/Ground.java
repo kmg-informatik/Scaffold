@@ -1,4 +1,4 @@
-package dev.elk.scaffold.Physics;
+package dev.elk.scaffold.physics;
 
 import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Square;

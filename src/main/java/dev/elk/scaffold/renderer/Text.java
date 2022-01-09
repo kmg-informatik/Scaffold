@@ -67,6 +67,9 @@ public class Text {
             for (int i = 0; i < text.length(); i++) {
                 quads[i].setSprite(spritesheet.getSprite(Character.toString(text.charAt(i))));
             }
+            for (int i = text.length(); i < quads.length; i++) {
+                quads[i].setSprite(spritesheet.getSprite(" "));
+            }
         }
     }
 

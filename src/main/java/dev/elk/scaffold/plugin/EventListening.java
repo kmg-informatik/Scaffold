@@ -18,4 +18,7 @@ public interface EventListening {
     // definiere onButtonClick, etc hier, ruf damit AudioPlayer auf
 
     void onJump(AudioEvent event);
+    void onGameStart(AudioEvent event);
+    void onGamePause(AudioEvent event);
+    void onGameStop(AudioEvent event);
 }

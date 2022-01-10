@@ -1,7 +1,11 @@
 package dev.elk.scaffold.al;
 
-public enum AudioClipStatus {
+/**
+ * statuses for MusicClip's current play condition
+ */
+public enum MusicClipStatus {
     LOADED,
     PLAYING,
-    PAUSED
+    PAUSED,
+    STOPPED
 }

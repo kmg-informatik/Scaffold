@@ -1,15 +1,14 @@
 package dev.elk.scaffold.al;
 
 import javax.sound.sampled.*;
-import java.io.File;
-import java.io.IOException;
 
-public class AudioClip {
+/**
+ * AudioClip defines methods and variables for MusicClip and SoundClip.
+ */
+
+public abstract class AudioClip {
     private String filePath;
-    private long playbackPosition;
     private Clip clip;
-    private AudioClipStatus status;
-    private AudioInputStream audioInputStream;
 
     /**
      * get clip from filepath
@@ -18,59 +17,28 @@ public class AudioClip {
      */
     public AudioClip(String filepath) {
         this.filePath = filepath;
-        this.clip = openClip(filepath);
-
-        status = AudioClipStatus.LOADED;
 
     }
 
-
-    private Clip openClip(String filepath) {
-        try {
-            audioInputStream = AudioSystem.getAudioInputStream(new File(filepath).getAbsoluteFile());
-
-            // create clip reference
-            clip = AudioSystem.getClip();
-            // open audioInputStream to the clip
-            clip.open(audioInputStream);
-
-            clip.loop(Clip.LOOP_CONTINUOUSLY);  //TODO make loop optional
-
-            return clip;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;    //TODO make better
-        }
+    /**
+     * used by MusicClip to set the clip after going through a different openClip() method (done so MusicClip can save the AudioInputStream)
+     * @param clip  the Clip to set this.clip to
+     */
+    public void setClip(Clip clip){
+        this.clip = clip;
     }
 
-    public void play() {
-        clip.start();
-        status = AudioClipStatus.PLAYING;
+    public Clip getClip(){
+        return this.clip;
     }
 
-    public void pause() {
-        if (!(status == AudioClipStatus.PAUSED)) {
-            playbackPosition = clip.getMicrosecondPosition();   //save playback position
-            clip.stop();
-            status = AudioClipStatus.PAUSED;
-        }
+    /**
+     * @return  this.filePath
+     */
+    public String getFilePath(){
+        return this.filePath;
     }
 
-    public void resume() {
-        try {
-            if ((status == AudioClipStatus.PLAYING)) {
-                clip.close();
-                resetAudioStream(); //TODO can this method be deleted and code moved here?
-                clip.setMicrosecondPosition(playbackPosition);
-                play();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    public abstract void play();
 
-    private void resetAudioStream() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-        openClip(this.filePath);
-    }
 }

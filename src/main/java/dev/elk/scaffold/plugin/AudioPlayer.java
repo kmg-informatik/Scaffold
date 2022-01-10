@@ -53,7 +53,7 @@ public class AudioPlayer implements EventListening {
 
     @Override
     public void onGamePause(AudioEvent event){
-        AudioPlayer.getSingleton().pause(caveTheme);  //TODO is filepath really necessary or can i just hand the caveTheme object? (prob not)
+        AudioPlayer.getSingleton().pause(caveTheme);
     }
 
     @Override

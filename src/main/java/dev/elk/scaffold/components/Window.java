@@ -1,5 +1,7 @@
 package dev.elk.scaffold.components;
 
+import dev.elk.scaffold.plugin.EventListening;
+import dev.elk.scaffold.plugin.PluginRepository;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
@@ -44,6 +46,7 @@ public class Window {
     public void run() {
         this.init();
         currentScene.init();
+        PluginRepository.notifyAllOf(EventListening::onGameStart);
         this.loop();
 
         glfwFreeCallbacks(glfwWindow);

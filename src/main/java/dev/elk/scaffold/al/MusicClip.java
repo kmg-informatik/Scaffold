@@ -14,12 +14,14 @@ import java.io.IOException;
  * - plays the saved clip ONLY if it has been properly loaded beforehand (required to prevent trying to play when track has been stopped and discarded) <br>
  * - if the status is PAUSED (i.e. if pause() has been called before), music is resumed at last playback position <br>
  * - if the status is STOPPED (i.e. stop() has been called before), the clip is reloaded/restarted and played from the beginning. <br>
- *
+ * <p>
  * For some scenarios: <br>
  * - if you want to start playing the track the first time, call play() <br>
  * - if you want to pause and later resume the track, call pause() and then play() <br>
  * - if you want to start the track from the beginning, call restart() <br>
  * - if you want to stop the music, call stop() <br>
+ *
+ * @author Eric Jacob
  */
 public class MusicClip extends AudioClip {
 
@@ -157,7 +159,7 @@ public class MusicClip extends AudioClip {
     }
 
     /**
-     * @return  enum MusicClipStatus
+     * @return enum MusicClipStatus
      */
     public MusicClipStatus getStatus() {
         return status;

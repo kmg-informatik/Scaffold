@@ -10,6 +10,8 @@ import java.util.concurrent.CountDownLatch;
  * SoundClip is meant for short sounds, e.g. when jumping, that are not to be interacted with besides being played. <br>
  * Therefore, SoundClip has no pause/stop/restart methods and AudioPlayer does not keep track of them;
  * they are instantiated to play a given sound, then garbage-collected.
+ *
+ * @author Eric Jacob
  */
 
 public class SoundClip extends AudioClip {

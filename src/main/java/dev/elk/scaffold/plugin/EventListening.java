@@ -1,7 +1,5 @@
 package dev.elk.scaffold.plugin;
 
-import dev.elk.scaffold.events.AudioEvent;
-
 /**
  * An interface, that enables a class to wait for a
  * certain {@link dev.elk.scaffold.events.Event} to happen in the
@@ -15,10 +13,24 @@ import dev.elk.scaffold.events.AudioEvent;
  * @author Louis Schell
  */
 public interface EventListening {
-    // definiere onButtonClick, etc hier, ruf damit AudioPlayer auf
 
-    void onJump(AudioEvent event);
-    void onGameStart(AudioEvent event);
-    void onGamePause(AudioEvent event);
-    void onGameStop(AudioEvent event);
+    /**
+     * Called when the player jumps
+     */
+    void onJump();
+
+    /**
+     * Called when the game starts
+     */
+    void onGameStart();
+
+    /**
+     * Called when the game is paused
+     */
+    void onGamePause();
+
+    /**
+     * Called when the game stops
+     */
+    void onGameStop();
 }

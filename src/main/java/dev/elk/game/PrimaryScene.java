@@ -5,6 +5,8 @@ import dev.elk.scaffold.components.*;
 import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Square;
 import dev.elk.scaffold.gl.Vertex;
+import dev.elk.scaffold.plugin.EventListening;
+import dev.elk.scaffold.plugin.PluginRepository;
 import dev.elk.scaffold.renderer.ShaderProgram;
 import dev.elk.scaffold.renderer.Sprite;
 import dev.elk.scaffold.renderer.Spritesheet;
@@ -130,6 +132,7 @@ public class PrimaryScene extends Scene {
 
             if (KeyListener.isKeyPressed(KEY_W) && touchesGround) {
                 gravity = 10f;
+                PluginRepository.notifyAllOf(EventListening::onJump);
             } else {
                 obj1.translate(new Vector2f(0, -movSpeed).mul(dt));
             }

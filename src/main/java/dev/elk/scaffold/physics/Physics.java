@@ -13,7 +13,6 @@ public interface Physics extends Geometry {
 
     default void fall() {
         Geometry.super.translate(new Vector2f(0,getCurrentGravity()).mul(Window.dt));
-
         if (intersects(Ground.getQuads())) {
             setCurrentGravity(0);
 
@@ -29,6 +28,6 @@ public interface Physics extends Geometry {
     }
 
     default boolean hasGroundContact(){
-        return Ground.getFloorHeight() >= getMinY();
+        return intersects(Ground.getQuads());
     }
 }

@@ -3,34 +3,21 @@
   "sheetHeight": 120,
   "tileWidth": 24,
   "tileHeight": 24,
-  "sprites": {
-    "hydra": {
-      "frameCount": 4,
+  "spritesTemp": [
+    {
+      "frameCount": 12,
       "currentFrame": 0,
       "minPos": {
         "x": 0,
-        "y": 4
+        "y": 0
       },
       "maxPos": {
         "x": 1,
-        "y": 5
+        "y": 2
       },
-      "spriteName": "hydra"
+      "spriteName": "einrad"
     },
-    "goomba": {
-      "frameCount": 3,
-      "currentFrame": 0,
-      "minPos": {
-        "x": 0,
-        "y": 3
-      },
-      "maxPos": {
-        "x": 1,
-        "y": 4
-      },
-      "spriteName": "goomba"
-    },
-    "monsterYellow": {
+    {
       "frameCount": 3,
       "currentFrame": 0,
       "minPos": {
@@ -43,18 +30,31 @@
       },
       "spriteName": "monsterYellow"
     },
-    "einrad": {
-      "frameCount": 12,
+    {
+      "frameCount": 3,
       "currentFrame": 0,
       "minPos": {
         "x": 0,
-        "y": 0
+        "y": 3
       },
       "maxPos": {
         "x": 1,
-        "y": 2
+        "y": 4
       },
-      "spriteName": "einrad"
+      "spriteName": "goomba"
+    },
+    {
+      "frameCount": 4,
+      "currentFrame": 0,
+      "minPos": {
+        "x": 0,
+        "y": 4
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 5
+      },
+      "spriteName": "hydra"
     }
-  }
+  ]
 }

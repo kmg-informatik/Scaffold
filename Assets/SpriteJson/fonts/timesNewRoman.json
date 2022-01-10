@@ -3,701 +3,184 @@
   "sheetHeight": 320,
   "tileWidth": 16,
   "tileHeight": 20,
-  "sprites": {
-    " ": {
+  "spritesTemp": [
+    {
       "minPos": {
         "x": 0,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 1,
-        "y": 14
+        "y": 9
       },
-      "spriteName": " "
+      "spriteName": "tnr_p"
     },
-    "!": {
+    {
       "minPos": {
         "x": 1,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 2,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "!"
+      "spriteName": "tnr_q"
     },
-    "#": {
+    {
+      "minPos": {
+        "x": 2,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 9
+      },
+      "spriteName": "tnr_r"
+    },
+    {
       "minPos": {
         "x": 3,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 4,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "#"
+      "spriteName": "tnr_s"
     },
-    "$": {
+    {
       "minPos": {
         "x": 4,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 5,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "$"
+      "spriteName": "tnr_t"
     },
-    "%": {
+    {
       "minPos": {
         "x": 5,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 6,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "%"
+      "spriteName": "tnr_u"
     },
-    "\u0026": {
+    {
       "minPos": {
         "x": 6,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 7,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "\u0026"
+      "spriteName": "tnr_v"
     },
-    "\u0027": {
+    {
       "minPos": {
         "x": 7,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 8,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "\u0027"
+      "spriteName": "tnr_w"
     },
-    "(": {
+    {
       "minPos": {
         "x": 8,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 9,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "("
+      "spriteName": "tnr_x"
     },
-    ")": {
+    {
       "minPos": {
         "x": 9,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 10,
-        "y": 14
+        "y": 9
       },
-      "spriteName": ")"
+      "spriteName": "tnr_y"
     },
-    "*": {
+    {
       "minPos": {
         "x": 10,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 11,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "*"
+      "spriteName": "tnr_z"
     },
-    "+": {
+    {
       "minPos": {
         "x": 11,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 12,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "+"
+      "spriteName": "tnr_{"
     },
-    ",": {
+    {
       "minPos": {
         "x": 12,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 13,
-        "y": 14
+        "y": 9
       },
-      "spriteName": ","
+      "spriteName": "tnr_|"
     },
-    "-": {
+    {
       "minPos": {
         "x": 13,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 14,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "-"
+      "spriteName": "tnr_}"
     },
-    ".": {
+    {
       "minPos": {
         "x": 14,
-        "y": 13
+        "y": 8
       },
       "maxPos": {
         "x": 15,
-        "y": 14
+        "y": 9
       },
-      "spriteName": "."
+      "spriteName": "tnr_~"
     },
-    "/": {
-      "minPos": {
-        "x": 15,
-        "y": 13
-      },
-      "maxPos": {
-        "x": 16,
-        "y": 14
-      },
-      "spriteName": "/"
-    },
-    "0": {
+    {
       "minPos": {
         "x": 0,
-        "y": 12
+        "y": 9
       },
       "maxPos": {
         "x": 1,
-        "y": 13
-      },
-      "spriteName": "0"
-    },
-    "1": {
-      "minPos": {
-        "x": 1,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 2,
-        "y": 13
-      },
-      "spriteName": "1"
-    },
-    "2": {
-      "minPos": {
-        "x": 2,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 3,
-        "y": 13
-      },
-      "spriteName": "2"
-    },
-    "3": {
-      "minPos": {
-        "x": 3,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 4,
-        "y": 13
-      },
-      "spriteName": "3"
-    },
-    "4": {
-      "minPos": {
-        "x": 4,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 5,
-        "y": 13
-      },
-      "spriteName": "4"
-    },
-    "5": {
-      "minPos": {
-        "x": 5,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 6,
-        "y": 13
-      },
-      "spriteName": "5"
-    },
-    "6": {
-      "minPos": {
-        "x": 6,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 7,
-        "y": 13
-      },
-      "spriteName": "6"
-    },
-    "7": {
-      "minPos": {
-        "x": 7,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 8,
-        "y": 13
-      },
-      "spriteName": "7"
-    },
-    "8": {
-      "minPos": {
-        "x": 8,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 9,
-        "y": 13
-      },
-      "spriteName": "8"
-    },
-    "9": {
-      "minPos": {
-        "x": 9,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 10,
-        "y": 13
-      },
-      "spriteName": "9"
-    },
-    ":": {
-      "minPos": {
-        "x": 10,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 11,
-        "y": 13
-      },
-      "spriteName": ":"
-    },
-    ";": {
-      "minPos": {
-        "x": 11,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 12,
-        "y": 13
-      },
-      "spriteName": ";"
-    },
-    "\u003c": {
-      "minPos": {
-        "x": 12,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 13,
-        "y": 13
-      },
-      "spriteName": "\u003c"
-    },
-    "\u003d": {
-      "minPos": {
-        "x": 13,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 14,
-        "y": 13
-      },
-      "spriteName": "\u003d"
-    },
-    "backSlash": {
-      "minPos": {
-        "x": 12,
         "y": 10
       },
-      "maxPos": {
-        "x": 13,
-        "y": 11
-      },
-      "spriteName": "backSlash"
+      "spriteName": "tnr_\u0027"
     },
-    "\u003e": {
-      "minPos": {
-        "x": 14,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 15,
-        "y": 13
-      },
-      "spriteName": "\u003e"
-    },
-    "?": {
-      "minPos": {
-        "x": 15,
-        "y": 12
-      },
-      "maxPos": {
-        "x": 16,
-        "y": 13
-      },
-      "spriteName": "?"
-    },
-    "@": {
-      "minPos": {
-        "x": 0,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 1,
-        "y": 12
-      },
-      "spriteName": "@"
-    },
-    "A": {
-      "minPos": {
-        "x": 1,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 2,
-        "y": 12
-      },
-      "spriteName": "A"
-    },
-    "B": {
-      "minPos": {
-        "x": 2,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 3,
-        "y": 12
-      },
-      "spriteName": "B"
-    },
-    "C": {
-      "minPos": {
-        "x": 3,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 4,
-        "y": 12
-      },
-      "spriteName": "C"
-    },
-    "D": {
-      "minPos": {
-        "x": 4,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 5,
-        "y": 12
-      },
-      "spriteName": "D"
-    },
-    "E": {
-      "minPos": {
-        "x": 5,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 6,
-        "y": 12
-      },
-      "spriteName": "E"
-    },
-    "F": {
-      "minPos": {
-        "x": 6,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 7,
-        "y": 12
-      },
-      "spriteName": "F"
-    },
-    "G": {
-      "minPos": {
-        "x": 7,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 8,
-        "y": 12
-      },
-      "spriteName": "G"
-    },
-    "H": {
-      "minPos": {
-        "x": 8,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 9,
-        "y": 12
-      },
-      "spriteName": "H"
-    },
-    "I": {
-      "minPos": {
-        "x": 9,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 10,
-        "y": 12
-      },
-      "spriteName": "I"
-    },
-    "J": {
-      "minPos": {
-        "x": 10,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 11,
-        "y": 12
-      },
-      "spriteName": "J"
-    },
-    "K": {
-      "minPos": {
-        "x": 11,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 12,
-        "y": 12
-      },
-      "spriteName": "K"
-    },
-    "L": {
-      "minPos": {
-        "x": 12,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 13,
-        "y": 12
-      },
-      "spriteName": "L"
-    },
-    "M": {
-      "minPos": {
-        "x": 13,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 14,
-        "y": 12
-      },
-      "spriteName": "M"
-    },
-    "N": {
-      "minPos": {
-        "x": 14,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 15,
-        "y": 12
-      },
-      "spriteName": "N"
-    },
-    "O": {
-      "minPos": {
-        "x": 15,
-        "y": 11
-      },
-      "maxPos": {
-        "x": 16,
-        "y": 12
-      },
-      "spriteName": "O"
-    },
-    "P": {
-      "minPos": {
-        "x": 0,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 1,
-        "y": 11
-      },
-      "spriteName": "P"
-    },
-    "Q": {
-      "minPos": {
-        "x": 1,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 2,
-        "y": 11
-      },
-      "spriteName": "Q"
-    },
-    "R": {
-      "minPos": {
-        "x": 2,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 3,
-        "y": 11
-      },
-      "spriteName": "R"
-    },
-    "S": {
-      "minPos": {
-        "x": 3,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 4,
-        "y": 11
-      },
-      "spriteName": "S"
-    },
-    "T": {
-      "minPos": {
-        "x": 4,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 5,
-        "y": 11
-      },
-      "spriteName": "T"
-    },
-    "U": {
-      "minPos": {
-        "x": 5,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 6,
-        "y": 11
-      },
-      "spriteName": "U"
-    },
-    "V": {
-      "minPos": {
-        "x": 6,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 7,
-        "y": 11
-      },
-      "spriteName": "V"
-    },
-    "W": {
-      "minPos": {
-        "x": 7,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 8,
-        "y": 11
-      },
-      "spriteName": "W"
-    },
-    "X": {
-      "minPos": {
-        "x": 8,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 9,
-        "y": 11
-      },
-      "spriteName": "X"
-    },
-    "Y": {
-      "minPos": {
-        "x": 9,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 10,
-        "y": 11
-      },
-      "spriteName": "Y"
-    },
-    "Z": {
-      "minPos": {
-        "x": 10,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 11,
-        "y": 11
-      },
-      "spriteName": "Z"
-    },
-    "[": {
-      "minPos": {
-        "x": 11,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 12,
-        "y": 11
-      },
-      "spriteName": "["
-    },
-    "]": {
-      "minPos": {
-        "x": 13,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 14,
-        "y": 11
-      },
-      "spriteName": "]"
-    },
-    "^": {
-      "minPos": {
-        "x": 14,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 15,
-        "y": 11
-      },
-      "spriteName": "^"
-    },
-    "_": {
-      "minPos": {
-        "x": 15,
-        "y": 10
-      },
-      "maxPos": {
-        "x": 16,
-        "y": 11
-      },
-      "spriteName": "_"
-    },
-    "a": {
+    {
       "minPos": {
         "x": 1,
         "y": 9
@@ -706,9 +189,9 @@
         "x": 2,
         "y": 10
       },
-      "spriteName": "a"
+      "spriteName": "tnr_a"
     },
-    "b": {
+    {
       "minPos": {
         "x": 2,
         "y": 9
@@ -717,9 +200,9 @@
         "x": 3,
         "y": 10
       },
-      "spriteName": "b"
+      "spriteName": "tnr_b"
     },
-    "c": {
+    {
       "minPos": {
         "x": 3,
         "y": 9
@@ -728,9 +211,9 @@
         "x": 4,
         "y": 10
       },
-      "spriteName": "c"
+      "spriteName": "tnr_c"
     },
-    "d": {
+    {
       "minPos": {
         "x": 4,
         "y": 9
@@ -739,9 +222,9 @@
         "x": 5,
         "y": 10
       },
-      "spriteName": "d"
+      "spriteName": "tnr_d"
     },
-    "e": {
+    {
       "minPos": {
         "x": 5,
         "y": 9
@@ -750,20 +233,9 @@
         "x": 6,
         "y": 10
       },
-      "spriteName": "e"
+      "spriteName": "tnr_e"
     },
-    "doubleQuote": {
-      "minPos": {
-        "x": 2,
-        "y": 13
-      },
-      "maxPos": {
-        "x": 3,
-        "y": 14
-      },
-      "spriteName": "doubleQuote"
-    },
-    "f": {
+    {
       "minPos": {
         "x": 6,
         "y": 9
@@ -772,9 +244,9 @@
         "x": 7,
         "y": 10
       },
-      "spriteName": "f"
+      "spriteName": "tnr_f"
     },
-    "g": {
+    {
       "minPos": {
         "x": 7,
         "y": 9
@@ -783,9 +255,9 @@
         "x": 8,
         "y": 10
       },
-      "spriteName": "g"
+      "spriteName": "tnr_g"
     },
-    "h": {
+    {
       "minPos": {
         "x": 8,
         "y": 9
@@ -794,9 +266,9 @@
         "x": 9,
         "y": 10
       },
-      "spriteName": "h"
+      "spriteName": "tnr_h"
     },
-    "i": {
+    {
       "minPos": {
         "x": 9,
         "y": 9
@@ -805,9 +277,9 @@
         "x": 10,
         "y": 10
       },
-      "spriteName": "i"
+      "spriteName": "tnr_i"
     },
-    "j": {
+    {
       "minPos": {
         "x": 10,
         "y": 9
@@ -816,9 +288,9 @@
         "x": 11,
         "y": 10
       },
-      "spriteName": "j"
+      "spriteName": "tnr_j"
     },
-    "k": {
+    {
       "minPos": {
         "x": 11,
         "y": 9
@@ -827,9 +299,9 @@
         "x": 12,
         "y": 10
       },
-      "spriteName": "k"
+      "spriteName": "tnr_k"
     },
-    "l": {
+    {
       "minPos": {
         "x": 12,
         "y": 9
@@ -838,9 +310,9 @@
         "x": 13,
         "y": 10
       },
-      "spriteName": "l"
+      "spriteName": "tnr_l"
     },
-    "m": {
+    {
       "minPos": {
         "x": 13,
         "y": 9
@@ -849,9 +321,9 @@
         "x": 14,
         "y": 10
       },
-      "spriteName": "m"
+      "spriteName": "tnr_m"
     },
-    "n": {
+    {
       "minPos": {
         "x": 14,
         "y": 9
@@ -860,9 +332,9 @@
         "x": 15,
         "y": 10
       },
-      "spriteName": "n"
+      "spriteName": "tnr_n"
     },
-    "o": {
+    {
       "minPos": {
         "x": 15,
         "y": 9
@@ -871,172 +343,711 @@
         "x": 16,
         "y": 10
       },
-      "spriteName": "o"
+      "spriteName": "tnr_o"
     },
-    "p": {
+    {
       "minPos": {
         "x": 0,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 1,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "p"
+      "spriteName": "tnr_P"
     },
-    "q": {
+    {
       "minPos": {
         "x": 1,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 2,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "q"
+      "spriteName": "tnr_Q"
     },
-    "r": {
+    {
       "minPos": {
         "x": 2,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 3,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "r"
+      "spriteName": "tnr_R"
     },
-    "s": {
+    {
       "minPos": {
         "x": 3,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 4,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "s"
+      "spriteName": "tnr_S"
     },
-    "t": {
+    {
       "minPos": {
         "x": 4,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 5,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "t"
+      "spriteName": "tnr_T"
     },
-    "u": {
+    {
       "minPos": {
         "x": 5,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 6,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "u"
+      "spriteName": "tnr_U"
     },
-    "v": {
+    {
       "minPos": {
         "x": 6,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 7,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "v"
+      "spriteName": "tnr_V"
     },
-    "w": {
+    {
       "minPos": {
         "x": 7,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 8,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "w"
+      "spriteName": "tnr_W"
     },
-    "x": {
+    {
       "minPos": {
         "x": 8,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 9,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "x"
+      "spriteName": "tnr_X"
     },
-    "y": {
+    {
       "minPos": {
         "x": 9,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 10,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "y"
+      "spriteName": "tnr_Y"
     },
-    "z": {
+    {
       "minPos": {
         "x": 10,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 11,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "z"
+      "spriteName": "tnr_Z"
     },
-    "{": {
+    {
       "minPos": {
         "x": 11,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 12,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "{"
+      "spriteName": "tnr_["
     },
-    "|": {
+    {
       "minPos": {
         "x": 12,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 13,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "|"
+      "spriteName": "tnr_backSlash"
     },
-    "}": {
+    {
       "minPos": {
         "x": 13,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 14,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "}"
+      "spriteName": "tnr_]"
     },
-    "~": {
+    {
       "minPos": {
         "x": 14,
-        "y": 8
+        "y": 10
       },
       "maxPos": {
         "x": 15,
-        "y": 9
+        "y": 11
       },
-      "spriteName": "~"
+      "spriteName": "tnr_^"
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 11
+      },
+      "spriteName": "tnr__"
+    },
+    {
+      "minPos": {
+        "x": 0,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 12
+      },
+      "spriteName": "tnr_@"
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 12
+      },
+      "spriteName": "tnr_A"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 12
+      },
+      "spriteName": "tnr_B"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 12
+      },
+      "spriteName": "tnr_C"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 12
+      },
+      "spriteName": "tnr_D"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 12
+      },
+      "spriteName": "tnr_E"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 12
+      },
+      "spriteName": "tnr_F"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 12
+      },
+      "spriteName": "tnr_G"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 12
+      },
+      "spriteName": "tnr_H"
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 12
+      },
+      "spriteName": "tnr_I"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 12
+      },
+      "spriteName": "tnr_J"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 12
+      },
+      "spriteName": "tnr_K"
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 12
+      },
+      "spriteName": "tnr_L"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 12
+      },
+      "spriteName": "tnr_M"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 12
+      },
+      "spriteName": "tnr_N"
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 12
+      },
+      "spriteName": "tnr_O"
+    },
+    {
+      "minPos": {
+        "x": 0,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 13
+      },
+      "spriteName": "tnr_0"
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 13
+      },
+      "spriteName": "tnr_1"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 13
+      },
+      "spriteName": "tnr_2"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 13
+      },
+      "spriteName": "tnr_3"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 13
+      },
+      "spriteName": "tnr_4"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 13
+      },
+      "spriteName": "tnr_5"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 13
+      },
+      "spriteName": "tnr_6"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 13
+      },
+      "spriteName": "tnr_7"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 13
+      },
+      "spriteName": "tnr_8"
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 13
+      },
+      "spriteName": "tnr_9"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 13
+      },
+      "spriteName": "tnr_:"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 13
+      },
+      "spriteName": "tnr_;"
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 13
+      },
+      "spriteName": "tnr_\u003c"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 13
+      },
+      "spriteName": "tnr_\u003d"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 13
+      },
+      "spriteName": "tnr_\u003e"
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 13
+      },
+      "spriteName": "tnr_?"
+    },
+    {
+      "minPos": {
+        "x": 0,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 14
+      },
+      "spriteName": "tnr_ "
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 14
+      },
+      "spriteName": "tnr_!"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 14
+      },
+      "spriteName": "tnr_doubleQuote"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 14
+      },
+      "spriteName": "tnr_#"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 14
+      },
+      "spriteName": "tnr_$"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 14
+      },
+      "spriteName": "tnr_%"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 14
+      },
+      "spriteName": "tnr_\u0026"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 14
+      },
+      "spriteName": "tnr_\u0027"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 14
+      },
+      "spriteName": "tnr_("
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 14
+      },
+      "spriteName": "tnr_)"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 14
+      },
+      "spriteName": "tnr_*"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 14
+      },
+      "spriteName": "tnr_+"
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 14
+      },
+      "spriteName": "tnr_,"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 14
+      },
+      "spriteName": "tnr_-"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 14
+      },
+      "spriteName": "tnr_."
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 14
+      },
+      "spriteName": "tnr_/"
     }
-  }
+  ]
 }

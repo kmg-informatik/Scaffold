@@ -1,7 +1,8 @@
-package dev.elk.game.generators;
+package dev.elk.game.spritesheetHandlers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import dev.elk.game.fontSettings.Font;
 import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2i;
 
@@ -15,6 +16,7 @@ import java.io.IOException;
 public class GsonGenerator {
 
     public static void main(String[] args) throws IOException {
+        generateSpritesheets();
         generateFonts();
     }
 
@@ -199,7 +201,7 @@ public class GsonGenerator {
         writer.close();
     }
 
-    public static Spritesheet<Sprite> generateFont(int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
+    public static Spritesheet<Sprite> generateFont(String fontPrefix, int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
 
         Spritesheet<Sprite> spritesheet = new Spritesheet<>(
                 sheetWidth,
@@ -214,126 +216,126 @@ public class GsonGenerator {
         int a = 0;
         int b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "p"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "q"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "r"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "s"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j ), "t"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "u"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "v"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "w"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "x"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "y"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "z"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "{"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "|"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "}"),
-                new Sprite(new Vector2i(a,k++), new Vector2i(b,j++), "~")
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_p"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_q"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_r"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_s"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_t"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_u"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_v"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_w"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_x"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_y"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_z"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_{"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_|"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_}"),
+                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), fontPrefix + "_~")
         );
 
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "'"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "a"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "b"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "c"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "d"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "e"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "f"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "g"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "h"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "i"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "j"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "k"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "l"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "m"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "n"),
-                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), "o")
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), fontPrefix + "_'"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_a"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_b"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_c"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_d"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_e"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_f"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_g"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_h"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_i"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_j"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_k"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_l"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_m"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_n"),
+                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), fontPrefix +"_o")
         );
 
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "P"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "Q"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "R"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "S"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "T"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "U"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "V"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "W"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "X"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "Y"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "Z"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "["),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "backSlash"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "]"),
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), "^"),
-                new Sprite(new Vector2i(a,k++), new Vector2i(b,j++), "_")
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_P"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_Q"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_R"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_S"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_T"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_U"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_V"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_W"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_X"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_Y"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_Z"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_["),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_backSlash"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_]"),
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++, j), fontPrefix + "_^"),
+                new Sprite(new Vector2i(a,k++), new Vector2i(b,j++), fontPrefix + "__")
         );
 
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "@"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "A"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "B"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "C"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "D"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "E"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "F"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "G"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "H"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "I"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "J"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "K"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "L"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "M"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "N"),
-                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), "O")
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), fontPrefix +"_@"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_A"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_B"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_C"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_D"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_E"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_F"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_G"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_H"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_I"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_J"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_K"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_L"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_M"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_N"),
+                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), fontPrefix + "_O")
         );
 
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), "0"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "1"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "2"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "3"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "4"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "5"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "6"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "7"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "8"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "9"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ":"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ";"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "<"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "="),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ">"),
-                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), "?")
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), fontPrefix + "_0"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_1"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_2"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_3"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_4"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_5"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_6"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_7"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_8"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_9"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_:"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_;"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_<"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_="),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_>"),
+                new Sprite(new Vector2i(a, k++), new Vector2i(b, j++), fontPrefix + "_?")
         );
 
         a = 0;
         b = 1;
         spritesheet.addSprite(
-                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), " "),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "!"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "doubleQuote"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "#"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "$"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "%"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "&"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "'"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "("),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ")"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "*"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "+"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), ","),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "-"),
-                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), "."),
-                new Sprite(new Vector2i(a, k), new Vector2i(b, j), "/")
+                new Sprite(new Vector2i(a++,k), new Vector2i(b++,j), fontPrefix + "_ "),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_!"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_doubleQuote"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_#"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_$"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_%"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_&"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_'"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix +  "_("),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_)"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_*"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_+"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_,"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_-"),
+                new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_."),
+                new Sprite(new Vector2i(a, k), new Vector2i(b, j), fontPrefix + "_/")
         );
         return spritesheet;
     }
@@ -342,6 +344,7 @@ public class GsonGenerator {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         Spritesheet<Sprite> spritesheet = generateFont(
+                Font.COZETTE.fontID,
                 256,
                 288,
                 16,
@@ -357,6 +360,7 @@ public class GsonGenerator {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         Spritesheet<Sprite> spritesheet = generateFont(
+                Font.TIMES_NEW_ROMAN.fontID,
                 256,
                 320,
                 16,
@@ -372,6 +376,7 @@ public class GsonGenerator {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         Spritesheet<Sprite> spritesheet = generateFont(
+                Font.JETBRAINS_MONO.fontID,
                 256,
                 320,
                 16,

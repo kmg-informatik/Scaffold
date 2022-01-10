@@ -17,16 +17,18 @@ public class FontInformation {
     private final Path pngPath;
     private final float fontSize;
     private final float fontWhitespace;
+    private final String fontID;
 
     /**
      * Generates necessary font information used to render Text.
      */
     public FontInformation(Font font, float fontSize) {
-        this.jsonPath = Paths.get("Assets/SpriteJson/fonts/" + font.id + ".json");
-        this.pngPath = Paths.get("Assets/Spritesheets/fonts/" + font.id + ".png");
+        this.jsonPath = Paths.get("Assets/SpriteJson/fonts/" + font.name + ".json");
+        this.pngPath = Paths.get("Assets/Spritesheets/fonts/" + font.name + ".png");
         this.heightWidthRatio = font.heightWidthRatio;
         this.fontWhitespace = fontSize*0.04f;
         this.fontSize = fontSize / 10;
+        this.fontID = font.fontID;
     }
 
     /**
@@ -64,5 +66,9 @@ public class FontInformation {
      */
     public float getFontWhitespace() {
         return fontWhitespace;
+    }
+
+    public String getFontID() {
+        return fontID;
     }
 }

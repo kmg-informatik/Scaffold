@@ -11,13 +11,13 @@ public class Ground {
     private static float floorHeight;
 
     public static void buildGround(float tileSide, Sprite... sprites ) {
-        quads = new Quad[(int)(2/tileSide) * sprites.length];
+        quads = new Quad[(int)(160/tileSide) * sprites.length];
         for (int i = 0; i < sprites.length; i++) {
             for (int j = 0; j < quads.length / sprites.length; j++) {
                 quads[j + i * quads.length/ sprites.length] = new Square(sprites[i],new Vector2f(tileSide * (float)j -1f,-1 + tileSide * i),tileSide);
             }
         }
-        floorHeight = -1f + tileSide * sprites.length;
+        floorHeight =  tileSide * sprites.length;
     }
 
     public static Quad[] getQuads() {

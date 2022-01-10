@@ -6,21 +6,23 @@ package dev.elk.game.fontSettings;
  * @author Louis Schell
  */
 public enum Font {
-    COZETTE("cozette", 18f/16f),
-    JETBRAINS_MONO("jetbrainsMono", 20f/16f),
-    TIMES_NEW_ROMAN("timesNewRoman", 20f/16f);
+    COZETTE("cozette","coz", 18f/16f),
+    JETBRAINS_MONO("jetbrainsMono", "jbm",20f/16f),
+    TIMES_NEW_ROMAN("timesNewRoman", "tnr", 20f/16f);
 
-    public final String id;
+    public final String name;
     public final float heightWidthRatio;
+    public String fontID;
 
     /**
      * Generator for fonts
-     * @param id The id that is used to get file names
+     * @param name The id that is used to get file names
      * @param heightWidthRatio The ratio of height to width since most fonts have
      *                         glyphs are taller than they are wide.
      */
-    Font(String id, float heightWidthRatio) {
-        this.id = id;
+    Font(String name, String fontID, float heightWidthRatio) {
+        this.name = name;
+        this.fontID = fontID;
         this.heightWidthRatio = heightWidthRatio;
     }
 

@@ -7,7 +7,9 @@ import org.joml.Vector2f;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * This splices a big texture into many smaller spritesheets according to a specifcation derived from a json file.
@@ -19,30 +21,43 @@ public class Spritesheet<T extends Sprite>{
     final int sheetWidth, sheetHeight, tileWidth, tileHeight;
     private transient Texture texture;
 
-    private final HashMap<String, T> sprites = new HashMap<>();
 
-    public static Spritesheet<AnimatedSprite> fromAnimated(Path path, Path texturePath) throws IOException {
+    public static final HashMap<String, AnimatedSprite> ANIMATED_SPRITES = new HashMap<>();
+    public static final HashMap<String, Sprite> STATIC_SPRITES = new HashMap<>();
+
+    private final ArrayList<T> spritesTemp = new ArrayList<>();
+
+    public static void fromAnimated(Path path, Path texturePath) throws IOException {
         GsonBuilder gson = new GsonBuilder();
-        Spritesheet<AnimatedSprite> spritesheet = gson.create().fromJson(new String(Files.readAllBytes(path)),new TypeToken<Spritesheet<AnimatedSprite>>(){}.getType());
-        return spritesheet.init(new Texture(texturePath));
+        Spritesheet<AnimatedSprite> spritesheet = gson.create().fromJson(
+                new String(Files.readAllBytes(path)),
+                new TypeToken<Spritesheet<AnimatedSprite>>(){}.getType()
+        );
+        spritesheet.init(new Texture(texturePath));
+
+        for (int i = 0; i < spritesheet.spritesTemp.size(); i++) {
+            ANIMATED_SPRITES.put(spritesheet.spritesTemp.get(i).spriteName, spritesheet.spritesTemp.get(i));
+        }
+
     }
 
-    public static Spritesheet<Sprite> from(Path path, Path texturePath) throws IOException {
+    public static void from(Path path, Path texturePath) throws IOException {
         GsonBuilder gson = new GsonBuilder();
+        Spritesheet<Sprite> spritesheet = gson.create().fromJson(
+                new String(Files.readAllBytes(path)),
+                new TypeToken<Spritesheet<Sprite>>(){}.getType()
+        );
+        spritesheet.init(new Texture(texturePath));
 
-        Spritesheet<Sprite> spritesheet = gson.create().fromJson(new String(Files.readAllBytes(path)),new TypeToken<Spritesheet<Sprite>>(){}.getType());
-
-        return spritesheet.init(new Texture(texturePath));
+        for (int i = 0; i < spritesheet.spritesTemp.size(); i++) {
+            STATIC_SPRITES.put(spritesheet.spritesTemp.get(i).spriteName, spritesheet.spritesTemp.get(i));
+        }
     }
 
-    public Spritesheet(){
-        tileWidth = tileHeight = sheetWidth = sheetHeight = 0;
-    }
-
-    public void calculateUVCoords() {
+    private void calculateUVCoords() {
         float yFactor = (float) tileHeight / (float) sheetHeight;
         float xFactor = (float) tileWidth / (float) sheetWidth;
-        for (T sprite : sprites.values()) {
+        for (T sprite : spritesTemp) {
 
             float minY = (float) sprite.minPos.y * yFactor;
             float minX = (float) sprite.minPos.x * xFactor;
@@ -67,29 +82,12 @@ public class Spritesheet<T extends Sprite>{
         this.tileHeight = tileHeight;
     }
 
-    @SafeVarargs
-    public final void addSprite(T... sprites) {
-        for (T sprite : sprites) {
-            this.sprites.put(sprite.spriteName, sprite);
-        }
+    public void addSprite(T... sprites) {
+        this.spritesTemp.addAll(List.of(sprites));
     }
 
-    public T getSprite(String spriteName) {
-        return sprites.get(spriteName);
-    }
-
-    public Spritesheet<T> init(Texture texture) {
-        this.texture = texture;
-
-        for (T sprite : sprites.values()) {
-            sprite.setTexture(texture);
-        }
-
+    private void init(Texture texture) {
+        spritesTemp.forEach(t -> t.setTexture(texture));
         calculateUVCoords();
-        return this;
-    }
-
-    public Texture getTexture() {
-        return texture;
     }
 }

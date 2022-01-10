@@ -1,7 +1,9 @@
 package dev.elk.game;
 
-import dev.elk.game.fontSettings.FontInformation;
 import dev.elk.game.fontSettings.Font;
+import dev.elk.game.fontSettings.FontInformation;
+import dev.elk.game.spritesheetHandlers.SpritesheetBuilder;
+import dev.elk.game.spritesheetHandlers.SpritesheetInfo;
 import dev.elk.scaffold.components.Scene;
 import dev.elk.scaffold.components.Window;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
@@ -13,7 +15,7 @@ import org.joml.Vector2f;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.Arrays;
+import java.nio.file.Paths;
 
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
@@ -28,7 +30,6 @@ import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
-    private final Spritesheet<Sprite> spritesheet = new Spritesheet<>();
 
     private int vaoID;
     private int vboID;
@@ -70,27 +71,24 @@ public class PrimaryScene extends Scene {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        /*
-        try {
-            spritesheet = Spritesheet.from(Paths.get("Assets/SpriteJson/tiles.json"), new Texture(Paths.get("Assets/Spritesheets/tiles.png")));
+        SpritesheetBuilder.generateSpriteSheets(SpritesheetInfo.COZETTE);
+        System.out.println(Spritesheet.STATIC_SPRITES);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        obj1 = new PhysicsSquare(spritesheet.getSprite("marble"), new Vector2f(0f, 0.2f),  0.3f);
+        /*
+        obj1 = new PhysicsSquare(Spritesheet.STATIC_SPRITES.get("marble"), new Vector2f(20f, 80f),  5f);
 
         Sprite[] groundLevels = {
-                spritesheet.getSprite("dirtDark"),
-                spritesheet.getSprite("dirtTop"),
-                spritesheet.getSprite("grassTop")
+                Spritesheet.STATIC_SPRITES.get("dirtDark"),
+                Spritesheet.STATIC_SPRITES.get("dirtTop"),
+                Spritesheet.STATIC_SPRITES.get("grassTop")
         };
 
-        Ground.buildGround(0.1f, groundLevels);
+        Ground.buildGround(5f, groundLevels);
 
         staticBatch.putAll(Ground.getQuads());
-        dynamicBatch.put(obj1);
+        staticBatch.put(obj1);
+        */
 
-         */
 
         text = new Text(
                 new FontInformation(Font.COZETTE,20),
@@ -103,24 +101,17 @@ public class PrimaryScene extends Scene {
 
         program.uploadTexture("TEX_SAMPLER", 0);
         glActiveTexture(GL_TEXTURE0);
-        text.getSpritesheet().getTexture().bind();
-
+        text.getTexture().bind();
     }
 
     private boolean facingRight = true;
     @Override
     public void onUpdate() {
-        String str = Integer.toString((int)(1f/Window.dt));
-        text.setText(String.format("%.0f fps", window.avgFps()));
-
-        //text.rotateCenter(Window.dt);
-
         dynamicBatch.getGeometries().clear();
-        dynamicBatch.putAll(text);
-        dynamicBatch.render();
 
-        float movSpeed = 1f;
+        float movSpeed = 200f;
         float windowStretch = (float) window.getHeight() / (float) window.getWidth();
+        text.setText(String.format("%.0f fps", window.avgFps()));
         program.uploadFloat("windowStretch", windowStretch);
 
         /*
@@ -154,13 +145,15 @@ public class PrimaryScene extends Scene {
         }
         obj1.translate(movementVector);
 
-         */
 
-        //camera.position = camera.getNextPosition(obj1.centerOfMass().mul(windowStretch));
+        camera.position = camera.getNextPosition(Ground.getQuads()[0].centerOfMass().mul(windowStretch));
+        */
         program.uploadFloat("windowStretch", windowStretch);
         program.uploadMat4f("cameraProjection",camera.getProjectionMatrix());
         program.uploadMat4f("cameraView",camera.getViewMatrix());
 
+        dynamicBatch.putAll(text);
+        dynamicBatch.render();
         staticBatch.render();
     }
 }

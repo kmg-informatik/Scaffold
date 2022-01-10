@@ -9,6 +9,7 @@ import org.joml.Vector2f;
 import java.awt.*;
 import java.io.IOException;
 
+
 /**
  * Class that generates text using multiple Quads
  * @see dev.elk.game.fontSettings.Font
@@ -22,7 +23,6 @@ public class Text implements Geometry {
     private String text;
     private Quad[] quads;
     private Vector2f position;
-    private Spritesheet<Sprite> spritesheet;
 
     /**
      * Generates a Text box made out of multiple Quads
@@ -39,7 +39,7 @@ public class Text implements Geometry {
         this.fontInformation = fontInformation;
         this.color = textColor;
         this.position = position;
-        spritesheet = Spritesheet.from(fontInformation.getJsonPath(), fontInformation.getPngPath());
+        //from(fontInformation.getJsonPath(), fontInformation.getPngPath());
         this.text = text;
         generateQuads();
     }
@@ -47,8 +47,10 @@ public class Text implements Geometry {
     private void generateQuads() {
         quads = new Quad[text.length()];
         for (int i = 0; i < text.length(); i++) {
+            String spriteName = fontInformation.getFontID()+ "_" + text.charAt(i);
+            System.out.println(spriteName);
             quads[i] = new Quad(
-                    spritesheet.getSprite(Character.toString(text.charAt(i))),
+                    Spritesheet.STATIC_SPRITES.get(spriteName),
                     new Vector2f(position.x + i * (fontInformation.getFontSize() - fontInformation.getFontWhitespace()), position.y),
                     fontInformation.getFontSize(),
                     fontInformation.getFontSize() * fontInformation.getHeightWidthRatio(),
@@ -58,15 +60,11 @@ public class Text implements Geometry {
         translateOriginTo(position);
     }
 
-    public String getText() {
-        return text;
-    }
-
     public void setText(String newText) {
         if (!newText.equals(text)) {
             if (newText.length() == text.length()){
                 for (int i = 0; i < quads.length; i++) {
-                    quads[i].setSprite(spritesheet.getSprite(Character.toString(newText.charAt(i))));
+                    quads[i].setSprite(Spritesheet.STATIC_SPRITES.get(fontInformation.getFontID() + "_" + text.charAt(i)));
                 }
                 text = newText;
             }else {
@@ -74,10 +72,6 @@ public class Text implements Geometry {
                 generateQuads();
             }
         }
-    }
-
-    public Spritesheet<Sprite> getSpritesheet() {
-        return spritesheet;
     }
 
     public void setPosition(Vector2f position) {
@@ -120,5 +114,9 @@ public class Text implements Geometry {
             vertices[i+3] = quads[i>>2].getVertices()[3];
         }
         return vertices;
+    }
+
+    public Texture getTexture() {
+        return quads[0].getSprite().getTexture();
     }
 }

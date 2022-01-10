@@ -1,5 +1,7 @@
 package dev.elk.scaffold.plugin;
 
+import dev.elk.scaffold.events.AudioEvent;
+
 /**
  * An interface, that enables a class to wait for a
  * certain {@link dev.elk.scaffold.events.Event} to happen in the
@@ -13,5 +15,7 @@ package dev.elk.scaffold.plugin;
  * @author Louis Schell
  */
 public interface EventListening {
+    // definiere onButtonClick, etc hier, ruf damit AudioPlayer auf
 
+    void onJump(AudioEvent event);
 }

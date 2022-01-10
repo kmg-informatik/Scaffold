@@ -1,63 +1,47 @@
 package dev.elk.scaffold.plugin;
 
-import java.nio.ByteBuffer;
-import java.nio.IntBuffer;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
-import org.lwjgl.openal.AL;
-import org.lwjgl.openal.ALC;
-import org.lwjgl.openal.ALC10;
-import org.lwjgl.openal.ALCCapabilities;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
-import dev.elk.scaffold.al.AudioTrack;
+import dev.elk.scaffold.al.AudioClip;
 import dev.elk.scaffold.events.AudioEvent;
 
 public class AudioPlayer implements EventListening {
 
-    private static long device;
-    private static ALCCapabilities deviceCaps;
-    private static long context;
+    private static final String soundJump = "resources/sfx_movement_jump7.wav";
+    private static final String soundSceneStart = "";
 
-    public AudioPlayer(){
-        setup();
+    private static AudioPlayer singleton;
+    private String status;
+    private ArrayList<AudioClip> currentlyPlaying = new ArrayList<AudioClip>();
+
+    private AudioPlayer(){
+
     }
 
-    public void Play(AudioEvent event){
-        event.getSource().Play();
-    }
-
-    public void Pause(AudioEvent event){
-        event.getSource().Pause();
-    }
-
-    public void Stop(AudioEvent event){
-        event.getSource().Stop();
+    public static AudioPlayer getSingleton(){
+        return singleton;
     }
 
     @Override
-    public void onPlayAudio(AudioEvent event) { //TODO not sure on how to use this/what to use it for
-
+    public void onJump(AudioEvent event) {
+        AudioPlayer.getSingleton().play(soundJump);
     }
 
-    /**
-     * Setup method for the AudioPlayer.
-     * Initializes devices and speakers. Must be called before first play of any track/event.
-     * TODO: could also auto-call this when event is created, based on boolean if setup has been done.
-     */
-    private static void setup() {
-        device = ALC10.alcOpenDevice((ByteBuffer) null);
-		deviceCaps = ALC.createCapabilities(device);
-		context = ALC10.alcCreateContext(device, (IntBuffer) null);
-		ALC10.alcMakeContextCurrent(context);
-		AL.createCapabilities(deviceCaps);
-
+    private void play(String filepath) {
+        AudioClip clip = new AudioClip(filepath);
+        currentlyPlaying.add(clip);
+        clip.play();
     }
 
-    /**
-     * cleanup when shutting down.
-     * must be called at the end of any game, otherwise Windows will complain.
-     */
-    public static void shutdown() {
-        AudioTrack.CleanUp();
-		ALC10.alcCloseDevice(device);
+    private void pause(String filepath) {   //TODO prob needs id to work properly and select correct audio
+
     }
 }

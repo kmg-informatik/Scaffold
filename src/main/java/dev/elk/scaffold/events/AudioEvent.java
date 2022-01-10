@@ -1,8 +1,5 @@
 package dev.elk.scaffold.events;
 
-import dev.elk.scaffold.al.AudioSource;
-import dev.elk.scaffold.al.AudioTrack;
-
 public class AudioEvent extends Event{
 
     private final String audioName; //TODO final might not be as useful if track should be changeable later on

@@ -1,34 +1,22 @@
 package dev.elk.game.fontSettings;
 
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class FontInformation {
 
     private final float heightWidthRatio;
-    private final Path  jsonPath;
-    private final Path  pngPath;
+    private final Path jsonPath;
+    private final Path pngPath;
     private final float fontSize;
-    private final float fontWhitspace;
+    private final float fontWhitespace;
 
-    public FontInformation(FontType fontType, float fontSize){
-        String id = switch (fontType){
-            case COZETTE -> "cozette";
-            case JETBRAINS_MONO -> "jetbrainsMono";
-            case TIMES_NEW_ROMAN -> "timesNewRoman";
-        };
-
-        jsonPath = Paths.get( "Assets/SpriteJson/fonts/" + id + ".json");
-        pngPath = Paths.get( "Assets/Spritesheets/fonts/" + id + ".png");
-        heightWidthRatio = switch (fontType) {
-            case COZETTE -> 18f/16f;
-            case JETBRAINS_MONO -> 20f/16f;
-            case TIMES_NEW_ROMAN -> 20f/16f;
-        };
-        this.fontWhitspace = 0.06f;
-
-        this.fontSize = fontSize / 100;
+    public FontInformation(Font font, float fontSize) {
+        this.jsonPath = Paths.get("Assets/SpriteJson/fonts/" + font.id + ".json");
+        this.pngPath = Paths.get("Assets/Spritesheets/fonts/" + font.id + ".png");
+        this.heightWidthRatio = font.heightWidthRatio;
+        this.fontWhitespace = fontSize*0.04f;
+        this.fontSize = fontSize / 10;
     }
 
     public float getHeightWidthRatio() {
@@ -47,7 +35,7 @@ public class FontInformation {
         return fontSize;
     }
 
-    public float getFontWhitspace() {
-        return fontWhitspace;
+    public float getFontWhitespace() {
+        return fontWhitespace;
     }
 }

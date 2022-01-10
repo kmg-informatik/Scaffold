@@ -1,17 +1,19 @@
 package dev.elk.game;
 
 import dev.elk.game.fontSettings.FontInformation;
-import dev.elk.game.fontSettings.FontType;
+import dev.elk.game.fontSettings.Font;
 import dev.elk.scaffold.components.Scene;
 import dev.elk.scaffold.components.Window;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
 import dev.elk.scaffold.physics.PhysicsQuad;
 import dev.elk.scaffold.plugin.PluginRepository;
 import dev.elk.scaffold.renderer.*;
+import dev.elk.scaffold.renderer.Label;
 import org.joml.Vector2f;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Arrays;
 
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
@@ -89,13 +91,15 @@ public class PrimaryScene extends Scene {
         dynamicBatch.put(obj1);
 
          */
+
         text = new Text(
-                    new FontInformation(FontType.COZETTE,16),
-                    Color.WHITE,
-                    new Vector2f(0,0),
-                6
-            );
-        dynamicBatch.putAll(text.getQuads());
+                new FontInformation(Font.COZETTE,20),
+                Color.WHITE,
+                new Vector2f(152,97),
+                " "
+        );
+        Label label = new Label(new Vector2f(152,97), text, new Color(89, 82, 56, 255));
+        dynamicBatch.putAll(label);
 
         program.uploadTexture("TEX_SAMPLER", 0);
         glActiveTexture(GL_TEXTURE0);
@@ -104,14 +108,16 @@ public class PrimaryScene extends Scene {
     }
 
     private boolean facingRight = true;
-
-    int counter= 0;
     @Override
     public void onUpdate() {
         String str = Integer.toString((int)(1f/Window.dt));
-        if (str.length() == 2 && counter %5 ==0)
-            text.setText("fps=" + str);
-        counter++;
+        text.setText(String.format("%.0f fps", window.avgFps()));
+
+        //text.rotateCenter(Window.dt);
+
+        dynamicBatch.getGeometries().clear();
+        dynamicBatch.putAll(text);
+        dynamicBatch.render();
 
         float movSpeed = 1f;
         float windowStretch = (float) window.getHeight() / (float) window.getWidth();
@@ -156,6 +162,5 @@ public class PrimaryScene extends Scene {
         program.uploadMat4f("cameraView",camera.getViewMatrix());
 
         staticBatch.render();
-        dynamicBatch.render();
     }
 }

@@ -36,10 +36,10 @@ public class Camera {
     public void adjustProjection() {
         projectionMatrix.identity();
         projectionMatrix.ortho(
-                -3f,
-                3f,
-                -3f,
-                3f,
+                0f,
+                160f,
+                0f,
+                100f,
                 0.0f,
                 100.0f
         );

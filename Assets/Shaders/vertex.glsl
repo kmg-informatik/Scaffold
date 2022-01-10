@@ -15,6 +15,6 @@ void main()
  fColor = color;
  fTexCoords = texCoords;
 
- vec2 newPos = vec2(position.x*windowStretch, position.y);
- gl_Position = cameraProjection * cameraView * vec4(newPos, 0.0, 1.0);
+ //vec2 newPos = vec2(position.x*windowStretch, position.y);
+ gl_Position = cameraProjection * cameraView * vec4(position, 0.0, 1.0);
 }

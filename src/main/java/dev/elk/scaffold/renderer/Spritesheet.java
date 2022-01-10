@@ -21,18 +21,18 @@ public class Spritesheet<T extends Sprite>{
 
     private final HashMap<String, T> sprites = new HashMap<>();
 
-    public static Spritesheet<AnimatedSprite> fromAnimated(Path path, Texture texture) throws IOException {
+    public static Spritesheet<AnimatedSprite> fromAnimated(Path path, Path texturePath) throws IOException {
         GsonBuilder gson = new GsonBuilder();
         Spritesheet<AnimatedSprite> spritesheet = gson.create().fromJson(new String(Files.readAllBytes(path)),new TypeToken<Spritesheet<AnimatedSprite>>(){}.getType());
-        return spritesheet.init(texture);
+        return spritesheet.init(new Texture(texturePath));
     }
 
-    public static Spritesheet<Sprite> from(Path path, Texture texture) throws IOException {
+    public static Spritesheet<Sprite> from(Path path, Path texturePath) throws IOException {
         GsonBuilder gson = new GsonBuilder();
 
         Spritesheet<Sprite> spritesheet = gson.create().fromJson(new String(Files.readAllBytes(path)),new TypeToken<Spritesheet<Sprite>>(){}.getType());
 
-        return spritesheet.init(texture);
+        return spritesheet.init(new Texture(texturePath));
     }
 
     public Spritesheet(){

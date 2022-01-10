@@ -1,74 +1,77 @@
 package dev.elk.scaffold.renderer;
 
-import com.google.gson.stream.JsonToken;
 import dev.elk.game.fontSettings.FontInformation;
+import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.Quad;
+import dev.elk.scaffold.gl.Vertex;
 import org.joml.Vector2f;
 
 import java.awt.*;
 import java.io.IOException;
 
 /**
- * Class that generates text
+ * Class that generates text using multiple Quads
+ * @see dev.elk.game.fontSettings.Font
+ * @see FontInformation
  * @author Felix Kunze
+ * @author Louis Schell
  */
-public class Text {
-    private FontInformation fontInformation;
+public class Text implements Geometry {
+    private final FontInformation fontInformation;
     private Color color;
     private String text;
     private Quad[] quads;
     private Vector2f position;
     private Spritesheet<Sprite> spritesheet;
 
-    public Text(FontInformation fontInformation, Color backgroundColor, Vector2f position, int maxTextLength) throws IOException {
-        this.fontInformation = fontInformation;
-        this.color = backgroundColor;
-        this.position = position;
-        spritesheet = Spritesheet.from(fontInformation.getJsonPath(),new Texture(fontInformation.getPngPath()));
-        text = "";
-        for (int i = 0; i < maxTextLength; i++) {
-            text += " ";
-        }
-        initText();
-    }
+    /**
+     * Generates a Text box made out of multiple Quads
+     * with texture specific glyphs determined by input Text.
+     * @param fontInformation Information specific to the user chosen font.
+     * @param textColor The color of the Text as is displayed.
+     * @param position The Position of the text box on the screen
+     * @param text The text that is given
+     */
+    public Text(FontInformation fontInformation, Color textColor, Vector2f position, String text) throws IOException {
+        if (text.length()<1)
+            throw new IOException("Ya cant do that");
 
-    public Text(FontInformation fontInformation, Color backgroundColor, Vector2f position, String text) throws IOException {
         this.fontInformation = fontInformation;
-        this.color = backgroundColor;
+        this.color = textColor;
         this.position = position;
-        spritesheet = Spritesheet.from(fontInformation.getJsonPath(),new Texture(fontInformation.getPngPath()));
+        spritesheet = Spritesheet.from(fontInformation.getJsonPath(), fontInformation.getPngPath());
         this.text = text;
-        initText();
+        generateQuads();
     }
 
-    private void initText() {
+    private void generateQuads() {
         quads = new Quad[text.length()];
         for (int i = 0; i < text.length(); i++) {
             quads[i] = new Quad(
                     spritesheet.getSprite(Character.toString(text.charAt(i))),
-                    new Vector2f(position.x + i * (fontInformation.getFontSize() - fontInformation.getFontWhitspace()),position.y),
+                    new Vector2f(position.x + i * (fontInformation.getFontSize() - fontInformation.getFontWhitespace()), position.y),
                     fontInformation.getFontSize(),
                     fontInformation.getFontSize() * fontInformation.getHeightWidthRatio(),
                     color
             );
         }
-    }
-
-    private void updateText() {
+        translateOriginTo(position);
     }
 
     public String getText() {
         return text;
     }
 
-    public void setText(String text) {
-        if (!text.equals(this.text)) {
-            this.text = text;
-            for (int i = 0; i < text.length(); i++) {
-                quads[i].setSprite(spritesheet.getSprite(Character.toString(text.charAt(i))));
-            }
-            for (int i = text.length(); i < quads.length; i++) {
-                quads[i].setSprite(spritesheet.getSprite(" "));
+    public void setText(String newText) {
+        if (!newText.equals(text)) {
+            if (newText.length() == text.length()){
+                for (int i = 0; i < quads.length; i++) {
+                    quads[i].setSprite(spritesheet.getSprite(Character.toString(newText.charAt(i))));
+                }
+                text = newText;
+            }else {
+                text = newText;
+                generateQuads();
             }
         }
     }
@@ -81,7 +84,7 @@ public class Text {
         if (!position.equals(this.position)) {
             this.position = position;
             for (int i = 0; i < quads.length; i++) {
-                quads[i].translateTo(new Vector2f(position.x+ i * (fontInformation.getFontSize() - fontInformation.getFontWhitspace()), position.y));
+                quads[i].translateOriginTo(new Vector2f(position.x + i * (fontInformation.getFontSize() - fontInformation.getFontWhitespace()), position.y));
             }
         }
 
@@ -89,5 +92,33 @@ public class Text {
 
     public Quad[] getQuads() {
         return quads;
+    }
+
+    @Override
+    public int[] getIndices() {
+        int[] indices = new int[quads.length*6];
+        int addTo = 0;
+        for (int i = 0; i < quads.length; i++) {
+            indices[i*6] = i + addTo;
+            indices[i*6+1] = i+1 + addTo;
+            indices[i*6+2] = i+2 + addTo;
+            indices[i*6+3] = i+2 + addTo;
+            indices[i*6+4] = i+3 + addTo;
+            indices[i*6+5] = i + addTo;
+            addTo+=3;
+        }
+        return indices;
+    }
+
+    @Override
+    public Vertex[] getVertices() {
+        Vertex[] vertices = new Vertex[quads.length<<2];
+        for (int i = 0; i < vertices.length; i+=4) {
+            vertices[i] = quads[i>>2].getVertices()[0];
+            vertices[i+1] = quads[i>>2].getVertices()[1];
+            vertices[i+2] = quads[i>>2].getVertices()[2];
+            vertices[i+3] = quads[i>>2].getVertices()[3];
+        }
+        return vertices;
     }
 }

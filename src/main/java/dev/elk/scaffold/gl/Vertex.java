@@ -13,7 +13,7 @@ import org.joml.Vector3f;
  * @author Felix Kunze
  *
  */
-public class Vertex implements FloatRepresentation {
+public class Vertex implements FloatRepresentation, Cloneable {
 
     public Vector2f position;
     public Vector3f color;
@@ -67,4 +67,16 @@ public class Vertex implements FloatRepresentation {
         return  vertices;
     }
 
+    @Override
+    public Vertex clone() {
+        try {
+            Vertex clone = (Vertex) super.clone();
+            clone.position = new Vector2f(position);
+            clone.color = new Vector3f(color);
+            clone.uvCoord = new Vector2f(uvCoord);
+            return clone;
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError();
+        }
+    }
 }

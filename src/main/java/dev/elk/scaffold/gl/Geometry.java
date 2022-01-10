@@ -4,7 +4,6 @@ import dev.elk.scaffold.util.Utils;
 import org.joml.Vector2f;
 
 import java.util.Arrays;
-import java.util.stream.IntStream;
 
 /**
  * Methods concerning geometry.
@@ -99,14 +98,15 @@ public interface Geometry extends Renderable {
         return getVertices()[0].position;
     }
 
-    /**
-     * Moves the geometry to the given coordinates.
-     * @apiNote The vertex provided from {@link #getOrigin()} will be translated
-     * to the given coordinates.
-     * @param pos the coordinates to move to
-     */
-    default void translateTo(Vector2f pos) {
-        Vector2f translationVector = new Vector2f(pos).sub(getOrigin());
+    default void translateCenterTo(Vector2f pos) {
+        translateTo(pos, centerOfMass());
+    }
+    default void translateOriginTo(Vector2f pos) {
+        translateTo(pos, getOrigin());
+    }
+
+    default void translateTo(Vector2f pos, Vector2f point) {
+        Vector2f translationVector = new Vector2f(pos).sub(point);
         translate(translationVector);
     }
 

@@ -11,6 +11,7 @@ import org.lwjgl.system.windows.DISPLAY_DEVICE;
 import java.awt.*;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
@@ -30,6 +31,8 @@ public class Window {
     private final String title;
     private long glfwWindow;
     public static float dt;
+
+    protected LinkedList<Float> fps = new LinkedList<>();
 
     private Scene currentScene;
 
@@ -94,6 +97,9 @@ public class Window {
         //This enables LWJGL to work with opengl
         GL.createCapabilities();
         PluginRepository.notifyAllOf(EventListener::onCreateGLCapabilities);
+        for (int i = 0; i < 20; i++) {
+            fps.add(0f);
+        }
     }
 
     private void updateDimensions(){
@@ -116,6 +122,10 @@ public class Window {
 
         while (!glfwWindowShouldClose(glfwWindow)) {
             updateDimensions();
+
+            fps.removeFirst();
+            fps.add(1f/dt);
+
             glfwPollEvents();
             glClearColor(r, g, b, a);
             glClear(GL_COLOR_BUFFER_BIT);
@@ -128,6 +138,15 @@ public class Window {
             dt = (float) ((end - start) * 1E-9);
             start = end;
         }
+    }
+
+    public float avgFps(){
+        float total = 0;
+        for (float floatingFP : fps) {
+            total+=floatingFP;
+        }
+        total/=20;
+        return total;
     }
 
     public int getWidth() {

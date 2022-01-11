@@ -185,17 +185,15 @@ public class GsonGenerator {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>(
-                288,
-                120,
-                24,
-                24
+                224,
+                82,
+                28,
+               41
         );
 
         spritesheet.addSprite(
-                new AnimatedSprite(new Vector2i(0,0), new Vector2i(1,2), "einrad", 12),
-                new AnimatedSprite(new Vector2i(0,2),new Vector2i(1,3),"monsterYellow",3),
-                new AnimatedSprite(new Vector2i(0,3),new Vector2i(1,4),"goomba",3),
-                new AnimatedSprite(new Vector2i(0,4),new Vector2i(1,5),"hydra",4)
+                new AnimatedSprite(new Vector2i(0,0), new Vector2i(1,1), "maguJump", 8),
+                new AnimatedSprite(new Vector2i(0,1),new Vector2i(1,2),"maguWalk",3)
         );
 
         FileWriter writer = new FileWriter("Assets/SpriteJson/animations.json");

@@ -28,7 +28,7 @@ public class Player extends Entity implements Actions, Parentable {
 
     @Override
     float getMovementSpeed() {
-        return 5f;
+        return 10f;
     }
 
     @Override

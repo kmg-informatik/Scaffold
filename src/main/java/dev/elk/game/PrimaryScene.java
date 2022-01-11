@@ -55,7 +55,10 @@ public class PrimaryScene extends Scene {
         camera.parentTo(player);
 
         Platform.platforms.add(new Platform(new Vector2f(10, 10)));
+        Platform.platforms.add(new Platform(new Vector2f(30, 20)));
+        Platform.platforms.add(new Platform(new Vector2f(20, 00)));
         Platform.platforms.add(new Platform(new Vector2f(30, 10)));
+
 
         staticBatch.putAll(Platform.platforms.toArray(new Platform[0]));
 

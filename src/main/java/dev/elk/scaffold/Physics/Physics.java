@@ -15,7 +15,7 @@ public interface Physics extends Geometry {
     void setCurrentGravity(float g);
 
     default void fall() {
-        Geometry.super.translate(new Vector2f(0, getCurrentGravity()).mul(Window.dt));
+        Geometry.super.translate(new Vector2f(0, 4 * getCurrentGravity()).mul(Window.dt));
         boolean intersects = false;
         for (Platform platform : Platform.platforms) {
             for (TexturedQuad quad : platform.getPlatformBase()) {

@@ -3,11 +3,10 @@ package dev.elk.scaffold.renderer;
 import org.joml.Vector2f;
 import org.joml.Vector2i;
 
-import java.util.Arrays;
-
 /**
  * Instatiates an individual Sprite.
  * This is essentially a certain part of a bigger Texture, the Spritesheet
+ *
  * @author Felix Kunze
  */
 public class Sprite {

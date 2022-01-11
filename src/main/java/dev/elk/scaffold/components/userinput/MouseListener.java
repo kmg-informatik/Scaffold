@@ -8,6 +8,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 /**
  * The Mouse-listener listens to actions taken by the mouse
  * such as button clicks or moving of the mouse.
+ *
  * @author Louis Schell
  */
 public class MouseListener {
@@ -17,7 +18,8 @@ public class MouseListener {
     private static double xPos, yPos, lastX, lastY;
     private static boolean isDragging;
 
-    private MouseListener(){}
+    private MouseListener() {
+    }
 
     public static void mousePosCallback(long window, double newXPos, double newYPos) {
         lastX = xPos;
@@ -40,8 +42,8 @@ public class MouseListener {
         scrollX = xOffset;
         scrollY = yOffset;
     }
-    
-    public static void reset(){
+
+    public static void reset() {
         scrollX = 0;
         scrollY = 0;
         xPos = 0;
@@ -52,7 +54,7 @@ public class MouseListener {
         isDragging = false;
     }
 
-    public static boolean isPressed(int button){
+    public static boolean isPressed(int button) {
         return buttonsPressed.contains(button);
     }
 

@@ -20,6 +20,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 /**
  * The window containing the running game. Originally copied
  * from GamesWithGame.
+ *
  * @author Louis Schell
  * @author Felix Kunze
  */
@@ -27,22 +28,20 @@ public class Window {
 
     public static int width;
     public static int height;
+    public static float dt;
+    private final LinkedList<Float> fps = new LinkedList<>();
     public String title;
     public long glfwWindow;
     public Color windowColor;
-    public static float dt;
-
-    private final LinkedList<Float> fps = new LinkedList<>();
-
     private Scene currentScene;
-
-    public void setScene(Scene newScene) {
-        this.currentScene = newScene;
-    }
 
     public Window(String title, Color windowColor) {
         this.title = title;
         this.windowColor = windowColor;
+    }
+
+    public void setScene(Scene newScene) {
+        this.currentScene = newScene;
     }
 
     public void run() throws InstantiationException, IOException {
@@ -96,7 +95,7 @@ public class Window {
         }
     }
 
-    private void updateDimensions(){
+    private void updateDimensions() {
         int[] windowWidth = new int[1];
         int[] windowHeight = new int[1];
         glfwGetWindowSize(glfwWindow, windowWidth, windowHeight);
@@ -118,7 +117,7 @@ public class Window {
             updateDimensions();
 
             fps.removeFirst();
-            fps.add(1f/dt);
+            fps.add(1f / dt);
 
             glfwPollEvents();
             glClearColor(windowColor.getRed(),
@@ -127,7 +126,7 @@ public class Window {
                     windowColor.getAlpha());
             glClear(GL_COLOR_BUFFER_BIT);
 
-            if(dt >= 0)
+            if (dt >= 0)
                 currentScene.update();
 
             glfwSwapBuffers(glfwWindow);
@@ -137,12 +136,12 @@ public class Window {
         }
     }
 
-    public float avgFps(){
+    public float avgFps() {
         float total = 0;
         for (float floatingFP : fps) {
-            total+=floatingFP;
+            total += floatingFP;
         }
-        total/=20;
+        total /= 20;
         return total;
     }
 

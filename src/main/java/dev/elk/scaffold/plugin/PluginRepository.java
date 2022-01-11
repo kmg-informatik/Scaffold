@@ -12,22 +12,28 @@ import java.util.function.Consumer;
  * result in them being called more than once (This may be subject to change).
  * Note that the listeners are called in the order in which they were
  * registered to the plugin repository.
+ *
+ * @author Louis Schell
  * @apiNote Use a hashmap rather than an arraylist?
  * @see EventListening
  * @see dev.elk.scaffold.events.Event
- * @author Louis Schell
  */
 public class PluginRepository {
 
-    private PluginRepository(){}
-
     private static final ArrayList<EventListening> listeners = new ArrayList<>();
+
+    static {
+        addListener(AudioPlayer.getSingleton());
+    }
+
+    private PluginRepository() {
+    }
 
     public static ArrayList<EventListening> getListeners() {
         return listeners;
     }
 
-    public static boolean addListener(EventListening listener){
+    public static boolean addListener(EventListening listener) {
         return listeners.add(listener);
     }
 
@@ -37,28 +43,24 @@ public class PluginRepository {
         return listeners.add(instance);
     }
 
-    public static boolean deleteListener(EventListening listener){
+    public static boolean deleteListener(EventListening listener) {
         return listeners.remove(listener);
     }
 
-    public static void notifyAllOf(Consumer<EventListening> consumer){
+    public static void notifyAllOf(Consumer<EventListening> consumer) {
         listeners.forEach(consumer);
     }
 
-    public static void notifyAllOfAsync(Consumer<EventListening> consumer){
+    public static void notifyAllOfAsync(Consumer<EventListening> consumer) {
         assert false : "Not implemented yet";
-        Thread thread = new Thread(()->{
-            try{
+        Thread thread = new Thread(() -> {
+            try {
                 listeners.forEach(consumer);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
         thread.start();
-    }
-
-    static{
-        addListener(AudioPlayer.getSingleton());
     }
 
 }

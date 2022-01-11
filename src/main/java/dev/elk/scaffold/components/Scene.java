@@ -11,27 +11,23 @@ import java.io.IOException;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL15.GL_DYNAMIC_DRAW;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
  * Altered version of the Scene by GamesWithGabe
+ *
  * @author Louis Schell
  * @author Felix Kunze
  */
 public abstract class Scene {
 
-    protected Camera camera;
     protected final Window window;
+    protected Camera camera;
 
     public Scene(Window window) {
         this.window = window;
     }
-
-    public void init() throws InstantiationException, IOException {}
-
-    public abstract void update();
 
     protected static void bufferInit(ShaderProgram program, Batch<Geometry> dynamicBatch) throws InstantiationException {
         program.compile();
@@ -53,6 +49,11 @@ public abstract class Scene {
 
         Vertex.initAttributes(program);
     }
+
+    public void init() throws InstantiationException, IOException {
+    }
+
+    public abstract void update();
 
 
 }

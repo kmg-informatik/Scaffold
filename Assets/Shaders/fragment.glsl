@@ -14,10 +14,10 @@ void main() {
 
     vec4 color;
 
-    if(texCoordsInRange()){
+    if (texCoordsInRange()){
         int texId = int(fTexId);
         color = texture(texSamplers[texId], fTexCoords);
-    }else{
+    } else {
         color = vec4(fColor, 1.0);
     }
 

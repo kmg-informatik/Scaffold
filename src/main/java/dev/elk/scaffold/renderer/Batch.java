@@ -12,6 +12,7 @@ import static org.lwjgl.opengl.GL15.*;
 
 /**
  * Handles Batch rendering allowing multiple triangles and textures to be rendered
+ *
  * @author Louis Schell
  */
 public class Batch<E extends Geometry> {
@@ -21,7 +22,7 @@ public class Batch<E extends Geometry> {
     private final int[] elementArray;
     private int vertexCount = -1;
 
-    public Batch(int estimatedMeshes, int vertexArraySize, int elementArraySize){
+    public Batch(int estimatedMeshes, int vertexArraySize, int elementArraySize) {
         geometries = new ArrayList<>(estimatedMeshes);
         vertexArray = new float[vertexArraySize];
         elementArray = new int[elementArraySize];
@@ -67,7 +68,7 @@ public class Batch<E extends Geometry> {
         vertexCount = vCount;
     }
 
-    public void render(){
+    public void render() {
         vertexCopy();
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, elementArray);
         glBufferSubData(GL_ARRAY_BUFFER, 0, vertexArray);

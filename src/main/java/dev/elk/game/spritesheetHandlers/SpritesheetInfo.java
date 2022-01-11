@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 /**
  * Saves information about spritesheets like Paths and whether
  * they are animated allowing for easier calling.
+ *
  * @author Felix Kunze
  */
 public enum SpritesheetInfo {

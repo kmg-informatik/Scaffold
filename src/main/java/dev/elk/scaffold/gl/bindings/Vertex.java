@@ -11,42 +11,37 @@ import static org.lwjgl.opengl.GL11.GL_FLOAT;
  * to store information about each point of a geometry. <p>
  * Vertices are made up of floats but more generally every
  * type of data can be stored.
- * @apiNote  I have decided upon using POS_TEX as the final Layout. Fight me on that.
+ *
  * @author Louis Schell
  * @author Felix Kunze
- *
+ * @apiNote I have decided upon using POS_TEX as the final Layout. Fight me on that.
  */
 public class Vertex implements FloatRepresentation, Cloneable {
 
+    public static final int STRIDE = 8;
+    public static final int BYTES = STRIDE * Float.BYTES;
+    public static final int POSITION_SIZE = 2;
+    public static final int POSITION_SIZE_BYTES = POSITION_SIZE * Float.BYTES;
+    public static final int COLOR_SIZE = 3;
+    public static final int COLOR_SIZE_BYTES = COLOR_SIZE * Float.BYTES;
+    public static final int UV_COORD_SIZE = 2;
+    public static final int UV_COORD_SIZE_BYTES = UV_COORD_SIZE * Float.BYTES;
+    public static final int TEX_ID_SIZE = 1;
+    public static final int TEX_ID_SIZE_BYTES = TEX_ID_SIZE * Integer.BYTES;
     public Vector2f position;
     public Vector3f color;
     public Vector2f uvCoord;
     public int texId;
 
-    public static final int STRIDE = 8;
-    public static final int BYTES = STRIDE * Float.BYTES;
 
-    public static final int POSITION_SIZE = 2;
-    public static final int POSITION_SIZE_BYTES = POSITION_SIZE * Float.BYTES;
-
-    public static final int COLOR_SIZE = 3;
-    public static final int COLOR_SIZE_BYTES = COLOR_SIZE * Float.BYTES;
-
-    public static final int UV_COORD_SIZE = 2;
-    public static final int UV_COORD_SIZE_BYTES = UV_COORD_SIZE * Float.BYTES;
-
-    public static final int TEX_ID_SIZE = 1;
-    public static final int TEX_ID_SIZE_BYTES = TEX_ID_SIZE * Integer.BYTES;
-
-
-    public Vertex(Vector2f position, Vector3f color, Vector2f uvCoord, int texId){
+    public Vertex(Vector2f position, Vector3f color, Vector2f uvCoord, int texId) {
         this.position = position;
         this.color = color;
         this.uvCoord = uvCoord;
         this.texId = texId;
     }
 
-    public static void initAttributes(ShaderProgram program){
+    public static void initAttributes(ShaderProgram program) {
         VertexAttribute positionAttrib = new VertexAttribute(
                 program,
                 "position",

@@ -14,6 +14,7 @@ public interface Geometry extends Renderable {
 
     /**
      * Calculates the center of the Geometry.
+     *
      * @apiNote Returns the average point of each Vertex
      */
     default Vector2f center() {
@@ -27,10 +28,11 @@ public interface Geometry extends Renderable {
 
     /**
      * Rotates the geometry around the origin by the given amount of radians
+     *
+     * @param radians number of radians
      * @apiNote {@link org.joml.Math} provides a method to convert from
      * degrees to radians
      * @see #rotate(float, Vector2f)
-     * @param radians number of radians
      */
     default void rotateOrigin(float radians) {
         rotate(radians, getOrigin());
@@ -38,22 +40,24 @@ public interface Geometry extends Renderable {
 
     /**
      * Rotates the geometry around its center by the given amount of radians
+     *
+     * @param radians number of radians
      * @apiNote {@link org.joml.Math} provides a method to convert from
      * degrees to radians
      * @see #rotate(float, Vector2f)
-     * @param radians number of radians
      */
-    default void rotateCenter(float radians){
+    default void rotateCenter(float radians) {
         rotate(radians, center());
     }
 
     /**
      * Rotates the geometry around the given pivot point by the given
      * amount of radians
+     *
+     * @param radians number of radians
+     * @param pivot   pivot point to rotate around
      * @apiNote {@link org.joml.Math} provides a method to convert from
      * degrees to radians
-     * @param radians number of radians
-     * @param pivot pivot point to rotate around
      */
     default void rotate(float radians, Vector2f pivot) {
         for (Vertex vertex : getVertices()) {
@@ -63,6 +67,7 @@ public interface Geometry extends Renderable {
 
     /**
      * Measures the maximum height of the geometry.
+     *
      * @apiNote Does not return the dimensions of the geometry!
      */
     default float getHeight() {
@@ -77,6 +82,7 @@ public interface Geometry extends Renderable {
 
     /**
      * Measures the maximum width of the geometry.
+     *
      * @apiNote Does not return the dimensions of the geometry!
      */
     default float getWidth() {
@@ -91,15 +97,17 @@ public interface Geometry extends Renderable {
 
     /**
      * Returns the origin point of the object.
+     *
      * @apiNote Not the center of mass, but a defined origin
      */
-    default Vector2f getOrigin(){
+    default Vector2f getOrigin() {
         return getVertices()[0].position;
     }
 
     default void translateCenterTo(Vector2f pos) {
         translateTo(pos, center());
     }
+
     default void translateOriginTo(Vector2f pos) {
         translateTo(pos, getOrigin());
     }
@@ -111,6 +119,7 @@ public interface Geometry extends Renderable {
 
     /**
      * Translates the geometry by the given vector.
+     *
      * @param vector the vector to move with
      */
     default void translate(Vector2f vector) {
@@ -122,7 +131,7 @@ public interface Geometry extends Renderable {
     /**
      * Flips the geometry on the x-axis through the center of the geometry.
      */
-    default void flipX(Vector2f flipAt){
+    default void flipX(Vector2f flipAt) {
         Vertex[] vertices = getVertices();
         translate(new Vector2f(0, -flipAt.y));
 
@@ -136,7 +145,7 @@ public interface Geometry extends Renderable {
     /**
      * Flips the geometry on the y-axis through the center of the geometry.
      */
-    default void flipY(Vector2f flipAt){
+    default void flipY(Vector2f flipAt) {
         Vertex[] vertices = getVertices();
         translate(new Vector2f(-flipAt.x, 0));
 
@@ -206,25 +215,28 @@ public interface Geometry extends Renderable {
 
     /**
      * Scales the geometry from its origin point by a given scalar
+     *
      * @param scalar the scalar to scale with
      */
-    default void scaleOrigin(float scalar){
+    default void scaleOrigin(float scalar) {
         scale(scalar, getOrigin());
     }
 
     /**
      * Scales the geometry from its center point by a given scalar
+     *
      * @param scalar the scalar to scale with
      */
-    default void scaleCenter(float scalar){
+    default void scaleCenter(float scalar) {
         scale(scalar, center());
     }
 
     /**
      * Scales the geometry from a given point by a given scalar
+     *
      * @param scalar the scalar to scale with
      */
-    default void scale(float scalar, Vector2f origin){
+    default void scale(float scalar, Vector2f origin) {
         Vertex[] vertices = getVertices();
         for (Vertex vertex : vertices) {
             vertex.position.sub(origin);
@@ -235,6 +247,7 @@ public interface Geometry extends Renderable {
 
     /**
      * Turns the vertices of the mesh into an array of floats.
+     *
      * @return vertices of mesh as an array of floats
      */
     @Override

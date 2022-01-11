@@ -14,22 +14,29 @@ import java.util.List;
 
 /**
  * This splices a big texture into many smaller spritesheets according to a specifcation derived from a json file.
+ *
  * @author Felix Kunze
  */
-public class Spritesheet<T extends Sprite>{
-
-    final int sheetWidth, sheetHeight, tileWidth, tileHeight;
+public class Spritesheet<T extends Sprite> {
 
     public static final HashMap<String, AnimatedSprite> ANIMATED_SPRITES = new HashMap<>();
     public static final HashMap<String, Sprite> STATIC_SPRITES = new HashMap<>();
-
+    final int sheetWidth, sheetHeight, tileWidth, tileHeight;
     private final ArrayList<T> spritesTemp = new ArrayList<>();
+
+    public Spritesheet(int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
+        this.sheetWidth = sheetWidth;
+        this.sheetHeight = sheetHeight;
+        this.tileWidth = tileWidth;
+        this.tileHeight = tileHeight;
+    }
 
     public static void fromAnimated(Path path, Path texturePath) throws IOException {
         GsonBuilder gson = new GsonBuilder();
         Spritesheet<AnimatedSprite> spritesheet = gson.create().fromJson(
                 new String(Files.readAllBytes(path)),
-                new TypeToken<Spritesheet<AnimatedSprite>>(){}.getType()
+                new TypeToken<Spritesheet<AnimatedSprite>>() {
+                }.getType()
         );
         spritesheet.init(new Texture(texturePath));
 
@@ -43,7 +50,8 @@ public class Spritesheet<T extends Sprite>{
         GsonBuilder gson = new GsonBuilder();
         Spritesheet<Sprite> spritesheet = gson.create().fromJson(
                 new String(Files.readAllBytes(path)),
-                new TypeToken<Spritesheet<Sprite>>(){}.getType()
+                new TypeToken<Spritesheet<Sprite>>() {
+                }.getType()
         );
         spritesheet.init(new Texture(texturePath));
 
@@ -71,13 +79,6 @@ public class Spritesheet<T extends Sprite>{
 
             sprite.setUvCoords(uvCoords);
         }
-    }
-
-    public Spritesheet(int sheetWidth, int sheetHeight, int tileWidth, int tileHeight) {
-        this.sheetWidth = sheetWidth;
-        this.sheetHeight = sheetHeight;
-        this.tileWidth = tileWidth;
-        this.tileHeight = tileHeight;
     }
 
     public void addSprite(T... sprites) {

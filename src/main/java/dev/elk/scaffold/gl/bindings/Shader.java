@@ -12,9 +12,10 @@ import static org.lwjgl.opengl.GL20.*;
  * and OpenGL shader program. <p>
  * Shader code can be compiled, by calling {@link #compile()} and
  * is then linked by the {@link ShaderProgram}.
- * @see ShaderProgram
+ *
  * @author Louis Schell
  * @author Felix Kunze
+ * @see ShaderProgram
  */
 public class Shader {
 
@@ -27,6 +28,10 @@ public class Shader {
         this.filepath = filepath;
         this.shaderType = shaderType;
         this.shaderSource = loadShaderSource(filepath);
+    }
+
+    private static String loadShaderSource(String filepath) throws IOException {
+        return new String(Files.readAllBytes(Path.of(filepath)));
     }
 
     public void compile() throws InstantiationException {
@@ -48,10 +53,6 @@ public class Shader {
         }
     }
 
-    private static String loadShaderSource(String filepath) throws IOException {
-        return new String(Files.readAllBytes(Path.of(filepath)));
-    }
-
     public ShaderType getShaderType() {
         return shaderType;
     }
@@ -64,13 +65,13 @@ public class Shader {
         return shaderId;
     }
 
-    public enum ShaderType{
+    public enum ShaderType {
         VERTEX(GL_VERTEX_SHADER),
         FRAGMENT(GL_FRAGMENT_SHADER);
 
         final int GL_TYPE;
 
-        ShaderType(int GL_TYPE){
+        ShaderType(int GL_TYPE) {
             this.GL_TYPE = GL_TYPE;
         }
     }

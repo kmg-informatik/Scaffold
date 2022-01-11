@@ -6,6 +6,7 @@ import dev.elk.scaffold.gl.bindings.Vertex;
  * All things that are to be rendered must include the
  * renderable interface. It forces subclasses to provide
  * indices and vertices needed by OpenGL.
+ *
  * @author Louis Schell
  * @author Felix Kunze
  */
@@ -25,7 +26,7 @@ public interface Renderable extends FloatRepresentation {
     /**
      * Returns the count of vertices.
      */
-    default int vertexCount(){
+    default int vertexCount() {
         return getVertices().length;
     }
 

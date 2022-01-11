@@ -1,6 +1,5 @@
 package dev.elk.game.spritesheetHandlers;
 
-import dev.elk.game.fontSettings.Font;
 import dev.elk.scaffold.renderer.Spritesheet;
 import dev.elk.scaffold.renderer.Texture;
 
@@ -9,8 +8,9 @@ import java.util.ArrayList;
 
 /**
  * Builds a Spritesheet according to information provided.
- * @see SpritesheetInfo
+ *
  * @auhor Felix Kunze
+ * @see SpritesheetInfo
  */
 public class SpritesheetBuilder {
 
@@ -20,7 +20,7 @@ public class SpritesheetBuilder {
         if (spritesheetInfo.isAnimated) {
             Spritesheet.fromAnimated(spritesheetInfo.jsonPath, spritesheetInfo.texturePath);
         }
-        Spritesheet.from(spritesheetInfo.jsonPath,spritesheetInfo.texturePath);
+        Spritesheet.from(spritesheetInfo.jsonPath, spritesheetInfo.texturePath);
     }
 
     public static void generateAllSpritesheets() throws IOException {

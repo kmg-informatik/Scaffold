@@ -1,26 +1,26 @@
 package dev.elk.scaffold.plugin;
 
-import java.util.ArrayList;
-
 import dev.elk.scaffold.al.AudioClip;
 import dev.elk.scaffold.al.MusicClip;
 import dev.elk.scaffold.al.SoundClip;
+
+import java.util.ArrayList;
 
 /**
  * Manages all audio being played, keeps track of MusicClips, as to pause/stop/restart them, only starts SoundClips.
  * Only works if every one MusicClip is only played once at a time (e.g.: music1, music 2: can play simultaneously;
  * music 1, music 1: can't play simultaneously)
+ *
  * @author Eric Jacob
  * @author Louis Schell
  */
 public class AudioPlayer implements EventListening {
 
-    private static AudioPlayer singleton = new AudioPlayer();
     private static final ArrayList<MusicClip> musicClipsPlaying = new ArrayList<>();    //saves currently playing music
-
     private static final AudioClip soundJump = new SoundClip("Assets/Audios/sfx_movement_jump7.wav");
     private static final MusicClip caveTheme = new MusicClip("Assets/Audios/cave_theme.wav", true);
     private static final MusicClip melaTheme = new MusicClip("Assets/Audios/Ove Melaa -Supa Powa C.wav", false);
+    private static AudioPlayer singleton = new AudioPlayer();
 
     private AudioPlayer() {
     }
@@ -32,26 +32,6 @@ public class AudioPlayer implements EventListening {
      */
     public static AudioPlayer getSingleton() {
         return singleton;
-    }
-
-    @Override
-    public void onJump() {
-        play(soundJump);
-    }
-
-    @Override
-    public void onGameStart() {
-        play(caveTheme);
-    }
-
-    @Override
-    public void onGamePause() {
-        pause(caveTheme);  //TODO is filepath really necessary or can i just hand the caveTheme object? (prob not)
-    }
-
-    @Override
-    public void onGameStop() {
-        stop(caveTheme);
     }
 
     /**
@@ -116,5 +96,25 @@ public class AudioPlayer implements EventListening {
         }
         musicClipsPlaying.clear();
         singleton = null;
+    }
+
+    @Override
+    public void onJump() {
+        play(soundJump);
+    }
+
+    @Override
+    public void onGameStart() {
+        play(caveTheme);
+    }
+
+    @Override
+    public void onGamePause() {
+        pause(caveTheme);  //TODO is filepath really necessary or can i just hand the caveTheme object? (prob not)
+    }
+
+    @Override
+    public void onGameStop() {
+        stop(caveTheme);
     }
 }

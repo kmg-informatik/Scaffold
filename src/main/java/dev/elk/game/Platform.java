@@ -12,6 +12,7 @@ import java.util.Random;
 
 /**
  * Platform that generates simple Terrain automatically
+ *
  * @author Felix Kunze
  */
 public class Platform implements Geometry {
@@ -44,9 +45,9 @@ public class Platform implements Geometry {
                 "treeLong",
         };
         return new TexturedQuad(
-                new Vector2f(position.x + 3 * tileSize, position.y+tileSize),
+                new Vector2f(position.x + 3 * tileSize, position.y + tileSize),
                 tileSize,
-                2*tileSize,
+                2 * tileSize,
                 Spritesheet.STATIC_SPRITES.get(treeTypes[new Random().nextInt(treeTypes.length)])
         );
 
@@ -56,20 +57,20 @@ public class Platform implements Geometry {
 
         TexturedSquare[] platformBase = new TexturedSquare[new Random().nextInt(6) + 4];
         platformBase[0] = new TexturedSquare(
-                new Vector2f(position.x , position.y ),
+                new Vector2f(position.x, position.y),
                 tileSize,
                 Spritesheet.STATIC_SPRITES.get("grass2RightBottom")
         );
         for (int i = 1; i < platformBase.length - 1; i++) {
             platformBase[i] = new TexturedSquare(
-                    new Vector2f(position.x + tileSize * (i), position.y ),
+                    new Vector2f(position.x + tileSize * (i), position.y),
                     tileSize,
                     Spritesheet.STATIC_SPRITES.get("grassTop")
             );
         }
 
-        platformBase[platformBase.length -1] = new TexturedSquare(
-                new Vector2f(position.x + tileSize * (platformBase.length - 1), position.y ),
+        platformBase[platformBase.length - 1] = new TexturedSquare(
+                new Vector2f(position.x + tileSize * (platformBase.length - 1), position.y),
                 tileSize,
                 Spritesheet.STATIC_SPRITES.get("grass2LeftBottom")
         );
@@ -78,34 +79,34 @@ public class Platform implements Geometry {
 
     @Override
     public int[] getIndices() {
-        int[] indices = new int[quads.length*6];
+        int[] indices = new int[quads.length * 6];
         int addTo = 0;
         for (int i = 0; i < quads.length; i++) {
-            indices[i*6] = i + addTo;
-            indices[i*6+1] = i+1 + addTo;
-            indices[i*6+2] = i+2 + addTo;
-            indices[i*6+3] = i+2 + addTo;
-            indices[i*6+4] = i+3 + addTo;
-            indices[i*6+5] = i + addTo;
-            addTo+=3;
+            indices[i * 6] = i + addTo;
+            indices[i * 6 + 1] = i + 1 + addTo;
+            indices[i * 6 + 2] = i + 2 + addTo;
+            indices[i * 6 + 3] = i + 2 + addTo;
+            indices[i * 6 + 4] = i + 3 + addTo;
+            indices[i * 6 + 5] = i + addTo;
+            addTo += 3;
         }
         return indices;
     }
 
     @Override
     public Vertex[] getVertices() {
-        Vertex[] vertices = new Vertex[quads.length<<2];
-        for (int i = 0; i < vertices.length; i+=4) {
-            vertices[i] = quads[i>>2].getVertices()[0];
-            vertices[i+1] = quads[i>>2].getVertices()[1];
-            vertices[i+2] = quads[i>>2].getVertices()[2];
-            vertices[i+3] = quads[i>>2].getVertices()[3];
+        Vertex[] vertices = new Vertex[quads.length << 2];
+        for (int i = 0; i < vertices.length; i += 4) {
+            vertices[i] = quads[i >> 2].getVertices()[0];
+            vertices[i + 1] = quads[i >> 2].getVertices()[1];
+            vertices[i + 2] = quads[i >> 2].getVertices()[2];
+            vertices[i + 3] = quads[i >> 2].getVertices()[3];
         }
         return vertices;
     }
 
     public TexturedQuad[] getPlatformBase() {
-        TexturedQuad[] arr = new TexturedQuad[quads.length -1];
+        TexturedQuad[] arr = new TexturedQuad[quads.length - 1];
         System.arraycopy(quads, 0, arr, 0, arr.length);
         return arr;
     }

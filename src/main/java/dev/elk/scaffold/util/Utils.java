@@ -7,13 +7,11 @@ import java.awt.*;
 
 /**
  * Helper class for varried methods, mostly in relation to Math
+ *
  * @author Louis Schell
  * @author Felix Kunze
  */
 public final class Utils {
-
-    public static Color FALLBACK_COLOR = new Color(218, 58, 255);
-    public static Vector2f INVALID_TEXTURE_COORDS = new Vector2f(-1,-1);
 
     public static final int
             KEY_W = 87,
@@ -23,9 +21,10 @@ public final class Utils {
             KEY_R = 82,
             KEY_TAB = 9,
             KEY_SPACE = 32;
+    public static Color FALLBACK_COLOR = new Color(218, 58, 255);
+    public static Vector2f INVALID_TEXTURE_COORDS = new Vector2f(-1, -1);
 
-
-    public static void rotateVector(Vector2f point, Vector2f pivot, float angle){
+    public static void rotateVector(Vector2f point, Vector2f pivot, float angle) {
         float c = Math.cos(angle);
         float s = Math.sin(angle);
 
@@ -46,7 +45,7 @@ public final class Utils {
 
     }
 
-    public static float[] findMinMaxElem(float[] arr){
+    public static float[] findMinMaxElem(float[] arr) {
         float max = Float.NEGATIVE_INFINITY;
         float min = Float.POSITIVE_INFINITY;
 
@@ -54,7 +53,7 @@ public final class Utils {
             max = java.lang.Math.max(elem, max);
             min = java.lang.Math.min(min, elem);
         }
-        return new float[]{min,max};
+        return new float[]{min, max};
     }
 
 }

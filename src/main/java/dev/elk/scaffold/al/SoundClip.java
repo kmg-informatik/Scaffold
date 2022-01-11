@@ -4,7 +4,6 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * SoundClip is meant for short sounds, e.g. when jumping, that are not to be interacted with besides being played. <br>

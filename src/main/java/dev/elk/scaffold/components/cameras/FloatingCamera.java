@@ -7,15 +7,15 @@ import java.util.List;
 
 /**
  * Specific subtype of camera with functionality that allows for f.ex. following of players
+ *
  * @author Louis Schell
  */
-public class FloatingCamera extends Camera{
+public class FloatingCamera extends Camera {
 
     private final List<Vector2f> lastPositions = new ArrayList<>();
     private final int originalSampleSize;
-    private int currentSampleSize;
-
     private final float yMultiplierOriginal = 0.2f;
+    private int currentSampleSize;
     private float yMultiplier = yMultiplierOriginal;
 
     public FloatingCamera(Vector2f position, int originalSampleSize) {
@@ -40,7 +40,7 @@ public class FloatingCamera extends Camera{
         for (int i = originalSampleSize - currentSampleSize; i < currentSampleSize; i++) {
             Vector2f lastPosition = new Vector2f(lastPositions.get(i));
 
-            float scalar = (float) ((double)(1)/(currentSampleSize -i));
+            float scalar = (float) ((double) (1) / (currentSampleSize - i));
             scalarTotal += scalar;
             avg.add(lastPosition.mul(scalar));
         }
@@ -49,11 +49,11 @@ public class FloatingCamera extends Camera{
 
         yMultiplier = (float) (Math.round(yMultiplier * 1000.0) / 1000.0);
 
-        if (Math.abs(this.position.y - parentPos.y) > 2.0){
-            yMultiplier+= 0.01;
-        }else{
+        if (Math.abs(this.position.y - parentPos.y) > 2.0) {
+            yMultiplier += 0.01;
+        } else {
             if (yMultiplier > yMultiplierOriginal)
-                yMultiplier-= 0.01;
+                yMultiplier -= 0.01;
         }
         adjustProjection();
         return avg;

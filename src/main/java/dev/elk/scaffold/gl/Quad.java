@@ -28,30 +28,30 @@ public class Quad implements Geometry {
     public Quad(Vector2f posLB, Vector2f posTR, Color color) {
         this(
                 posLB,
-             new Vector2f(posLB).add(new Vector2f(posTR.x-posLB.x, 0)),
-             posTR,
-             new Vector2f(posLB).add(new Vector2f(0, posTR.y-posLB.y)),
-             color);
+                new Vector2f(posLB).add(new Vector2f(posTR.x - posLB.x, 0)),
+                posTR,
+                new Vector2f(posLB).add(new Vector2f(0, posTR.y - posLB.y)),
+                color);
     }
 
-    public Quad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Color color){
+    public Quad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Color color) {
         this(
                 pos1,
                 pos2,
                 pos3,
                 pos4,
                 color,
-                new Vector2f[]{Utils.INVALID_TEXTURE_COORDS,Utils.INVALID_TEXTURE_COORDS,
-                        Utils.INVALID_TEXTURE_COORDS,Utils.INVALID_TEXTURE_COORDS}
-                );
+                new Vector2f[]{Utils.INVALID_TEXTURE_COORDS, Utils.INVALID_TEXTURE_COORDS,
+                        Utils.INVALID_TEXTURE_COORDS, Utils.INVALID_TEXTURE_COORDS}
+        );
     }
 
     protected Quad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Color color, Vector2f[] texCoords) {
-        this(pos1, pos2, pos3, pos4, color, texCoords,0);
+        this(pos1, pos2, pos3, pos4, color, texCoords, 0);
 
     }
 
-    protected Quad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Color color, Vector2f[] texCoords, int texId){
+    protected Quad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Color color, Vector2f[] texCoords, int texId) {
         Vector3f colorVec = new Vector3f(color.getRGBColorComponents(null));
         vertices[0] = new Vertex(new Vector2f(pos1), colorVec, texCoords[0], texId);
         vertices[1] = new Vertex(new Vector2f(pos2), colorVec, texCoords[1], texId);

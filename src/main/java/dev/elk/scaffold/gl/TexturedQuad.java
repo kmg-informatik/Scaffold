@@ -7,22 +7,23 @@ import java.awt.*;
 
 /**
  * A Quad that implements a Sprite with a texture in addition to the normal Quad information
+ *
  * @author Louis Schell
  * @author Felix Kunze
  */
-public class TexturedQuad extends Quad{
+public class TexturedQuad extends Quad {
 
     private Sprite sprite;
 
     public TexturedQuad(Vector2f posLB, Vector2f posTR, Sprite sprite) {
         this(posLB,
-                new Vector2f(posLB).add(new Vector2f(posTR.x-posLB.x, 0)),
+                new Vector2f(posLB).add(new Vector2f(posTR.x - posLB.x, 0)),
                 posTR,
-                new Vector2f(posLB).add(new Vector2f(0, posTR.y-posLB.y)),
+                new Vector2f(posLB).add(new Vector2f(0, posTR.y - posLB.y)),
                 sprite);
     }
 
-    public TexturedQuad(Vector2f posLB, float width, float height,Sprite sprite){
+    public TexturedQuad(Vector2f posLB, float width, float height, Sprite sprite) {
         this(posLB, new Vector2f(posLB).add(width, height), sprite);
     }
 

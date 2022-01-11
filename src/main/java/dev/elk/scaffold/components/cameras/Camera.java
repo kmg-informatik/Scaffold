@@ -13,16 +13,14 @@ public class Camera implements Component {
 
     protected final Matrix4f projectionMatrix;
     protected final Matrix4f viewMatrix;
-    protected Matrix4f inverseProjection;
-    protected Matrix4f inverseView;
-    private Parentable parentable;
-    public Vector2f position;
-
     protected final float projectionWidth = 20;
     protected final float projectionHeight = 20;
     protected final Vector2f projectionSize = new Vector2f(projectionWidth, projectionHeight);
-
+    public Vector2f position;
+    protected Matrix4f inverseProjection;
+    protected Matrix4f inverseView;
     protected float zoom = 1.0f;
+    private Parentable parentable;
 
     public Camera(Vector2f position, float zoom) {
         this.zoom = zoom;
@@ -34,7 +32,7 @@ public class Camera implements Component {
         adjustProjection();
     }
 
-    public void parentTo(Parentable parentable){
+    public void parentTo(Parentable parentable) {
         this.parentable = parentable;
     }
 
@@ -91,7 +89,7 @@ public class Camera implements Component {
 
     @Override
     public void update() {
-        if (parentable!=null){
+        if (parentable != null) {
             this.position = parentable.getPosition();
         }
     }

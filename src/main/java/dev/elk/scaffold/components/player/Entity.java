@@ -11,7 +11,7 @@ import org.joml.Vector2f;
  */
 public abstract class Entity extends PhysicsQuad implements Component {
 
-    public Entity(AnimatedSprite sprite, Vector2f lb, Vector2f tr){
+    public Entity(AnimatedSprite sprite, Vector2f lb, Vector2f tr) {
         super(sprite, lb, tr);
     }
 

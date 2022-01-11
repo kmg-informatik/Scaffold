@@ -4,6 +4,7 @@ import org.joml.Vector2f;
 
 /**
  * Interface allowing for position inheritance
+ *
  * @author Louis Schell
  */
 public interface Parentable {

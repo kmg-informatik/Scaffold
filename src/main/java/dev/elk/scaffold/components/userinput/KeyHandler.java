@@ -8,12 +8,14 @@ import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 /**
  * The Key-Listener listens to button-presses on the keyboard.
  * Original code from GamesWithGabe, heavily modified.
+ *
  * @author Louis Schell
  */
 public class KeyHandler {
     private static final HashSet<Integer> keyPressed = new HashSet<>();
 
-    private KeyHandler() {}
+    private KeyHandler() {
+    }
 
     public static void keyCallback(long window, int key, int scancode, int action, int mods) {
         if (action == GLFW_PRESS) {

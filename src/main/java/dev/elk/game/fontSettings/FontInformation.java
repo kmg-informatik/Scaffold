@@ -5,10 +5,11 @@ import java.nio.file.Paths;
 
 /**
  * A wrapper for information about Fonts.
- * @see Font
- * @see dev.elk.scaffold.renderer.Text
+ *
  * @author Felix Kunze
  * @author Louis Schell
+ * @see Font
+ * @see dev.elk.scaffold.renderer.Text
  */
 public class FontInformation {
 
@@ -26,7 +27,7 @@ public class FontInformation {
         this.jsonPath = Paths.get("Assets/SpriteJson/fonts/" + font.name + ".json");
         this.pngPath = Paths.get("Assets/Spritesheets/fonts/" + font.name + ".png");
         this.heightWidthRatio = font.heightWidthRatio;
-        this.fontWhitespace = fontSize*0.04f;
+        this.fontWhitespace = fontSize * 0.04f;
         this.fontSize = fontSize / 10;
         this.fontID = font.fontID;
     }

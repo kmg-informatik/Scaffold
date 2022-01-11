@@ -2,13 +2,14 @@ package dev.elk.game.fontSettings;
 
 /**
  * Saves information about specific fonts
+ *
  * @author Felix Kunze
  * @author Louis Schell
  */
 public enum Font {
-    COZETTE("cozette","coz", 18f/16f),
-    JETBRAINS_MONO("jetbrainsMono", "jbm",20f/16f),
-    TIMES_NEW_ROMAN("timesNewRoman", "tnr", 20f/16f);
+    COZETTE("cozette", "coz", 18f / 16f),
+    JETBRAINS_MONO("jetbrainsMono", "jbm", 20f / 16f),
+    TIMES_NEW_ROMAN("timesNewRoman", "tnr", 20f / 16f);
 
     public final String name;
     public final float heightWidthRatio;
@@ -16,7 +17,8 @@ public enum Font {
 
     /**
      * Generator for fonts
-     * @param name The id that is used to get file names
+     *
+     * @param name             The id that is used to get file names
      * @param heightWidthRatio The ratio of height to width since most fonts have
      *                         glyphs are taller than they are wide.
      */

@@ -1,6 +1,6 @@
 package dev.elk.scaffold.al;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.Clip;
 
 /**
  * AudioClip defines methods and variables for MusicClip and SoundClip.
@@ -20,6 +20,10 @@ public abstract class AudioClip {
         this.filePath = filepath;
     }
 
+    public Clip getClip() {
+        return this.clip;
+    }
+
     /**
      * used by MusicClip to set the clip after going through a different openClip() method (done so MusicClip can save the AudioInputStream)
      *
@@ -27,10 +31,6 @@ public abstract class AudioClip {
      */
     public void setClip(Clip clip) {
         this.clip = clip;
-    }
-
-    public Clip getClip() {
-        return this.clip;
     }
 
     /**

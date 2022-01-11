@@ -3,19 +3,16 @@ package dev.elk.scaffold.components.player;
 import dev.elk.scaffold.components.userinput.KeyHandler;
 import dev.elk.scaffold.gl.Window;
 import dev.elk.scaffold.renderer.AnimatedSprite;
-import static dev.elk.scaffold.util.Utils.*;
-
-import dev.elk.scaffold.renderer.Spritesheet;
 import org.joml.Vector2f;
 
-import java.util.Arrays;
+import static dev.elk.scaffold.util.Utils.*;
 
 /**
  * @author Felix Kunze
  * @author Louis Schell
  * @since 11/01/2022
  */
-public class Player extends Entity implements Actions, Parentable{
+public class Player extends Entity implements Actions, Parentable {
 
     private boolean facingRight;
     private Vector2f movementVector;

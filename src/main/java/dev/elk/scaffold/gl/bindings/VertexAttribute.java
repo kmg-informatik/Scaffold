@@ -1,6 +1,5 @@
 package dev.elk.scaffold.gl.bindings;
 
-import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.*;
 
 /**

@@ -1,7 +1,7 @@
 package dev.elk.scaffold.gl;
 
 import dev.elk.scaffold.components.Scene;
-import dev.elk.scaffold.components.userinput.KeyListener;
+import dev.elk.scaffold.components.userinput.KeyHandler;
 import dev.elk.scaffold.components.userinput.MouseListener;
 import dev.elk.scaffold.plugin.EventListening;
 import dev.elk.scaffold.plugin.PluginRepository;
@@ -25,8 +25,8 @@ import static org.lwjgl.system.MemoryUtil.NULL;
  */
 public class Window {
 
-    public int width;
-    public int height;
+    public static int width;
+    public static int height;
     public String title;
     public long glfwWindow;
     public Color windowColor;
@@ -82,7 +82,7 @@ public class Window {
         glfwSetCursorPosCallback(glfwWindow, MouseListener::mousePosCallback);
         glfwSetMouseButtonCallback(glfwWindow, MouseListener::mouseButtonCallback);
         glfwSetScrollCallback(glfwWindow, MouseListener::mouseScrollCallback);
-        glfwSetKeyCallback(glfwWindow, KeyListener::keyCallback);
+        glfwSetKeyCallback(glfwWindow, KeyHandler::keyCallback);
 
         glfwMakeContextCurrent(glfwWindow);
         glfwSwapInterval(1);

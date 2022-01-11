@@ -5,10 +5,12 @@ import dev.elk.game.fontSettings.FontInformation;
 import dev.elk.game.spritesheetHandlers.SpritesheetInfo;
 import dev.elk.scaffold.components.Scene;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
+import dev.elk.scaffold.components.player.Player;
 import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.gl.Window;
 import dev.elk.scaffold.gl.bindings.ShaderProgram;
+import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.renderer.Batch;
 import dev.elk.scaffold.renderer.Spritesheet;
 import dev.elk.scaffold.renderer.Text;
@@ -18,6 +20,9 @@ import org.joml.Vector2f;
 import java.io.IOException;
 
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.*;
+import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL30.glBindVertexArray;
+import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
  * Test scene for stuff. Mainly first tests of OpenGL and textures and stuff.
@@ -28,9 +33,10 @@ import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.*;
 public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
+    private Player player;
 
-    private final Batch<Geometry> dynamicBatch = new Batch<>(2000, 2_000_000, 750_000);
-    private final Batch<Geometry> staticBatch = new Batch<>(2000, 2_000_000, 750_000);
+    private final Batch<Geometry> dynamicBatch = new Batch<>(2000, 2_00_000, 75_000);
+    private final Batch<Geometry> staticBatch = new Batch<>(2000, 2_00_000, 75_000);
 
     private TexturedQuad quad;
     private Text text;
@@ -41,13 +47,18 @@ public class PrimaryScene extends Scene {
     }
 
     public void init() throws InstantiationException, IOException {
+
         bufferInit(program, dynamicBatch);
-
         generateAllSpritesheets();
+        Vertex.initAttributes(program);
 
-
+        generateSpritesheets(SpritesheetInfo.COZETTE);
+        generateSpritesheets(SpritesheetInfo.TILES);
+        generateSpritesheets(SpritesheetInfo.ANIMATIONS);
 
         this.camera = new FloatingCamera(new Vector2f(), 20);
+        player = new Player(Spritesheet.ANIMATED_SPRITES.get("einrad"),new Vector2f(), new Vector2f(2,2));
+        camera.parentTo(player);
 
         Platform platform = new Platform(new Vector2f(10,10));
         staticBatch.put(platform);
@@ -58,12 +69,15 @@ public class PrimaryScene extends Scene {
     @Override
     public void update() {
         dynamicBatch.getGeometries().clear();
+        dynamicBatch.put(player);
+
+        player.update();
 
         camera.adjustProjection();
         //camera.position = camera.getNextPosition(quad.center());
         program.uploadMat4f("cameraProjection",camera.getProjectionMatrix());
         program.uploadMat4f("cameraView",camera.getViewMatrix());
-        program.uploadFloat("windowStretch", window.height/(float) window.width);
+        program.uploadFloat("windowStretch", Window.height /(float) Window.width);
         program.uploadTextures("texSamplers");
 
         dynamicBatch.render();

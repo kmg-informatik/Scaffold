@@ -34,6 +34,8 @@ public interface Physics extends Geometry {
     }
 
     default boolean intersects(Geometry... geometries) {
+        if (geometries == null)
+            return false;
         return Arrays.stream(geometries).anyMatch(geometry ->
                 this.getMinX() < geometry.getMaxX() &&
                         this.getMaxX() > geometry.getMinX() &&

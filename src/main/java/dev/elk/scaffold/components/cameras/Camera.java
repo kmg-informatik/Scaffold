@@ -1,11 +1,10 @@
 package dev.elk.scaffold.components.cameras;
 
+import dev.elk.scaffold.components.player.Parentable;
 import dev.elk.scaffold.gl.Component;
-import dev.elk.scaffold.gl.Window;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 
 /**
  * Camera object. Code copied from GamesWithGabe.
@@ -16,6 +15,7 @@ public class Camera implements Component {
     protected final Matrix4f viewMatrix;
     protected Matrix4f inverseProjection;
     protected Matrix4f inverseView;
+    private Parentable parentable;
     public Vector2f position;
 
     protected final float projectionWidth = 20;
@@ -31,6 +31,10 @@ public class Camera implements Component {
         this.inverseProjection = new Matrix4f();
         this.inverseView = new Matrix4f();
         adjustProjection();
+    }
+
+    public void parentTo(Parentable parentable){
+        this.parentable = parentable;
     }
 
     public void adjustProjection() {
@@ -78,6 +82,13 @@ public class Camera implements Component {
 
     public void addZoom(float value) {
         this.zoom += value;
+    }
+
+    @Override
+    public void update() {
+        if (parentable!=null){
+            this.position = parentable.getPosition();
+        }
     }
 }
 

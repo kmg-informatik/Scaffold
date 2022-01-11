@@ -10,10 +10,10 @@ import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
  * Original code from GamesWithGabe, heavily modified.
  * @author Louis Schell
  */
-public class KeyListener {
+public class KeyHandler {
     private static final HashSet<Integer> keyPressed = new HashSet<>();
 
-    private KeyListener() {}
+    private KeyHandler() {}
 
     public static void keyCallback(long window, int key, int scancode, int action, int mods) {
         if (action == GLFW_PRESS) {

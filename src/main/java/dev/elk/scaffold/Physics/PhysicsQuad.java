@@ -17,7 +17,6 @@ public class PhysicsQuad extends TexturedQuad implements Physics {
         super(posLB, posTR, sprite);
     }
 
-
     private float gravity = Physics.NORMAL_GRAVITY;
 
     @Override

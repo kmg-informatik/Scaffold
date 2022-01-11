@@ -17,12 +17,20 @@ public class TexturedQuad extends Quad{
                 sprite);
     }
 
-    public TexturedQuad(Sprite sprite, Vector2f posLB, float width, float height){
+    public TexturedQuad(Vector2f posLB, float width, float height,Sprite sprite){
         this(posLB, new Vector2f(posLB).add(width, height), sprite);
     }
 
     public TexturedQuad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Sprite sprite) {
-        super(pos1, pos2, pos3, pos4, Color.BLACK, sprite.getUvCoords());
+        super(
+                pos1,
+                pos2,
+                pos3,
+                pos4,
+                Color.BLACK,
+                sprite.getUvCoords(),
+                sprite.getTexture().getTexID()
+        );
         this.sprite = sprite;
     }
 

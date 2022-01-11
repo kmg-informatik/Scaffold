@@ -44,10 +44,10 @@ public class Text implements Geometry {
         for (int i = 0; i < text.length(); i++) {
             String spriteName = fontInformation.getFontID()+ "_" + text.charAt(i);
             quads[i] = new TexturedQuad(
-                    Spritesheet.STATIC_SPRITES.get(spriteName),
                     new Vector2f(position.x + i * (fontInformation.getFontSize() - fontInformation.getFontWhitespace()), position.y),
                     fontInformation.getFontSize(),
-                    fontInformation.getFontSize() * fontInformation.getHeightWidthRatio()
+                    fontInformation.getFontSize() * fontInformation.getHeightWidthRatio(),
+                    Spritesheet.STATIC_SPRITES.get(spriteName)
             );
         }
         translateOriginTo(position);

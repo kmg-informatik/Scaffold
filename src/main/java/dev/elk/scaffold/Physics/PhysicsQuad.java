@@ -10,7 +10,7 @@ import java.awt.*;
 public class PhysicsQuad extends TexturedQuad implements Physics {
 
     public PhysicsQuad(Sprite sprite, Vector2f posLB, float width, float height){
-        super(sprite, posLB, width, height);
+        super(posLB, width, height,sprite);
     }
 
     public PhysicsQuad(Sprite sprite, Vector2f posLB, Vector2f posTR){

@@ -17,7 +17,7 @@ import static org.lwjgl.stb.STBImage.*;
  * @author Felix Kunze
  */
 public class Texture {
-    private int texID;
+    private final int texID;
     private int width, height;
 
     public Texture(Path filepath) throws IOException {
@@ -70,5 +70,9 @@ public class Texture {
 
     public int getHeight() {
         return height;
+    }
+
+    public int getTexID() {
+        return texID;
     }
 }

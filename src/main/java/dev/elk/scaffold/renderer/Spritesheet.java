@@ -2,6 +2,7 @@ package dev.elk.scaffold.renderer;
 
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import dev.elk.game.spritesheetHandlers.SpritesheetBuilder;
 import org.joml.Vector2f;
 
 import java.io.IOException;
@@ -85,6 +86,7 @@ public class Spritesheet<T extends Sprite>{
     }
 
     private void init(Texture texture) {
+        SpritesheetBuilder.TEXTURES.add(texture);
         spritesTemp.forEach(t -> t.setTexture(texture));
         calculateUVCoords();
     }

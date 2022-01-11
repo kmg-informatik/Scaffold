@@ -1,6 +1,6 @@
 #version 330 core
 
-uniform sampler2D TEX_SAMPLER;
+uniform sampler2D texSamplers[16];
 
 in vec3 fColor;
 in vec2 fTexCoords;
@@ -14,7 +14,8 @@ void main() {
     vec4 color;
 
     if(texCoordsInRange()){
-        color = texture(TEX_SAMPLER, fTexCoords);
+        int texId = int(fTexId);
+        color = texture(texSamplers[texId], fTexCoords);
     }else{
         color = vec4(fColor, 1.0);
     }

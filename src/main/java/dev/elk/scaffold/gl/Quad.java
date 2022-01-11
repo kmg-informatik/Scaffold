@@ -1,6 +1,7 @@
 package dev.elk.scaffold.gl;
 
-import dev.elk.scaffold.renderer.Sprite;
+import dev.elk.scaffold.gl.bindings.Vertex;
+import dev.elk.scaffold.util.Utils;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -9,45 +10,38 @@ import java.awt.*;
 /**
  * Gennerates a basic quad constructable either from Vertices or from Key points.
  * This allows for the construction of multiple geometric shapes that are made up of such quads
+ *
  * @author Felix Kunze
  * @author Louis Schell
  */
-public class Quad implements Geometry{
+public class Quad implements Geometry, Parentable {
 
     private final Vertex[] vertices = new Vertex[4];
-    private Sprite sprite;
 
-    public Quad(Sprite sprite, Vector2f posLB, Vector2f posTR){
-        this(sprite, posLB, posTR, Color.WHITE);
+    public Quad(Vector2f posLB, Vector2f posTR) {
+        this(posLB, posTR, Utils.FALLBACK_COLOR);
     }
 
-    public Quad(Sprite sprite, Vector2f posLB, float width, float height){
-        this(sprite, posLB, new Vector2f(posLB).add(width, height));
+    public Quad(Vector2f posLB, Vector2f posTR, Color color) {
+        this(posLB,
+             new Vector2f(posLB).add(new Vector2f(posTR.x-posLB.x, 0)),
+             posTR,
+             new Vector2f(posLB).add(new Vector2f(0, posTR.y-posLB.y)),
+             color);
     }
 
-    public Quad(Sprite sprite, Vector2f posLB, float width, float height, Color color){
-        this(sprite, posLB, new Vector2f(posLB).add(width, height), color);
+    public Quad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Color color){
+       this(pos1, pos2, pos3, pos4, color,
+               new Vector2f[]{Utils.INVALID_TEXTURE_COORDS,Utils.INVALID_TEXTURE_COORDS,
+                       Utils.INVALID_TEXTURE_COORDS,Utils.INVALID_TEXTURE_COORDS});
     }
 
-    public Quad(Sprite sprite, Vector2f posLB, Vector2f posTR, Color color) {
+    protected Quad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Color color, Vector2f[] texCoords){
         Vector3f colorVec = new Vector3f(color.getRGBColorComponents(null));
-        this.sprite = sprite;
-        vertices[0] = new Vertex(new Vector2f(posLB),colorVec,  sprite.getUvCoords()[0]);
-        vertices[1] = new Vertex(new Vector2f(posTR.x, posLB.y), colorVec, sprite.getUvCoords()[1]);
-        vertices[2] = new Vertex(new Vector2f(posTR), colorVec, sprite.getUvCoords()[2]);
-        vertices[3] = new Vertex(new Vector2f(posLB.x, posTR.y),colorVec,  sprite.getUvCoords()[3]);
-    }
-
-    public void updateTexCoords(Sprite sprite){
-        for (int i = 0; i < vertices.length; i++) {
-            vertices[i].uvCoord = sprite.getUvCoords()[i];
-        }
-    }
-
-    public void updateTexCoords(){
-        for (int i = 0; i < vertices.length; i++) {
-            vertices[i].uvCoord = sprite.getUvCoords()[i];
-        }
+        vertices[0] = new Vertex(new Vector2f(pos1), colorVec, texCoords[0], 0);
+        vertices[1] = new Vertex(new Vector2f(pos2), colorVec, texCoords[1], 0);
+        vertices[2] = new Vertex(new Vector2f(pos3), colorVec, texCoords[2], 0);
+        vertices[3] = new Vertex(new Vector2f(pos4), colorVec, texCoords[3], 0);
     }
 
     @Override
@@ -55,32 +49,8 @@ public class Quad implements Geometry{
         return vertices;
     }
 
-    /**
-     * Returns the index representation of the triangles allowing for 4 Vertices to draw 2 Triangles.
-     * @return The elements for the Element Array
-     */
     @Override
     public int[] getIndices() {
-        return new int[]{0,1,2,2,3,0};
-    }
-
-    public Sprite getSprite() {
-        return sprite;
-    }
-
-    @Override
-    public float getHeight() {
-        return vertices[2].position.y - vertices[0].position.y;
-    }
-
-    @Override
-    public float getWidth() {
-        return vertices[2].position.x - vertices[0].position.x;
-
-    }
-
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-        updateTexCoords();
+        return new int[]{0, 1, 2, 2, 3, 0};
     }
 }

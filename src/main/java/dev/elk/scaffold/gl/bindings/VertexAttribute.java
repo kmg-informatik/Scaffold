@@ -1,8 +1,6 @@
 package dev.elk.scaffold.gl.bindings;
 
-import dev.elk.scaffold.gl.Vertex;
-import dev.elk.scaffold.renderer.ShaderProgram;
-
+import static org.lwjgl.opengl.GL20.glEnableVertexAttribArray;
 import static org.lwjgl.opengl.GL20.*;
 
 /**

@@ -1,18 +1,18 @@
 package dev.elk.scaffold.renderer;
 
 import dev.elk.scaffold.gl.Geometry;
-import dev.elk.scaffold.gl.Vertex;
+import dev.elk.scaffold.gl.bindings.Vertex;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
-import static org.lwjgl.opengl.GL11.GL_UNSIGNED_INT;
-import static org.lwjgl.opengl.GL11.glDrawElements;
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 
-public class Batch {
+public class Batch<E extends Geometry> {
 
-    private final List<Geometry> geometries;
+    private final List<E> geometries;
     private final float[] vertexArray;
     private final int[] elementArray;
     private int vertexCount = -1;
@@ -23,12 +23,12 @@ public class Batch {
         elementArray = new int[elementArraySize];
     }
 
-    public void update() {
+    public void vertexCopy() {
 
         int vCount = 0; //The count of vertex floats
         int eCount = 0; //The count of element floats
 
-        for (Geometry geometry : geometries) {
+        for (E geometry : geometries) {
             var indices = geometry.getIndices();
             for (int i = 0; i < indices.length; i++) {
                 indices[i] += vCount / Vertex.STRIDE;
@@ -64,7 +64,7 @@ public class Batch {
     }
 
     public void render(){
-        update();
+        vertexCopy();
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, elementArray);
         glBufferSubData(GL_ARRAY_BUFFER, 0, vertexArray);
         glDrawElements(GL_TRIANGLES, vertexCount, GL_UNSIGNED_INT, 0);
@@ -74,11 +74,12 @@ public class Batch {
         return vertexCount;
     }
 
-    public void put(Geometry geometry) {
+    public void put(E geometry) {
         geometries.add(geometry);
     }
 
-    public void putAll(Geometry... geometries) {
+    @SafeVarargs
+    public final void putAll(E... geometries) {
         this.geometries.addAll(Arrays.stream(geometries).toList());
     }
 
@@ -90,12 +91,7 @@ public class Batch {
         return elementArray;
     }
 
-    public List<Geometry> getGeometries() {
+    public List<E> getGeometries() {
         return geometries;
     }
-
-    public static Batch dummyBatch(){
-        return new Batch(0,0,0);
-    }
-
 }

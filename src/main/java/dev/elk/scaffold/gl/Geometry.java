@@ -1,9 +1,8 @@
 package dev.elk.scaffold.gl;
 
+import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.util.Utils;
 import org.joml.Vector2f;
-
-import java.util.Arrays;
 
 /**
  * Methods concerning geometry.
@@ -17,7 +16,7 @@ public interface Geometry extends Renderable {
      * Calculates the center of the Geometry.
      * @apiNote Returns the average point of each Vertex
      */
-    default Vector2f centerOfMass() {
+    default Vector2f center() {
         Vector2f pos = new Vector2f();
         for (Vertex vertex : getVertices()) {
             pos.add(vertex.position);
@@ -45,7 +44,7 @@ public interface Geometry extends Renderable {
      * @param radians number of radians
      */
     default void rotateCenter(float radians){
-        rotate(radians, centerOfMass());
+        rotate(radians, center());
     }
 
     /**
@@ -99,7 +98,7 @@ public interface Geometry extends Renderable {
     }
 
     default void translateCenterTo(Vector2f pos) {
-        translateTo(pos, centerOfMass());
+        translateTo(pos, center());
     }
     default void translateOriginTo(Vector2f pos) {
         translateTo(pos, getOrigin());
@@ -218,7 +217,7 @@ public interface Geometry extends Renderable {
      * @param scalar the scalar to scale with
      */
     default void scaleCenter(float scalar){
-        scale(scalar, centerOfMass());
+        scale(scalar, center());
     }
 
     /**
@@ -247,21 +246,5 @@ public interface Geometry extends Renderable {
             System.arraycopy(vertices[i].intoFloats(), 0, allVertexData, Vertex.STRIDE * i, Vertex.STRIDE);
 
         return allVertexData;
-    }
-
-    /**
-     * Checks whether the geometry intersects other given geometries.
-     * @param geometries geometries to check for intersection with this one
-     * @return true, if this geometry intersects with any of the other geometries
-     * @apiNote Compiler should cache the values of {@link #getMaxX()}, {@link #getMinX()},
-     * {@link #getMaxY()} and {@link #getMinY()}
-     */
-    default boolean intersects(Geometry... geometries) {
-        return Arrays.stream(geometries).anyMatch(geometry ->
-                this.getMinX() < geometry.getMaxX() &&
-                this.getMaxX() > geometry.getMinX() &&
-                this.getMaxY() > geometry.getMinY() &&
-                this.getMinY() < geometry.getMaxY()
-        );
     }
 }

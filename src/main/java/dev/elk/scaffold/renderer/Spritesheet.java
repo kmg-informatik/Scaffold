@@ -19,8 +19,6 @@ import java.util.List;
 public class Spritesheet<T extends Sprite>{
 
     final int sheetWidth, sheetHeight, tileWidth, tileHeight;
-    private transient Texture texture;
-
 
     public static final HashMap<String, AnimatedSprite> ANIMATED_SPRITES = new HashMap<>();
     public static final HashMap<String, Sprite> STATIC_SPRITES = new HashMap<>();

@@ -3,7 +3,9 @@ package dev.elk.game.spritesheetHandlers;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import dev.elk.game.fontSettings.Font;
-import dev.elk.scaffold.renderer.*;
+import dev.elk.scaffold.renderer.AnimatedSprite;
+import dev.elk.scaffold.renderer.Sprite;
+import dev.elk.scaffold.renderer.Spritesheet;
 import org.joml.Vector2i;
 
 import java.io.FileWriter;

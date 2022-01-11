@@ -1,16 +1,15 @@
-package dev.elk.scaffold.components;
+package dev.elk.scaffold.gl;
 
+import dev.elk.scaffold.components.Scene;
 import dev.elk.scaffold.components.userinput.KeyListener;
 import dev.elk.scaffold.components.userinput.MouseListener;
-import dev.elk.scaffold.plugin.EventListener;
+import dev.elk.scaffold.plugin.EventListening;
 import dev.elk.scaffold.plugin.PluginRepository;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
-import org.lwjgl.system.windows.DISPLAY_DEVICE;
 
 import java.awt.*;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -26,28 +25,24 @@ import static org.lwjgl.system.MemoryUtil.NULL;
  */
 public class Window {
 
-    private int width;
-    private int height;
-    private final String title;
-    private long glfwWindow;
+    public int width;
+    public int height;
+    public String title;
+    public long glfwWindow;
+    public Color windowColor;
     public static float dt;
 
-    protected LinkedList<Float> fps = new LinkedList<>();
+    private final LinkedList<Float> fps = new LinkedList<>();
 
     private Scene currentScene;
-
-    public float r, g, b, a;
 
     public void setScene(Scene newScene) {
         this.currentScene = newScene;
     }
 
-    public Window(String title, Color color) {
+    public Window(String title, Color windowColor) {
         this.title = title;
-        this.r = color.getRed();
-        this.b = color.getBlue();
-        this.g = color.getGreen();
-        this.a = color.getAlpha();
+        this.windowColor = windowColor;
     }
 
     public void run() throws InstantiationException, IOException {
@@ -92,11 +87,10 @@ public class Window {
         glfwMakeContextCurrent(glfwWindow);
         glfwSwapInterval(1);
         glfwShowWindow(glfwWindow);
-        PluginRepository.notifyAllOf(EventListener::onShowWindow);
+        PluginRepository.notifyAllOf(EventListening::onGameStart);
 
         //This enables LWJGL to work with opengl
         GL.createCapabilities();
-        PluginRepository.notifyAllOf(EventListener::onCreateGLCapabilities);
         for (int i = 0; i < 20; i++) {
             fps.add(0f);
         }
@@ -127,11 +121,14 @@ public class Window {
             fps.add(1f/dt);
 
             glfwPollEvents();
-            glClearColor(r, g, b, a);
+            glClearColor(windowColor.getRed(),
+                    windowColor.getGreen(),
+                    windowColor.getBlue(),
+                    windowColor.getAlpha());
             glClear(GL_COLOR_BUFFER_BIT);
 
             if(dt >= 0)
-                currentScene.onUpdate();
+                currentScene.update();
 
             glfwSwapBuffers(glfwWindow);
             end = System.nanoTime();

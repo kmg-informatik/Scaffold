@@ -1,8 +1,10 @@
-package dev.elk.scaffold.physics;
+package dev.elk.scaffold.Physics;
 
-import dev.elk.scaffold.components.Window;
 import dev.elk.scaffold.gl.Geometry;
+import dev.elk.scaffold.gl.Window;
 import org.joml.Vector2f;
+
+import java.util.Arrays;
 
 public interface Physics extends Geometry {
 
@@ -29,5 +31,14 @@ public interface Physics extends Geometry {
 
     default boolean hasGroundContact(){
         return intersects(Ground.getQuads());
+    }
+
+    default boolean intersects(Geometry... geometries) {
+        return Arrays.stream(geometries).anyMatch(geometry ->
+                this.getMinX() < geometry.getMaxX() &&
+                        this.getMaxX() > geometry.getMinX() &&
+                        this.getMaxY() > geometry.getMinY() &&
+                        this.getMinY() < geometry.getMaxY()
+        );
     }
 }

@@ -1,4 +1,4 @@
-package dev.elk.scaffold.renderer;
+package dev.elk.scaffold.gl.bindings;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;

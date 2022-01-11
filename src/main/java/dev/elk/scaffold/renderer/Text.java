@@ -3,12 +3,11 @@ package dev.elk.scaffold.renderer;
 import dev.elk.game.fontSettings.FontInformation;
 import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.Quad;
-import dev.elk.scaffold.gl.Vertex;
+import dev.elk.scaffold.gl.TexturedQuad;
+import dev.elk.scaffold.gl.bindings.Vertex;
 import org.joml.Vector2f;
 
-import java.awt.*;
 import java.io.IOException;
-
 
 /**
  * Class that generates text using multiple Quads
@@ -19,42 +18,36 @@ import java.io.IOException;
  */
 public class Text implements Geometry {
     private final FontInformation fontInformation;
-    private Color color;
     private String text;
-    private Quad[] quads;
+    private TexturedQuad[] quads;
     private Vector2f position;
 
     /**
      * Generates a Text box made out of multiple Quads
      * with texture specific glyphs determined by input Text.
      * @param fontInformation Information specific to the user chosen font.
-     * @param textColor The color of the Text as is displayed.
      * @param position The Position of the text box on the screen
      * @param text The text that is given
      */
-    public Text(FontInformation fontInformation, Color textColor, Vector2f position, String text) throws IOException {
+    public Text(FontInformation fontInformation, Vector2f position, String text) throws IOException {
         if (text.length()<1)
             throw new IOException("Ya cant do that");
 
         this.fontInformation = fontInformation;
-        this.color = textColor;
         this.position = position;
-        //from(fontInformation.getJsonPath(), fontInformation.getPngPath());
         this.text = text;
         generateQuads();
     }
 
     private void generateQuads() {
-        quads = new Quad[text.length()];
+        quads = new TexturedQuad[text.length()];
         for (int i = 0; i < text.length(); i++) {
             String spriteName = fontInformation.getFontID()+ "_" + text.charAt(i);
-            System.out.println(spriteName);
-            quads[i] = new Quad(
+            quads[i] = new TexturedQuad(
                     Spritesheet.STATIC_SPRITES.get(spriteName),
                     new Vector2f(position.x + i * (fontInformation.getFontSize() - fontInformation.getFontWhitespace()), position.y),
                     fontInformation.getFontSize(),
-                    fontInformation.getFontSize() * fontInformation.getHeightWidthRatio(),
-                    color
+                    fontInformation.getFontSize() * fontInformation.getHeightWidthRatio()
             );
         }
         translateOriginTo(position);
@@ -62,16 +55,9 @@ public class Text implements Geometry {
 
     public void setText(String newText) {
         if (!newText.equals(text)) {
-            if (newText.length() == text.length()){
-                for (int i = 0; i < quads.length; i++) {
-                    quads[i].setSprite(Spritesheet.STATIC_SPRITES.get(fontInformation.getFontID() + "_" + text.charAt(i)));
-                }
-                text = newText;
-            }else {
                 text = newText;
                 generateQuads();
             }
-        }
     }
 
     public void setPosition(Vector2f position) {
@@ -114,6 +100,10 @@ public class Text implements Geometry {
             vertices[i+3] = quads[i>>2].getVertices()[3];
         }
         return vertices;
+    }
+
+    public String getText() {
+        return text;
     }
 
     public Texture getTexture() {

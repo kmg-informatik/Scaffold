@@ -1,6 +1,7 @@
 package dev.elk.scaffold.components;
 
 import dev.elk.scaffold.components.cameras.Camera;
+import dev.elk.scaffold.gl.Window;
 
 import java.io.IOException;
 
@@ -12,8 +13,7 @@ import java.io.IOException;
 public abstract class Scene {
 
     protected Camera camera;
-    private boolean isRunning;
-    protected Window window;
+    protected final Window window;
 
     public Scene(Window window) {
         this.window = window;
@@ -21,7 +21,7 @@ public abstract class Scene {
 
     public void init() throws InstantiationException, IOException {}
 
-    public abstract void onUpdate();
+    public abstract void update();
 
 
 }

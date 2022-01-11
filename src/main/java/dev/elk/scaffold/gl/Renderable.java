@@ -1,5 +1,7 @@
 package dev.elk.scaffold.gl;
 
+import dev.elk.scaffold.gl.bindings.Vertex;
+
 /**
  * All things that are to be rendered must include the
  * renderable interface. It forces subclasses to provide

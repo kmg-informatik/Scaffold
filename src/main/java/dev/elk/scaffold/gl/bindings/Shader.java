@@ -1,4 +1,4 @@
-package dev.elk.scaffold.renderer;
+package dev.elk.scaffold.gl.bindings;
 
 import java.io.IOException;
 import java.nio.file.Files;

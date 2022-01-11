@@ -1,70 +1,83 @@
 package dev.elk.scaffold.components.cameras;
 
+import dev.elk.scaffold.gl.Component;
+import dev.elk.scaffold.gl.Window;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 
 /**
  * Camera object. Code copied from GamesWithGabe.
  */
-public class Camera {
+public class Camera implements Component {
 
-    private final Matrix4f projectionMatrix;
-    private final Matrix4f viewMatrix;
+    protected final Matrix4f projectionMatrix;
+    protected final Matrix4f viewMatrix;
+    protected Matrix4f inverseProjection;
+    protected Matrix4f inverseView;
     public Vector2f position;
-    protected final float defaultZoom;
-    protected float zoom;
 
-    public Camera(Vector2f position) {
+    protected final float projectionWidth = 20;
+    protected final float projectionHeight = 20;
+    protected final Vector2f projectionSize = new Vector2f(projectionWidth, projectionHeight);
+
+    protected float zoom = 1.0f;
+
+    public Camera(Vector2f position, float zoom) {
         this.position = position;
         this.projectionMatrix = new Matrix4f();
         this.viewMatrix = new Matrix4f();
-        this.defaultZoom = 1f;
-        this.zoom = defaultZoom;
-        adjustProjection();
-    }
-
-    public Camera(Vector2f position, float defaultZoom) {
-        this.position = position;
-        this.projectionMatrix = new Matrix4f();
-        this.viewMatrix = new Matrix4f();
-        this.defaultZoom = defaultZoom;
-        this.zoom = defaultZoom;
+        this.inverseProjection = new Matrix4f();
+        this.inverseView = new Matrix4f();
         adjustProjection();
     }
 
     public void adjustProjection() {
         projectionMatrix.identity();
-        projectionMatrix.ortho(
-                0f,
-                160f,
-                0f,
-                100f,
-                0.0f,
-                100.0f
-        );
-        projectionMatrix.scaleXY(zoom, zoom);
+        projectionMatrix.ortho(0.0f, projectionSize.x * this.zoom,
+                0.0f, projectionSize.y * zoom, 0.0f, 100.0f);
+        inverseProjection = new Matrix4f(projectionMatrix).invert();
     }
 
     public Matrix4f getViewMatrix() {
-        Vector3f cameraFront = new Vector3f(0.0f,0.0f,-1.0f);
-        Vector3f cameraUp = new Vector3f(0.0f,1.0f,0.0f);
-
-        Vector3f eye = new Vector3f(position.x,position.y,20.0f);
-        cameraFront.add(position.x, position.y,20.0f);
-
+        Vector3f cameraFront = new Vector3f(0.0f, 0.0f, -1.0f);
+        Vector3f cameraUp = new Vector3f(0.0f, 1.0f, 0.0f);
         viewMatrix.identity();
-        viewMatrix.lookAt(eye,cameraFront, cameraUp);
+        viewMatrix.lookAt(new Vector3f(position.x, position.y, 20.0f),
+                cameraFront.add(position.x, position.y, 0.0f),
+                cameraUp);
+        inverseView = new Matrix4f(this.viewMatrix).invert();
 
-        return viewMatrix;
-    }
-
-    public Vector2f getNextPosition(Vector2f newPos){
-        return newPos;
+        return this.viewMatrix;
     }
 
     public Matrix4f getProjectionMatrix() {
-        return projectionMatrix;
+        return this.projectionMatrix;
+    }
+
+    public Matrix4f getInverseProjection() {
+        return this.inverseProjection;
+    }
+
+    public Matrix4f getInverseView() {
+        return this.inverseView;
+    }
+
+    public Vector2f getProjectionSize() {
+        return this.projectionSize;
+    }
+
+    public float getZoom() {
+        return zoom;
+    }
+
+    public void setZoom(float zoom) {
+        this.zoom = zoom;
+    }
+
+    public void addZoom(float value) {
+        this.zoom += value;
     }
 }
 

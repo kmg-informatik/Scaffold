@@ -1,8 +1,8 @@
 package dev.elk.game;
 
-import dev.elk.scaffold.components.Window;
-import dev.elk.scaffold.renderer.*;
-import dev.elk.scaffold.renderer.Shader.ShaderType;
+import dev.elk.scaffold.gl.Window;
+import dev.elk.scaffold.gl.bindings.Shader;
+import dev.elk.scaffold.gl.bindings.ShaderProgram;
 
 import java.awt.*;
 import java.io.IOException;
@@ -15,13 +15,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InstantiationException {
 
-        Shader fragment = new Shader("Assets/Shaders/fragment.glsl", ShaderType.FRAGMENT);
-        Shader vertex = new Shader("Assets/Shaders/vertex.glsl", ShaderType.VERTEX);
+        Shader fragment = new Shader("Assets/Shaders/fragment.glsl", Shader.ShaderType.FRAGMENT);
+        Shader vertex = new Shader("Assets/Shaders/vertex.glsl", Shader.ShaderType.VERTEX);
         ShaderProgram program = new ShaderProgram();
         program.attachShaders(fragment, vertex);
 
-        Window window = new Window("Hello!", Color.BLACK);
-        window.setScene(new PrimaryScene(window, program));
+        Window window = new Window("Hello!", Color.BLUE);
+        window.setScene(new PrimaryScene(window,program));
 
         window.run();
 

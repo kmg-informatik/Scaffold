@@ -3,12 +3,17 @@ package dev.elk.scaffold.util;
 import org.joml.Math;
 import org.joml.Vector2f;
 
+import java.awt.*;
+
 /**
  * Helper class for varried methods, mostly in relation to Math
  * @author Louis Schell
  * @author Felix Kunze
  */
 public final class Utils {
+
+    public static Color FALLBACK_COLOR = new Color(218, 58, 255);
+    public static Vector2f INVALID_TEXTURE_COORDS = new Vector2f(-1,-1);
 
     public static final int
             KEY_W = 87,

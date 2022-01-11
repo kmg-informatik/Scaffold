@@ -13,11 +13,11 @@ import java.util.Arrays;
  */
 public class Sprite {
 
-    final Vector2i minPos;
-    final Vector2i maxPos;
-    final String spriteName;
-    transient protected Vector2f[] uvCoords;
-    transient Texture texture;
+    protected final Vector2i minPos;
+    protected final Vector2i maxPos;
+    protected final String spriteName;
+    protected transient Vector2f[] uvCoords;
+    protected transient Texture texture;
 
     public Sprite(Texture texture, Vector2i minPos, Vector2i maxPos, String spriteName) {
         this.minPos = minPos;
@@ -48,14 +48,4 @@ public class Sprite {
         this.texture = texture;
     }
 
-    @Override
-    public String toString() {
-        return "Sprite{" +
-                "minPos=" + minPos +
-                ", maxPos=" + maxPos +
-                ", spriteName='" + spriteName + '\'' +
-                ", uvCoords=" + Arrays.toString(uvCoords) +
-                ", texture=" + texture +
-                '}';
-    }
 }

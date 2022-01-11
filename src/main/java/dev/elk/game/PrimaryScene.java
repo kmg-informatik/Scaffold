@@ -18,6 +18,7 @@ import dev.elk.scaffold.renderer.Texture;
 import org.joml.Vector2f;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.*;
 import static org.lwjgl.opengl.GL20.*;
@@ -38,6 +39,7 @@ public class PrimaryScene extends Scene {
     private final Batch<Geometry> dynamicBatch = new Batch<>(2000, 2_00_000, 75_000);
     private final Batch<Geometry> staticBatch = new Batch<>(2000, 2_00_000, 75_000);
 
+
     private TexturedQuad quad;
     private Text text;
 
@@ -56,12 +58,15 @@ public class PrimaryScene extends Scene {
         generateSpritesheets(SpritesheetInfo.TILES);
         generateSpritesheets(SpritesheetInfo.ANIMATIONS);
 
-        this.camera = new FloatingCamera(new Vector2f(), 20);
+        this.camera = new FloatingCamera(new Vector2f(),0.1f, 20);
         player = new Player(Spritesheet.ANIMATED_SPRITES.get("einrad"),new Vector2f(), new Vector2f(2,2));
         camera.parentTo(player);
 
-        Platform platform = new Platform(new Vector2f(10,10));
-        staticBatch.put(platform);
+        Platform.platforms.add(new Platform(new Vector2f(10,10)));
+        Platform.platforms.add(new Platform(new Vector2f(30,10)));
+
+        staticBatch.putAll(Platform.platforms.toArray(new Platform[0]));
+
         Texture.bindMultipleTextures();
 
     }

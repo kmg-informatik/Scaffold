@@ -4,13 +4,15 @@ import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.gl.TexturedSquare;
 import dev.elk.scaffold.gl.bindings.Vertex;
-import dev.elk.scaffold.renderer.Sprite;
 import dev.elk.scaffold.renderer.Spritesheet;
 import org.joml.Vector2f;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Platform implements Geometry {
+
+    public static final ArrayList<Platform> platforms = new ArrayList<>();
 
     private float tileSize = 2f;
     private TexturedQuad[] quads;
@@ -96,5 +98,11 @@ public class Platform implements Geometry {
             vertices[i+3] = quads[i>>2].getVertices()[3];
         }
         return vertices;
+    }
+
+    public TexturedQuad[] getPlatformBase() {
+        TexturedQuad[] arr = new TexturedQuad[quads.length -1];
+        System.arraycopy(quads, 0, arr, 0, arr.length);
+        return arr;
     }
 }

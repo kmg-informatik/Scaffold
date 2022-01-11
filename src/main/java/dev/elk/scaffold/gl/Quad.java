@@ -64,6 +64,7 @@ public class Quad implements Geometry {
         return vertices;
     }
 
+
     @Override
     public int[] getIndices() {
         return new int[]{0, 1, 2, 2, 3, 0};

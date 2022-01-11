@@ -9,10 +9,7 @@ import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.gl.Window;
 import dev.elk.scaffold.gl.bindings.ShaderProgram;
 import dev.elk.scaffold.gl.bindings.Vertex;
-import dev.elk.scaffold.renderer.Batch;
-import dev.elk.scaffold.renderer.Spritesheet;
-import dev.elk.scaffold.renderer.Text;
-import dev.elk.scaffold.renderer.Texture;
+import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2f;
 
 import java.io.IOException;
@@ -51,7 +48,7 @@ public class PrimaryScene extends Scene {
         generateSpritesheets(SpritesheetInfo.ANIMATIONS);
 
         this.camera = new FloatingCamera(new Vector2f(), 1f, 20);
-        player = new Player(Spritesheet.ANIMATED_SPRITES.get("maguWalk"), new Vector2f(10, 10), new Vector2f(12, 12));
+        player = new Player(Spritesheet.ANIMATED_SPRITES.get("maguWalk"),Spritesheet.ANIMATED_SPRITES.get("maguJump"), new Vector2f(10, 10), new Vector2f(12, 12));
         camera.parentTo(player);
 
         Platform.platforms.add(new Platform(new Vector2f(10, 10)));
@@ -66,6 +63,7 @@ public class PrimaryScene extends Scene {
 
     }
 
+    int counter = 0;
     @Override
     public void update() {
         dynamicBatch.getGeometries().clear();
@@ -81,7 +79,7 @@ public class PrimaryScene extends Scene {
         program.uploadFloat("windowStretch", Window.height / (float) Window.width);
         program.uploadTextures("texSamplers");
 
-        dynamicBatch.render();
         staticBatch.render();
+        dynamicBatch.render();
     }
 }

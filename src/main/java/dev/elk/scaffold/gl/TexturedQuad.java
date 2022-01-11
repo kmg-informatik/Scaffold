@@ -46,5 +46,11 @@ public class TexturedQuad extends Quad {
 
     public void setSprite(Sprite sprite) {
         this.sprite = sprite;
+        setUV();
+    }
+
+    public void setUV() {
+        for (int i = 0; i < getVertices().length; i++)
+            getVertices()[i].uvCoord = sprite.getUvCoords()[i];
     }
 }

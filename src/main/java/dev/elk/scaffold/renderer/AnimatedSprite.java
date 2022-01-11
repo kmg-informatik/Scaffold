@@ -31,15 +31,15 @@ public class AnimatedSprite extends Sprite {
         for (int i = 0; i < 4; i++)
             uvCoords[i].x += width;
 
-        if (currentFrame == frameCount - 1) {
-            currentFrame = 0;
+        if (currentFrame % frameCount == 0) {
             uvCoords = new Vector2f[]{
                     new Vector2f(originalUVCoords[0]),
                     new Vector2f(originalUVCoords[1]),
                     new Vector2f(originalUVCoords[2]),
                     new Vector2f(originalUVCoords[3])
             };
-        } else this.currentFrame++;
+        }
+        this.currentFrame++;
     }
 
     public int getCurrentFrame() {

@@ -13,6 +13,7 @@ import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.renderer.Batch;
 import dev.elk.scaffold.renderer.Spritesheet;
 import dev.elk.scaffold.renderer.Text;
+import dev.elk.scaffold.renderer.Texture;
 import org.joml.Vector2f;
 
 import java.io.IOException;
@@ -79,32 +80,23 @@ public class PrimaryScene extends Scene {
 
         quad = new TexturedQuad(new Vector2f(0,0),new Vector2f(10,10),Spritesheet.STATIC_SPRITES.get("marble"));
         staticBatch.put(quad);
-        staticBatch.put(text);
-        System.out.println(text.getTexture().getTexID());
-        System.out.println(quad.getSprite().getTexture().getTexID());
-        System.out.println();
-        System.out.println(TEXTURES.get(0).getTexID());
-        System.out.println(TEXTURES.get(1).getTexID());
-
-        for (int i = 0; i < TEXTURES.size(); i++) {
-            glActiveTexture(GL_TEXTURE0 + i);
-            TEXTURES.get(i).bind();
-        }
-        program.uploadTextures("texSamplers");
+        dynamicBatch.put(text);
+        Texture.bindMultipleTextures();
 
     }
 
     @Override
     public void update() {
         dynamicBatch.getGeometries().clear();
-        //text.setText(String.format("%.0f fps", window.avgFps()));
-        //dynamicBatch.put(text);
+        text.setText(String.format("%.0f fps", window.avgFps()));
+        dynamicBatch.put(text);
 
         camera.adjustProjection();
         //camera.position = camera.getNextPosition(quad.center());
         program.uploadMat4f("cameraProjection",camera.getProjectionMatrix());
         program.uploadMat4f("cameraView",camera.getViewMatrix());
         program.uploadFloat("windowStretch", window.height/(float) window.width);
+        program.uploadTextures("texSamplers");
 
         dynamicBatch.render();
         staticBatch.render();

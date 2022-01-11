@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.file.Path;
 
+import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.TEXTURES;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL13.GL_TEXTURE0;
+import static org.lwjgl.opengl.GL13.glActiveTexture;
 import static org.lwjgl.stb.STBImage.*;
 
 /**
@@ -19,8 +22,10 @@ import static org.lwjgl.stb.STBImage.*;
 public class Texture {
     private final int texID;
     private int width, height;
+    public String filepath;
 
     public Texture(Path filepath) throws IOException {
+        this.filepath = filepath.toString();
 
         //Handles the binding of the texture
         texID = glGenTextures();
@@ -57,7 +62,7 @@ public class Texture {
     }
 
     public void bind() {
-        glBindTexture(GL_TEXTURE_2D, texID);
+        glBindTexture(GL_TEXTURE_2D, texID );
     }
 
     public void unbind() {
@@ -73,6 +78,13 @@ public class Texture {
     }
 
     public int getTexID() {
-        return texID;
+        return texID ;
+    }
+
+    public static void bindMultipleTextures(){
+        for (int i = 0; i < TEXTURES.size(); i++) {
+            glActiveTexture(GL_TEXTURE0 +1+ i);
+            TEXTURES.get(i).bind();
+        }
     }
 }

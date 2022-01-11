@@ -6,7 +6,7 @@ import org.joml.Vector3f;
 import org.joml.Vector4f;
 
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
-import static org.lwjgl.opengl.GL11.GL_SHORT;
+import static org.lwjgl.opengl.GL11.GL_INT;
 
 /**
  * Vertices are blobs of data, that are used by OpenGL
@@ -79,7 +79,7 @@ public class Vertex implements FloatRepresentation, Cloneable {
         VertexAttribute textureIdAttribute = new VertexAttribute(
                 program,
                 "texId",
-                GL_SHORT,
+                GL_FLOAT,
                 Vertex.POSITION_SIZE_BYTES + Vertex.COLOR_SIZE_BYTES + Vertex.UV_COORD_SIZE_BYTES,
                 Vertex.TEX_ID_SIZE
         );
@@ -92,6 +92,7 @@ public class Vertex implements FloatRepresentation, Cloneable {
                 "position=" + position +
                 ", color=" + color +
                 ", uvCoord=" + uvCoord +
+                ", texId=" + texId +
                 '}';
     }
 

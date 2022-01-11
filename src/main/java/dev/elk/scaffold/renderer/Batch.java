@@ -25,8 +25,8 @@ public class Batch<E extends Geometry> {
 
     public void vertexCopy() {
 
-        int vCount = 0; //The count of vertex floats
-        int eCount = 0; //The count of element floats
+        int vCount = 0;
+        int eCount = 0;
 
         for (E geometry : geometries) {
             var indices = geometry.getIndices();

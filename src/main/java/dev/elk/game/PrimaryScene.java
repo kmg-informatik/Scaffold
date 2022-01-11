@@ -5,10 +5,8 @@ import dev.elk.game.fontSettings.FontInformation;
 import dev.elk.game.spritesheetHandlers.SpritesheetBuilder;
 import dev.elk.game.spritesheetHandlers.SpritesheetInfo;
 import dev.elk.scaffold.components.Scene;
-import dev.elk.scaffold.components.cameras.Camera;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
 import dev.elk.scaffold.gl.Geometry;
-import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Window;
 import dev.elk.scaffold.gl.bindings.ShaderProgram;
 import dev.elk.scaffold.gl.bindings.Vertex;
@@ -16,9 +14,7 @@ import dev.elk.scaffold.renderer.Batch;
 import dev.elk.scaffold.renderer.Text;
 import org.joml.Vector2f;
 
-import java.awt.*;
 import java.io.IOException;
-import java.util.Arrays;
 
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.GL30.glBindVertexArray;
@@ -84,10 +80,9 @@ public class PrimaryScene extends Scene {
 
     @Override
     public void update() {
-        staticBatch.getGeometries().clear();
-        text.setText(String.format("%.0f fps", 1/window.dt));
-        System.out.println(Arrays.toString(text.getVertices()));
-        staticBatch.put(text);
+        dynamicBatch.getGeometries().clear();
+        text.setText(String.format("%.0f fps", window.avgFps()));
+        dynamicBatch.put(text);
 
         camera.adjustProjection();
         //camera.position = camera.getNextPosition(quad.center());
@@ -95,7 +90,6 @@ public class PrimaryScene extends Scene {
         program.uploadMat4f("cameraView",camera.getViewMatrix());
         program.uploadFloat("windowStretch", window.height/(float) window.width);
 
-        staticBatch.render();
-
+        dynamicBatch.render();
     }
 }

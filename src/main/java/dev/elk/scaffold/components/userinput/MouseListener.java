@@ -7,8 +7,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 /**
  * The Mouse-listener listens to actions taken by the mouse
- * such as button clicks or moving of the mouse. Original code
- * from GamesWithGabe, heavily modified.
+ * such as button clicks or moving of the mouse.
  * @author Louis Schell
  */
 public class MouseListener {

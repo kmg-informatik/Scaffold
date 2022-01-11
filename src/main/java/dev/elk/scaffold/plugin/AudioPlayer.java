@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import dev.elk.scaffold.al.AudioClip;
 import dev.elk.scaffold.al.MusicClip;
 import dev.elk.scaffold.al.SoundClip;
+import dev.elk.scaffold.ui.Button;
 
 /**
  * Manages all audio being played, keeps track of MusicClips, as to pause/stop/restart them, only starts SoundClips.
@@ -50,6 +51,11 @@ public class AudioPlayer implements EventListening {
     @Override
     public void onGameStop() {
         stop(caveTheme);
+    }
+
+    @Override
+    public void onButtonClicked(Button button) {
+
     }
 
     /**

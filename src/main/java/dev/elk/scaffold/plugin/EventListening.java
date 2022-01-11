@@ -1,5 +1,7 @@
 package dev.elk.scaffold.plugin;
 
+import dev.elk.scaffold.ui.Button;
+
 /**
  * An interface, that enables a class to wait for a
  * certain {@link dev.elk.scaffold.events.Event} to happen in the
@@ -17,20 +19,25 @@ public interface EventListening {
     /**
      * Called when the player jumps
      */
-    void onJump();
+    default void onJump(){};
 
     /**
      * Called when the game starts
      */
-    void onGameStart();
+    default void onGameStart(){};
 
     /**
      * Called when the game is paused
      */
-    void onGamePause();
+    default void onGamePause(){};
 
     /**
      * Called when the game stops
      */
-    void onGameStop();
+    default void onGameStop(){};
+
+    /**
+     * Called, when a button is clicked
+     */
+    default void onButtonClicked(Button button){};
 }

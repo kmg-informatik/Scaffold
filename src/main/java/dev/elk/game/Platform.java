@@ -105,4 +105,8 @@ public class Platform implements Geometry {
         System.arraycopy(quads, 0, arr, 0, arr.length);
         return arr;
     }
+
+    public float getFloorHeight() {
+        return position.y + tileSize;
+    }
 }

@@ -22,7 +22,7 @@ public interface Physics extends Geometry {
                 intersects = true;
                 setCurrentGravity(0);
 
-                Vector2f move = new Vector2f(0, platform.getMaxY() - getMinY());
+                Vector2f move = new Vector2f(0, platform.getFloorHeight() - getMinY());
 
                 float threshold = 0.0f;
                 if (move.length() >= threshold){

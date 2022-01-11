@@ -37,7 +37,7 @@ public class Player extends Entity implements Actions, Parentable{
 
         movementVector = new Vector2f();
 
-        if (KeyHandler.isKeyPressed(KEY_W) && hasGroundContact()) {
+        if (KeyHandler.isKeyPressed(KEY_W)/* && hasGroundContact()*/) {
             jump();
         }
         if (KeyHandler.isKeyPressed(KEY_A) || KeyHandler.isKeyPressed(KEY_D)) {

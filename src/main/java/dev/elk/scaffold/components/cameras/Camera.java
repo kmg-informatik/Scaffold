@@ -25,6 +25,7 @@ public class Camera implements Component {
     protected float zoom = 1.0f;
 
     public Camera(Vector2f position, float zoom) {
+        this.zoom = zoom;
         this.position = position;
         this.projectionMatrix = new Matrix4f();
         this.viewMatrix = new Matrix4f();

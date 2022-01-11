@@ -58,7 +58,7 @@ public class PrimaryScene extends Scene {
         generateSpritesheets(SpritesheetInfo.TILES);
         generateSpritesheets(SpritesheetInfo.ANIMATIONS);
 
-        this.camera = new FloatingCamera(new Vector2f(),0.1f, 20);
+        this.camera = new FloatingCamera(new Vector2f(),1f, 20);
         player = new Player(Spritesheet.ANIMATED_SPRITES.get("einrad"),new Vector2f(), new Vector2f(2,2));
         camera.parentTo(player);
 

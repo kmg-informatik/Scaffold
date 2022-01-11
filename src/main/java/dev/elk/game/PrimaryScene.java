@@ -9,7 +9,6 @@ import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.gl.Window;
 import dev.elk.scaffold.gl.bindings.ShaderProgram;
-import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.renderer.Batch;
 import dev.elk.scaffold.renderer.Spritesheet;
 import dev.elk.scaffold.renderer.Text;
@@ -19,9 +18,6 @@ import org.joml.Vector2f;
 import java.io.IOException;
 
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.*;
-import static org.lwjgl.opengl.GL20.*;
-import static org.lwjgl.opengl.GL30.glBindVertexArray;
-import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
  * Test scene for stuff. Mainly first tests of OpenGL and textures and stuff.
@@ -44,43 +40,17 @@ public class PrimaryScene extends Scene {
         this.program = program;
     }
 
-    @Override
     public void init() throws InstantiationException, IOException {
-        {
-            program.compile();
-            program.use();
+        bufferInit(program, dynamicBatch);
 
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-            int vaoID = glGenVertexArrays();
-            glBindVertexArray(vaoID);
-
-            int vboID = glGenBuffers();
-            glBindBuffer(GL_ARRAY_BUFFER, vboID);
-            glBufferData(GL_ARRAY_BUFFER, dynamicBatch.getVertexArray(), GL_DYNAMIC_DRAW);
-
-            int eboID = glGenBuffers();
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
-            glBufferData(GL_ELEMENT_ARRAY_BUFFER, dynamicBatch.getElementArray(), GL_DYNAMIC_DRAW);
-
-            Vertex.initAttributes(program);
-        }
-        generateSpritesheets(SpritesheetInfo.COZETTE);
-        generateSpritesheets(SpritesheetInfo.TILES);
+        generateAllSpritesheets();
 
 
-        text = new Text(
-                new FontInformation(Font.COZETTE, 30),
-                new Vector2f(10,10),
-                "abb"
-        );
 
         this.camera = new FloatingCamera(new Vector2f(), 20);
 
-        quad = new TexturedQuad(new Vector2f(0,0),new Vector2f(10,10),Spritesheet.STATIC_SPRITES.get("marble"));
-        staticBatch.put(quad);
-        dynamicBatch.put(text);
+        Platform platform = new Platform(new Vector2f(10,10));
+        staticBatch.put(platform);
         Texture.bindMultipleTextures();
 
     }
@@ -88,8 +58,6 @@ public class PrimaryScene extends Scene {
     @Override
     public void update() {
         dynamicBatch.getGeometries().clear();
-        text.setText(String.format("%.0f fps", window.avgFps()));
-        dynamicBatch.put(text);
 
         camera.adjustProjection();
         //camera.position = camera.getNextPosition(quad.center());

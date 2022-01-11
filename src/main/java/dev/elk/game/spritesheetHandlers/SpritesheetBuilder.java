@@ -1,5 +1,6 @@
 package dev.elk.game.spritesheetHandlers;
 
+import dev.elk.game.fontSettings.Font;
 import dev.elk.scaffold.renderer.Spritesheet;
 import dev.elk.scaffold.renderer.Texture;
 
@@ -15,5 +16,11 @@ public class SpritesheetBuilder {
             Spritesheet.fromAnimated(spritesheetInfo.jsonPath, spritesheetInfo.texturePath);
         }
         Spritesheet.from(spritesheetInfo.jsonPath,spritesheetInfo.texturePath);
+    }
+
+    public static void generateAllSpritesheets() throws IOException {
+        for (SpritesheetInfo value : SpritesheetInfo.values()) {
+            generateSpritesheets(value);
+        }
     }
 }

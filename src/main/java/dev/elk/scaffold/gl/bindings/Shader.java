@@ -14,6 +14,7 @@ import static org.lwjgl.opengl.GL20.*;
  * is then linked by the {@link ShaderProgram}.
  * @see ShaderProgram
  * @author Louis Schell
+ * @author Felix Kunze
  */
 public class Shader {
 

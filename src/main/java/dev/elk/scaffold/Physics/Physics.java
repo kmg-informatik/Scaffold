@@ -2,6 +2,7 @@ package dev.elk.scaffold.Physics;
 
 import dev.elk.game.Platform;
 import dev.elk.scaffold.gl.Geometry;
+import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.gl.Window;
 import org.joml.Vector2f;
 
@@ -18,14 +19,13 @@ public interface Physics extends Geometry {
         Geometry.super.translate(new Vector2f(0,getCurrentGravity()).mul(Window.dt));
         boolean intersects = false;
         for (Platform platform : Platform.platforms) {
-            if (intersects(platform)){
-                intersects = true;
-                setCurrentGravity(0);
+            for(TexturedQuad quad: platform.getPlatformBase()) {
+                if (intersects(quad)) {
+                    intersects = true;
+                    setCurrentGravity(0);
 
-                Vector2f move = new Vector2f(0, platform.getFloorHeight() - getMinY());
-
-                float threshold = 0.0f;
-                if (move.length() >= threshold){
+                    float threshold = 0.01f;
+                    Vector2f move = new Vector2f(0, quad.getMaxY() - getMinY() - threshold);
                     Geometry.super.translate(move);
                 }
             }
@@ -36,8 +36,9 @@ public interface Physics extends Geometry {
 
     default boolean hasGroundContact(){
         for (Platform platform : Platform.platforms)
-            if (intersects(platform)) return true;
-
+            for ( TexturedQuad quad : platform.getPlatformBase()) {
+                if (intersects(quad)) return true;
+            }
         return false;
     }
 

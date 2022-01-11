@@ -10,6 +10,10 @@ import java.util.List;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL15.*;
 
+/**
+ * Handles Batch rendering allowing multiple triangles and textures to be rendered
+ * @author Louis Schell
+ */
 public class Batch<E extends Geometry> {
 
     private final List<E> geometries;

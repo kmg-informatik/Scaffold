@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * This splices a big texture into many smaller spritesheets according to a specifcation derived from a json file.
  * @author Felix Kunze
- * @author Louis Schell
  */
 public class Spritesheet<T extends Sprite>{
 

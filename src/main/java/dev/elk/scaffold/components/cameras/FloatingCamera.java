@@ -5,6 +5,10 @@ import org.joml.Vector2f;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Specific subtype of camera with functionality that allows for f.ex. following of players
+ * @author Louis Schell
+ */
 public class FloatingCamera extends Camera{
 
     private final List<Vector2f> lastPositions = new ArrayList<>();

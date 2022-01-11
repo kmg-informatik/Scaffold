@@ -40,8 +40,12 @@ public class Camera implements Component {
 
     public void adjustProjection() {
         projectionMatrix.identity();
-        projectionMatrix.ortho(0.0f, projectionSize.x * this.zoom,
-                0.0f, projectionSize.y * zoom, 0.0f, 100.0f);
+        projectionMatrix.ortho(
+                -projectionSize.x * this.zoom,
+                projectionSize.x * this.zoom,
+                -projectionSize.y * this.zoom,
+                projectionSize.y * zoom,
+                0.0f, 100.0f);
         inverseProjection = new Matrix4f(projectionMatrix).invert();
     }
 

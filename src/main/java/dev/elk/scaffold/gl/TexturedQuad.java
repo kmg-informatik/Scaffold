@@ -5,6 +5,11 @@ import org.joml.Vector2f;
 
 import java.awt.*;
 
+/**
+ * A Quad that implements a Sprite with a texture in addition to the normal Quad information
+ * @author Louis Schell
+ * @author Felix Kunze
+ */
 public class TexturedQuad extends Quad{
 
     private Sprite sprite;

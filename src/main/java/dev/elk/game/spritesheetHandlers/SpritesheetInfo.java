@@ -3,6 +3,11 @@ package dev.elk.game.spritesheetHandlers;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Saves information about spritesheets like Paths and whether
+ * they are animated allowing for easier calling.
+ * @author Felix Kunze
+ */
 public enum SpritesheetInfo {
     TILES(Paths.get("Assets/SpriteJson/tiles.json"), Paths.get("Assets/Spritesheets/tiles.png"), false),
     TREES(Paths.get("Assets/SpriteJson/trees.json"), Paths.get("Assets/Spritesheets/trees.png"), false),

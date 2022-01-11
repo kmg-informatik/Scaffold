@@ -9,7 +9,6 @@ import java.util.Arrays;
  * Instatiates an individual Sprite.
  * This is essentially a certain part of a bigger Texture, the Spritesheet
  * @author Felix Kunze
- * @author Louis Schell
  */
 public class Sprite {
 

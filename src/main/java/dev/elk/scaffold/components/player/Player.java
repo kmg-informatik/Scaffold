@@ -5,9 +5,13 @@ import dev.elk.scaffold.gl.Window;
 import dev.elk.scaffold.renderer.AnimatedSprite;
 import static dev.elk.scaffold.util.Utils.*;
 
+import dev.elk.scaffold.renderer.Spritesheet;
 import org.joml.Vector2f;
 
+import java.util.Arrays;
+
 /**
+ * @author Felix Kunze
  * @author Louis Schell
  * @since 11/01/2022
  */
@@ -27,7 +31,7 @@ public class Player extends Entity implements Actions, Parentable{
 
     @Override
     float getMovementSpeed() {
-        return 2f;
+        return 5f;
     }
 
     @Override
@@ -37,7 +41,7 @@ public class Player extends Entity implements Actions, Parentable{
 
         movementVector = new Vector2f();
 
-        if (KeyHandler.isKeyPressed(KEY_W)/* && hasGroundContact()*/) {
+        if (KeyHandler.isKeyPressed(KEY_W) && hasGroundContact()) {
             jump();
         }
         if (KeyHandler.isKeyPressed(KEY_A) || KeyHandler.isKeyPressed(KEY_D)) {
@@ -53,18 +57,18 @@ public class Player extends Entity implements Actions, Parentable{
     @Override
     public void moveRight() {
         movementVector.add(new Vector2f(getMovementSpeed(), 0.0f).mul(Window.dt));
-        if (!facingRight) {
+        if (facingRight) {
             flipY(this.center());
-            facingRight = true;
+            facingRight = false;
         }
     }
 
     @Override
     public void moveLeft() {
         movementVector.add(new Vector2f(-getMovementSpeed(), 0.0f).mul(Window.dt));
-        if (facingRight) {
+        if (!facingRight) {
             flipY(this.center());
-            facingRight = false;
+            facingRight = true;
         }
     }
 

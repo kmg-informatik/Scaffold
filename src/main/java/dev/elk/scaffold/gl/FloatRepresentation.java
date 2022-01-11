@@ -6,6 +6,7 @@ package dev.elk.scaffold.gl;
  * going to get rid of this anyway, it belongs into the
  * {@link Renderable} interface.
  * @author Louis Schell
+ * @author Felix Kunze
  */
 public interface FloatRepresentation {
 

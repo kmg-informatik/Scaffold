@@ -16,9 +16,9 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
- * Copied directly from GamesWithGabe.
- * Probably should rewrite, for better control of
- * all the buffers. They are the same for every Scene.
+ * Altered version of the Scene by GamesWithGabe
+ * @author Louis Schell
+ * @author Felix Kunze
  */
 public abstract class Scene {
 

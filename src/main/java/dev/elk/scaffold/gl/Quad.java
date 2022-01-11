@@ -14,7 +14,7 @@ import java.awt.*;
  * @author Felix Kunze
  * @author Louis Schell
  */
-public class Quad implements Geometry, Parentable {
+public class Quad implements Geometry {
 
     private final Vertex[] vertices = new Vertex[4];
 

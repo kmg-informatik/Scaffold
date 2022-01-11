@@ -5,8 +5,11 @@ import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.renderer.Sprite;
 import org.joml.Vector2f;
 
-import java.awt.*;
 
+/**
+ * Implements a Quad with physical properties such as falling
+ * @author Felix Kunze
+ */
 public class PhysicsQuad extends TexturedQuad implements Physics {
 
     public PhysicsQuad(Sprite sprite, Vector2f posLB, float width, float height){

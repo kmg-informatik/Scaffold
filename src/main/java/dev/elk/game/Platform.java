@@ -10,6 +10,10 @@ import org.joml.Vector2f;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Platform that generates simple Terrain automatically
+ * @author Felix Kunze
+ */
 public class Platform implements Geometry {
 
     public static final ArrayList<Platform> platforms = new ArrayList<>();

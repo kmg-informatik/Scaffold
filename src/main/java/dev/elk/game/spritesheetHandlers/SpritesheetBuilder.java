@@ -7,6 +7,11 @@ import dev.elk.scaffold.renderer.Texture;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Builds a Spritesheet according to information provided.
+ * @see SpritesheetInfo
+ * @auhor Felix Kunze
+ */
 public class SpritesheetBuilder {
 
     public static final ArrayList<Texture> TEXTURES = new ArrayList<>();

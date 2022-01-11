@@ -59,7 +59,7 @@ public class PrimaryScene extends Scene {
         generateSpritesheets(SpritesheetInfo.ANIMATIONS);
 
         this.camera = new FloatingCamera(new Vector2f(),1f, 20);
-        player = new Player(Spritesheet.ANIMATED_SPRITES.get("einrad"),new Vector2f(), new Vector2f(2,2));
+        player = new Player(Spritesheet.ANIMATED_SPRITES.get("maguWalk"),new Vector2f(10,10), new Vector2f(12,12));
         camera.parentTo(player);
 
         Platform.platforms.add(new Platform(new Vector2f(10,10)));
@@ -76,10 +76,11 @@ public class PrimaryScene extends Scene {
         dynamicBatch.getGeometries().clear();
         dynamicBatch.put(player);
 
+        camera.position = player.center().mul(Window.height /(float) Window.width);
+
         player.update();
 
         camera.adjustProjection();
-        //camera.position = camera.getNextPosition(quad.center());
         program.uploadMat4f("cameraProjection",camera.getProjectionMatrix());
         program.uploadMat4f("cameraView",camera.getViewMatrix());
         program.uploadFloat("windowStretch", Window.height /(float) Window.width);

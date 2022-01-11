@@ -3,10 +3,8 @@ package dev.elk.scaffold.gl.bindings;
 import dev.elk.scaffold.gl.FloatRepresentation;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
-import org.joml.Vector4f;
 
 import static org.lwjgl.opengl.GL11.GL_FLOAT;
-import static org.lwjgl.opengl.GL11.GL_INT;
 
 /**
  * Vertices are blobs of data, that are used by OpenGL

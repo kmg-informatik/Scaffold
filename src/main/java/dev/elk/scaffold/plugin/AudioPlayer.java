@@ -10,6 +10,8 @@ import dev.elk.scaffold.al.SoundClip;
  * Manages all audio being played, keeps track of MusicClips, as to pause/stop/restart them, only starts SoundClips.
  * Only works if every one MusicClip is only played once at a time (e.g.: music1, music 2: can play simultaneously;
  * music 1, music 1: can't play simultaneously)
+ * @author Eric Jacob
+ * @author Louis Schell
  */
 public class AudioPlayer implements EventListening {
 

@@ -105,7 +105,7 @@ public class AudioPlayer implements EventListening {
 
     @Override
     public void onGameStart() {
-        play(caveTheme);
+        //play(caveTheme);
     }
 
     @Override

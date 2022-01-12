@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Function;
 
-public class PipelineNode {
+public class PipelineNode<E extends Scene> {
 
     /**
      * Scene of the pipeline element
      */
-    private final Scene scene;
+    private final E scene;
 
     /**
      * Current window
@@ -23,9 +23,9 @@ public class PipelineNode {
      * Links are functions, that have an input of a {@link PipelineNode} and link
      * to a new node.
      */
-    private final ArrayList<Function<PipelineNode, PipelineNode>> links = new ArrayList<>();
+    private final ArrayList<Function<PipelineNode<E>, PipelineNode<?>>> links = new ArrayList<>();
 
-    public PipelineNode(Scene scene, Window window){
+    public PipelineNode(E scene, Window window){
         this.scene = scene;
         this.window = window;
     }
@@ -45,7 +45,7 @@ public class PipelineNode {
      * Adds new links to the pipeline.
      */
     @SafeVarargs
-    public final void addLinks(final Function<PipelineNode, PipelineNode>...links){
+    public final void addLinks(final Function<PipelineNode<E>, PipelineNode<?>>...links){
         this.links.addAll(Arrays.asList(links));
     }
 
@@ -56,9 +56,9 @@ public class PipelineNode {
      * @return null, if there is no connection to another node. Else, it returns
      * the next node which is different to the last node.
      */
-    public PipelineNode nextNode(){
-        for (Function<PipelineNode, PipelineNode> link : links) {
-            PipelineNode node = link.apply(this);
+    public PipelineNode<?> nextNode(){
+        for (Function<PipelineNode<E>, PipelineNode<?>> link : links) {
+            PipelineNode<?> node = link.apply(this);
 
             //if different node and node is not null
             if (node != this && node != null) return node;
@@ -69,14 +69,14 @@ public class PipelineNode {
     /**
      * @return all links
      */
-    public ArrayList<Function<PipelineNode, PipelineNode>> getLinks() {
+    public ArrayList<Function<PipelineNode<E>, PipelineNode<?>>> getLinks() {
         return links;
     }
 
     /**
      * @return Scene of the this node
      */
-    public Scene getScene() {
+    public E getScene() {
         return scene;
     }
 

@@ -1,5 +1,6 @@
-package dev.elk.game;
+package dev.elk.game.scenes;
 
+import dev.elk.game.Bird;
 import dev.elk.game.structures.Chunk;
 import dev.elk.game.structures.ChunkGenerator;
 import dev.elk.game.structures.Pipe;

@@ -1,5 +1,7 @@
 package dev.elk.game;
 
+import dev.elk.game.scenes.IntroScene;
+import dev.elk.game.scenes.PrimaryScene;
 import dev.elk.scaffold.components.GamePipeline;
 import dev.elk.scaffold.components.PipelineNode;
 import dev.elk.scaffold.gl.Window;
@@ -21,31 +23,43 @@ public class Main {
         ShaderProgram program = new ShaderProgram();
         program.attachShaders(fragment, vertex);
 
-        Window window = new Window("Hello!", Color.BLUE);
+        Window window = new Window("Hello!", Color.CYAN);
         window.init();
 
         ///////////////////////////////////GAME_LOGIC///////////////////////////////////
 
+        PipelineNode<IntroScene> introNode = new PipelineNode<>(
+                new IntroScene(window, program),
+                window
+        );
+
         //Add a node with the primary scene
-        PipelineNode gameNode = new PipelineNode(
+        PipelineNode<PrimaryScene> gameNode = new PipelineNode<>(
                 new PrimaryScene(window, program),
                 window);
 
         //Add a node with the end scene
-        PipelineNode end = new PipelineNode(
+        PipelineNode<EndGameScene> end = new PipelineNode<>(
                 new EndGameScene(window),
                 window);
 
         //Add a link, that if the windowFrameCount is above 200,
         //advance to the end node.
+
+        introNode.addLinks(intro->{
+            if (introNode.getScene().isFinished())
+                return gameNode;
+            else return null;
+        });
+
         gameNode.addLinks(game->{
-            if (window.getCurrentFrameCount()>200) {
+            if (window.getCurrentFrameCount()>20000) {
                 return end;
             }else return null;
         });
 
         //Add the nodes to the pipeline
-        GamePipeline pipeline = new GamePipeline(window, gameNode);
+        GamePipeline pipeline = new GamePipeline(window, introNode);
 
         //Run the pipeline
         pipeline.run();

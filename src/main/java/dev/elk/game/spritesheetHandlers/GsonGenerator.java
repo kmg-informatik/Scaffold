@@ -24,7 +24,8 @@ public class GsonGenerator {
     }
 
     public static void generateSpritesheets() throws IOException {
-        generateAnimatedJson();
+        generateAnimated();
+        geneteBird();
         generateTiles();
         generateTrees();
     }
@@ -47,7 +48,7 @@ public class GsonGenerator {
                 24
         );
 
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(0, 0), new Vector2i(1, 1), "barrel3"),
                 new Sprite(new Vector2i(1, 0), new Vector2i(2, 1), "barrel2"),
                 new Sprite(new Vector2i(2, 0), new Vector2i(3, 1), "barrel1"),
@@ -59,7 +60,7 @@ public class GsonGenerator {
         );
         int a = 0;
         int b = 1;
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, 1), new Vector2i(b++, 2), "dirtLight"),
                 new Sprite(new Vector2i(a++, 1), new Vector2i(b++, 2), "grass4"),
                 new Sprite(new Vector2i(a++, 1), new Vector2i(b++, 2), "grass3down"),
@@ -82,7 +83,7 @@ public class GsonGenerator {
         a = 0;
         b = 1;
 
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, 2), new Vector2i(b++, 3), "dirtDark"),
                 new Sprite(new Vector2i(a++, 2), new Vector2i(b++, 3), "dirt4"),
                 new Sprite(new Vector2i(a++, 2), new Vector2i(b++, 3), "dirt3down"),
@@ -106,7 +107,7 @@ public class GsonGenerator {
         a = 0;
         b = 1;
 
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, 3), new Vector2i(b++, 4), "sky"),
                 new Sprite(new Vector2i(a++, 3), new Vector2i(b++, 4), "cloudLeftRoundSmall"),
                 new Sprite(new Vector2i(a++, 3), new Vector2i(b++, 4), "cloudRightRoundSmall"),
@@ -121,7 +122,7 @@ public class GsonGenerator {
         a = 0;
         b = 1;
 
-        spritesheet.addSprite(
+        spritesheet.addSprites(
 
                 new Sprite(new Vector2i(a++, 4), new Vector2i(b++, 5), "brick"),
                 new Sprite(new Vector2i(a++, 4), new Vector2i(b++, 5), "stoneBrick"),
@@ -161,7 +162,7 @@ public class GsonGenerator {
         int a = 0;
         int b = 1;
 
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, 0), new Vector2i(b++, 2), "tree"),
                 new Sprite(new Vector2i(a++, 0), new Vector2i(b++, 2), "treeCone"),
                 new Sprite(new Vector2i(a++, 0), new Vector2i(b++, 2), "treeBranch"),
@@ -182,7 +183,7 @@ public class GsonGenerator {
         writer.close();
     }
 
-    public static void generateAnimatedJson() throws IOException {
+    public static void generateAnimated() throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>(
@@ -192,9 +193,30 @@ public class GsonGenerator {
                 41
         );
 
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new AnimatedSprite(new Vector2i(0, 0), new Vector2i(1, 1), "maguJump", 8),
                 new AnimatedSprite(new Vector2i(0, 1), new Vector2i(1, 2), "maguWalk", 3)
+        );
+
+        FileWriter writer = new FileWriter("Assets/SpriteJson/animations.json");
+        gson.toJson(spritesheet, writer);
+        writer.close();
+    }
+
+    public static void geneteBird() throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Spritesheet<AnimatedSprite> spritesheet = new Spritesheet<>(
+                261,
+                261,
+                87,
+                87
+        );
+
+        spritesheet.addSprites(
+                new AnimatedSprite(new Vector2i(0, 2), new Vector2i(1, 3), "bird", 1),
+                new AnimatedSprite(new Vector2i(0, 1), new Vector2i(1, 2), "birdDown", 3),
+                new AnimatedSprite(new Vector2i(0, 0), new Vector2i(1, 1), "birdUp", 3)
         );
 
         FileWriter writer = new FileWriter("Assets/SpriteJson/animations.json");
@@ -216,7 +238,7 @@ public class GsonGenerator {
         int j = 9;
         int a = 0;
         int b = 1;
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_p"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_q"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_r"),
@@ -236,7 +258,7 @@ public class GsonGenerator {
 
         a = 0;
         b = 1;
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_'"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_a"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_b"),
@@ -257,7 +279,7 @@ public class GsonGenerator {
 
         a = 0;
         b = 1;
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_P"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_Q"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_R"),
@@ -278,7 +300,7 @@ public class GsonGenerator {
 
         a = 0;
         b = 1;
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_@"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_A"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_B"),
@@ -299,7 +321,7 @@ public class GsonGenerator {
 
         a = 0;
         b = 1;
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_0"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_1"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_2"),
@@ -320,7 +342,7 @@ public class GsonGenerator {
 
         a = 0;
         b = 1;
-        spritesheet.addSprite(
+        spritesheet.addSprites(
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_ "),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_!"),
                 new Sprite(new Vector2i(a++, k), new Vector2i(b++, j), fontPrefix + "_doubleQuote"),

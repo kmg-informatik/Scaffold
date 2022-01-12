@@ -1,8 +1,7 @@
 package dev.elk.scaffold.Physics;
 
-import dev.elk.game.Platform;
 import dev.elk.scaffold.gl.Geometry;
-import dev.elk.scaffold.gl.TexturedQuad;
+import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Window;
 import org.joml.Vector2f;
 
@@ -17,8 +16,8 @@ public interface Physics extends Geometry {
     default void fall() {
         Geometry.super.translate(new Vector2f(0, 4 * getCurrentGravity()).mul(Window.dt));
         boolean intersects = false;
-        for (Platform platform : Platform.platforms) {
-            for (TexturedQuad quad : platform.getPlatformBase()) {
+        for (CollidableStructure structure : CollidableStructure.collidables) {
+            for (Quad quad : structure.getCollidableQuads()) {
                 if (intersects(quad)) {
                     intersects = true;
                     setCurrentGravity(0);
@@ -33,9 +32,9 @@ public interface Physics extends Geometry {
             setCurrentGravity(getCurrentGravity() - 40f * Window.dt);
     }
 
-    default boolean hasGroundContact() {
-        for (Platform platform : Platform.platforms)
-            for (TexturedQuad quad : platform.getPlatformBase()) {
+    default boolean hasCollision() {
+        for (CollidableStructure structure: CollidableStructure.collidables)
+            for (Quad quad: structure.getCollidableQuads()) {
                 if (intersects(quad)) return true;
             }
         return false;

@@ -16,30 +16,43 @@ public class AnimatedSprite extends Sprite {
 
     final int frameCount;
     private int currentFrame;
+    private final int animationSpeed;
 
     private Vector2f[] originalUVCoords;
+
+    public AnimatedSprite(Vector2i minPos, Vector2i maxPos, String spriteName, int frameCount, int animationSpeed) {
+        super(minPos, maxPos, spriteName);
+        this.frameCount = frameCount;
+        this.currentFrame = 0;
+        this.animationSpeed = animationSpeed;
+    }
 
     public AnimatedSprite(Vector2i minPos, Vector2i maxPos, String spriteName, int frameCount) {
         super(minPos, maxPos, spriteName);
         this.frameCount = frameCount;
         this.currentFrame = 0;
+        this.animationSpeed = 5;
     }
 
+    private int animationCounter = 0;
     public void nextFrame() {
-        float width = uvCoords[1].x - uvCoords[0].x;
+        if (animationCounter % animationSpeed ==0) {
+            float width = uvCoords[1].x - uvCoords[0].x;
 
-        for (int i = 0; i < 4; i++)
-            uvCoords[i].x += width;
+            for (int i = 0; i < 4; i++)
+                uvCoords[i].x += width;
 
-        if (currentFrame % frameCount == 0) {
-            uvCoords = new Vector2f[]{
-                    new Vector2f(originalUVCoords[0]),
-                    new Vector2f(originalUVCoords[1]),
-                    new Vector2f(originalUVCoords[2]),
-                    new Vector2f(originalUVCoords[3])
-            };
+            if (currentFrame % frameCount == 0) {
+                uvCoords = new Vector2f[]{
+                        new Vector2f(originalUVCoords[0]),
+                        new Vector2f(originalUVCoords[1]),
+                        new Vector2f(originalUVCoords[2]),
+                        new Vector2f(originalUVCoords[3])
+                };
+            }
+            this.currentFrame++;
         }
-        this.currentFrame++;
+        animationCounter++;
     }
 
     public int getCurrentFrame() {

@@ -19,8 +19,9 @@ import java.util.List;
  */
 public class Spritesheet<T extends Sprite> {
 
-    public static final HashMap<String, AnimatedSprite> ANIMATED_SPRITES = new HashMap<>();
-    public static final HashMap<String, Sprite> STATIC_SPRITES = new HashMap<>();
+    public static final HashMap<String, AnimatedSprite> animatedSprites = new HashMap<>();
+    public static final HashMap<String, Sprite> staticSprites = new HashMap<>();
+
     final int sheetWidth, sheetHeight, tileWidth, tileHeight;
     private final ArrayList<T> spritesTemp = new ArrayList<>();
 
@@ -41,7 +42,7 @@ public class Spritesheet<T extends Sprite> {
         spritesheet.init(new Texture(texturePath));
 
         for (int i = 0; i < spritesheet.spritesTemp.size(); i++) {
-            ANIMATED_SPRITES.put(spritesheet.spritesTemp.get(i).spriteName, spritesheet.spritesTemp.get(i));
+            animatedSprites.put(spritesheet.spritesTemp.get(i).spriteName, spritesheet.spritesTemp.get(i));
         }
 
     }
@@ -56,7 +57,7 @@ public class Spritesheet<T extends Sprite> {
         spritesheet.init(new Texture(texturePath));
 
         for (int i = 0; i < spritesheet.spritesTemp.size(); i++) {
-            STATIC_SPRITES.put(spritesheet.spritesTemp.get(i).spriteName, spritesheet.spritesTemp.get(i));
+            staticSprites.put(spritesheet.spritesTemp.get(i).spriteName, spritesheet.spritesTemp.get(i));
         }
     }
 
@@ -81,7 +82,7 @@ public class Spritesheet<T extends Sprite> {
         }
     }
 
-    public void addSprite(T... sprites) {
+    public void addSprites(T... sprites) {
         this.spritesTemp.addAll(List.of(sprites));
     }
 
@@ -89,5 +90,9 @@ public class Spritesheet<T extends Sprite> {
         SpritesheetBuilder.TEXTURES.add(texture);
         spritesTemp.forEach(t -> t.setTexture(texture));
         calculateUVCoords();
+    }
+
+    public static void addSprite(Sprite sprite) {
+        staticSprites.put(sprite.spriteName, sprite);
     }
 }

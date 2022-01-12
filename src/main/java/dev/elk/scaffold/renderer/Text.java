@@ -1,10 +1,9 @@
 package dev.elk.scaffold.renderer;
 
 import dev.elk.game.fontSettings.FontInformation;
-import dev.elk.scaffold.gl.Geometry;
 import dev.elk.scaffold.gl.Quad;
+import dev.elk.scaffold.gl.QuadStructure;
 import dev.elk.scaffold.gl.TexturedQuad;
-import dev.elk.scaffold.gl.bindings.Vertex;
 import org.joml.Vector2f;
 
 import java.io.IOException;
@@ -17,7 +16,7 @@ import java.io.IOException;
  * @see dev.elk.game.fontSettings.Font
  * @see FontInformation
  */
-public class Text implements Geometry {
+public class Text implements QuadStructure {
     private final FontInformation fontInformation;
     private String text;
     private TexturedQuad[] quads;
@@ -49,7 +48,7 @@ public class Text implements Geometry {
                     new Vector2f(position.x + i * (fontInformation.getFontSize() - fontInformation.getFontWhitespace()), position.y),
                     fontInformation.getFontSize(),
                     fontInformation.getFontSize() * fontInformation.getHeightWidthRatio(),
-                    Spritesheet.STATIC_SPRITES.get(spriteName)
+                    Spritesheet.staticSprites.get(spriteName)
             );
         }
         translateOriginTo(position);
@@ -69,33 +68,6 @@ public class Text implements Geometry {
         return quads;
     }
 
-    @Override
-    public int[] getIndices() {
-        int[] indices = new int[quads.length * 6];
-        int addTo = 0;
-        for (int i = 0; i < quads.length; i++) {
-            indices[i * 6] = i + addTo;
-            indices[i * 6 + 1] = i + 1 + addTo;
-            indices[i * 6 + 2] = i + 2 + addTo;
-            indices[i * 6 + 3] = i + 2 + addTo;
-            indices[i * 6 + 4] = i + 3 + addTo;
-            indices[i * 6 + 5] = i + addTo;
-            addTo += 3;
-        }
-        return indices;
-    }
-
-    @Override
-    public Vertex[] getVertices() {
-        Vertex[] vertices = new Vertex[quads.length << 2];
-        for (int i = 0; i < vertices.length; i += 4) {
-            vertices[i] = quads[i >> 2].getVertices()[0];
-            vertices[i + 1] = quads[i >> 2].getVertices()[1];
-            vertices[i + 2] = quads[i >> 2].getVertices()[2];
-            vertices[i + 3] = quads[i >> 2].getVertices()[3];
-        }
-        return vertices;
-    }
 
     public String getText() {
         return text;

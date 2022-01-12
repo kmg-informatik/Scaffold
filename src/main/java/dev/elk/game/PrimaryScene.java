@@ -1,6 +1,8 @@
 package dev.elk.game;
 
 import dev.elk.game.spritesheetHandlers.SpritesheetInfo;
+import dev.elk.game.structures.Pipe;
+import dev.elk.scaffold.Physics.CollidableStructure;
 import dev.elk.scaffold.components.Scene;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
 import dev.elk.scaffold.components.player.Player;
@@ -44,26 +46,25 @@ public class PrimaryScene extends Scene {
         Vertex.initAttributes(program);
 
         generateSpritesheets(SpritesheetInfo.COZETTE);
-        generateSpritesheets(SpritesheetInfo.TILES);
+        generateSpritesheets(SpritesheetInfo.TREES);
         generateSpritesheets(SpritesheetInfo.ANIMATIONS);
 
         this.camera = new FloatingCamera(new Vector2f(), 1f, 20);
-        player = new Player(Spritesheet.ANIMATED_SPRITES.get("maguWalk"),Spritesheet.ANIMATED_SPRITES.get("maguJump"), new Vector2f(10, 10), new Vector2f(12, 12));
+        player = new Player(
+                Spritesheet.animatedSprites.get("bird"),
+                Spritesheet.animatedSprites.get("birdUp"),
+                new Vector2f(10, 10),
+                new Vector2f(12, 12));
+        Pipe pipe = new Pipe(new Vector2f(15,0), 3, 2);
+        CollidableStructure.collidables.add(pipe);
+        staticBatch.put(pipe);
+
         camera.parentTo(player);
-
-        Platform.platforms.add(new Platform(new Vector2f(10, 10)));
-        Platform.platforms.add(new Platform(new Vector2f(30, 20)));
-        Platform.platforms.add(new Platform(new Vector2f(20, 00)));
-        Platform.platforms.add(new Platform(new Vector2f(30, 10)));
-
-
-        staticBatch.putAll(Platform.platforms.toArray(new Platform[0]));
 
         Texture.bindMultipleTextures();
 
     }
 
-    int counter = 0;
     @Override
     public void update() {
         dynamicBatch.getGeometries().clear();

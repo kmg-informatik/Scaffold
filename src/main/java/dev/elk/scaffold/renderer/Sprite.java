@@ -38,7 +38,9 @@ public class Sprite {
 
     public void setUvCoords(Vector2f[] uvCoords) {
         this.uvCoords = uvCoords;
-        this.heightWidthRatio = (uvCoords[2].y - uvCoords[0].y) / (uvCoords[2].x - uvCoords[0].x);
+    }
+    protected void setHeightWidthRatio(float heigthWidthRatio) {
+        this.heightWidthRatio = heigthWidthRatio;
     }
 
     public Texture getTexture() {

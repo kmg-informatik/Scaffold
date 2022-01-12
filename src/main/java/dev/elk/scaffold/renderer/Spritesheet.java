@@ -79,6 +79,7 @@ public class Spritesheet<T extends Sprite> {
             };
 
             sprite.setUvCoords(uvCoords);
+            sprite.setHeightWidthRatio((float) tileHeight / (float) tileWidth);
         }
     }
 

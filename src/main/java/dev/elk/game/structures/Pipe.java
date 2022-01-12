@@ -8,41 +8,34 @@ import org.joml.Vector2f;
 
 public class Pipe implements CollidableStructure {
 
-    Vector2f position;
-    float gapSize;
-    float gapPosition;
+    private float gapSize;
+    private float gapPosition;
+    private float posX;
     final float pipeWidth = 3f;
 
     public final TexturedQuad[] quads = new TexturedQuad[2];
 
-    public Pipe(Vector2f position, float gapPosition, float gapSize) {
+    public Pipe(float posX, float gapPosition, float gapSize) {
         this.gapSize = gapSize;
+        this.posX = posX;
         this.gapPosition = gapPosition;
-        this.position = position;
         generatePipes();
     }
 
     private void generatePipes() {
-//        quads[0] = new TexturedQuad(
-//                //new Vector2f(position),
-//                new Vector2f(position.x, gapPosition-Spritesheet.staticSprites.get("pipe").getYDifference()),
-//                new Vector2f(position.x + pipeWidth, gapPosition),
-//                //new Vector2f(position.x + pipeWidth, gapPosition/Spritesheet.staticSprites.get("pipe").getWidthHeightRatio()),    //TODO fix this
-//                Spritesheet.staticSprites.get("pipe")
-//        );
         quads[0] = new TexturedQuad(
-                new Vector2f(position),
+                new Vector2f(posX, gapPosition - gapSize / 2),
                 pipeWidth,
                 Spritesheet.staticSprites.get("pipe")
         );
 
         quads[1] = new TexturedQuad(
-                new Vector2f(position.x, gapPosition + gapSize),
+                new Vector2f(posX, gapPosition + gapSize / 2),
                 pipeWidth,
                 Spritesheet.staticSprites.get("pipe")
         );
-        quads[1].translate(new Vector2f(0,quads[1].getHeight()));
         quads[1].flipX(quads[1].center());
+       quads[0].translate(new Vector2f(0, -quads[0].getHeight()));
     }
 
 

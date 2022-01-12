@@ -31,12 +31,12 @@ public class AnimatedSprite extends Sprite {
         super(minPos, maxPos, spriteName);
         this.frameCount = frameCount;
         this.currentFrame = 0;
-        this.animationSpeed = 5;
+        this.animationSpeed = 2;
     }
 
     private int animationCounter = 0;
     public void nextFrame() {
-        if (animationCounter % animationSpeed ==0) {
+        if ((animationCounter %= animationSpeed) ==0) {
             float width = uvCoords[1].x - uvCoords[0].x;
 
             for (int i = 0; i < 4; i++)

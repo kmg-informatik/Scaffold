@@ -26,11 +26,9 @@ import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateAllSpr
 public class PrimaryScene extends Scene {
 
     private final ShaderProgram program;
-    private final Batch<Geometry> dynamicBatch = new Batch<>(2000, 2_00_000, 75_000);
-    private final Batch<Geometry> staticBatch = new Batch<>(2000, 2_00_000, 75_000);
+    private final Batch<Geometry> dynamicBatch = new Batch<>(2000, 200_000, 75_000);
+    private final Batch<Geometry> staticBatch = new Batch<>(2000, 200_000, 75_000);
     private Player player;
-    private TexturedQuad quad;
-    private Text text;
 
     public PrimaryScene(Window window, ShaderProgram program) {
         super(window);
@@ -44,14 +42,10 @@ public class PrimaryScene extends Scene {
         Vertex.initAttributes(program);
 
         this.camera = new FloatingCamera(new Vector2f(), 1f, 20);
-        player = new Player(
-                Spritesheet.animatedSprites.get("bird"),
-                Spritesheet.animatedSprites.get("birdUp"),
-                new Vector2f(10, 10),
-                new Vector2f(12, 12));
+        player = new Bird(new Vector2f(), 2);
 
-        Pipe pipe = new Pipe(
-                new Vector2f(15,-20),
+                Pipe pipe = new Pipe(
+                10,
                 0,
                 5);
         CollidableStructure.collidables.add(pipe);
@@ -63,12 +57,13 @@ public class PrimaryScene extends Scene {
 
     }
 
+    int counter;
     @Override
     public void update() {
         dynamicBatch.getGeometries().clear();
         dynamicBatch.put(player);
 
-        camera.position = player.center().mul(Window.height / (float) Window.width);
+        camera.position = new Vector2f(player.center().mul(Window.height / (float) Window.width).x, 0);
 
         player.update();
 

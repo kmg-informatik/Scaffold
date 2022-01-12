@@ -14,6 +14,10 @@ public class PhysicsQuad extends TexturedQuad implements Physics {
 
     private float gravity = Physics.NORMAL_GRAVITY;
 
+    public PhysicsQuad(Vector2f posLB, float size, Sprite sprite){
+        super(posLB, size, sprite);
+    }
+
     public PhysicsQuad(Sprite sprite, Vector2f posLB, float width, float height) {
         super(posLB, width, height, sprite);
     }

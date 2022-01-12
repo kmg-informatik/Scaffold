@@ -17,13 +17,9 @@ public class Player extends Entity implements Actions, Parentable {
     private boolean facingRight;
     private Vector2f movementVector;
     private int jumpCounter = 0;
-    private final AnimatedSprite walkSprite;
-    private final AnimatedSprite jumpSprite;
 
-    public Player(AnimatedSprite walkSprite, AnimatedSprite jumpSprite, Vector2f lb, Vector2f tr) {
-        super(walkSprite, lb, tr);
-        this.walkSprite = walkSprite;
-        this.jumpSprite = jumpSprite;
+    public Player (Vector2f startPosition, float size, AnimatedSprite sprite) {
+        super(startPosition, size, sprite);
     }
 
     @Override
@@ -36,10 +32,11 @@ public class Player extends Entity implements Actions, Parentable {
         return 10f;
     }
 
+    private float lastGravity = getCurrentGravity();
     @Override
     public void update() {
 
-        this.fall();
+        fall();
 
         movementVector = new Vector2f();
 
@@ -47,20 +44,15 @@ public class Player extends Entity implements Actions, Parentable {
             jump();
             jumpCounter++;
         }
-        if (KeyHandler.isKeyPressed(KEY_A) || KeyHandler.isKeyPressed(KEY_D)) {
-            if (KeyHandler.isKeyPressed(KEY_A)) {
-                moveLeft();
-            } else {
-                moveRight();
-            }
-            nextFrame();
-        }
+        moveRight();
         this.translate(movementVector);
-
         if (jumpCounter % 20 !=0 ) {
             jumpCounter++;
         }
-        if (!hasCollision()) nextFrame();
+
+        checkGravityChange();
+        nextFrame();
+        lastGravity = getCurrentGravity();
     }
 
     @Override
@@ -84,7 +76,6 @@ public class Player extends Entity implements Actions, Parentable {
     @Override
     public void jump() {
         setCurrentGravity(10);
-        setSprite(jumpSprite);
     }
 
     @Override
@@ -95,7 +86,20 @@ public class Player extends Entity implements Actions, Parentable {
     public void nextFrame() {
         ((AnimatedSprite) getSprite()).nextFrame();
         setUV();
-        if (hasCollision())
-            setSprite(walkSprite);
     }
+
+    public void checkGravityChange() {
+        if (Math.signum(getCurrentGravity()) != Math.signum(lastGravity))
+            if(getCurrentGravity() > 0)
+                action(ActionType.UP);
+            else action(ActionType.DOWN);
+
+    }
+
+    public void action(ActionType actionType) {}
+
+    protected enum ActionType {
+        UP, DOWN, LEFT, RIGHT;
+    }
+
 }

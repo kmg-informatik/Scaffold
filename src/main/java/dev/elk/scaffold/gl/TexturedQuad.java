@@ -21,7 +21,6 @@ public class TexturedQuad extends Quad {
                 posLB,
                 new Vector2f(posLB.x + size, posLB.y + size * (sprite.getHeightWidthRatio())),
                 sprite);
-        System.out.println(sprite.getHeightWidthRatio());
     }
 
     public TexturedQuad(Vector2f posLB, Vector2f posTR, Sprite sprite) {

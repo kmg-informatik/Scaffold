@@ -15,10 +15,9 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
- * Altered version of the Scene by GamesWithGabe
- *
- * @author Louis Schell
- * @author Felix Kunze
+ * Copied directly from GamesWithGabe.
+ * Probably should rewrite, for better control of
+ * all the buffers. They are the same for every Scene.
  */
 public abstract class Scene {
 
@@ -27,6 +26,14 @@ public abstract class Scene {
 
     public Scene(Window window) {
         this.window = window;
+    }
+
+    public void init() throws InstantiationException, IOException {}
+
+    public void update(){}
+
+    public void reset(){
+        this.camera = null;
     }
 
     protected static void bufferInit(ShaderProgram program, Batch<Geometry> dynamicBatch) throws InstantiationException {
@@ -49,11 +56,6 @@ public abstract class Scene {
 
         Vertex.initAttributes(program);
     }
-
-    public void init() throws InstantiationException, IOException {
-    }
-
-    public abstract void update();
 
 
 }

@@ -95,6 +95,7 @@ public class Player extends Entity implements Actions, Parentable {
     public void nextFrame() {
         ((AnimatedSprite) getSprite()).nextFrame();
         setUV();
-        if (hasCollision()) setSprite(walkSprite);
+        if (hasCollision())
+            setSprite(walkSprite);
     }
 }

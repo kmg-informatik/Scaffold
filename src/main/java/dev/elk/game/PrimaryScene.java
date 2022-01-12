@@ -1,8 +1,7 @@
 package dev.elk.game;
 
-import dev.elk.game.spritesheetHandlers.SpritesheetInfo;
 import dev.elk.game.structures.Pipe;
-import dev.elk.scaffold.Physics.CollidableStructure;
+import dev.elk.scaffold.physics.CollidableStructure;
 import dev.elk.scaffold.components.Scene;
 import dev.elk.scaffold.components.cameras.FloatingCamera;
 import dev.elk.scaffold.components.player.Player;
@@ -13,13 +12,10 @@ import dev.elk.scaffold.gl.bindings.ShaderProgram;
 import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2f;
-import org.joml.Vector2i;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateAllSpritesheets;
-import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateSpritesheets;
 
 /**
  * Test scene for stuff. Mainly first tests of OpenGL and textures and stuff.
@@ -55,9 +51,9 @@ public class PrimaryScene extends Scene {
                 new Vector2f(12, 12));
 
         Pipe pipe = new Pipe(
-                new Vector2f(15,-100),
-                -5,
-                6);
+                new Vector2f(15,-20),
+                0,
+                5);
         CollidableStructure.collidables.add(pipe);
         staticBatch.put(pipe);
 

@@ -1,5 +1,6 @@
 package dev.elk.scaffold.gl;
 
+import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.renderer.Sprite;
 import org.joml.Vector2f;
 
@@ -14,6 +15,14 @@ import java.awt.*;
 public class TexturedQuad extends Quad {
 
     private Sprite sprite;
+
+    public TexturedQuad(Vector2f posLB, float size, Sprite sprite){
+        this(
+                posLB,
+                new Vector2f(posLB.x + size, posLB.y + size * (sprite.getHeightWidthRatio())),
+                sprite);
+        System.out.println(sprite.getHeightWidthRatio());
+    }
 
     public TexturedQuad(Vector2f posLB, Vector2f posTR, Sprite sprite) {
         this(posLB,
@@ -38,6 +47,20 @@ public class TexturedQuad extends Quad {
                 sprite.getTexture().getTexID()
         );
         this.sprite = sprite;
+    }
+
+    public void normalise(){
+        float ratio = sprite.getHeightWidthRatio();
+        Vertex[] vertices = getVertices();
+
+        Vector2f lb = vertices[0].position;
+        Vector2f tr = vertices[1].position;
+
+        float width = Math.abs(tr.x-lb.x);
+
+        tr.y = lb.y/ratio;
+
+        tr.x -= lb.x;
     }
 
     public Sprite getSprite() {

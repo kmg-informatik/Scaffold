@@ -1,6 +1,6 @@
 package dev.elk.game.structures;
 
-import dev.elk.scaffold.Physics.CollidableStructure;
+import dev.elk.scaffold.physics.CollidableStructure;
 import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.gl.TexturedSquare;

@@ -20,15 +20,11 @@ public interface EventListening {
     default void onJump() {
     }
 
-    ;
-
     /**
      * Called when the game starts
      */
     default void onGameStart() {
     }
-
-    ;
 
     /**
      * Called when the game is paused
@@ -36,13 +32,9 @@ public interface EventListening {
     default void onGamePause() {
     }
 
-    ;
-
     /**
      * Called when the game stops
      */
     default void onGameStop() {
     }
-
-    ;
 }

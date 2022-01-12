@@ -1,6 +1,6 @@
 package dev.elk.scaffold.components.player;
 
-import dev.elk.scaffold.Physics.PhysicsQuad;
+import dev.elk.scaffold.physics.PhysicsQuad;
 import dev.elk.scaffold.gl.Component;
 import dev.elk.scaffold.renderer.AnimatedSprite;
 import org.joml.Vector2f;

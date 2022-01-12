@@ -16,6 +16,7 @@ public class Sprite {
     protected final String spriteName;
     protected transient Vector2f[] uvCoords;
     protected transient Texture texture;
+    protected transient float heightWidthRatio;
 
     public Sprite(Texture texture, Vector2i minPos, Vector2i maxPos, String spriteName) {
         this.minPos = minPos;
@@ -28,6 +29,7 @@ public class Sprite {
         this.minPos = minPos;
         this.maxPos = maxPos;
         this.spriteName = spriteName;
+        System.out.println(heightWidthRatio);
     }
 
     public Vector2f[] getUvCoords() {
@@ -36,6 +38,7 @@ public class Sprite {
 
     public void setUvCoords(Vector2f[] uvCoords) {
         this.uvCoords = uvCoords;
+        this.heightWidthRatio = (uvCoords[2].y - uvCoords[0].y) / (uvCoords[2].x - uvCoords[0].x);
     }
 
     public Texture getTexture() {
@@ -46,4 +49,11 @@ public class Sprite {
         this.texture = texture;
     }
 
+    public float getHeightWidthRatio() {
+        return heightWidthRatio;
+    }
+
+    public float getYDifference(){
+        return this.maxPos.y - this.minPos.y;
+    }
 }

@@ -6,6 +6,7 @@ uniform sampler2D texSamplers[16];
 in vec3 fColor;
 in vec2 fTexCoords;
 in float fTexId;
+
 out vec4 outColor;
 
 bool texCoordsInRange();

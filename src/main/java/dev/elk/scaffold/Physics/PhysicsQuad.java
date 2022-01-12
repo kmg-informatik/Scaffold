@@ -31,9 +31,4 @@ public class PhysicsQuad extends TexturedQuad implements Physics {
     public void setCurrentGravity(float g) {
         gravity = g;
     }
-
-    @Override
-    public void translate(Vector2f vector) {
-        if (!hasCollision()) super.translate(vector);
-    }
 }

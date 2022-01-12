@@ -12,8 +12,10 @@ import java.nio.file.Paths;
 public enum SpritesheetInfo {
     TILES(Paths.get("Assets/SpriteJson/tiles.json"), Paths.get("Assets/Spritesheets/tiles.png"), false),
     TREES(Paths.get("Assets/SpriteJson/trees.json"), Paths.get("Assets/Spritesheets/trees.png"), false),
+    PIPE(Paths.get("Assets/SpriteJson/pipe.json"),Paths.get("Assets/Spritesheets/pipe.png"),false),
     ANIMATIONS(Paths.get("Assets/SpriteJson/animations.json"), Paths.get("Assets/Spritesheets/animations.png"), true),
     BIRD(Paths.get("Assets/SpriteJson/bird.json"),Paths.get("Assets/Spritesheets/bird.png"),true),
+
     COZETTE(Paths.get("Assets/SpriteJson/fonts/cozette.json"), Paths.get("Assets/Spritesheets/fonts/cozette.png"), false),
     JETBRAINS_MONO(Paths.get("Assets/SpriteJson/fonts/jetbrainsMono.json"), Paths.get("Assets/Spritesheets/fonts/jetbrainsMono.png"), false),
     TIMES_NEW_ROMAN(Paths.get("Assets/SpriteJson/fonts/timesNewRoman.json"), Paths.get("Assets/Spritesheets/fonts/timesNewRoman.png"), false);

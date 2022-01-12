@@ -1,0 +1,19 @@
+{
+  "sheetWidth": 150,
+  "sheetHeight": 1080,
+  "tileWidth": 150,
+  "tileHeight": 1080,
+  "spritesTemp": [
+    {
+      "minPos": {
+        "x": 0,
+        "y": 0
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 1
+      },
+      "spriteName": "pipe"
+    }
+  ]
+}

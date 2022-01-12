@@ -6,10 +6,12 @@ import dev.elk.game.fontSettings.Font;
 import dev.elk.scaffold.renderer.AnimatedSprite;
 import dev.elk.scaffold.renderer.Sprite;
 import dev.elk.scaffold.renderer.Spritesheet;
+import dev.elk.scaffold.renderer.Texture;
 import org.joml.Vector2i;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 /**
  * Generates the Json necessary to read sprites.
@@ -28,6 +30,7 @@ public class GsonGenerator {
         geneteBird();
         generateTiles();
         generateTrees();
+        generatePipeSprite();
     }
 
     public static void generateFonts() throws IOException {
@@ -220,6 +223,26 @@ public class GsonGenerator {
         );
 
         FileWriter writer = new FileWriter("Assets/SpriteJson/animations.json");
+        gson.toJson(spritesheet, writer);
+        writer.close();
+    }
+
+    public static void generatePipeSprite() throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Spritesheet<Sprite> spritesheet = new Spritesheet<>(
+                150,
+                1080,
+                150,
+                1080
+        );
+        spritesheet.addSprites(new Sprite(
+                new Vector2i(0,0),
+                new Vector2i(1,1),
+                "pipe"
+        ));
+
+        FileWriter writer = new FileWriter("Assets/SpriteJson/pipe.json");
         gson.toJson(spritesheet, writer);
         writer.close();
     }

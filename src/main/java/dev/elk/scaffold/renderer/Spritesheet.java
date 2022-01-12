@@ -91,8 +91,4 @@ public class Spritesheet<T extends Sprite> {
         spritesTemp.forEach(t -> t.setTexture(texture));
         calculateUVCoords();
     }
-
-    public static void addSprite(Sprite sprite) {
-        staticSprites.put(sprite.spriteName, sprite);
-    }
 }

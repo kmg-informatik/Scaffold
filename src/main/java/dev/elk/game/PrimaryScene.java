@@ -13,8 +13,10 @@ import dev.elk.scaffold.gl.bindings.ShaderProgram;
 import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2f;
+import org.joml.Vector2i;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateAllSpritesheets;
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateSpritesheets;
@@ -45,17 +47,17 @@ public class PrimaryScene extends Scene {
         generateAllSpritesheets();
         Vertex.initAttributes(program);
 
-        generateSpritesheets(SpritesheetInfo.COZETTE);
-        generateSpritesheets(SpritesheetInfo.TREES);
-        generateSpritesheets(SpritesheetInfo.ANIMATIONS);
-
         this.camera = new FloatingCamera(new Vector2f(), 1f, 20);
         player = new Player(
                 Spritesheet.animatedSprites.get("bird"),
                 Spritesheet.animatedSprites.get("birdUp"),
                 new Vector2f(10, 10),
                 new Vector2f(12, 12));
-        Pipe pipe = new Pipe(new Vector2f(15,0), 3, 2);
+
+        Pipe pipe = new Pipe(
+                new Vector2f(15,-100),
+                -5,
+                6);
         CollidableStructure.collidables.add(pipe);
         staticBatch.put(pipe);
 

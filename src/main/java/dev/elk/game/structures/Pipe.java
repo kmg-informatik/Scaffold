@@ -11,7 +11,7 @@ public class Pipe implements CollidableStructure {
     Vector2f position;
     float gapSize;
     float gapPosition;
-    float pipeWidth = 5f;
+    float pipeWidth = 3f;
 
     public final TexturedQuad[] quads = new TexturedQuad[2];
 
@@ -25,14 +25,14 @@ public class Pipe implements CollidableStructure {
     private void generatePipes() {
         quads[0] = new TexturedQuad(
                 new Vector2f(position),
-                new Vector2f(position.x + pipeWidth, position.y + gapPosition),
-                Spritesheet.staticSprites.get("tree") //TODO Change to Pipe sprite
+                new Vector2f(position.x + pipeWidth, gapPosition),
+                Spritesheet.staticSprites.get("pipe")
         );
 
         quads[1] = new TexturedQuad(
-                new Vector2f(position.x, position.y + gapPosition + gapSize),
-                new Vector2f(position.x + pipeWidth,position.y + (2* gapPosition) + gapSize  ),
-                Spritesheet.staticSprites.get("tree") //TODO Change to Pipe sprite
+                new Vector2f(position.x, gapPosition + gapSize),
+                new Vector2f(position.x + pipeWidth, position.y *-1),
+                Spritesheet.staticSprites.get("pipe")
         );
         quads[1].flipX(quads[1].center());
     }

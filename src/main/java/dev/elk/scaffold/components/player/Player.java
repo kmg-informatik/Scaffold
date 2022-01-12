@@ -36,7 +36,7 @@ public class Player extends Entity implements Actions, Parentable {
     @Override
     public void update() {
 
-        fall();
+        //fall();
 
         movementVector = new Vector2f();
 

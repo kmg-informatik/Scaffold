@@ -1,6 +1,7 @@
 package dev.elk.game.scenes;
 
 import dev.elk.game.Bird;
+import dev.elk.game.spritesheetHandlers.SpritesheetInfo;
 import dev.elk.game.structures.Chunk;
 import dev.elk.game.structures.ChunkGenerator;
 import dev.elk.game.structures.Pipe;
@@ -19,6 +20,7 @@ import org.joml.Vector2f;
 import java.io.IOException;
 
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateAllSpritesheets;
+import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateSpritesheets;
 
 /**
  * Test scene for stuff. Mainly first tests of OpenGL and textures and stuff.
@@ -43,7 +45,10 @@ public class PrimaryScene extends Scene {
     public void init() throws InstantiationException, IOException {
 
         bufferInit(program, dynamicBatch);
-        generateAllSpritesheets();
+        generateSpritesheets(SpritesheetInfo.TILES);
+        generateSpritesheets(SpritesheetInfo.TREES);
+        generateSpritesheets(SpritesheetInfo.BIRD);
+        generateSpritesheets(SpritesheetInfo.PIPE);
         chunkGenerator.init();
         Vertex.initAttributes(program);
 

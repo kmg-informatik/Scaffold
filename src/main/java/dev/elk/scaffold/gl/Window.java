@@ -1,6 +1,6 @@
 package dev.elk.scaffold.gl;
 
-import dev.elk.scaffold.components.Scene;
+import dev.elk.scaffold.components.PipelineNode;
 import dev.elk.scaffold.components.userinput.KeyHandler;
 import dev.elk.scaffold.components.userinput.MouseListener;
 import dev.elk.scaffold.plugin.EventListening;
@@ -9,7 +9,6 @@ import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.opengl.GL;
 
 import java.awt.*;
-import java.io.IOException;
 import java.util.LinkedList;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
@@ -20,7 +19,6 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 /**
  * The window containing the running game. Originally copied
  * from GamesWithGame.
- *
  * @author Louis Schell
  * @author Felix Kunze
  */
@@ -28,35 +26,23 @@ public class Window {
 
     public static int width;
     public static int height;
-    public static float dt;
-    private final LinkedList<Float> fps = new LinkedList<>();
     public String title;
     public long glfwWindow;
     public Color windowColor;
-    private Scene currentScene;
+    public boolean gameShouldEnd;
+    public static float dt;
+    public long currentFrameCount;
+
+    private final LinkedList<Float> fps = new LinkedList<>();
+
+    private PipelineNode currentNode;
 
     public Window(String title, Color windowColor) {
         this.title = title;
         this.windowColor = windowColor;
     }
 
-    public void setScene(Scene newScene) {
-        this.currentScene = newScene;
-    }
-
-    public void run() throws InstantiationException, IOException {
-        this.init();
-        currentScene.init();
-        this.loop();
-
-        glfwFreeCallbacks(glfwWindow);
-        glfwDestroyWindow(glfwWindow);
-
-        glfwTerminate();
-        glfwSetErrorCallback(null).free();
-    }
-
-    private void init() {
+    public void init() {
         GLFWErrorCallback.createPrint(System.err).set();
 
         if (!glfwInit()) {
@@ -95,29 +81,16 @@ public class Window {
         }
     }
 
-    private void updateDimensions() {
-        int[] windowWidth = new int[1];
-        int[] windowHeight = new int[1];
-        glfwGetWindowSize(glfwWindow, windowWidth, windowHeight);
-        width = windowWidth[0];
-        height = windowHeight[0];
-    }
-
-    public long getID() {
-        return glfwWindow;
-    }
-
-    private void loop() {
+    public void loop() throws Exception {
 
         long start = System.nanoTime();
-        dt = -1.0f;
+        dt = 1/60f;
         long end;
 
-        while (!glfwWindowShouldClose(glfwWindow)) {
+        while (!glfwWindowShouldClose(glfwWindow) && !gameShouldEnd) {
             updateDimensions();
-
             fps.removeFirst();
-            fps.add(1f / dt);
+            fps.add(1f/dt);
 
             glfwPollEvents();
             glClearColor(windowColor.getRed(),
@@ -126,23 +99,58 @@ public class Window {
                     windowColor.getAlpha());
             glClear(GL_COLOR_BUFFER_BIT);
 
-            if (dt >= 0)
-                currentScene.update();
+            currentNode.getScene().update();
+
+            PipelineNode newNode;
+            if ((newNode = currentNode.nextNode()) != null) {
+                currentNode.reset(); //Reset old node
+                currentNode = newNode; //set new node
+                currentNode.init(); //Init new node
+            }
 
             glfwSwapBuffers(glfwWindow);
             end = System.nanoTime();
             dt = (float) ((end - start) * 1E-9);
             start = end;
+            currentFrameCount++;
         }
     }
 
-    public float avgFps() {
+    public void destroy(){
+        glfwFreeCallbacks(glfwWindow);
+        glfwDestroyWindow(glfwWindow);
+
+        glfwTerminate();
+        glfwSetErrorCallback(null).free();
+    }
+
+    private void updateDimensions(){
+        int[] windowWidth = new int[1];
+        int[] windowHeight = new int[1];
+        glfwGetWindowSize(glfwWindow, windowWidth, windowHeight);
+        width = windowWidth[0];
+        height = windowHeight[0];
+    }
+
+    public float avgFps(){
         float total = 0;
         for (float floatingFP : fps) {
-            total += floatingFP;
+            total+=floatingFP;
         }
-        total /= 20;
+        total/=20;
         return total;
+    }
+
+    public void setGameShouldEnd(boolean gameShouldEnd) {
+        this.gameShouldEnd = gameShouldEnd;
+    }
+
+    public long getCurrentFrameCount() {
+        return currentFrameCount;
+    }
+
+    public void setCurrentNode(PipelineNode currentNode) {
+        this.currentNode = currentNode;
     }
 
     public int getWidth() {
@@ -151,5 +159,13 @@ public class Window {
 
     public int getHeight() {
         return height;
+    }
+
+    public long getID() {
+        return glfwWindow;
+    }
+
+    public void shutdown() {
+
     }
 }

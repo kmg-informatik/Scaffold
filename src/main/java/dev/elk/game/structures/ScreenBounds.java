@@ -4,6 +4,7 @@ import dev.elk.scaffold.physics.CollidableStructure;
 import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.gl.TexturedSquare;
+import dev.elk.scaffold.renderer.Sprite;
 import dev.elk.scaffold.renderer.Spritesheet;
 import org.joml.Vector2f;
 
@@ -14,19 +15,24 @@ import java.util.Random;
  *
  * @author Felix Kunze
  */
-public class Platform implements CollidableStructure {
+public class ScreenBounds implements CollidableStructure {
 
     private float tileSize = 2f;
     private TexturedQuad[] quads;
     private Vector2f position;
+    private final boolean isGround;
 
-    public Platform(Vector2f position) {
+    public ScreenBounds(Vector2f position, boolean isGround) {
+        this.isGround = isGround;
         this.position = position;
         TexturedSquare[] platformBase = generateBasePlatform();
-        TexturedQuad tree = generateTree();
-        quads = new TexturedQuad[platformBase.length + 1];
+        if (isGround){
+            TexturedQuad tree = generateTree();
+            quads = new TexturedQuad[platformBase.length + 1];
+            quads[platformBase.length] = tree;
+        }
+        quads = new TexturedQuad[platformBase.length];
         System.arraycopy(platformBase, 0, quads, 0, platformBase.length);
-        quads[platformBase.length] = tree;
     }
 
     private TexturedQuad generateTree() {
@@ -51,25 +57,16 @@ public class Platform implements CollidableStructure {
     }
 
     public TexturedSquare[] generateBasePlatform() {
-        TexturedSquare[] platformBase = new TexturedSquare[new Random().nextInt(6) + 4];
-        platformBase[0] = new TexturedSquare(
-                new Vector2f(position.x, position.y),
-                tileSize,
-                Spritesheet.staticSprites.get("grass2RightBottom")
-        );
-        for (int i = 1; i < platformBase.length - 1; i++) {
+        TexturedSquare[] platformBase = new TexturedSquare[Chunk.CHUNK_SIZE / (int) tileSize];
+        for (int i = 0; i < platformBase.length; i++) {
+            System.out.println("lol");
+            Sprite sprite = Spritesheet.staticSprites.get(isGround?"grassDown":"grassTop");
             platformBase[i] = new TexturedSquare(
                     new Vector2f(position.x + tileSize * (i), position.y),
                     tileSize,
-                    Spritesheet.staticSprites.get("grassTop")
+                    sprite
             );
         }
-
-        platformBase[platformBase.length - 1] = new TexturedSquare(
-                new Vector2f(position.x + tileSize * (platformBase.length - 1), position.y),
-                tileSize,
-                Spritesheet.staticSprites.get("grass2LeftBottom")
-        );
         return platformBase;
     }
 

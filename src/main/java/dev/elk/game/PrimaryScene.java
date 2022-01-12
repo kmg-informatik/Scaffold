@@ -1,5 +1,7 @@
 package dev.elk.game;
 
+import dev.elk.game.structures.Chunk;
+import dev.elk.game.structures.ChunkGenerator;
 import dev.elk.game.structures.Pipe;
 import dev.elk.scaffold.physics.CollidableStructure;
 import dev.elk.scaffold.components.Scene;
@@ -30,6 +32,8 @@ public class PrimaryScene extends Scene {
     private final Batch<Geometry> staticBatch = new Batch<>(2000, 200_000, 75_000);
     private Player player;
 
+    private ChunkGenerator chunkGenerator = new ChunkGenerator();
+
     public PrimaryScene(Window window, ShaderProgram program) {
         super(window);
         this.program = program;
@@ -39,17 +43,11 @@ public class PrimaryScene extends Scene {
 
         bufferInit(program, dynamicBatch);
         generateAllSpritesheets();
+        chunkGenerator.init();
         Vertex.initAttributes(program);
 
-        this.camera = new FloatingCamera(new Vector2f(), 1f, 20);
-        player = new Bird(new Vector2f(), 2);
-
-                Pipe pipe = new Pipe(
-                10,
-                0,
-                5);
-        CollidableStructure.collidables.add(pipe);
-        staticBatch.put(pipe);
+        this.camera = new FloatingCamera(new Vector2f(), 0.75f, 20);
+        player = new Bird(new Vector2f(30,0), 2);
 
         camera.parentTo(player);
 
@@ -57,15 +55,17 @@ public class PrimaryScene extends Scene {
 
     }
 
-    int counter;
     @Override
     public void update() {
         dynamicBatch.getGeometries().clear();
+
         dynamicBatch.put(player);
 
         camera.position = new Vector2f(player.center().mul(Window.height / (float) Window.width).x, 0);
 
         player.update();
+        chunkGenerator.needsChunk(player.getPosition().x);
+        dynamicBatch.put(chunkGenerator);
 
         camera.adjustProjection();
         program.uploadMat4f("cameraProjection", camera.getProjectionMatrix());

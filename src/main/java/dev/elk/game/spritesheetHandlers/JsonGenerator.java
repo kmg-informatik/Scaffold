@@ -18,7 +18,7 @@ import java.nio.file.Paths;
  *
  * @author Felix Kunze
  */
-public class GsonGenerator {
+public class JsonGenerator {
 
     public static void main(String[] args) throws IOException {
         generateSpritesheets();

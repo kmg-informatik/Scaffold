@@ -7,7 +7,7 @@
     {
       "frameCount": 1,
       "currentFrame": 0,
-      "animationSpeed": 5,
+      "animationSpeed": 2,
       "animationCounter": 0,
       "minPos": {
         "x": 0,
@@ -22,7 +22,7 @@
     {
       "frameCount": 3,
       "currentFrame": 0,
-      "animationSpeed": 5,
+      "animationSpeed": 2,
       "animationCounter": 0,
       "minPos": {
         "x": 0,
@@ -37,7 +37,7 @@
     {
       "frameCount": 3,
       "currentFrame": 0,
-      "animationSpeed": 5,
+      "animationSpeed": 2,
       "animationCounter": 0,
       "minPos": {
         "x": 0,

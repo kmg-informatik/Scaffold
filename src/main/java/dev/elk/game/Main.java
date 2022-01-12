@@ -47,7 +47,7 @@ public class Main {
         //advance to the end node.
 
         introNode.addLinks(intro->{
-            if (introNode.getScene().isFinished())
+            if (intro.getScene().isFinished())
                 return gameNode;
             else return null;
         });

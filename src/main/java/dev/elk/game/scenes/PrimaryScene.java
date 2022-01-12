@@ -17,6 +17,7 @@ import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2f;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateAllSpritesheets;
@@ -43,6 +44,8 @@ public class PrimaryScene extends Scene {
     }
 
     public void init() throws InstantiationException, IOException {
+
+        window.windowColor = Color.CYAN;
 
         bufferInit(program, dynamicBatch);
         generateSpritesheets(SpritesheetInfo.TILES);

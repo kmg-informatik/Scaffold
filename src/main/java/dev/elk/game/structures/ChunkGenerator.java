@@ -17,8 +17,14 @@ public class ChunkGenerator implements CollidableStructure {
 
     public void init() {
         addChunk();
-        addChunk();
-        addChunk();
+        addPipeChunk();
+        addPipeChunk();
+    }
+
+    public void addPipeChunk(){
+        chunks.add(new PipeChunk(chunkCounter * Chunk.CHUNK_SIZE));
+        CollidableStructure.collidables.add(chunks.getFirst());
+        chunkCounter++;
     }
 
     public void addChunk(){
@@ -36,7 +42,7 @@ public class ChunkGenerator implements CollidableStructure {
     public void needsChunk(float playerPosition) {
         if(playerPosition > ((chunkCounter-1) * Chunk.CHUNK_SIZE)) {
             removeChunk();
-            addChunk();
+            addPipeChunk();
         }
 
     }

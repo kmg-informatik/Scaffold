@@ -8,34 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Constructs a chunk out of Pipes
+ * @author Felix Kunze
+ */
 public class Chunk implements CollidableStructure {
 
     public static final int CHUNK_SIZE = 60;
-    private ArrayList<Quad> quads = new ArrayList<>();
+
     private ScreenBounds floor;
     private ScreenBounds ceiling;
-    private float position;
-    private static Random random = new Random();
+    protected ArrayList<Quad> quads = new ArrayList<>();
 
+    protected float position;
+    protected static Random random = new Random();
 
 
     public Chunk(float position) {
         this.position = position;
         this.floor = new ScreenBounds(new Vector2f(position,13),true);
         this.ceiling = new ScreenBounds(new Vector2f(position,-15),false);
-        generatePipes();
         quads.addAll(List.of(floor.getQuads()));
         quads.addAll(List.of(ceiling.getQuads()));
     }
 
-    public void generatePipes() {
-        int previousPos = random.nextInt(10);
-        for (int i = 0; i < CHUNK_SIZE  - 10; i += 10) {
-            Pipe pipe = new Pipe(position + i, setGapPosition(previousPos), random.nextInt(3) + 9);
-            quads.addAll(List.of(pipe.getQuads()));
-        }
-
-    }
 
     public float setGapPosition(int previous) {
         float signum  = Math.signum(random.nextInt(2) - 1);

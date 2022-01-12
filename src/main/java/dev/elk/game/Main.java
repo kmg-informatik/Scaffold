@@ -39,7 +39,7 @@ public class Main {
         //Add a link, that if the windowFrameCount is above 200,
         //advance to the end node.
         gameNode.addLinks(game->{
-            if (window.getCurrentFrameCount()>200) {
+            if (window.getCurrentFrameCount()>2000) {
                 return end;
             }else return null;
         });

@@ -46,7 +46,7 @@ public class PrimaryScene extends Scene {
         chunkGenerator.init();
         Vertex.initAttributes(program);
 
-        this.camera = new FloatingCamera(new Vector2f(), 0.75f, 20);
+        this.camera = new FloatingCamera(new Vector2f(), 2.75f, 20);
         player = new Bird(new Vector2f(30,0), 2);
 
         camera.parentTo(player);

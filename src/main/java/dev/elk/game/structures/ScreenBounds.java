@@ -59,7 +59,6 @@ public class ScreenBounds implements CollidableStructure {
     public TexturedSquare[] generateBasePlatform() {
         TexturedSquare[] platformBase = new TexturedSquare[Chunk.CHUNK_SIZE / (int) tileSize];
         for (int i = 0; i < platformBase.length; i++) {
-            System.out.println("lol");
             Sprite sprite = Spritesheet.staticSprites.get(isGround?"grassDown":"grassTop");
             platformBase[i] = new TexturedSquare(
                     new Vector2f(position.x + tileSize * (i), position.y),

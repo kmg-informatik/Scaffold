@@ -29,7 +29,6 @@ public class Sprite {
         this.minPos = minPos;
         this.maxPos = maxPos;
         this.spriteName = spriteName;
-        System.out.println(heightWidthRatio);
     }
 
     public Vector2f[] getUvCoords() {

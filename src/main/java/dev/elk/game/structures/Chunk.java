@@ -33,13 +33,6 @@ public class Chunk implements CollidableStructure {
     }
 
 
-    public float setGapPosition(int previous) {
-        float signum  = Math.signum(random.nextInt(2) - 1);
-        float pos = signum * (random.nextInt(8) + previous);
-        if (pos >= 15) pos = 14;
-        if (pos <=- 15) pos = -14;
-        return pos;
-    }
 
     @Override
     public Quad[] getQuads() {

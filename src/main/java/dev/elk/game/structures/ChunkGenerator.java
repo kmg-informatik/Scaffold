@@ -23,7 +23,7 @@ public class ChunkGenerator implements CollidableStructure {
 
     public void addPipeChunk(){
         chunks.add(new PipeChunk(chunkCounter * Chunk.CHUNK_SIZE));
-        CollidableStructure.collidables.add(chunks.getFirst());
+        CollidableStructure.collidables.add(chunks.getLast());
         chunkCounter++;
     }
 
@@ -34,7 +34,7 @@ public class ChunkGenerator implements CollidableStructure {
     }
 
     public void removeChunk() {
-        CollidableStructure.collidables.remove(chunks.getLast());
+        CollidableStructure.collidables.remove(chunks.getFirst());
         chunks.remove();
     }
 

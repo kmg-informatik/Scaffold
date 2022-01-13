@@ -15,6 +15,11 @@ public class Pipe implements CollidableStructure {
 
     public final TexturedQuad[] quads = new TexturedQuad[2];
 
+    /**
+     * @param posX  The x coordinate of the pipe pair
+     * @param gapPosition Position of the gap
+     * @param gapSize the size of the gap between the pipes
+     */
     public Pipe(float posX, float gapPosition, float gapSize) {
         this.gapSize = gapSize;
         this.posX = posX;
@@ -22,6 +27,9 @@ public class Pipe implements CollidableStructure {
         generatePipes();
     }
 
+    /**
+     * Generates a pair of pipes, one on top one on the bottom
+     */
     private void generatePipes() {
         quads[0] = new TexturedQuad(
                 new Vector2f(posX, gapPosition - gapSize / 2),
@@ -39,6 +47,9 @@ public class Pipe implements CollidableStructure {
     }
 
 
+    /**
+     * Returns all Quads in a pipe
+     */
     @Override
     public Quad[] getQuads() {
         return quads;

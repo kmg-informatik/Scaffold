@@ -96,7 +96,6 @@ public class PrimaryScene extends Scene {
 
     }
 
-    private float opacity;
     private boolean gameStarted;
 
     @Override
@@ -135,11 +134,6 @@ public class PrimaryScene extends Scene {
         program.uploadMat4f("cameraView", camera.getViewMatrix());
         program.uploadFloat("windowStretch", Window.height / (float) Window.width);
         program.uploadTextures("texSamplers");
-        program.uploadFloat("fScreenAlpha", opacity);
-
-        if (player.isDead()){
-            opacity+=0.03f;
-        }
 
         staticBatch.render();
         dynamicBatch.render();
@@ -152,7 +146,6 @@ public class PrimaryScene extends Scene {
         this.staticBatch.getGeometries().clear();
         this.player = null;
         this.chunkGenerator = null;
-        this.opacity = 0;
         this.sceneFrameCount = 0;
         this.camera = null;
         this.gameStarted = false;
@@ -161,6 +154,6 @@ public class PrimaryScene extends Scene {
     }
 
     public boolean isDone(){
-        return player.isDead() && opacity >=1 && (KeyHandler.isKeyPressed(Utils.KEY_SPACE));
+        return player.isDead() && (KeyHandler.isKeyPressed(Utils.KEY_SPACE));
     }
 }

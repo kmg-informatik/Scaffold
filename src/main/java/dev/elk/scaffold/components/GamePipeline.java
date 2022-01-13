@@ -5,6 +5,12 @@ import dev.elk.scaffold.gl.Window;
 import java.util.Arrays;
 import java.util.HashSet;
 
+/**
+ * The game pipeline handles the logic of the transition of scenes. It's an
+ * abstract data structure, made up of {@link PipelineNode}s that are linked
+ * with another by functions. These functions take a PipelineNode as an input
+ * and output a new PipelineNode.
+ */
 public class GamePipeline {
 
     /**
@@ -18,7 +24,8 @@ public class GamePipeline {
     private PipelineNode<?> currentNode;
 
     /**
-     * Window which the game is being rendered in
+     * Window which the game is being rendered in.
+     * @apiNote leave in scaffold, may need later.
      */
     private final Window window;
 

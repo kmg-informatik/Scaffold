@@ -4,8 +4,18 @@ import dev.elk.scaffold.gl.Window;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.function.Function;
 
+/**
+ * Pipeline nodes make up the {@link GamePipeline}. They wrap a {@link Scene} and each contain
+ * links to other nodes. These links are functions, that take a pipeline node as an input,
+ * and output a new pipeline node. <br>
+ * If the new pipeline node is null or the same as the input node, then the link does not trigger.
+ * Else, the link triggers and the next node is used returned.<br>
+ * This allows the user to create an abstract  network of logic that links scenes to eachother.
+ * @param <E> Type of the wrapped Scene, allowing access to class-specific functions of E.
+ */
 public class PipelineNode<E extends Scene> {
 
     /**
@@ -15,7 +25,7 @@ public class PipelineNode<E extends Scene> {
 
     /**
      * Current window
-     * @apiNote Shouldn't change
+     * @apiNote Shouldn't change, not used yet though.
      */
     private final Window window;
 
@@ -23,7 +33,7 @@ public class PipelineNode<E extends Scene> {
      * Links are functions, that have an input of a {@link PipelineNode} and link
      * to a new node.
      */
-    private final ArrayList<Function<PipelineNode<E>, PipelineNode<?>>> links = new ArrayList<>();
+    private final HashSet<Function<PipelineNode<E>, PipelineNode<?>>> links = new HashSet<>();
 
     public PipelineNode(E scene){
         this.scene = scene;
@@ -59,8 +69,6 @@ public class PipelineNode<E extends Scene> {
     public PipelineNode<?> nextNode(){
         for (Function<PipelineNode<E>, PipelineNode<?>> link : links) {
             PipelineNode<?> node = link.apply(this);
-
-            //if different node and node is not null
             if (node != this && node != null) return node;
         }
         return null;
@@ -69,7 +77,7 @@ public class PipelineNode<E extends Scene> {
     /**
      * @return all links
      */
-    public ArrayList<Function<PipelineNode<E>, PipelineNode<?>>> getLinks() {
+    public HashSet<Function<PipelineNode<E>, PipelineNode<?>>> getLinks() {
         return links;
     }
 

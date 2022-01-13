@@ -6,6 +6,10 @@ import dev.elk.scaffold.gl.TexturedQuad;
 import dev.elk.scaffold.renderer.Spritesheet;
 import org.joml.Vector2f;
 
+/**
+ * Generates pipes for Happy Birb Game
+ * @author Felix Kunze
+ */
 public class Pipe implements CollidableStructure {
 
     private float gapSize;

@@ -17,6 +17,7 @@ public enum SpritesheetInfo {
     BIRD(Paths.get("Assets/SpriteJson/bird.json"),Paths.get("Assets/Spritesheets/bird.png"),true),
 
     COZETTE(Paths.get("Assets/SpriteJson/fonts/cozette.json"), Paths.get("Assets/Spritesheets/fonts/cozette.png"), false),
+    COZETTE_BLACK(Paths.get("Assets/SpriteJson/fonts/cozetteBlack.json"), Paths.get("Assets/Spritesheets/fonts/cozetteBlack.png"), false),
     JETBRAINS_MONO(Paths.get("Assets/SpriteJson/fonts/jetbrainsMono.json"), Paths.get("Assets/Spritesheets/fonts/jetbrainsMono.png"), false),
     TIMES_NEW_ROMAN(Paths.get("Assets/SpriteJson/fonts/timesNewRoman.json"), Paths.get("Assets/Spritesheets/fonts/timesNewRoman.png"), false);
 

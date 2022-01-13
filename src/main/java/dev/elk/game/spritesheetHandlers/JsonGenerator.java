@@ -35,6 +35,7 @@ public class JsonGenerator {
 
     public static void generateFonts() throws IOException {
         generateCozetteFont();
+        generateCozetteBlackFont();
         generateJetbrainsMonoFont();
         generateTimesNewRomanFont();
     }
@@ -398,6 +399,22 @@ public class JsonGenerator {
         );
 
         FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/cozette.json");
+        gson.toJson(spritesheet, writer);
+        writer.close();
+    }
+
+    public static void generateCozetteBlackFont() throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        Spritesheet<Sprite> spritesheet = generateFont(
+                Font.COZETTE_BLACK.fontID,
+                256,
+                288,
+                16,
+                18
+        );
+
+        FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/cozetteBlack.json");
         gson.toJson(spritesheet, writer);
         writer.close();
     }

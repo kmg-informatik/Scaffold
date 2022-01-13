@@ -8,6 +8,7 @@ package dev.elk.game.fontSettings;
  */
 public enum Font {
     COZETTE("cozette", "coz", 18f / 16f),
+    COZETTE_BLACK("cozetteBlack", "cozB", 18f / 16f),
     JETBRAINS_MONO("jetbrainsMono", "jbm", 20f / 16f),
     TIMES_NEW_ROMAN("timesNewRoman", "tnr", 20f / 16f);
 

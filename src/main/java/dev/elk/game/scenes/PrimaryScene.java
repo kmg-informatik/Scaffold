@@ -73,12 +73,12 @@ public class PrimaryScene extends Scene {
                 "0");
 
         diedMessage = new Text(
-                new FontInformation(Font.COZETTE, 50f),
+                new FontInformation(Font.COZETTE_BLACK, 50f),
                 new Vector2f(),
                 "You died!");
 
         toolTip = new Text(
-                new FontInformation(Font.COZETTE, 15f),
+                new FontInformation(Font.COZETTE_BLACK, 15f),
                 new Vector2f(),
                 "Press <SPACE> to restart!  ");
 

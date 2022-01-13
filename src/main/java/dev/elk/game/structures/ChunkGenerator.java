@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Generates Chunks with ground and backdrop
+ */
 public class ChunkGenerator implements CollidableStructure {
 
     private LinkedList<Chunk> chunks = new LinkedList<>();

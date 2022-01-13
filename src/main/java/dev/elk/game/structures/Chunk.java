@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Constructs a chunk out of Pipes
+ * Constructs a new Chunk comprised of Floors and ceilings as well as
+ * a proceduraly generated backdrop of clouds.
+ *
  * @author Felix Kunze
  */
 public class Chunk implements CollidableStructure {
@@ -28,6 +30,10 @@ public class Chunk implements CollidableStructure {
     protected static Random random = new Random();
 
 
+    /**
+     * Generates a new Chunk in a certain position.
+     * @param position The chunk position
+     */
     public Chunk(float position) {
         this.position = position;
         generateBackground();
@@ -37,6 +43,10 @@ public class Chunk implements CollidableStructure {
         collidableQuads.addAll(List.of(ceiling.getQuads()));
     }
 
+    /**
+     * Generatesa a Background out of non collidable tiles
+     * This randomly generates Clouds
+     */
     private void generateBackground() {
         int tileSize = 4;
         for (int j = -13; j < 12; j+=4) {
@@ -67,6 +77,11 @@ public class Chunk implements CollidableStructure {
         }
     }
 
+    /**
+     * Picks out a random Cloud
+     * @param isBeginCloud Chooses whether it should be a beginning cloud or not
+     * @return The String representation of the cloud
+     */
     public String cloudPicker(boolean isBeginCloud) {
         String[] clouds = {
                 "cloudRightRoundSmall",

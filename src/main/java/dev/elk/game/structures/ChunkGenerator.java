@@ -9,7 +9,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Generates Chunks with ground and backdrop
+ * Generates Chunks with ground and backdrop.
+ * Handles swapping of chunks via a Linkedlist that removes a chunk once a new one is added
+ * @author Felix Kunze
+ * @author Eric Jacob
+ * @author Louis Schell
  */
 public class ChunkGenerator implements CollidableStructure {
 
@@ -24,24 +28,38 @@ public class ChunkGenerator implements CollidableStructure {
         addPipeChunk();
     }
 
+    /**
+     * Generates a chunk with pipes
+     */
     public void addPipeChunk(){
         chunks.add(new PipeChunk(chunkCounter * Chunk.CHUNK_SIZE, chunks.getFirst()));
         CollidableStructure.collidables.add(chunks.getLast());
         chunkCounter++;
     }
 
+    /**
+     * Adds a new Chunk and its Collision
+     */
     public void addChunk(){
         chunks.add(new Chunk(chunkCounter * Chunk.CHUNK_SIZE));
         CollidableStructure.collidables.add(chunks.getFirst());
         chunkCounter++;
     }
 
+    /**
+     * Removes a chunk and its Collision
+     */
     public void removeChunk() {
         CollidableStructure.collidables.remove(chunks.getFirst());
         chunks.remove();
     }
 
 
+    /**
+     * Determines if a chunk is needed by checking if a new one is needed.
+     * A new chunk is needed whenever a chunk is one chunk sizew away from the player.
+     * @param playerPosition The position of the player
+     */
     public void needsChunk(float playerPosition) {
         if(playerPosition > ((chunkCounter-1) * Chunk.CHUNK_SIZE)) {
             removeChunk();

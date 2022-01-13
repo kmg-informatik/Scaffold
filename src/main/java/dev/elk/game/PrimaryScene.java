@@ -30,7 +30,7 @@ public class PrimaryScene extends Scene {
     private final ShaderProgram program;
     private final Batch<Geometry> dynamicBatch = new Batch<>(2000, 200_000, 75_000);
     private final Batch<Geometry> staticBatch = new Batch<>(2000, 200_000, 75_000);
-    private Player player;
+    private Bird player;
 
     private ChunkGenerator chunkGenerator = new ChunkGenerator();
 
@@ -46,7 +46,7 @@ public class PrimaryScene extends Scene {
         chunkGenerator.init();
         Vertex.initAttributes(program);
 
-        this.camera = new FloatingCamera(new Vector2f(), 2.75f, 20);
+        this.camera = new FloatingCamera(new Vector2f(), 0.75f, 20);
         player = new Bird(new Vector2f(30,0), 2);
 
         camera.parentTo(player);

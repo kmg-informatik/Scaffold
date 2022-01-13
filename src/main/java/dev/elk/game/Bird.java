@@ -14,4 +14,10 @@ public class Bird extends Player {
         super(startPosition, size, Spritesheet.animatedSprites.get("birdUp"));
     }
 
+    public int getPipesPassed() {
+        int a = ((int)getPosition().x - 50) / 10;
+        if (a < 0) return 0;
+        else return a;
+    }
+
 }

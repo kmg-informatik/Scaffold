@@ -16,8 +16,7 @@ public class Bird extends Player {
 
     public int getPipesPassed() {
         int a = ((int)getPosition().x - 50) / 10;
-        if (a < 0) return 0;
-        else return a;
+        return Math.max(a, 0);
     }
 
 }

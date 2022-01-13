@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Specific subtype of camera with functionality that allows for f.ex. following of players
- *
+ * The floating camera inherits all functionalities of the normal camera. What makes
+ * it special is, that it stores the last positions of the camera. This means that one
+ * can create an average of the positions and calculate the next one, leading to a smoother
+ * camera feel, that makes it "feel floaty".
  * @author Louis Schell
  */
 public class FloatingCamera extends Camera {
@@ -31,6 +33,11 @@ public class FloatingCamera extends Camera {
         currentSampleSize = originalSampleSize;
     }
 
+    /**
+     * Calculates next floating position of the camera
+     * @param parentPos the position to take in
+     * @return new position
+     */
     public Vector2f getNextPosition(Vector2f parentPos) {
         lastPositions.remove(0);
         lastPositions.add(parentPos);
@@ -59,6 +66,9 @@ public class FloatingCamera extends Camera {
         return avg;
     }
 
+    /**
+     * Sets the sample size of how many positions to average.
+     */
     public void setCurrentSampleSize(int currentSampleSize) {
         this.currentSampleSize = currentSampleSize;
     }

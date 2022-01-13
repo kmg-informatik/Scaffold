@@ -8,6 +8,9 @@ package dev.elk.scaffold.gl;
  */
 public interface Component {
 
+    /**
+     * Update the component, for example on every frame
+     */
     void update();
 
 }

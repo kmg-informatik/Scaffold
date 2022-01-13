@@ -7,7 +7,14 @@ import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 /**
- * Camera object. Code copied from GamesWithGabe.
+ * The camera is a set of matrices that are multiplied with the vertex position
+ * in the vertex shader. This makes the game be rendered from the view of a camera.<br>
+ * The camera defined in this class scales defines the scale of the game to go
+ * from -20x to 20x and -20y to 20y.<br>
+ * An error arising through scaling the window led to content being stretched in a way not
+ * acceptable. This was solved through the definition of another factor the xy ratio of the
+ * window size. This is used in the shader
+ * @author Louis Schell, heavily inspired by GamesWithGabe Yt
  */
 public class Camera implements Component {
 
@@ -19,7 +26,7 @@ public class Camera implements Component {
     public Vector2f position;
     protected Matrix4f inverseProjection;
     protected Matrix4f inverseView;
-    protected float zoom = 1.0f;
+    protected float zoom;
     private Parentable parentable;
 
     public Camera(Vector2f position, float zoom) {

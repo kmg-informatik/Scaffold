@@ -2,6 +2,15 @@ package dev.elk.scaffold.gl;
 
 import dev.elk.scaffold.gl.bindings.Vertex;
 
+/**
+ * Structure made up of many, non-mesh quads. This means, that
+ * the quads are not connected with another, but rendered in the
+ * same geometry. This is useful for eg. Text, where we render multiple
+ * different images in one strip, but want to handle the image object as a
+ * geometry.
+ * @author Felix Kunze
+ * @author Louis Schell
+ */
 public interface QuadStructure extends Geometry {
 
 

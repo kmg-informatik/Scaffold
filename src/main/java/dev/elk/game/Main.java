@@ -51,9 +51,7 @@ public class Main {
         });
         //Add the nodes to the pipeline
         GamePipeline pipeline = new GamePipeline(window, gameNode);
-
-        //Run the pipeline
-        pipeline.run();
+        window.loop();
 
         //destroy glfw when program done.
         window.destroy();

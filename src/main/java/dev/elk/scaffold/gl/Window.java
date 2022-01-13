@@ -1,5 +1,6 @@
 package dev.elk.scaffold.gl;
 
+import dev.elk.scaffold.components.GamePipeline;
 import dev.elk.scaffold.components.PipelineNode;
 import dev.elk.scaffold.components.userinput.KeyHandler;
 import dev.elk.scaffold.components.userinput.MouseListener;
@@ -35,11 +36,15 @@ public class Window {
 
     private final LinkedList<Float> fps = new LinkedList<>();
 
-    private PipelineNode currentNode;
+    private GamePipeline pipeline;
 
     public Window(String title, Color windowColor) {
         this.title = title;
         this.windowColor = windowColor;
+    }
+
+    public void setPipeline(GamePipeline pipeline) {
+        this.pipeline = pipeline;
     }
 
     public void init() {
@@ -83,6 +88,8 @@ public class Window {
 
     public void loop() throws Exception {
 
+        pipeline.getCurrentNode().init();
+
         long start = System.nanoTime();
         dt = 1/60f;
         long end;
@@ -99,14 +106,8 @@ public class Window {
                     windowColor.getAlpha());
             glClear(GL_COLOR_BUFFER_BIT);
 
-            currentNode.getScene().update();
-
-            PipelineNode newNode;
-            if ((newNode = currentNode.nextNode()) != null) {
-                currentNode.reset(); //Reset old node
-                currentNode = newNode; //set new node
-                currentNode.init(); //Init new node
-            }
+            pipeline.getCurrentNode().getScene().update();
+            pipeline.next();
 
             glfwSwapBuffers(glfwWindow);
             end = System.nanoTime();
@@ -149,8 +150,8 @@ public class Window {
         return currentFrameCount;
     }
 
-    public void setCurrentNode(PipelineNode currentNode) {
-        this.currentNode = currentNode;
+    public GamePipeline getPipeline() {
+        return pipeline;
     }
 
     public int getWidth() {
@@ -163,9 +164,5 @@ public class Window {
 
     public long getID() {
         return glfwWindow;
-    }
-
-    public void shutdown() {
-
     }
 }

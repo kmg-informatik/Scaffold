@@ -10,51 +10,56 @@ public class GamePipeline {
     /**
      * Collection of all {@link PipelineNode}
      */
-    private final HashSet<PipelineNode> nodes = new HashSet<>();
+    private final HashSet<PipelineNode<?>> nodes = new HashSet<>();
 
     /**
      * Current node that is being rendered
      */
-    private final PipelineNode firstNode;
+    private PipelineNode<?> currentNode;
 
     /**
      * Window which the game is being rendered in
      */
     private final Window window;
 
-    public GamePipeline(Window window, PipelineNode firstNode) {
+    public GamePipeline(Window window, PipelineNode<?> firstNode) {
         this.window = window;
-        this.firstNode = firstNode;
+        this.currentNode = firstNode;
+        window.setPipeline(this);
     }
 
     /**
-     * Starts the pipeline, enters into the first node
+     * Gets the next node in the pipeline
+     * @return new node
      */
-    public void run() throws Exception {
-        firstNode.init();
-        window.setCurrentNode(firstNode);
-        window.loop();
-        window.shutdown();
+    public PipelineNode<?> next() throws Exception {
+        PipelineNode<?> newNode;
+        if ((newNode = currentNode.nextNode()) != null) {
+            currentNode.reset(); //Reset old node
+            currentNode = newNode; //set new node
+            currentNode.init(); //Init new node
+        }
+        return currentNode;
     }
 
     /**
      * Adds a node to the pipeline
      */
-    public void addNodes(PipelineNode...nodes){
+    public final void addNodes(PipelineNode<?>... nodes){
         this.nodes.addAll(Arrays.asList(nodes));
     }
 
     /**
      * @return all registered {@link PipelineNode}
      */
-    public HashSet<PipelineNode> getNodes() {
+    public HashSet<PipelineNode<?>> getNodes() {
         return nodes;
     }
 
     /**
      * @return starting node of the pipeline
      */
-    public PipelineNode getFirstNode() {
-        return firstNode;
+    public PipelineNode<?> getCurrentNode() {
+        return currentNode;
     }
 }

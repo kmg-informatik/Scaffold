@@ -1,5 +1,7 @@
 package dev.elk.game;
 
+import dev.elk.game.fontSettings.Font;
+import dev.elk.game.fontSettings.FontInformation;
 import dev.elk.game.structures.Chunk;
 import dev.elk.game.structures.ChunkGenerator;
 import dev.elk.game.structures.Pipe;
@@ -15,6 +17,7 @@ import dev.elk.scaffold.gl.bindings.Vertex;
 import dev.elk.scaffold.renderer.*;
 import org.joml.Vector2f;
 
+import java.awt.*;
 import java.io.IOException;
 
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateAllSpritesheets;
@@ -31,8 +34,10 @@ public class PrimaryScene extends Scene {
     private final Batch<Geometry> dynamicBatch = new Batch<>(2000, 200_000, 75_000);
     private final Batch<Geometry> staticBatch = new Batch<>(2000, 200_000, 75_000);
     private Bird player;
+    private Text pipeCount;
+    private Text playerDied;
 
-    private ChunkGenerator chunkGenerator = new ChunkGenerator();
+    private final ChunkGenerator chunkGenerator = new ChunkGenerator();
 
     public PrimaryScene(Window window, ShaderProgram program) {
         super(window);
@@ -46,8 +51,18 @@ public class PrimaryScene extends Scene {
         chunkGenerator.init();
         Vertex.initAttributes(program);
 
+        pipeCount = new Text(
+                new FontInformation(Font.COZETTE, 70f),
+                new Vector2f(),
+                "0");
+
+        playerDied = new Text(
+                new FontInformation(Font.COZETTE, 50f),
+                new Vector2f(),
+                "You died!");
+
         this.camera = new FloatingCamera(new Vector2f(), 0.75f, 20);
-        player = new Bird(new Vector2f(30,0), 2);
+        player = new Bird(new Vector2f(30,10), 2);
 
         camera.parentTo(player);
 
@@ -55,10 +70,11 @@ public class PrimaryScene extends Scene {
 
     }
 
+    private float opacity;
+
     @Override
     public void update() {
         dynamicBatch.getGeometries().clear();
-
         dynamicBatch.put(player);
 
         camera.position = new Vector2f(player.center().mul(Window.height / (float) Window.width).x, 0);
@@ -67,13 +83,29 @@ public class PrimaryScene extends Scene {
         chunkGenerator.needsChunk(player.getPosition().x);
         dynamicBatch.put(chunkGenerator);
 
+        pipeCount.setText(Integer.toString(player.getPipesPassed()));
+        pipeCount.translateCenterTo(new Vector2f(player.getPosition().x, player.getPosition().y+3f));
+        dynamicBatch.put(pipeCount);
+
+        playerDied.translateCenterTo(new Vector2f(player.getPosition().x, player.getPosition().y+30f));
+        dynamicBatch.put(playerDied);
+
         camera.adjustProjection();
         program.uploadMat4f("cameraProjection", camera.getProjectionMatrix());
         program.uploadMat4f("cameraView", camera.getViewMatrix());
         program.uploadFloat("windowStretch", Window.height / (float) Window.width);
         program.uploadTextures("texSamplers");
+        program.uploadFloat("fScreenAlpha", opacity);
+
+        if (player.isDead()){
+            opacity+=0.03f;
+        }
 
         staticBatch.render();
         dynamicBatch.render();
+    }
+
+    public boolean isDone(){
+        return opacity >=1;
     }
 }

@@ -22,14 +22,22 @@ public interface Physics extends Geometry {
                     intersects = true;
                     setCurrentGravity(0);
 
-                    float threshold = 0.01f;
-                    Vector2f move = new Vector2f(0, quad.getMaxY() - getMinY() - threshold);
-                    Geometry.super.translate(move);
+                    //float threshold = 0.01f;
+                    //Vector2f move = new Vector2f(0, quad.getMaxY() - getMinY() - threshold);
+                    //Geometry.super.translate(move);
                 }
             }
         }
         if (getCurrentGravity() > NORMAL_GRAVITY && !intersects)
             setCurrentGravity(getCurrentGravity() - 40f * Window.dt);
+    }
+
+    default void fallNoCollide(float until) {
+        if (center().y >= until) {
+            Geometry.super.translate(new Vector2f(0, 4 * getCurrentGravity()).mul(Window.dt));
+            if (getCurrentGravity() > NORMAL_GRAVITY)
+                setCurrentGravity(getCurrentGravity() - 40f * Window.dt);
+        }
     }
 
     default boolean hasCollision() {

@@ -33,26 +33,38 @@ public class Player extends Entity implements Actions, Parentable {
     }
 
     private float lastGravity = getCurrentGravity();
+    private boolean playerDied = false;
+
+    public boolean isDead() {
+        return playerDied;
+    }
+
     @Override
     public void update() {
 
-        fall();
+        if (!hasCollision() && !playerDied){
+            fall();
 
-        movementVector = new Vector2f();
+            movementVector = new Vector2f();
 
-        if (KeyHandler.isKeyPressed(KEY_W) && jumpCounter % 20 == 0) {
-            jump();
-            jumpCounter++;
+            if (KeyHandler.isKeyPressed(KEY_W) && jumpCounter % 20 == 0) {
+                jump();
+                jumpCounter++;
+            }
+            moveRight();
+            this.translate(movementVector);
+            if (jumpCounter % 20 !=0 ) {
+                jumpCounter++;
+            }
+
+            checkGravityChange();
+            nextFrame();
+            lastGravity = getCurrentGravity();
+        }else {
+            playerDied = true;
+            fallNoCollide(-30f);
         }
-        moveRight();
-        this.translate(movementVector);
-        if (jumpCounter % 20 !=0 ) {
-            jumpCounter++;
-        }
 
-        checkGravityChange();
-        nextFrame();
-        lastGravity = getCurrentGravity();
     }
 
     @Override

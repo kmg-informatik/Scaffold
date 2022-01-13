@@ -7,6 +7,8 @@ in vec3 fColor;
 in vec2 fTexCoords;
 in float fTexId;
 
+uniform float fScreenAlpha;
+
 out vec4 outColor;
 
 bool texCoordsInRange();
@@ -26,7 +28,7 @@ void main() {
         discard;
     }
 
-    outColor = color;
+    outColor = vec4(color.xyz*(1-fScreenAlpha), color.w);
 }
 
 bool texCoordsInRange(){

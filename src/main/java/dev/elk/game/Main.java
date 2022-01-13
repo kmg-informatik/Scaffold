@@ -21,7 +21,7 @@ public class Main {
         ShaderProgram program = new ShaderProgram();
         program.attachShaders(fragment, vertex);
 
-        Window window = new Window("Hello!", Color.BLUE);
+        Window window = new Window("Hello!", Color.CYAN);
         window.init();
 
         ///////////////////////////////////GAME_LOGIC///////////////////////////////////
@@ -31,19 +31,23 @@ public class Main {
                 new PrimaryScene(window, program),
                 window);
 
-        //Add a node with the end scene
         PipelineNode end = new PipelineNode(
-                new EndGameScene(window),
+                new PrimaryScene(window, program),
                 window);
 
         //Add a link, that if the windowFrameCount is above 200,
         //advance to the end node.
         gameNode.addLinks(game->{
-            if (window.getCurrentFrameCount()>2000) {
+            if (game.getScene().isDone())
                 return end;
-            }else return null;
+            else return null;
         });
 
+        end.addLinks(game->{
+            if (game.getScene().isDone())
+                return end;
+            else return null;
+        });
         //Add the nodes to the pipeline
         GamePipeline pipeline = new GamePipeline(window, gameNode);
 

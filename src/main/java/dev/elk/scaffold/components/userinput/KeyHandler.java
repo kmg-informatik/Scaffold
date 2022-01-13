@@ -7,8 +7,6 @@ import static org.lwjgl.glfw.GLFW.GLFW_RELEASE;
 
 /**
  * The Key-Listener listens to button-presses on the keyboard.
- * Original code from GamesWithGabe, heavily modified.
- *
  * @author Louis Schell
  */
 public class KeyHandler {

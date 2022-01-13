@@ -10,7 +10,6 @@ import org.joml.Vector2f;
  * Abstract class for Player creation
  * @author Louis Schell
  * @author Felix Kunze
- * @since 11/01/2022
  */
 public abstract class Entity extends PhysicsQuad implements Component {
 

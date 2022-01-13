@@ -23,6 +23,7 @@ public abstract class Scene {
 
     protected final Window window;
     protected Camera camera;
+    protected int sceneFrameCount;
 
     public Scene(Window window) {
         this.window = window;

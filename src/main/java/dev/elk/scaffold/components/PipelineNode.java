@@ -25,9 +25,9 @@ public class PipelineNode<E extends Scene> {
      */
     private final ArrayList<Function<PipelineNode<E>, PipelineNode<?>>> links = new ArrayList<>();
 
-    public PipelineNode(E scene, Window window){
+    public PipelineNode(E scene){
         this.scene = scene;
-        this.window = window;
+        this.window = scene.window;
     }
 
     /**

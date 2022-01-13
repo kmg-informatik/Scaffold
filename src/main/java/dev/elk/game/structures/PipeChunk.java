@@ -29,7 +29,7 @@ public class PipeChunk extends Chunk implements CollidableStructure {
                     setGapPosition(previousPos, difficulty),
                     random.nextFloat()*2f + 12f - difficulty/10f);
             previousPos = pipe.center().y;
-            quads.addAll(List.of(pipe.getQuads()));
+            collidableQuads.addAll(List.of(pipe.getQuads()));
         }
     }
 
@@ -40,5 +40,4 @@ public class PipeChunk extends Chunk implements CollidableStructure {
         if (pos <=- 7) pos = -7;
         return pos;
     }
-
 }

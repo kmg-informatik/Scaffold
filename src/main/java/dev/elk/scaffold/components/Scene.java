@@ -15,9 +15,10 @@ import static org.lwjgl.opengl.GL30.glBindVertexArray;
 import static org.lwjgl.opengl.GL30.glGenVertexArrays;
 
 /**
- * Copied directly from GamesWithGabe.
- * Probably should rewrite, for better control of
- * all the buffers. They are the same for every Scene.
+ * Scenes are different stages in a game. They are wrapped by {@link PipelineNode}
+ * and render what goes on the screen.
+ * @author Louis Schell
+ * @author Felix Kunze
  */
 public abstract class Scene {
 

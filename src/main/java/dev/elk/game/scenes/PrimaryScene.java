@@ -21,7 +21,8 @@ import java.io.IOException;
 import static dev.elk.game.spritesheetHandlers.SpritesheetBuilder.generateAllSpritesheets;
 
 /**
- * Test scene for stuff. Mainly first tests of OpenGL and textures and stuff.
+ * The primary scene is the main scene for our game. It creates the render batches,
+ * initialised opengl and shows the game.
  *
  * @author Louis Schell
  * @author Felix Kunze

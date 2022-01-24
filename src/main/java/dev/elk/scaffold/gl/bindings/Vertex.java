@@ -41,6 +41,10 @@ public class Vertex implements FloatRepresentation, Cloneable {
         this.texId = texId;
     }
 
+    /**
+     * Initializes all attributes for the vertices like position, color, texture and the textureID
+     * @param program The ShaderProgram that these arelinked to.
+     */
     public static void initAttributes(ShaderProgram program) {
         VertexAttribute positionAttrib = new VertexAttribute(
                 program,
@@ -79,6 +83,10 @@ public class Vertex implements FloatRepresentation, Cloneable {
         textureIdAttribute.enable();
     }
 
+    /**
+     * The vertex as a string
+     * @return the string
+     */
     @Override
     public String toString() {
         return "Vertex{" +
@@ -89,11 +97,19 @@ public class Vertex implements FloatRepresentation, Cloneable {
                 '}';
     }
 
+    /**
+     * The float representation of the vertex
+     * @return the floats
+     */
     @Override
     public float[] intoFloats() {
         return new float[]{position.x, position.y, color.x, color.y, color.z, uvCoord.x, uvCoord.y, texId};
     }
 
+    /**
+     * Needed implementation to make the vertex Cloneable
+     * @return The cloned vertex
+     */
     @Override
     public Vertex clone() {
         try {

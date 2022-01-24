@@ -18,6 +18,9 @@ public class AnimatedSprite extends Sprite {
     private int currentFrame;
     private final int animationSpeed;
 
+    /**
+     * Used to reset the sprite to the origin once it has done all the animation frames.
+     */
     private Vector2f[] originalUVCoords;
 
     public AnimatedSprite(Vector2i minPos, Vector2i maxPos, String spriteName, int frameCount, int animationSpeed) {
@@ -34,6 +37,10 @@ public class AnimatedSprite extends Sprite {
         this.animationSpeed = 2;
     }
 
+    /**
+     * Transitions to next frame with consideration the animation speed.
+     * Therefore, it may take multiple  nextFrame calls before the frame is actually switched
+     */
     private int animationCounter = 0;
     public void nextFrame() {
         if ((animationCounter %= animationSpeed) ==0) {

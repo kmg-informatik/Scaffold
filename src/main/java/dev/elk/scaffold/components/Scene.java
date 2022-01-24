@@ -30,7 +30,7 @@ public abstract class Scene {
         this.window = window;
     }
 
-    public void init() throws InstantiationException, IOException {}
+    public abstract void init() throws InstantiationException, IOException;
 
     public void update(){}
 
@@ -38,6 +38,12 @@ public abstract class Scene {
         this.camera = null;
     }
 
+    /**
+     * Initializes all the buffers for Vertex information
+     * @param program The shader program
+     * @param dynamicBatch The dynamic batch that is called each frame
+     * @throws InstantiationException
+     */
     protected static void bufferInit(ShaderProgram program, Batch<Geometry> dynamicBatch) throws InstantiationException {
         program.compile();
         program.use();

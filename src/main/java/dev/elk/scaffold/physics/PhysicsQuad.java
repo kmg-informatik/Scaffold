@@ -31,6 +31,11 @@ public class PhysicsQuad extends TexturedQuad implements Physics {
         return gravity;
     }
 
+    /**
+     * Sets the current gravity to a new value,
+     * this makes it {@link Physics#fall() fall} faster or slower.
+     * @param g The new gravity
+     */
     @Override
     public void setCurrentGravity(float g) {
         gravity = g;

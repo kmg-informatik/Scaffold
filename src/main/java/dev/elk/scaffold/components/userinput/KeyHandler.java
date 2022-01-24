@@ -15,6 +15,14 @@ public class KeyHandler {
     private KeyHandler() {
     }
 
+    /**
+     * Checks for keypresses
+     * @param window The windowID
+     * @param key The Keycode
+     * @param scancode the scancode
+     * @param action the action that was done
+     * @param mods possible modifiers
+     */
     public static void keyCallback(long window, int key, int scancode, int action, int mods) {
         if (action == GLFW_PRESS) {
             keyPressed.add(key);

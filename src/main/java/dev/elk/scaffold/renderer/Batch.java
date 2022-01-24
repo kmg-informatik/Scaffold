@@ -22,12 +22,21 @@ public class Batch<E extends Geometry> {
     private final int[] elementArray;
     private int vertexCount = -1;
 
+    /**
+     * Creates a Render Batch
+     * @param estimatedMeshes An estimation of the needed mesh count
+     * @param vertexArraySize The size of the vertex array. Probably an estimation
+     * @param elementArraySize The size of the element array. Probably an estimation
+     */
     public Batch(int estimatedMeshes, int vertexArraySize, int elementArraySize) {
         geometries = new ArrayList<>(estimatedMeshes);
         vertexArray = new float[vertexArraySize];
         elementArray = new int[elementArraySize];
     }
 
+    /**
+     * Copies the new vertex information into the respective arrays
+     */
     public void vertexCopy() {
 
         int vCount = 0;
@@ -68,6 +77,9 @@ public class Batch<E extends Geometry> {
         vertexCount = vCount;
     }
 
+    /**
+     * Renders the geometries via drawcall
+     */
     public void render() {
         vertexCopy();
         glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, elementArray);

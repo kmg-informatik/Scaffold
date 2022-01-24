@@ -48,6 +48,9 @@ public class TexturedQuad extends Quad {
         this.sprite = sprite;
     }
 
+    /**
+     * Shapes a sprite so that it's measurements comply with the scaling of underlying sprite.
+     */
     public void normalise(){
         float ratio = sprite.getHeightWidthRatio();
         Vertex[] vertices = getVertices();
@@ -71,6 +74,10 @@ public class TexturedQuad extends Quad {
         setUV();
     }
 
+    /**
+     * Sets the UV coordinates of the vertices to the uv Coordinate of the sprite.
+     * Useful for animations where UV Coords change over time
+     */
     public void setUV() {
         for (int i = 0; i < getVertices().length; i++)
             getVertices()[i].uvCoord = sprite.getUvCoords()[i];

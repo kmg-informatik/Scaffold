@@ -24,6 +24,11 @@ public class Texture {
     public String filepath;
     private int width, height;
 
+    /**
+     * Generates a texture from a filepath.
+     * @param filepath The filepath of the texture
+     * @throws IOException Thrown if filepath is wrong
+     */
     public Texture(Path filepath) throws IOException {
         this.filepath = filepath.toString();
 
@@ -61,6 +66,9 @@ public class Texture {
         stbi_image_free(image);
     }
 
+    /**
+     * Binds multiple textures, this requires a certain shader setup
+     */
     public static void bindMultipleTextures() {
         for (int i = 0; i < TEXTURES.size(); i++) {
             glActiveTexture(GL_TEXTURE0 + 1 + i);
@@ -68,22 +76,40 @@ public class Texture {
         }
     }
 
+    /**
+     * Binds a texture
+     */
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, texID);
     }
 
+    /**
+     * Unbinds a texture when its not needed anymore
+     */
     public void unbind() {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
+    /**
+     * Returns the width of the current texture in pixels
+     * @return width
+     */
     public int getWidth() {
         return width;
     }
 
+    /**
+     * Returns the height of the current texture in pixels
+     * @return height
+     */
     public int getHeight() {
         return height;
     }
 
+    /**
+     * Retrns the TextureID
+     * @return texID
+     */
     public int getTexID() {
         return texID;
     }

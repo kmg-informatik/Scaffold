@@ -21,6 +21,12 @@ public class MouseListener {
     private MouseListener() {
     }
 
+    /**
+     * Updates the mousePosition
+     * @param window The windowID
+     * @param newXPos the new x pos
+     * @param newYPos the new y pos
+     */
     public static void mousePosCallback(long window, double newXPos, double newYPos) {
         lastX = xPos;
         lastY = yPos;
@@ -29,6 +35,13 @@ public class MouseListener {
         isDragging = !buttonsPressed.isEmpty();
     }
 
+    /**
+     * Updates the mouse buttons
+     * @param window The windowID
+     * @param button The buttonID
+     * @param action the action on the button
+     * @param mods Possible button modifiers
+     */
     public static void mouseButtonCallback(long window, int button, int action, int mods) {
         if (action == GLFW_PRESS) {
             buttonsPressed.add(button);
@@ -38,6 +51,12 @@ public class MouseListener {
         }
     }
 
+    /**
+     * Updates the mouse scrolling
+     * @param window The WindowID
+     * @param xOffset The amount that was scrolled in x direction
+     * @param yOffset The amount that was scrolled in y direction
+     */
     public static void mouseScrollCallback(long window, double xOffset, double yOffset) {
         scrollX = xOffset;
         scrollY = yOffset;

@@ -40,11 +40,15 @@ public class Text implements QuadStructure {
         generateQuads();
     }
 
+    /**
+     * Generates each quad in the text and assigns it a texture by always creating an offset
+     */
     private void generateQuads() {
         quads = new TexturedQuad[text.length()];
         for (int i = 0; i < text.length(); i++) {
             String spriteName = fontInformation.getFontID() + "_" + text.charAt(i);
             quads[i] = new TexturedQuad(
+                    //Kerning issues fixed via getFontWhitespace
                     new Vector2f(position.x + i * (fontInformation.getFontSize() - fontInformation.getFontWhitespace()), position.y),
                     fontInformation.getFontSize(),
                     fontInformation.getFontSize() * fontInformation.getHeightWidthRatio(),
@@ -54,6 +58,10 @@ public class Text implements QuadStructure {
         translateOriginTo(position);
     }
 
+    /**
+     * Sets the position of the text and moves each of the quads contained in the text.
+     * @param position The new position of the text
+     */
     public void setPosition(Vector2f position) {
         if (!position.equals(this.position)) {
             this.position = position;
@@ -64,15 +72,28 @@ public class Text implements QuadStructure {
 
     }
 
+    /**
+     * Returns all Quads
+     * @return quads
+     */
     public Quad[] getQuads() {
         return quads;
     }
 
 
+    /**
+     * Returns the displayed text as a string
+     * @return text
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     * Sets the text and regenerates the quads in order to refresh it.
+     * Checking here is important since the generation of many quads is rather ressource intensive.
+     * @param newText
+     */
     public void setText(String newText) {
         if (!newText.equals(text)) {
             text = newText;
@@ -80,6 +101,11 @@ public class Text implements QuadStructure {
         }
     }
 
+    /**
+     * Since all Sprites have the same texture
+     * it is sufficient to return the texture of the first sprite.
+     * @return texture of the first sprite
+     */
     public Texture getTexture() {
         return quads[0].getSprite().getTexture();
     }

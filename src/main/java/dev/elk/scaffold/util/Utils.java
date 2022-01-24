@@ -45,10 +45,22 @@ public final class Utils {
 
     }
 
+    /**
+     * Finds the minimum and the maximum Element in an array and returns them as a pair
+     * @param arr The array to be searched
+     * @return The pair of elements where index 0 is the minimum
+     * and index 1 is the max
+     */
     public static float[] findMinMaxElem(float[] arr) {
+        /**
+         * Generates infintely large/small values
+         */
         float max = Float.NEGATIVE_INFINITY;
         float min = Float.POSITIVE_INFINITY;
 
+        /**
+         * Iterates through the array
+         */
         for (float elem : arr) {
             max = java.lang.Math.max(elem, max);
             min = java.lang.Math.min(min, elem);

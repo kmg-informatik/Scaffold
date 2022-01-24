@@ -3,7 +3,6 @@ package dev.elk.game.structures;
 import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.TexturedSquare;
 import dev.elk.scaffold.physics.CollidableStructure;
-import dev.elk.scaffold.renderer.Sprite;
 import dev.elk.scaffold.renderer.Spritesheet;
 import org.joml.Vector2f;
 

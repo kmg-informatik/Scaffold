@@ -16,6 +16,10 @@ public interface QuadStructure extends Geometry {
 
     Quad[] getQuads();
 
+    /**
+     * Returns the render indices for all the Quads in the structure
+     * @return
+     */
     default int[] getIndices() {
         int[] indices = new int[getQuads().length * 6];
         int addTo = 0;
@@ -31,6 +35,10 @@ public interface QuadStructure extends Geometry {
         return indices;
     }
 
+    /**
+     * Returns the vertices of all the Quads in the Structure
+     * @return The vertices
+     */
     default Vertex[] getVertices() {
         Vertex[] vertices = new Vertex[getQuads().length << 2];
         for (int i = 0; i < vertices.length; i += 4) {

@@ -5,6 +5,11 @@ import dev.elk.scaffold.gl.Quad;
 import dev.elk.scaffold.gl.Window;
 import org.joml.Vector2f;
 
+/**
+ * Physics Interface that allows Geometries to fall and to collide
+ * @author Felix Kunze
+ * @author Louis Schell
+ */
 public interface Physics extends Geometry {
 
     float NORMAL_GRAVITY = -10f;
@@ -13,6 +18,9 @@ public interface Physics extends Geometry {
 
     void setCurrentGravity(float g);
 
+    /**
+     * Allows a Geometry to fall also considering collisions.
+     */
     default void fall() {
         Geometry.super.translate(new Vector2f(0, 4 * getCurrentGravity()).mul(Window.dt));
         boolean intersects = false;
@@ -21,10 +29,6 @@ public interface Physics extends Geometry {
                 if (intersects(quad)) {
                     intersects = true;
                     setCurrentGravity(0);
-
-                    //float threshold = 0.01f;
-                    //Vector2f move = new Vector2f(0, quad.getMaxY() - getMinY() - threshold);
-                    //Geometry.super.translate(move);
                 }
             }
         }
@@ -32,6 +36,10 @@ public interface Physics extends Geometry {
             setCurrentGravity(getCurrentGravity() - 40f * Window.dt);
     }
 
+    /**
+     * Falls without considering collisions
+     * @param until the value at which it stops, fulfills the role of an actually collidable ground
+     */
     default void fallNoCollide(float until) {
         if (center().y >= until) {
             Geometry.super.translate(new Vector2f(0, 4 * getCurrentGravity()).mul(Window.dt));
@@ -40,6 +48,9 @@ public interface Physics extends Geometry {
         }
     }
 
+    /**
+     * Cheks if the current Physics object has any collision at all
+     */
     default boolean hasCollision() {
         for (CollidableStructure structure: CollidableStructure.collidables)
             for (Quad quad: structure.getCollidableQuads()) {
@@ -48,6 +59,11 @@ public interface Physics extends Geometry {
         return false;
     }
 
+    /**
+     * Checks if this Geometry is intersecting a specific geometry
+     * @param geometry The Geometry to check
+     * @return whether or not they intersect
+     */
     default boolean intersects(Geometry geometry) {
         return this.getMinX() < geometry.getMaxX() &&
                 this.getMaxX() > geometry.getMinX() &&

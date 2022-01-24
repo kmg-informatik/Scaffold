@@ -30,10 +30,20 @@ public class Shader {
         this.shaderSource = loadShaderSource(filepath);
     }
 
+    /**
+     * Loads a shader from source
+     * @param filepath the file to be read from
+     * @return String representation of the shader code
+     * @throws IOException FileNotFound
+     */
     private static String loadShaderSource(String filepath) throws IOException {
         return new String(Files.readAllBytes(Path.of(filepath)));
     }
 
+    /**
+     * Creates the shader from the shaderSource and compiles it via openGL calls.
+     * @throws InstantiationException
+     */
     public void compile() throws InstantiationException {
         shaderId = glCreateShader(shaderType.GL_TYPE);
 
@@ -65,6 +75,9 @@ public class Shader {
         return shaderId;
     }
 
+    /**
+     * Enum that categorizes the type of shader
+     */
     public enum ShaderType {
         VERTEX(GL_VERTEX_SHADER),
         FRAGMENT(GL_FRAGMENT_SHADER);

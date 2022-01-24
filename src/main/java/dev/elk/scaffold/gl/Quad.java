@@ -51,6 +51,16 @@ public class Quad implements Geometry {
 
     }
 
+    /**
+     * Base quad generator that converts the quad information into the four vertices
+     * @param pos1 The Bottom left of the quad
+     * @param pos2 The Bottom right of the quad
+     * @param pos3 The Top right of the quad
+     * @param pos4 The Top left of the quad
+     * @param color The color of the quad
+     * @param texCoords The texture coordinate of the quad
+     * @param texId The textureID of the quad
+     */
     protected Quad(Vector2f pos1, Vector2f pos2, Vector2f pos3, Vector2f pos4, Color color, Vector2f[] texCoords, int texId) {
         Vector3f colorVec = new Vector3f(color.getRGBColorComponents(null));
         vertices[0] = new Vertex(new Vector2f(pos1), colorVec, texCoords[0], texId);
@@ -64,6 +74,10 @@ public class Quad implements Geometry {
         return vertices;
     }
 
+    /**
+     * Returns the indexes of the vertices to allow for vertices to be reused in multiple triangles.
+     * @return
+     */
     @Override
     public int[] getIndices() {
         return new int[]{0, 1, 2, 2, 3, 0};

@@ -145,7 +145,7 @@ public class JsonGenerator {
         );
 
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/tiles.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.TILES.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
 
@@ -182,7 +182,7 @@ public class JsonGenerator {
                 new Sprite(new Vector2i(a, 0), new Vector2i(b, 2), "treeStep")
         );
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/trees.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.TREES.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
     }
@@ -202,7 +202,7 @@ public class JsonGenerator {
                 new AnimatedSprite(new Vector2i(0, 1), new Vector2i(1, 2), "maguWalk", 3)
         );
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/animations.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.ANIMATIONS.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
     }
@@ -223,7 +223,7 @@ public class JsonGenerator {
                 new AnimatedSprite(new Vector2i(0, 0), new Vector2i(1, 1), "birdUp", 3)
         );
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/animations.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.BIRD.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
     }
@@ -243,7 +243,7 @@ public class JsonGenerator {
                 "pipe"
         ));
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/pipe.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.PIPE.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
     }
@@ -398,7 +398,7 @@ public class JsonGenerator {
                 18
         );
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/cozette.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.COZETTE.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
     }
@@ -414,7 +414,7 @@ public class JsonGenerator {
                 18
         );
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/cozetteBlack.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.COZETTE_BLACK.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
     }
@@ -430,7 +430,7 @@ public class JsonGenerator {
                 20
         );
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/timesNewRoman.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.TIMES_NEW_ROMAN.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
     }
@@ -446,7 +446,7 @@ public class JsonGenerator {
                 20
         );
 
-        FileWriter writer = new FileWriter("Assets/SpriteJson/fonts/jetbrainsMono.json");
+        FileWriter writer = new FileWriter(SpritesheetInfo.JETBRAINS_MONO.jsonPath.toString());
         gson.toJson(spritesheet, writer);
         writer.close();
     }

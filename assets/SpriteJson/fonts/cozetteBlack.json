@@ -1,0 +1,1053 @@
+{
+  "sheetWidth": 256,
+  "sheetHeight": 288,
+  "tileWidth": 16,
+  "tileHeight": 18,
+  "spritesTemp": [
+    {
+      "minPos": {
+        "x": 0,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 9
+      },
+      "spriteName": "cozB_p"
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 9
+      },
+      "spriteName": "cozB_q"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 9
+      },
+      "spriteName": "cozB_r"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 9
+      },
+      "spriteName": "cozB_s"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 9
+      },
+      "spriteName": "cozB_t"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 9
+      },
+      "spriteName": "cozB_u"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 9
+      },
+      "spriteName": "cozB_v"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 9
+      },
+      "spriteName": "cozB_w"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 9
+      },
+      "spriteName": "cozB_x"
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 9
+      },
+      "spriteName": "cozB_y"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 9
+      },
+      "spriteName": "cozB_z"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 9
+      },
+      "spriteName": "cozB_{"
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 9
+      },
+      "spriteName": "cozB_|"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 9
+      },
+      "spriteName": "cozB_}"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 8
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 9
+      },
+      "spriteName": "cozB_~"
+    },
+    {
+      "minPos": {
+        "x": 0,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 10
+      },
+      "spriteName": "cozB_\u0027"
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 10
+      },
+      "spriteName": "cozB_a"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 10
+      },
+      "spriteName": "cozB_b"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 10
+      },
+      "spriteName": "cozB_c"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 10
+      },
+      "spriteName": "cozB_d"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 10
+      },
+      "spriteName": "cozB_e"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 10
+      },
+      "spriteName": "cozB_f"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 10
+      },
+      "spriteName": "cozB_g"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 10
+      },
+      "spriteName": "cozB_h"
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 10
+      },
+      "spriteName": "cozB_i"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 10
+      },
+      "spriteName": "cozB_j"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 10
+      },
+      "spriteName": "cozB_k"
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 10
+      },
+      "spriteName": "cozB_l"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 10
+      },
+      "spriteName": "cozB_m"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 10
+      },
+      "spriteName": "cozB_n"
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 9
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 10
+      },
+      "spriteName": "cozB_o"
+    },
+    {
+      "minPos": {
+        "x": 0,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 11
+      },
+      "spriteName": "cozB_P"
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 11
+      },
+      "spriteName": "cozB_Q"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 11
+      },
+      "spriteName": "cozB_R"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 11
+      },
+      "spriteName": "cozB_S"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 11
+      },
+      "spriteName": "cozB_T"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 11
+      },
+      "spriteName": "cozB_U"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 11
+      },
+      "spriteName": "cozB_V"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 11
+      },
+      "spriteName": "cozB_W"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 11
+      },
+      "spriteName": "cozB_X"
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 11
+      },
+      "spriteName": "cozB_Y"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 11
+      },
+      "spriteName": "cozB_Z"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 11
+      },
+      "spriteName": "cozB_["
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 11
+      },
+      "spriteName": "cozB_backSlash"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 11
+      },
+      "spriteName": "cozB_]"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 11
+      },
+      "spriteName": "cozB_^"
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 10
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 11
+      },
+      "spriteName": "cozB__"
+    },
+    {
+      "minPos": {
+        "x": 0,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 12
+      },
+      "spriteName": "cozB_@"
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 12
+      },
+      "spriteName": "cozB_A"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 12
+      },
+      "spriteName": "cozB_B"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 12
+      },
+      "spriteName": "cozB_C"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 12
+      },
+      "spriteName": "cozB_D"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 12
+      },
+      "spriteName": "cozB_E"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 12
+      },
+      "spriteName": "cozB_F"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 12
+      },
+      "spriteName": "cozB_G"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 12
+      },
+      "spriteName": "cozB_H"
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 12
+      },
+      "spriteName": "cozB_I"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 12
+      },
+      "spriteName": "cozB_J"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 12
+      },
+      "spriteName": "cozB_K"
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 12
+      },
+      "spriteName": "cozB_L"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 12
+      },
+      "spriteName": "cozB_M"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 12
+      },
+      "spriteName": "cozB_N"
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 11
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 12
+      },
+      "spriteName": "cozB_O"
+    },
+    {
+      "minPos": {
+        "x": 0,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 13
+      },
+      "spriteName": "cozB_0"
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 13
+      },
+      "spriteName": "cozB_1"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 13
+      },
+      "spriteName": "cozB_2"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 13
+      },
+      "spriteName": "cozB_3"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 13
+      },
+      "spriteName": "cozB_4"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 13
+      },
+      "spriteName": "cozB_5"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 13
+      },
+      "spriteName": "cozB_6"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 13
+      },
+      "spriteName": "cozB_7"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 13
+      },
+      "spriteName": "cozB_8"
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 13
+      },
+      "spriteName": "cozB_9"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 13
+      },
+      "spriteName": "cozB_:"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 13
+      },
+      "spriteName": "cozB_;"
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 13
+      },
+      "spriteName": "cozB_\u003c"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 13
+      },
+      "spriteName": "cozB_\u003d"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 13
+      },
+      "spriteName": "cozB_\u003e"
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 12
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 13
+      },
+      "spriteName": "cozB_?"
+    },
+    {
+      "minPos": {
+        "x": 0,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 14
+      },
+      "spriteName": "cozB_ "
+    },
+    {
+      "minPos": {
+        "x": 1,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 2,
+        "y": 14
+      },
+      "spriteName": "cozB_!"
+    },
+    {
+      "minPos": {
+        "x": 2,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 3,
+        "y": 14
+      },
+      "spriteName": "cozB_doubleQuote"
+    },
+    {
+      "minPos": {
+        "x": 3,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 4,
+        "y": 14
+      },
+      "spriteName": "cozB_#"
+    },
+    {
+      "minPos": {
+        "x": 4,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 5,
+        "y": 14
+      },
+      "spriteName": "cozB_$"
+    },
+    {
+      "minPos": {
+        "x": 5,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 6,
+        "y": 14
+      },
+      "spriteName": "cozB_%"
+    },
+    {
+      "minPos": {
+        "x": 6,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 7,
+        "y": 14
+      },
+      "spriteName": "cozB_\u0026"
+    },
+    {
+      "minPos": {
+        "x": 7,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 8,
+        "y": 14
+      },
+      "spriteName": "cozB_\u0027"
+    },
+    {
+      "minPos": {
+        "x": 8,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 9,
+        "y": 14
+      },
+      "spriteName": "cozB_("
+    },
+    {
+      "minPos": {
+        "x": 9,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 10,
+        "y": 14
+      },
+      "spriteName": "cozB_)"
+    },
+    {
+      "minPos": {
+        "x": 10,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 11,
+        "y": 14
+      },
+      "spriteName": "cozB_*"
+    },
+    {
+      "minPos": {
+        "x": 11,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 12,
+        "y": 14
+      },
+      "spriteName": "cozB_+"
+    },
+    {
+      "minPos": {
+        "x": 12,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 13,
+        "y": 14
+      },
+      "spriteName": "cozB_,"
+    },
+    {
+      "minPos": {
+        "x": 13,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 14,
+        "y": 14
+      },
+      "spriteName": "cozB_-"
+    },
+    {
+      "minPos": {
+        "x": 14,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 15,
+        "y": 14
+      },
+      "spriteName": "cozB_."
+    },
+    {
+      "minPos": {
+        "x": 15,
+        "y": 13
+      },
+      "maxPos": {
+        "x": 16,
+        "y": 14
+      },
+      "spriteName": "cozB_/"
+    }
+  ]
+}

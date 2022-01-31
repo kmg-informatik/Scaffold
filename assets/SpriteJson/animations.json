@@ -1,41 +1,11 @@
 {
-  "sheetWidth": 261,
-  "sheetHeight": 261,
-  "tileWidth": 87,
-  "tileHeight": 87,
+  "sheetWidth": 224,
+  "sheetHeight": 82,
+  "tileWidth": 28,
+  "tileHeight": 41,
   "spritesTemp": [
     {
-      "frameCount": 1,
-      "currentFrame": 0,
-      "animationSpeed": 2,
-      "animationCounter": 0,
-      "minPos": {
-        "x": 0,
-        "y": 2
-      },
-      "maxPos": {
-        "x": 1,
-        "y": 3
-      },
-      "spriteName": "bird"
-    },
-    {
-      "frameCount": 3,
-      "currentFrame": 0,
-      "animationSpeed": 2,
-      "animationCounter": 0,
-      "minPos": {
-        "x": 0,
-        "y": 1
-      },
-      "maxPos": {
-        "x": 1,
-        "y": 2
-      },
-      "spriteName": "birdDown"
-    },
-    {
-      "frameCount": 3,
+      "frameCount": 8,
       "currentFrame": 0,
       "animationSpeed": 2,
       "animationCounter": 0,
@@ -47,7 +17,22 @@
         "x": 1,
         "y": 1
       },
-      "spriteName": "birdUp"
+      "spriteName": "maguJump"
+    },
+    {
+      "frameCount": 3,
+      "currentFrame": 0,
+      "animationSpeed": 2,
+      "animationCounter": 0,
+      "minPos": {
+        "x": 0,
+        "y": 1
+      },
+      "maxPos": {
+        "x": 1,
+        "y": 2
+      },
+      "spriteName": "maguWalk"
     }
   ]
 }
